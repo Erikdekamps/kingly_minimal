@@ -97,5 +97,16 @@ export default defineConfig({
         (await import('autoprefixer')).default({ grid: 'autoplace' }),
       ],
     },
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: [
+          'mixed-decls',
+          'color-functions',
+          'global-builtin',
+          'import',
+          'legacy-js-api',
+        ],
+      },
+    },
   },
 });

@@ -55,14 +55,14 @@
   {% endif %}
 
   <header class="page-header" role="banner">
-    {% if page.branding or page.main_navigation %}
-      <div class="page-header__menu">
+    {% if page.branding %}
+      <div class="page-header__branding">
         {{ page.branding }}
+      </div>
+    {% endif %}
 
-        {#
-        The main navigation region now renders the entire main-menu component,
-        which includes the menu itself and the mobile toggle button.
-        #}
+    {% if page.main_navigation %}
+      <div class="page-header__menu">
         {{ page.main_navigation }}
       </div>
     {% endif %}

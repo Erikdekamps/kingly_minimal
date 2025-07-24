@@ -15,13 +15,13 @@
 * - title_suffix: (optional)
     */
 #}
-    {% set heading_id = attributes.id ~ '-label' %}
+{% set heading_id = attributes.id ~ '-label' %}
 
 {#
 The data-component-id attribute is essential for SDC to discover this component
 and attach its assets (CSS/JS).
 #}
-<div {{ attributes.setAttribute('data-component-id', 'kingly_minimal:main-menu') }}>
+<div {{ attributes }}>
   <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu-wrapper-{{ heading_id }}" aria-label="{{ 'Toggle main menu'|t }}">
     {#
     This inline SVG provides the hamburger icon. It is marked as aria-hidden

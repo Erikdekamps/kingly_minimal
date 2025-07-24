@@ -1,0 +1,186 @@
+// kingly_minimal/components/main-menu/main-menu.scss
+
+@use '../../scss/base/variables' as *;
+@use '../../scss/base/mixins' as *;
+
+// -----------------------------------------------------------------------------
+// Main Navigation Component
+// This is the root selector for the component, ensuring all styles are scoped.
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:main-menu'] {
+  // On desktop, the component is just a flex item.
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+
+  // On mobile, the component takes up the full width available.
+  @include media-query(md, max) {
+    flex-grow: 1;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Mobile Menu Toggle (Hamburger) Button
+// -----------------------------------------------------------------------------
+.mobile-menu-toggle {
+  // This button should only be visible on mobile.
+  display: none;
+  // Reset default button styles for a clean slate.
+  border: none;
+  background: transparent;
+  padding: var(--spacing-xs);
+  cursor: pointer;
+  // Ensures the button appears above the menu content if needed.
+  z-index: 2;
+
+  @include media-query(md, max) {
+    display: block;
+  }
+
+  // Provide a clear focus state for keyboard accessibility.
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  // The box that contains the hamburger lines.
+  .hamburger-box {
+    width: 24px;
+    height: 18px;
+    display: inline-block;
+    position: relative;
+  }
+
+  // Styles for the three lines of the hamburger icon.
+  .hamburger-inner,
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    border-radius: 2px;
+    position: absolute;
+    transition-property: transform, opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+  }
+
+  // Position the pseudo-elements relative to the middle line.
+  .hamburger-inner {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    content: '';
+    display: block;
+  }
+
+  .hamburger-inner::before {
+    top: -8px;
+  }
+
+  .hamburger-inner::after {
+    bottom: -8px;
+  }
+
+  // Animate the hamburger to an "X" shape when the menu is open.
+  &[aria-expanded='true'] .hamburger-inner {
+    transform: rotate(45deg);
+
+    &::before {
+      // Move top line to center and fade out.
+      top: 0;
+      opacity: 0;
+    }
+
+    &::after {
+      // Move bottom line to center and rotate opposite.
+      bottom: 0;
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Menu Wrapper and Menu Tree Styles
+// -----------------------------------------------------------------------------
+.menu-wrapper {
+  @include media-query(md, max) {
+    // On mobile, the menu is positioned absolutely relative to the header.
+    position: absolute;
+    top: 100%;
+    right: 0;
+    // Cover the full width of the header area.
+    width: 100vw;
+    background-color: var(--color-background);
+    border-top: var(--border-width) solid var(--color-border);
+    // Use grid for robust, height-agnostic animation.
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.3s ease, visibility 0s linear 0.3s;
+
+    // The .is-open class, added by JS, triggers the expansion.
+    &.is-open {
+      grid-template-rows: 1fr;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+  }
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+  // Mobile-specific overrides (vertical list).
+  @include media-query(md, max) {
+    // These ensure the grid animation works smoothly.
+    overflow: hidden;
+    min-height: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--spacing-sm) 0;
+  }
+
+  // Tablet and desktop-specific overrides (horizontal list).
+  @include media-query(md) {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+}
+
+.menu__link {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-light-gray);
+    text-decoration: none;
+  }
+
+  &.is-active {
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+
+  // On mobile, links should look like full-width list items.
+  @include media-query(md, max) {
+    border-radius: 0;
+  }
+}
+
+// Hide sub-menus by default.
+.menu__sub-menu {
+  display: none;
+}

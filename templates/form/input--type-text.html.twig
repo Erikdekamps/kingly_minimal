@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' element.
+ *
+ * This is a specific override for text inputs.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: (optional) A render array of the child elements.
+ *
+ * @see template_preprocess_input()
+ */
+#}
+<input{{ attributes.addClass('form-text') }} />{{ children }}

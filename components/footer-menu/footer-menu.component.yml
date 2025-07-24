@@ -1,0 +1,18 @@
+name: Footer Menu
+status: stable
+description: Renders a menu, styled for the footer region.
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Label
+      description: The accessible label for the navigation.
+    content:
+      type: object
+      title: Content
+      description: The render array for the menu tree.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the wrapper.

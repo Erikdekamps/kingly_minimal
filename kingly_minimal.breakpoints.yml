@@ -1,0 +1,31 @@
+kingly_minimal.sm:
+  label: Small
+  mediaQuery: '(min-width: 500px)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+
+kingly_minimal.md:
+  label: Medium
+  mediaQuery: '(min-width: 768px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+
+kingly_minimal.lg:
+  label: Large
+  mediaQuery: '(min-width: 991px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+
+kingly_minimal.xl:
+  label: Extra Large
+  mediaQuery: '(min-width: 1280px)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 2x

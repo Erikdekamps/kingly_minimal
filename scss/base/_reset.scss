@@ -1,0 +1,68 @@
+// kingly_minimal/scss/base/_reset.scss
+
+// This file provides a modern, minimal CSS reset.
+// We use `:where` to keep specificity low, so these rules are easily overridden.
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Remove default margin on the body and other common elements.
+:where(body, h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd) {
+  margin: 0;
+}
+
+// Set core body defaults.
+body {
+  min-height: 100vh;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Make images and other media responsive by default.
+:where(img, picture, svg, video, canvas) {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Remove list styles on ul, ol elements with a role attribute
+// which suggests they are used for navigation or other non-list semantics.
+:where(ul[role='list'], ol[role='list']) {
+  list-style: none;
+  padding: 0;
+}
+
+// Basic styling for links.
+a {
+  color: var(--color-primary);
+  text-decoration-skip-ink: auto;
+
+  &:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+}
+
+// Remove all animations and transitions for people that prefer not to see them.
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

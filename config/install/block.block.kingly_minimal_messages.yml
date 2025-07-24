@@ -1,0 +1,20 @@
+uuid: 6d3e0a9h-4f1c-5g5d-0f8e-2g9b7d5c3d2d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kingly_minimal
+id: kingly_minimal_messages
+theme: kingly_minimal
+region: system_messages
+weight: -20
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,29 @@
+// kingly_minimal/components/footer-menu/footer-menu.scss
+
+@use '../../scss/base/variables' as *;
+
+// -----------------------------------------------------------------------------
+// Footer Menu Component
+// -----------------------------------------------------------------------------
+
+[data-component-id="kingly_minimal:footer-menu"] {
+  // The menu in the footer's bottom bar should be inline and wrap.
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  .menu__link {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

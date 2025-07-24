@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override for a node edit form.
+ *
+ * This is an override of node-edit-form.html.twig for the Kingly Minimal theme.
+ *
+ * This override provides a two-column layout for the node edit form, placing
+ * the "advanced" details in a sidebar.
+ *
+ * Available variables:
+ * - form: The complete form render array.
+ *
+ * @see template_preprocess_node_edit_form()
+ */
+#}
+<div class="node-form-layout">
+  <div class="node-form-layout__main">
+    {# Render all form elements except for the 'advanced' and 'actions' groups #}
+    {{ form|without('advanced', 'actions') }}
+  </div>
+  <div class="node-form-layout__sidebar">
+    {# Render the 'advanced' group in the sidebar #}
+    {{ form.advanced }}
+  </div>
+  <div class="node-form-layout__footer">
+    {# Render the form actions (e.g., Save, Delete) at the bottom #}
+    {{ form.actions }}
+  </div>
+</div>

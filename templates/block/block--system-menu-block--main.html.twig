@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override for the main menu block.
+ *
+ * This template acts as a bridge to a Single Directory Component (SDC). It
+ * includes the `main-menu` component and passes the necessary block variables
+ * to it.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+{{
+include('kingly_minimal:main-menu', {
+  content: content,
+  attributes: attributes,
+  title_attributes: title_attributes,
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+  label: label,
+}, with_context = false)
+}}

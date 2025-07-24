@@ -1,0 +1,20 @@
+uuid: 8f5g2c1j-6h3e-7i7f-2h0g-4i1d9f7e5f4f
+langcode: en
+status: true
+dependencies:
+  theme:
+    - kingly_minimal
+id: kingly_minimal_tabs
+theme: kingly_minimal
+region: tabs
+weight: -10
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

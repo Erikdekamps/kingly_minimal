@@ -1,0 +1,20 @@
+uuid: 2e8c1d5f-9b4e-4f1a-8c7d-3e6f7b0a9d2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kingly_minimal
+id: kingly_minimal_breadcrumbs
+theme: kingly_minimal
+region: breadcrumbs
+weight: -10
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

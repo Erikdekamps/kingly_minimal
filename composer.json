@@ -1,0 +1,7 @@
+{
+  "name": "erikdekamps/kingly_minimal",
+  "type": "drupal-theme",
+  "description": "A minimal, modern base theme with a Vite-powered SCSS toolchain.",
+  "license": "GPL-2.0-or-later",
+  "require": {}
+}

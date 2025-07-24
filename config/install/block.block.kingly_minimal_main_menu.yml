@@ -1,0 +1,25 @@
+uuid: 5c2d9f8g-3e0b-4f4c-9e7d-1f8a6c4b2c1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - kingly_minimal
+id: kingly_minimal_main_menu
+theme: kingly_minimal
+region: main_navigation
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 2
+  expand_all_items: true
+visibility: {  }

@@ -1,0 +1,79 @@
+// kingly_minimal/scss/layout/page.scss
+
+// This is an entry point file. It will be compiled by Vite.
+
+// 1. Import shared partials. We use `@use` for modern SCSS.
+// The 'as *' makes all variables available without a namespace.
+@use '../base/variables' as *;
+// This includes the reset styles in our compiled CSS.
+@use '../base/reset';
+
+// -----------------------------------------------------------------------------
+// Main Page Layout
+// We use a 3-column CSS Grid to create a "full bleed" layout. This allows
+// specific elements like the footer to span the full viewport width, while
+// most content remains constrained to the center column.
+// -----------------------------------------------------------------------------
+
+.layout-container {
+  display: grid;
+  // This defines a sticky footer layout. Header and footer are auto-sized,
+  // and the main content area takes up all remaining vertical space.
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  // Defines three columns: an empty left gutter, the main content column,
+  // and an empty right gutter. The content column has a max width.
+  grid-template-columns: 1fr minmax(0, var(--container-max-width)) 1fr;
+  // Defines the space between the header, main, and footer grid items.
+  gap: var(--spacing-lg);
+}
+
+// By default, we want all direct children of the layout container (header,
+// main, footer) to be placed in the center content column (column 2).
+// Specific elements can then override this to become "full bleed".
+.layout-container > * {
+  grid-column: 2;
+  // This ensures that nested grids or flex containers don't overflow.
+  min-width: 0;
+}
+
+// Styles for the main content wrapper.
+.main-content {
+  // Using grid here makes managing vertical spacing between regions simple.
+  display: grid;
+  gap: var(--spacing-md);
+  // Ensures the content starts at the top of the main area.
+  align-content: start;
+}
+
+// -----------------------------------------------------------------------------
+// Base Typography & Page Title
+// -----------------------------------------------------------------------------
+
+.page-title {
+  font-family: var(--font-family-heading);
+  line-height: var(--line-height-heading);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-md);
+}
+
+// -----------------------------------------------------------------------------
+// Responsive Adjustments (Mobile First)
+// -----------------------------------------------------------------------------
+
+@media (min-width: 768px) { // md breakpoint
+  .layout-container {
+    gap: var(--spacing-xl);
+    // On larger screens, the side gutters are based on our spacing unit.
+    // The main content column still respects --container-max-width.
+    grid-template-columns: minmax(var(--spacing-lg), 1fr) minmax(0, var(--container-max-width)) minmax(var(--spacing-lg), 1fr);
+  }
+
+  .main-content {
+    gap: var(--spacing-lg);
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+  }
+}

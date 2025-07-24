@@ -1,0 +1,33 @@
+global:
+  css:
+    theme:
+      dist/css/layout/page.css: { minified: true }
+      dist/css/layout/header.css: { minified: true }
+      dist/css/layout/footer.css: { minified: true }
+  dependencies:
+    - core/once
+
+button:
+  css:
+    theme:
+      dist/css/components/button.css: { minified: true }
+
+messages:
+  css:
+    theme:
+      dist/css/components/messages.css: { minified: true }
+
+node:
+  css:
+    theme:
+      dist/css/content/node.css: { minified: true }
+
+field:
+  css:
+    theme:
+      dist/css/fields/field.css: { minified: true }
+
+breadcrumbs:
+  css:
+    theme:
+      dist/css/components/breadcrumbs.css: { minified: true }

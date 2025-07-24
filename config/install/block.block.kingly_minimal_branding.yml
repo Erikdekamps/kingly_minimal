@@ -1,0 +1,23 @@
+uuid: 1b4f8c6e-8d8a-4c2f-8a0e-9c7f5d3a1b0b
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kingly_minimal
+id: kingly_minimal_branding
+theme: kingly_minimal
+region: branding
+weight: -10
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

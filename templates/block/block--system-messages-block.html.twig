@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for the system messages block.
+ *
+ * This template is used to render the block that contains status, warning, and
+ * error messages.
+ *
+ * This override removes the default block wrapper and title, as the markup for
+ * messages is handled within the status-messages.html.twig template. This
+ * prevents redundant nesting and keeps the DOM clean.
+ *
+ * @see template_preprocess_block()
+ * @see kingly_minimal/templates/misc/status-messages.html.twig
+ */
+#}
+{{ content }}

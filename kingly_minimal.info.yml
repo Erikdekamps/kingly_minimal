@@ -1,0 +1,31 @@
+name: Kingly Minimal
+type: theme
+description: 'A minimal, modern base theme with a Vite-powered SCSS toolchain.'
+core_version_requirement: ^10 || ^11
+base theme: stable9
+
+regions:
+  page_top: 'Page top'
+  branding: 'Branding'
+  main_navigation: 'Main navigation'
+  breadcrumbs: 'Breadcrumbs'
+  page_title: 'Page title'
+  system_messages: 'System messages'
+  tabs: 'Tabs'
+  content_top: 'Content top'
+  content: 'Content'
+  content_bottom: 'Content bottom'
+  footer_top: 'Footer top'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer_fourth: 'Footer fourth'
+  footer_bottom: 'Footer bottom'
+  hidden: 'Hidden'
+
+libraries:
+  - kingly_minimal/global
+  - kingly_minimal/button
+  - kingly_minimal/messages
+  - kingly_minimal/node
+  - kingly_minimal/field

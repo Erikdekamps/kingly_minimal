@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while in maintenance mode.
+ *
+ * All variables available in page.html.twig are available here, but they should
+ * be used with caution as being in maintenance mode implies that many systems
+ * may not be available.
+ *
+ * @see template_preprocess_maintenance_page()
+ * @see page.html.twig
+ */
+#}
+<div class="layout-container">
+
+  <header role="banner">
+    {% if site_name %}
+      <h1>
+        <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+      </h1>
+    {% endif %}
+    {% if site_slogan %}
+      <div>{{ site_slogan }}</div>
+    {% endif %}
+  </header>
+
+  <main role="main">
+    {% if title %}
+      <h1>{{ title }}</h1>
+    {% endif %}
+    {{ page.content }}
+  </main>
+
+  {% if page.footer_bottom %}
+    <footer role="contentinfo">
+      {{ page.footer_bottom }}
+    </footer>
+  {% endif %}
+
+</div>{# /.layout-container #}

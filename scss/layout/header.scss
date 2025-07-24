@@ -1,0 +1,33 @@
+// kingly_minimal/scss/layout/header.scss
+
+// This file defines the main header structure and imports its components.
+
+@use '../base/variables' as *;
+@use 'site-branding';
+
+// -----------------------------------------------------------------------------
+// Header Main Structure
+// -----------------------------------------------------------------------------
+
+.page-header {
+  // Use grid to stack the primary header sections vertically.
+  // This includes the main header bar and the breadcrumb trail.
+  display: grid;
+  gap: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--color-border);
+  padding-block: var(--spacing-md);
+}
+
+// -----------------------------------------------------------------------------
+// Main Header Bar (Branding + Menu Wrapper)
+// -----------------------------------------------------------------------------
+
+.page-header__menu {
+  // Flexbox aligns the site branding and navigation/toggle side-by-side.
+  display: flex;
+  // Allows items to wrap on very small screens if necessary.
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}

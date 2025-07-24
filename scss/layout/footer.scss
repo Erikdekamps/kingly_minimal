@@ -1,0 +1,120 @@
+// kingly_minimal/scss/layout/footer.scss
+
+// This is an entry point file for the footer layout.
+
+@use '../base/variables' as *;
+
+// -----------------------------------------------------------------------------
+// Footer Main Structure (Full Bleed)
+// -----------------------------------------------------------------------------
+
+.page-footer {
+  // 1. Make the footer span all columns of the main page grid to go full-width.
+  grid-column: 1 / -1;
+
+  // 2. Apply the background color and vertical padding to the full-width wrapper.
+  background-color: var(--color-light-gray);
+  padding-block: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+
+  // 3. Use an inner grid to stack and center the content areas.
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-lg);
+}
+
+// -----------------------------------------------------------------------------
+// Footer Content Containers
+// These rules center the content areas within the full-width footer.
+// -----------------------------------------------------------------------------
+
+.page-footer__top,
+.page-footer__columns,
+.page-footer__bottom {
+  width: 100%;
+  // Constrain the width to match the main site content.
+  max-width: var(--container-max-width);
+  // Apply side padding that matches the main site content.
+  padding-inline: var(--container-padding);
+}
+
+// -----------------------------------------------------------------------------
+// Footer Columns
+// Targets .page-footer__columns from page.html.twig
+// -----------------------------------------------------------------------------
+
+.page-footer__columns {
+  display: grid;
+  // Mobile: Single column layout.
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  // Add a border to separate the columns from the bottom bar.
+  padding-bottom: var(--spacing-lg);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+// Tablet and up: Two-column layout
+@media (min-width: 768px) { // md breakpoint
+  .page-footer__columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Desktop and up: Four-column layout
+@media (min-width: 991px) { // lg breakpoint
+  .page-footer__columns {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Footer Bottom Bar
+// Targets .page-footer__bottom from page.html.twig
+// -----------------------------------------------------------------------------
+
+.page-footer__bottom {
+  display: flex;
+  flex-wrap: wrap; // Allow items to stack on small screens.
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+// -----------------------------------------------------------------------------
+// Generic Styles for Content Within the Footer
+// -----------------------------------------------------------------------------
+
+.page-footer {
+  .block__title {
+    font-size: 1rem; // ~16px
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-family-heading);
+  }
+
+  // Style for menus placed in the footer (e.g., in the four columns).
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .menu__link {
+    text-decoration: none;
+    color: var(--color-text);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Override menu display for the bottom bar only.
+  // This makes the menu items appear inline instead of stacked.
+  .page-footer__bottom .menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+}

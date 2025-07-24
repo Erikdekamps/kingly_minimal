@@ -1,0 +1,81 @@
+// kingly_minimal/scss/content/node.scss
+
+// This is an entry point file for node styles.
+
+@use '../base/variables' as *;
+
+// -----------------------------------------------------------------------------
+// Base Node Styles
+// Targets classes from node.html.twig
+// -----------------------------------------------------------------------------
+
+.node {
+  // Use grid to provide simple structure within a node.
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.node__title {
+  font-family: var(--font-family-heading);
+  font-size: 1.5rem;
+  line-height: var(--line-height-heading);
+  margin: 0; // The h2 has a default margin we need to reset.
+
+  // Link inside the title should inherit color and be undecorated.
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Node Metadata (Submitted by...)
+// -----------------------------------------------------------------------------
+
+.node__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.node__submitted {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+// Style for the author's picture, if displayed.
+.user-picture {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+// -----------------------------------------------------------------------------
+// Main Node Content
+// -----------------------------------------------------------------------------
+
+.node__content {
+  // Add some breathing room between content elements.
+  > *:not(:last-child) {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// View Mode Specifics
+// -----------------------------------------------------------------------------
+
+// Add a border to separate teasers in a list.
+.node--view-mode-teaser {
+  padding-bottom: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+// On the full page view, the page title is handled by page-title.html.twig,
+// so we don't need to show the node title from node.html.twig.
+.node--view-mode-full > .node__title {
+  display: none;
+}

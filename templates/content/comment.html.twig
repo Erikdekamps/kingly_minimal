@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override for a single comment.
+ *
+ * Available variables:
+ * - author_picture: The comment author's picture.
+ * - author: The comment author's name.
+ * - created: The time the comment was posted, formatted.
+ * - changed: The time the comment was last edited, formatted.
+ * - content: The comment's content, ready to be rendered.
+ * - permalink: A link to the specific comment.
+ * - title: The comment's title.
+ * - new: A flag indicating whether the comment is new.
+ * - comment: The comment entity, with limited access to object properties and
+ *   methods.
+ * - attributes: HTML attributes for the main container.
+ * - content_attributes: HTML attributes for the comment content container.
+ * - author_attributes: HTML attributes for the comment author container.
+ * - title_attributes: HTML attributes for the title element.
+ *
+ * @see template_preprocess_comment()
+ */
+#}
+{%
+  set classes = [
+  'comment',
+  'comment--type-' ~ comment.bundle|clean_class,
+  comment.isNew() ? 'comment--new',
+  'by-node-author--' ~ (author.id() == node.getOwnerId() ? 'yes' : 'no'),
+  'by-viewer--' ~ (author.id() == logged_in_user.id() ? 'yes' : 'no'),
+]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <footer class="comment__meta">
+    {{ author_picture }}
+    <p class="comment__submitted">
+      <span{{ author_attributes.addClass('comment__author') }}>{{ author }}</span>
+      <span class="comment__time-permalink">
+        <time datetime="{{ comment.getCreatedTime|format('c') }}">{{ created }}</time>
+        <a href="{{ permalink }}" class="permalink" rel="bookmark">{{ 'Permalink'|t }}</a>
+        {% if new %}
+          <mark class="new">{{ new }}</mark>
+        {% endif %}
+      </span>
+    </p>
+  </footer>
+
+  <div{{ content_attributes.addClass('comment__content') }}>
+    {{ title_prefix }}
+    {% if title %}
+      <h3{{ title_attributes }}>{{ title }}</h3>
+    {% endif %}
+    {{ title_suffix }}
+    {{ content }}
+  </div>
+</article>

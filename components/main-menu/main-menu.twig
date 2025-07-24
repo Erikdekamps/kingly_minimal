@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Component template for the main navigation menu.
+ *
+ * This component encapsulates the main navigation, including the menu tree and
+ * the mobile hamburger-style toggle button.
+ *
+ * It expects the following variables to be passed from its parent (usually
+ * a block template):
+ * - attributes: HTML attributes for the containing element.
+ * - label: The configured label of the block.
+ * - content: The render array of the menu tree.
+ * - title_prefix: (optional)
+ * - title_suffix: (optional)
+ */
+#}
+{% set heading_id = attributes.id ~ '-label' %}
+
+{#
+The data-component-id attribute is essential for SDC to discover this component
+and attach its assets (CSS/JS).
+#}
+{#<div {{ attributes.setAttribute('data-component-id', 'kingly_minimal:main-menu') }}>#}
+<div {{ attributes }}>
+  <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="{{ 'Toggle main menu'|t }}">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
+  <div class="menu-wrapper">
+    <nav role="navigation" aria-labelledby="{{ heading_id }}">
+      {#
+      Print the block title as a visually hidden heading. This provides an
+      accessible name for the <nav> element via aria-labelledby.
+      #}
+      {{ title_prefix }}
+      {% if label %}
+        <h2{{ title_attributes.addClass('visually-hidden') }} id="{{ heading_id }}">{{ label }}</h2>
+      {% endif %}
+      {{ title_suffix }}
+
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </nav>
+  </div>
+</div>

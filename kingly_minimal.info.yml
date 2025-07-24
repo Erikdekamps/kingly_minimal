@@ -24,6 +24,7 @@ regions:
   hidden: 'Hidden'
 
 libraries:
+  - kingly_minimal/base
   - kingly_minimal/global
   - kingly_minimal/button
   - kingly_minimal/messages

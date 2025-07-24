@@ -114,42 +114,45 @@
 
   {% if page.footer_top or page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_bottom %}
     <footer class="page-footer" role="contentinfo">
-      {% if page.footer_top %}
-        <div class="page-footer__top">
-          {{ page.footer_top }}
-        </div>
-      {% endif %}
+      {# This new wrapper will contain and center all footer content #}
+      <div class="page-footer__inner">
+        {% if page.footer_top %}
+          <div class="page-footer__top">
+            {{ page.footer_top }}
+          </div>
+        {% endif %}
 
-      {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-        <div class="page-footer__columns">
-          {% if page.footer_first %}
-            <div class="page-footer__column footer-first">
-              {{ page.footer_first }}
-            </div>
-          {% endif %}
-          {% if page.footer_second %}
-            <div class="page-footer__column footer-second">
-              {{ page.footer_second }}
-            </div>
-          {% endif %}
-          {% if page.footer_third %}
-            <div class="page-footer__column footer-third">
-              {{ page.footer_third }}
-            </div>
-          {% endif %}
-          {% if page.footer_fourth %}
-            <div class="page-footer__column footer-fourth">
-              {{ page.footer_fourth }}
-            </div>
-          {% endif %}
-        </div>
-      {% endif %}
+        {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
+          <div class="page-footer__columns">
+            {% if page.footer_first %}
+              <div class="page-footer__column footer-first">
+                {{ page.footer_first }}
+              </div>
+            {% endif %}
+            {% if page.footer_second %}
+              <div class="page-footer__column footer-second">
+                {{ page.footer_second }}
+              </div>
+            {% endif %}
+            {% if page.footer_third %}
+              <div class="page-footer__column footer-third">
+                {{ page.footer_third }}
+              </div>
+            {% endif %}
+            {% if page.footer_fourth %}
+              <div class="page-footer__column footer-fourth">
+                {{ page.footer_fourth }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
 
-      {% if page.footer_bottom %}
-        <div class="page-footer__bottom">
-          {{ page.footer_bottom }}
-        </div>
-      {% endif %}
+        {% if page.footer_bottom %}
+          <div class="page-footer__bottom">
+            {{ page.footer_bottom }}
+          </div>
+        {% endif %}
+      </div>
     </footer>
   {% endif %}
 

@@ -58,8 +58,8 @@ export default defineConfig({
           // Use the file path without extension as the entry name.
           // e.g., 'scss/layout/page' or 'components/main-menu/main-menu'
           file.slice(0, file.length - path.extname(file).length),
-          fileURLToPath(new URL(file, import.meta.url))
-        ])
+          fileURLToPath(new URL(file, import.meta.url)),
+        ]),
       ),
 
       output: {

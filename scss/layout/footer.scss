@@ -2,79 +2,80 @@
 
 // This is an entry point file for the footer layout.
 
-@use '../base/variables' as *;
+@use '../base/mixins' as *;
 
 // -----------------------------------------------------------------------------
 // Footer Main Structure (Full Bleed)
+// This element is now set to be full-bleed by page.scss.
 // -----------------------------------------------------------------------------
 
 .page-footer {
-  // 1. Make the footer span all columns of the main page grid to go full-width.
-  grid-column: 1 / -1;
-
-  // 2. Apply the background color and vertical padding to the full-width wrapper.
+  // Apply the background color and vertical padding to the full-width wrapper.
   background-color: var(--color-light-gray);
   padding-block: var(--spacing-lg);
   font-size: var(--font-size-sm);
 
-  // 3. Use an inner grid to stack and center the content areas.
+  // Use a simple grid layout to center the single inner container.
   display: grid;
   justify-items: center;
+}
+
+// -----------------------------------------------------------------------------
+// Footer Inner Container
+// This wrapper constrains all footer content to the main site width.
+// -----------------------------------------------------------------------------
+.page-footer__inner {
+  width: 100%;
+  max-width: var(--container-max-width);
+  padding-inline: var(--container-padding);
+  // Use grid to manage the vertical spacing of the footer sections.
+  display: grid;
   gap: var(--spacing-lg);
 }
 
 // -----------------------------------------------------------------------------
-// Footer Content Containers
-// These rules center the content areas within the full-width footer.
+// Footer Columns (The 12-column grid)
 // -----------------------------------------------------------------------------
-
-.page-footer__top,
-.page-footer__columns,
-.page-footer__bottom {
-  width: 100%;
-  // Constrain the width to match the main site content.
-  max-width: var(--container-max-width);
-  // Apply side padding that matches the main site content.
-  padding-inline: var(--container-padding);
-}
-
-// -----------------------------------------------------------------------------
-// Footer Columns
-// Targets .page-footer__columns from page.html.twig
-// -----------------------------------------------------------------------------
-
 .page-footer__columns {
   display: grid;
-  // Mobile: Single column layout.
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(12, 1fr);
   gap: var(--spacing-lg);
-  // Add a border to separate the columns from the bottom bar.
+  // Separate the columns from the bottom bar.
   padding-bottom: var(--spacing-lg);
   border-bottom: var(--border-width) solid var(--color-border);
 }
 
-// Tablet and up: Two-column layout
-@media (min-width: 768px) { // md breakpoint
-  .page-footer__columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+// An individual column within the .page-footer__columns grid.
+.page-footer__column {
+  // Mobile: Each column takes the full width.
+  grid-column: 1 / -1;
 
-// Desktop and up: Four-column layout
-@media (min-width: 991px) { // lg breakpoint
-  .page-footer__columns {
-    grid-template-columns: repeat(4, 1fr);
+  // Tablet: Two-column layout (each spans 6 tracks).
+  @include media-query(md) {
+    grid-column: span 6;
+    // Ensure the 3rd item starts a new row.
+    &:nth-child(2n + 1) {
+      grid-column-start: 1;
+    }
+  }
+
+  // Desktop: Four-column layout (each spans 3 tracks).
+  @include media-query(lg) {
+    grid-column: span 3;
+    // Ensure the 5th item starts a new row.
+    &:nth-child(4n + 1) {
+      grid-column-start: 1;
+    }
   }
 }
 
 // -----------------------------------------------------------------------------
 // Footer Bottom Bar
-// Targets .page-footer__bottom from page.html.twig
 // -----------------------------------------------------------------------------
 
 .page-footer__bottom {
   display: flex;
-  flex-wrap: wrap; // Allow items to stack on small screens.
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-md);
@@ -86,13 +87,12 @@
 
 .page-footer {
   .block__title {
-    font-size: 1rem; // ~16px
+    font-size: 1rem;
     font-weight: bold;
     margin-bottom: var(--spacing-sm);
     font-family: var(--font-family-heading);
   }
 
-  // Style for menus placed in the footer (e.g., in the four columns).
   .menu {
     list-style: none;
     padding: 0;
@@ -110,8 +110,7 @@
     }
   }
 
-  // Override menu display for the bottom bar only.
-  // This makes the menu items appear inline instead of stacked.
+  // Style for the menu in the bottom bar (e.g., footer menu).
   .page-footer__bottom .menu {
     display: flex;
     flex-wrap: wrap;

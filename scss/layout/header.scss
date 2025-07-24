@@ -2,7 +2,6 @@
 
 // This file defines the main header structure and imports its components.
 
-@use '../base/variables' as *;
 @use '../base/mixins' as *;
 @use 'site-branding';
 
@@ -11,34 +10,54 @@
 // -----------------------------------------------------------------------------
 
 .page-header {
-  // Use grid to stack the primary header sections vertically.
-  // This includes the main header bar and the breadcrumb trail.
+  // Use a 12-column grid, mirroring the .main-content grid for alignment.
   display: grid;
-  gap: var(--spacing-md);
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-md); // Defines gutter between columns and gap between rows.
+  align-items: center; // Vertically align items in the center of the row.
+
   border-bottom: var(--border-width) solid var(--color-border);
   padding-block: var(--spacing-md);
+
+  // On larger screens, increase the gap to match the main content area.
+  @include media-query(md) {
+    gap: var(--spacing-lg);
+  }
 }
 
 // -----------------------------------------------------------------------------
-// Main Header Bar (Branding + Menu Wrapper)
+// Header Regions (Branding, Menu, Breadcrumbs)
+// The placement of these regions is now controlled by the parent .page-header grid.
+// We use classes on the wrappers from page.html.twig.
 // -----------------------------------------------------------------------------
 
-.page-header__menu {
-  // Flexbox aligns the site branding and navigation.
-  display: flex;
-  gap: var(--spacing-md);
+// --- Mobile Layout (Default): Stacked ---
+.page-header__branding,
+.page-header__menu,
+.breadcrumbs-region {
+  // On mobile, all header items span the full 12 columns.
+  grid-column: 1 / -1;
+}
 
-  // --- Mobile Layout (Default): Stacked ---
-  // On mobile, stack branding and the menu vertically.
-  flex-direction: column;
-  // Align items to the start (left) of the container.
-  align-items: flex-start;
 
-  // --- Tablet and Up Layout: Side-by-side ---
-  @include media-query(md) {
-    // On larger screens, revert to a horizontal layout.
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+// --- Tablet and Up Layout: Side-by-side ---
+@include media-query(md) {
+  .page-header__branding {
+    // On desktop, the branding takes up the first 3 columns.
+    grid-column: 1 / 4;
+  }
+
+  .page-header__menu {
+    // The menu takes up the remaining 9 columns, aligned to the end.
+    grid-column: 4 / -1;
+    // We target the SDC component inside to justify its content.
+    [data-component-id='kingly_minimal:main-menu'] ul {
+      justify-content: flex-end;
+    }
+  }
+
+  .breadcrumbs-region {
+    // Breadcrumbs still span the full width below the branding/menu row.
+    grid-column: 1 / -1;
   }
 }

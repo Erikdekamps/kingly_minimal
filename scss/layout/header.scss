@@ -3,6 +3,7 @@
 // This file defines the main header structure and imports its components.
 
 @use '../base/variables' as *;
+@use '../base/mixins' as *;
 @use 'site-branding';
 
 // -----------------------------------------------------------------------------
@@ -23,11 +24,21 @@
 // -----------------------------------------------------------------------------
 
 .page-header__menu {
-  // Flexbox aligns the site branding and navigation/toggle side-by-side.
+  // Flexbox aligns the site branding and navigation.
   display: flex;
-  // Allows items to wrap on very small screens if necessary.
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
   gap: var(--spacing-md);
+
+  // --- Mobile Layout (Default): Stacked ---
+  // On mobile, stack branding and the menu vertically.
+  flex-direction: column;
+  // Align items to the start (left) of the container.
+  align-items: flex-start;
+
+  // --- Tablet and Up Layout: Side-by-side ---
+  @include media-query(md) {
+    // On larger screens, revert to a horizontal layout.
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

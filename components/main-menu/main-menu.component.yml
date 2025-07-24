@@ -1,6 +1,6 @@
 name: Main Menu
 status: stable
-description: Renders the main navigation menu with a mobile toggle.
+description: Renders the main navigation menu. It displays horizontally on desktop and stacks vertically on mobile.
 props:
   type: object
   properties:
@@ -16,9 +16,3 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the wrapper.
-library:
-  js:
-    main-menu.js: {}
-  dependencies:
-    - core/drupal
-    - core/once

@@ -3,8 +3,9 @@
 * @file
 * Component template for the main navigation menu.
 *
-* This component encapsulates the main navigation, including the menu tree and
-* the mobile hamburger-style toggle button.
+* This component encapsulates the main navigation. It provides a semantic <nav>
+* element and improves accessibility by using the block's label as an
+* ARIA label.
 *
 * It expects the following variables to be passed from its parent (usually
 * a block template):
@@ -13,42 +14,26 @@
 * - content: The render array of the menu tree.
 * - title_prefix: (optional)
 * - title_suffix: (optional)
-    */
+*/
 #}
 {% set heading_id = attributes.id ~ '-label' %}
 
 {#
 The data-component-id attribute is essential for SDC to discover this component
-and attach its assets (CSS/JS).
+and attach its assets (CSS).
 #}
-<div {{ attributes }}>
-  <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu-wrapper-{{ heading_id }}" aria-label="{{ 'Toggle main menu'|t }}">
-    {#
-    This inline SVG provides the hamburger icon. It is marked as aria-hidden
-    because the button itself has an accessible aria-label. The individual
-    paths have classes so they can be targeted and animated with CSS.
-    #}
-    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path class="hamburger-icon__top" d="M4 6H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path class="hamburger-icon__middle" d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path class="hamburger-icon__bottom" d="M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <div class="menu-wrapper" id="main-menu-wrapper-{{ heading_id }}">
-    <nav role="navigation" aria-labelledby="{{ heading_id }}">
-      {#
-      Print the block title as a visually hidden heading. This provides an
-      accessible name for the <nav> element via aria-labelledby.
-      #}
-      {{ title_prefix }}
-      {% if label %}
-        <h2{{ title_attributes.addClass('visually-hidden') }} id="{{ heading_id }}">{{ label }}</h2>
-      {% endif %}
-      {{ title_suffix }}
+<nav {{ attributes }} role="navigation" aria-labelledby="{{ heading_id }}">
+  {#
+  Print the block title as a visually hidden heading. This provides an
+  accessible name for the <nav> element via aria-labelledby.
+  #}
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes.addClass('visually-hidden') }} id="{{ heading_id }}">{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
 
-      {% block content %}
-        {{ content }}
-      {% endblock %}
-    </nav>
-  </div>
-</div>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</nav>

@@ -5,142 +5,44 @@
 
 // -----------------------------------------------------------------------------
 // Main Navigation Component
-// This is the root selector for the component, ensuring all styles are scoped.
+// The root selector is the <nav> element itself.
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:main-menu'] {
-  // On desktop, the component is just a flex item.
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative; // For positioning the mobile menu dropdown.
+  // On mobile, the nav container should take up the available width.
+  // This allows the menu links to span the full width of the header.
+  width: 100%;
 
-  // On mobile, the component takes up the full width available.
-  @include media-query(md, max) {
-    flex-grow: 1;
+  // On desktop, the width is determined by its content.
+  @include media-query(md) {
+    width: auto;
   }
 }
 
 // -----------------------------------------------------------------------------
-// Mobile Menu Toggle (Hamburger) Button
+// Menu Tree Styles
 // -----------------------------------------------------------------------------
-.mobile-menu-toggle {
-  // This button should only be visible on mobile.
-  display: none;
-  // Reset default button styles for a clean slate.
-  border: none;
-  background: transparent;
-  padding: var(--spacing-xs);
-  cursor: pointer;
-  // Ensures the button appears above other header content.
-  z-index: 2;
-  // Match the SVG icon color to the surrounding text color.
-  color: var(--color-text);
-
-  @include media-query(md, max) {
-    display: block;
-  }
-
-  // Provide a clear focus state for keyboard accessibility.
-  &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-}
-
-// -----------------------------------------------------------------------------
-// SVG Hamburger Icon Animation
-// -----------------------------------------------------------------------------
-.hamburger-icon {
-  // Set the transform origin to the center for proper rotation.
-  transform-origin: 50% 50%;
-
-  // Target the individual lines (paths) of the SVG.
-  &__top,
-  &__middle,
-  &__bottom {
-    // Define the transition for a smooth animation.
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    transform-origin: 50% 50%;
-  }
-}
-
-// When the button is open (`aria-expanded="true"`)...
-.mobile-menu-toggle[aria-expanded='true'] {
-  .hamburger-icon {
-    // 1. Hide the middle line.
-    &__middle {
-      opacity: 0;
-    }
-
-    // 2. Rotate the top line down 45 degrees.
-    &__top {
-      // The `translate` value moves the line to the vertical center of the icon.
-      // The icon's middle is at Y=12. The top line is at Y=6. So we move it 6px down.
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    // 3. Rotate the bottom line up 45 degrees.
-    &__bottom {
-      // The icon's middle is at Y=12. The bottom line is at Y=18. So we move it 6px up.
-      transform: translateY(-6px) rotate(-45deg);
-    }
-  }
-}
-
-
-// -----------------------------------------------------------------------------
-// Menu Wrapper and Menu Tree Styles
-// -----------------------------------------------------------------------------
-.menu-wrapper {
-  @include media-query(md, max) {
-    // On mobile, the menu is positioned absolutely relative to the header.
-    position: absolute;
-    top: calc(100% + var(--spacing-md)); // Position below header with a gap.
-    right: 0;
-    // Cover the full width of the viewport.
-    width: 100vw;
-    background-color: var(--color-background);
-    border-top: var(--border-width) solid var(--color-border);
-    // Use grid for robust, height-agnostic animation.
-    display: grid;
-    grid-template-rows: 0fr; // Start collapsed.
-    visibility: hidden;
-    transition: grid-template-rows 0.3s ease, visibility 0s linear 0.3s;
-
-    // The .is-open class, added by JS, triggers the expansion.
-    &.is-open {
-      grid-template-rows: 1fr; // Expand to content height.
-      visibility: visible;
-      transition-delay: 0s;
-    }
-  }
-}
-
 .menu {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
 
-  // Mobile-specific overrides (vertical list).
-  @include media-query(md, max) {
-    // These ensure the grid animation works smoothly.
-    overflow: hidden;
-    min-height: 0;
-    flex-direction: column;
-    gap: 0;
-    padding: var(--spacing-sm) 0;
-  }
+  // --- Mobile Layout (Default): Vertical List ---
+  // Stack menu items vertically.
+  flex-direction: column;
+  gap: 0; // Remove gaps for a tight list on mobile.
 
-  // Tablet and desktop-specific overrides (horizontal list).
+  // --- Tablet and Desktop Layout: Horizontal List ---
   @include media-query(md) {
+    // Revert to a horizontal layout for wider screens.
+    flex-direction: row;
     flex-wrap: wrap;
     gap: var(--spacing-md);
   }
 }
 
 .menu__link {
-  display: block;
+  display: block; // Ensures the link fills its parent <li>.
   padding: var(--spacing-sm) var(--spacing-md);
   text-decoration: none;
   border-radius: var(--border-radius);
@@ -158,13 +60,15 @@
     color: var(--color-primary);
   }
 
-  // On mobile, links should look like full-width list items.
+  // On mobile, remove horizontal padding and border-radius for a cleaner,
+  // full-width appearance in the vertical list.
   @include media-query(md, max) {
+    padding-inline: 0;
     border-radius: 0;
   }
 }
 
-// Hide sub-menus by default.
+// Hide sub-menus by default. They are not handled in this implementation.
 .menu__sub-menu {
   display: none;
 }

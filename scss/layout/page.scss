@@ -4,6 +4,8 @@
 
 // This includes the reset styles in our compiled CSS.
 @use '../base/reset';
+// Import the new breadcrumb strip styles.
+@use 'breadcrumb-strip';
 
 // -----------------------------------------------------------------------------
 // Main Page Layout
@@ -11,7 +13,9 @@
 
 .layout-container {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  // This now defines a FOUR-row grid: header, breadcrumbs, main, footer.
+  // The 'main' content area (1fr) takes up all remaining vertical space.
+  grid-template-rows: auto auto 1fr auto;
   min-height: 100vh;
   // The outer columns are now just gutters. The main content column will have
   // its own internal padding.
@@ -25,12 +29,14 @@
   min-width: 0;
 }
 
-// We specifically override the footer to make it span all columns for full-bleed backgrounds.
-.page-footer {
+// We specifically override the footer and the breadcrumb strip to make them
+// span all columns for full-bleed backgrounds.
+.page-footer,
+.breadcrumb-strip {
   grid-column: 1 / -1;
 }
 
-// Apply consistent inline padding to the main page sections.
+// Apply consistent inline padding to the main page sections that are constrained.
 .page-header,
 .main-content {
   padding-inline: var(--container-padding);
@@ -43,6 +49,8 @@
   gap: var(--spacing-md);
   align-content: start;
 
+  // By default, direct children of the main content grid (our regions)
+  // should span all 12 columns.
   > * {
     grid-column: 1 / -1;
   }
@@ -50,14 +58,9 @@
 
 // -----------------------------------------------------------------------------
 // Admin Toolbar Integration
-// This section handles adjustments needed when the Gin admin theme is active.
 // -----------------------------------------------------------------------------
 
-// When the Gin horizontal toolbar is present, we adjust the layout's min-height
-// to prevent an unnecessary scrollbar.
 body.gin--horizontal-toolbar .layout-container {
-  // We calculate the available viewport height by subtracting the heights of
-  // the Gin toolbars from 100vh. We provide a 0px fallback for safety.
   min-height: calc(100vh - var(--gin-toolbar-height, 0px) - var(--gin-toolbar-secondary-height, 0px));
 }
 
@@ -77,15 +80,12 @@ body.gin--horizontal-toolbar .layout-container {
 // -----------------------------------------------------------------------------
 
 @media (min-width: 768px) { // md breakpoint
-  // On larger screens, we redefine the --container-padding variable to a larger value.
-  // This single change will affect the header, main content, and footer inner wrapper.
   :root {
     --container-padding: var(--spacing-lg); // e.g., 32px
   }
 
   .layout-container {
     gap: var(--spacing-lg);
-    // The side gutters now have a minimum size.
     grid-template-columns: minmax(var(--spacing-lg), 1fr) minmax(0, var(--container-max-width)) minmax(var(--spacing-lg), 1fr);
   }
 

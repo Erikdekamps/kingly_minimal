@@ -15,8 +15,6 @@
   grid-template-columns: repeat(12, 1fr);
   gap: var(--spacing-md); // Defines gutter between columns and gap between rows.
   align-items: center; // Vertically align items in the center of the row.
-
-  border-bottom: var(--border-width) solid var(--color-border);
   padding-block: var(--spacing-md);
 
   // On larger screens, increase the gap to match the main content area.

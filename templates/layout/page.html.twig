@@ -66,13 +66,16 @@
         {{ page.main_navigation }}
       </div>
     {% endif %}
+  </header>
 
-    {% if page.breadcrumbs %}
+  {# The breadcrumbs are now in their own full-bleed strip, as a direct child of the layout container. #}
+  {% if page.breadcrumbs %}
+    <div class="breadcrumb-strip">
       <div class="breadcrumbs-region">
         {{ page.breadcrumbs }}
       </div>
-    {% endif %}
-  </header>
+    </div>
+  {% endif %}
 
   <main id="main-content" class="main-content" role="main">
     <a id="main-content-target" tabindex="-1"></a>

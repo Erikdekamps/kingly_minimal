@@ -17,6 +17,9 @@
   // and another flexible gutter. The gutters will not shrink below the
   // --container-padding value.
   grid-template-columns: minmax(var(--container-padding), 1fr) minmax(0, var(--container-max-width)) minmax(var(--container-padding), 1fr);
+  // Establish a base min-height to ensure the footer is always at the bottom
+  // of the viewport, even on short pages. This applies to all users.
+  min-height: 100vh;
 }
 
 // --- Grid Placement ---
@@ -74,7 +77,8 @@
 // Admin Toolbar Integration
 // -----------------------------------------------------------------------------
 
-// Adjust the layout container's height when the Gin admin toolbar is present.
+// For logged-in users, adjust the layout container's height to account for the
+// Gin admin toolbar. This rule is more specific and overrides the base min-height.
 body.gin--horizontal-toolbar .layout-container {
   min-height: calc(100vh - var(--gin-toolbar-height, 0px) - var(--gin-toolbar-secondary-height, 0px));
 }

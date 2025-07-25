@@ -90,5 +90,6 @@ body.gin--horizontal-toolbar .layout-container {
 @media (min-width: 768px) { // md breakpoint
   .main-content {
     gap: var(--spacing-lg);
+    padding-block-end: var(--spacing-lg);
   }
 }

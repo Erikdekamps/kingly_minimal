@@ -1,5 +1,3 @@
-# Places the 'Footer First' menu as a block in the 'footer_first' region.
-uuid: 5e6f7a8b-9c0d-4e1f-8b2a-3c4d5e6f7a8b
 langcode: en
 status: true
 dependencies:

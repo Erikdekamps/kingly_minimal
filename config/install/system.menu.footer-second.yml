@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: footer-second
+label: 'Footer Second'
+description: 'Links for the second column in the site footer.'
+locked: false

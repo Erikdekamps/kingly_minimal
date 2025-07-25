@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: footer-first
+label: 'Footer First'
+description: 'Links for the first column in the site footer.'
+locked: false

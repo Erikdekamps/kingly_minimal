@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.social_links
+  module:
+    - block_content
+info: 'Social Links Block'
+search_api_excerpt: {  }
+body:
+  -
+    value: ''
+    format: basic_html
+    summary: ''

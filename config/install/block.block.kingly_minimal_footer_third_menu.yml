@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-third
+  module:
+    - system
+  theme:
+    - kingly_minimal
+id: kingly_minimal_footer_third_menu
+theme: kingly_minimal
+region: footer_third
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-third'
+settings:
+  id: 'system_menu_block:footer-third'
+  label: 'Footer Third'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

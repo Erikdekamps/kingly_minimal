@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: social_links
+label: 'Social Links'
+revision: 0
+description: 'A block to display a list of social media icons.'

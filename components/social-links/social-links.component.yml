@@ -1,0 +1,28 @@
+# Defines the 'social-links' Single Directory Component.
+name: 'Social Links'
+status: stable
+description: 'Renders a list of social media icons. The links are hardcoded within the component.'
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'HTML attributes for the component''s root wrapper element.'
+    links:
+      type: array
+      title: 'Social Links'
+      description: 'An array of social media links to render. The component will attempt to match a known icon to the URL.'
+      default:
+        - url: 'https://www.facebook.com'
+          text: 'Facebook'
+        - url: 'https://www.twitter.com'
+          text: 'Twitter'
+        - url: 'https://www.linkedin.com'
+          text: 'LinkedIn'
+        - url: 'https://www.instagram.com'
+          text: 'Instagram'
+library:
+  css:
+    component:
+      social-links.css: {}

@@ -44,25 +44,17 @@
 }
 
 .page-footer__column {
-  // Mobile: Each column takes the full width.
+  // Mobile (default): Each column takes the full width.
   grid-column: 1 / -1;
 
-  // Tablet: Two-column layout (each spans 6 tracks).
+  // Tablet (md): Each column spans 6 of the 12 tracks, creating a 2x2 grid.
   @include media-query(md) {
     grid-column: span 6;
-    // Ensure the 3rd item starts a new row.
-    &:nth-child(2n + 1) {
-      grid-column-start: 1;
-    }
   }
 
-  // Desktop: Four-column layout (each spans 3 tracks).
+  // Desktop (lg): Each column spans 3 of the 12 tracks, creating a 4-column layout.
   @include media-query(lg) {
     grid-column: span 3;
-    // Ensure the 5th item starts a new row.
-    &:nth-child(4n + 1) {
-      grid-column-start: 1;
-    }
   }
 }
 

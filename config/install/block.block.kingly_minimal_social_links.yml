@@ -1,0 +1,26 @@
+# Places the 'Social Links' custom block into the 'footer_fourth' region.
+uuid: d9e8f7a6-b5c4-4d3e-8f9a-0b1c2d3e4f5a
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:social_links:c3b2a1d0-e9f8-4a7b-8c6d-5e4f3a2b1c0d'
+  module:
+    - block_content
+  theme:
+    - kingly_minimal
+id: kingly_minimal_social_links
+theme: kingly_minimal
+region: footer_fourth
+weight: 0
+provider: null
+plugin: 'block_content:c3b2a1d0-e9f8-4a7b-8c6d-5e4f3a2b1c0d'
+settings:
+  id: 'block_content:c3b2a1d0-e9f8-4a7b-8c6d-5e4f3a2b1c0d'
+  label: 'Follow Us'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

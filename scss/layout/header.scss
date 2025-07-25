@@ -3,7 +3,7 @@
 // This file defines the main header structure and imports its components.
 
 @use '../base/mixins' as *;
-@use 'site-branding';
+// @use 'site-branding'; // This is no longer needed; the branding component is self-contained.
 
 // -----------------------------------------------------------------------------
 // Header Main Structure
@@ -24,15 +24,14 @@
 }
 
 // -----------------------------------------------------------------------------
-// Header Regions (Branding, Menu, Breadcrumbs)
+// Header Regions (Branding, Menu)
 // The placement of these regions is now controlled by the parent .page-header grid.
 // We use classes on the wrappers from page.html.twig.
 // -----------------------------------------------------------------------------
 
 // --- Mobile Layout (Default): Stacked ---
 .page-header__branding,
-.page-header__menu,
-.breadcrumbs-region {
+.page-header__menu {
   // On mobile, all header items span the full 12 columns.
   grid-column: 1 / -1;
 }
@@ -52,10 +51,5 @@
     [data-component-id='kingly_minimal:main-menu'] ul {
       justify-content: flex-end;
     }
-  }
-
-  .breadcrumbs-region {
-    // Breadcrumbs still span the full width below the branding/menu row.
-    grid-column: 1 / -1;
   }
 }

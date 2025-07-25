@@ -1,0 +1,28 @@
+# kingly_minimal/components/branding/branding.component.yml
+name: 'Branding'
+status: stable
+description: 'Displays the site branding, including a logo and site name, which links to the homepage. Renders the site name as an H1 on the front page for SEO.'
+props:
+  type: object
+  properties:
+    is_front:
+      type: boolean
+      title: Is Front Page
+      description: 'A flag indicating if the current page is the front page.'
+      default: false
+    front_page:
+      type: string
+      title: Front Page URL
+      description: 'The URL of the front page.'
+    site_name:
+      type: string
+      title: Site Name
+      description: 'The name of the site.'
+    site_slogan:
+      type: string
+      title: Site Slogan
+      description: '(Optional) The slogan of the site.'
+    attributes:
+      type: object
+      title: Attributes
+      description: 'HTML attributes for the wrapper element.'

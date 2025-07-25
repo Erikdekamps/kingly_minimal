@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Component template for the site branding.
+ *
+ * This component displays the site branding, linking to the front page.
+ * It uses a hardcoded SVG logo and renders the site name as an H1 on the
+ * front page for SEO purposes.
+ *
+ * @see kingly_minimal/components/branding/branding.component.yml
+ *
+ * Available variables (from props):
+ * - is_front: A flag indicating if the current page is the front page.
+ * - front_page: The URL of the front page.
+ * - site_name: The name of the site.
+ * - site_slogan: (Optional) The slogan of the site.
+ * - attributes: HTML attributes for the wrapper element.
+ */
+#}
+{% set wrapper_attributes = attributes.addClass('site-branding') %}
+
+<a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home" {{ wrapper_attributes }}>
+
+  <div class="site-branding__logo">
+    {# The SVG logo is hardcoded as per the requirements. #}
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <title>Kingly Minimal Logo</title>
+      <path d="M 15,70 H 85 V 85 H 15 Z M 25,35 35,55 25,70 15,55 Z M 50,15 65,50 50,70 35,50 Z M 75,35 85,55 75,70 65,55 Z"/>
+    </svg>
+  </div>
+
+  {% if site_name %}
+    {% if is_front %}
+      <h1 class="site-branding__name">{{ site_name }}</h1>
+    {% else %}
+      <div class="site-branding__name">{{ site_name }}</div>
+    {% endif %}
+  {% endif %}
+
+  {% if site_slogan %}
+    <div class="site-branding__slogan">{{ site_slogan }}</div>
+  {% endif %}
+
+</a>

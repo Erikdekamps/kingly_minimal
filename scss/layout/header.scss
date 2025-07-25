@@ -1,9 +1,9 @@
 // kingly_minimal/scss/layout/header.scss
 
-// This file defines the main header structure and imports its components.
+// This file defines the main header structure.
+// Its child components (branding, main-menu) are now self-contained SDCs.
 
 @use '../base/mixins' as *;
-// @use 'site-branding'; // This is no longer needed; the branding component is self-contained.
 
 // -----------------------------------------------------------------------------
 // Header Main Structure
@@ -13,7 +13,7 @@
   // Use a 12-column grid, mirroring the .main-content grid for alignment.
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: var(--spacing-md); // Defines gutter between columns and gap between rows.
+  gap: var(--spacing-md); // Defines gutter between columns and rows.
   align-items: center; // Vertically align items in the center of the row.
   padding-block: var(--spacing-md);
 
@@ -25,7 +25,7 @@
 
 // -----------------------------------------------------------------------------
 // Header Regions (Branding, Menu)
-// The placement of these regions is now controlled by the parent .page-header grid.
+// The placement of these regions is controlled by the parent .page-header grid.
 // We use classes on the wrappers from page.html.twig.
 // -----------------------------------------------------------------------------
 
@@ -36,7 +36,6 @@
   grid-column: 1 / -1;
 }
 
-
 // --- Tablet and Up Layout: Side-by-side ---
 @include media-query(md) {
   .page-header__branding {
@@ -45,11 +44,9 @@
   }
 
   .page-header__menu {
-    // The menu takes up the remaining 9 columns, aligned to the end.
+    // The menu takes up the remaining 9 columns.
     grid-column: 4 / -1;
-    // We target the SDC component inside to justify its content.
-    [data-component-id='kingly_minimal:main-menu'] ul {
-      justify-content: flex-end;
-    }
+    // The alignment of the menu's content (e.g., justify-content: flex-end)
+    // is now handled within the main-menu SDC itself.
   }
 }

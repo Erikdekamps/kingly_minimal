@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Component template for a list of tags.
+ *
+ * This component iterates over a list of field items and renders them inside
+ * a wrapper. It is designed to work with Drupal's Field API output, where
+ * each item's 'content' is a pre-rendered entity (like a linked taxonomy term).
+ *
+ * @see kingly_minimal/components/field-tags/field-tags.component.yml
+ *
+ * @props
+ * - items: An array of field items from Drupal.
+ * - attributes: A Drupal attributes object for the wrapper.
+ */
+#}
+<div{{ attributes }}>
+  {% for item in items %}
+    {# Each item.content is expected to be a render array, which we print directly. #}
+    {# The .field__item class is added here for styling hooks, though our SDC #}
+    {# styles target the `a` tag within it. #}
+    <div class="field__item">{{ item.content }}</div>
+  {% endfor %}
+</div>

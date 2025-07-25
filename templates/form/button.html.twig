@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override for a form button.
+ *
+ * This template acts as a bridge to the 'button' Single Directory Component.
+ * It translates the variables from the Drupal Form API into the props expected
+ * by the component, ensuring that all form buttons in the theme are rendered
+ * using our standardized component.
+ *
+ * @see \Drupal\Core\Render\Element\Button
+ * @see kingly_minimal/components/button/button.twig
+ */
+#}
+{%
+  set button_attributes = attributes.addClass('button')
+%}
+{{ include('kingly_minimal:button', {
+  text: label,
+  attributes: button_attributes,
+}, with_context = false) }}

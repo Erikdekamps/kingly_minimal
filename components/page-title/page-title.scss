@@ -7,9 +7,10 @@
 // -----------------------------------------------------------------------------
 
 // Scope all styles to the page-title component.
+// The data-component-id is on the wrapper div.
 [data-component-id='kingly_minimal:page-title'] {
 
-  // Target the .page-title class, which is now on the h1 inside the wrapper.
+  // Target the .page-title class on the h1 inside the wrapper.
   .page-title {
     font-family: var(--font-family-heading);
     line-height: var(--line-height-heading);

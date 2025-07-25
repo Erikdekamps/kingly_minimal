@@ -4,11 +4,10 @@
 
 // -----------------------------------------------------------------------------
 // Main Navigation Component
-// The root selector is the <nav> element itself.
+// The root selector targets the <nav> element.
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:main-menu'] {
   // On mobile, the nav container should take up the available width.
-  // This allows the menu links to span the full width of the header.
   width: 100%;
 
   // On desktop, the width is determined by its content.
@@ -18,16 +17,15 @@
 }
 
 // -----------------------------------------------------------------------------
-// Menu Tree Styles
+// Menu Tree Styles (the <ul> element)
 // -----------------------------------------------------------------------------
-.menu {
+[data-component-id='kingly_minimal:main-menu'] .menu {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
 
   // --- Mobile Layout (Default): Vertical List ---
-  // Stack menu items vertically.
   flex-direction: column;
   gap: 0; // Remove gaps for a tight list on mobile.
 
@@ -37,10 +35,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--spacing-md);
+    // Align the menu items to the end of the flex container on desktop.
+    justify-content: flex-end;
   }
 }
 
-.menu__link {
+// -----------------------------------------------------------------------------
+// Menu Link Styles (the <a> element)
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:main-menu'] .menu__link {
   display: block; // Ensures the link fills its parent <li>.
   padding: var(--spacing-sm) var(--spacing-md);
   text-decoration: none;
@@ -61,13 +64,13 @@
 
   // On mobile, remove horizontal padding and border-radius for a cleaner,
   // full-width appearance in the vertical list.
-  @include media-query(md, max) {
+  @include media-query(md, 'max') {
     padding-inline: 0;
     border-radius: 0;
   }
 }
 
-// Hide sub-menus by default. They are not handled in this implementation.
-.menu__sub-menu {
+// Hide sub-menus by default as they are not handled in this implementation.
+[data-component-id='kingly_minimal:main-menu'] .menu__sub-menu {
   display: none;
 }

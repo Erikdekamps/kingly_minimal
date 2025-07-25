@@ -1,9 +1,15 @@
 name: Kingly Minimal
 type: theme
-description: 'A minimal, modern base theme with a Vite-powered SCSS toolchain.'
+description: 'A minimal, modern base theme with a Vite-powered SDC architecture.'
 core_version_requirement: ^10 || ^11
 base theme: stable9
 
+# Load the single global-styles library on all pages.
+# Component-specific assets are attached automatically by the SDC module.
+libraries:
+  - kingly_minimal/global-styles
+
+# Define the regions for block placement.
 regions:
   page_top: 'Page top'
   branding: 'Branding'
@@ -23,9 +29,7 @@ regions:
   footer_bottom: 'Footer bottom'
   hidden: 'Hidden'
 
-libraries:
-  - kingly_minimal/base
-  - kingly_minimal/global
-  - kingly_minimal/button
-  - kingly_minimal/node
-  - kingly_minimal/field
+# Enable the SDC module as a dependency for this theme.
+# This is crucial for Drupal to recognize and process our components.
+#dependencies:
+#  - drupal:sdc

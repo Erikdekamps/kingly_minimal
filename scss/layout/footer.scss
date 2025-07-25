@@ -1,28 +1,26 @@
 // kingly_minimal/scss/layout/footer.scss
 
-// This is an entry point file for the footer layout.
+// This file defines the layout for the page footer.
+// Component-specific styles (like menus) are handled by their respective SDCs.
 
 @use '../base/mixins' as *;
 
 // -----------------------------------------------------------------------------
-// Footer Main Structure (Full Bleed)
-// This element is now set to be full-bleed by page.scss.
+// Footer Main Structure (Full Bleed Wrapper)
 // -----------------------------------------------------------------------------
-
 .page-footer {
-  // Apply the background color and vertical padding to the full-width wrapper.
+  // Apply background color and vertical padding to the full-width wrapper.
   background-color: var(--color-light-gray);
   padding-block: var(--spacing-lg);
   font-size: var(--font-size-sm);
 
-  // Use a simple grid layout to center the single inner container.
+  // Use grid to center the inner container.
   display: grid;
   justify-items: center;
 }
 
 // -----------------------------------------------------------------------------
-// Footer Inner Container
-// This wrapper constrains all footer content to the main site width.
+// Footer Inner Container (Constrained Width)
 // -----------------------------------------------------------------------------
 .page-footer__inner {
   width: 100%;
@@ -34,7 +32,7 @@
 }
 
 // -----------------------------------------------------------------------------
-// Footer Columns (The 12-column grid)
+// Footer Columns (The 12-column grid for widgets)
 // -----------------------------------------------------------------------------
 .page-footer__columns {
   display: grid;
@@ -45,7 +43,6 @@
   border-bottom: var(--border-width) solid var(--color-border);
 }
 
-// An individual column within the .page-footer__columns grid.
 .page-footer__column {
   // Mobile: Each column takes the full width.
   grid-column: 1 / -1;
@@ -70,9 +67,8 @@
 }
 
 // -----------------------------------------------------------------------------
-// Footer Bottom Bar
+// Footer Bottom Bar (For copyright, inline menu, etc.)
 // -----------------------------------------------------------------------------
-
 .page-footer__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -82,9 +78,9 @@
 }
 
 // -----------------------------------------------------------------------------
-// Generic Styles for Content Within the Footer
+// Generic Styles for Block Content Within the Footer
+// These styles are for generic blocks placed in the footer, not for components.
 // -----------------------------------------------------------------------------
-
 .page-footer {
   .block__title {
     font-size: 1rem;
@@ -93,6 +89,7 @@
     font-family: var(--font-family-heading);
   }
 
+  // Generic menu styles for any NON-component menu placed in the footer columns.
   .menu {
     list-style: none;
     padding: 0;
@@ -108,12 +105,5 @@
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  // Style for the menu in the bottom bar (e.g., footer menu).
-  .page-footer__bottom .menu {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
   }
 }

@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Component template for a button.
+ *
+ * This component renders a button or a link styled as a button. It dynamically
+ * chooses the correct HTML tag based on the provided props, ensuring semantic
+* and accessible output.
+ *
+ * @see kingly_minimal/components/button/button.component.yml
+ *
+ * @props
+ * - text: The label for the button.
+ * - url: (Optional) The URL for the link. If present, an <a> tag is rendered.
+ * - element: (Optional) The HTML tag to use, defaults to 'button' if no URL.
+ * - attributes: A Drupal attributes object for adding custom classes, etc.
+ */
+#}
+{% set tag = url ? 'a' : element|default('button') %}
+
+<{{ tag }}
+  {% if tag == 'a' and url %}
+    href="{{ url }}"
+  {% endif %}
+  {{ attributes }}
+>
+{{- text -}}
+</{{ tag }}>

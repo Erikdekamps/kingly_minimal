@@ -19,10 +19,8 @@ function cssOnlyPlugin() {
     generateBundle(options, bundle) {
       for (const fileName in bundle) {
         const file = bundle[fileName];
-        if (file.type === 'chunk') {
-          if (file.facadeModuleId?.endsWith('.scss')) {
-            delete bundle[fileName];
-          }
+        if (file.type === 'chunk' && file.facadeModuleId?.endsWith('.scss')) {
+          delete bundle[fileName];
         }
       }
     },
@@ -35,28 +33,23 @@ export default defineConfig({
       path.resolve(__dirname, '**/*.twig'),
       path.resolve(__dirname, '*.theme'),
       path.resolve(__dirname, 'js/**/*.js'),
-      // Add the new component JS and Twig files to the watchlist.
       path.resolve(__dirname, 'components/**/*.js'),
-      path.resolve(__dirname, 'components/**/*.twig'),
     ]),
     cssOnlyPlugin(),
   ],
 
   build: {
-    // IMPORTANT: We set the output directory to the project root because we are
-    // outputting files to multiple locations ('dist/' and 'components/').
+    // We set the output directory to the project root. This is required because
+    // we are writing to multiple top-level directories (dist/ and components/).
     outDir: '.',
-    // IMPORTANT: We must disable emptyOutDir. If this were true, Vite would
-    // delete your source files in the 'components' directory on build.
-    // You will now need to manually clean the 'dist' directory if needed.
+    // CRITICAL: We must disable emptyOutDir. If this were true, Vite would
+    // delete your source files in 'components/' on build. We accept the build
+    // warning because this configuration is necessary for our architecture.
     emptyOutDir: false,
 
     rollupOptions: {
       input: Object.fromEntries(
-        // Find all SCSS files that are not partials in both 'scss' and 'components'.
         globSync('{scss,components}/**/!(_)*.scss').map(file => [
-          // Use the file path without extension as the entry name.
-          // e.g., 'scss/layout/page' or 'components/main-menu/main-menu'
           file.slice(0, file.length - path.extname(file).length),
           fileURLToPath(new URL(file, import.meta.url)),
         ]),
@@ -64,29 +57,25 @@ export default defineConfig({
 
       output: {
         assetFileNames: (assetInfo) => {
-          // assetInfo.name contains the entry name we defined in `input`,
-          // plus the .css extension. e.g., 'components/main-menu/main-menu.css'
-
-          // Check if the source asset is from the 'components' directory.
+          // If the source is from the 'components' directory...
           if (assetInfo.name.startsWith('components/')) {
             // Output the CSS file directly back into its source component folder.
-            // Vite uses the `[name]` placeholder from the input key.
+            // Vite uses `[name]` which corresponds to our input key, e.g., 'components/button/button'.
             return '[name].css';
           }
 
-          // Otherwise, it's from the 'scss' directory.
+          // If the source is from the 'scss' directory...
           if (assetInfo.name.startsWith('scss/')) {
-            // We want to output it to 'dist/css/' while maintaining its
-            // subdirectory structure. We first strip the 'scss/' prefix.
+            // Output to 'dist/css/' while maintaining subdirectories.
             const newPath = assetInfo.name.substring('scss/'.length);
             return `dist/css/${newPath}`;
           }
 
-          // A fallback, though the rules above should cover everything.
+          // A fallback for any other assets.
           return 'dist/css/[name].css';
         },
-        // This rule is for any legitimate JS entries.
-        entryFileNames: '[name].js',
+        // JS entries would go into 'dist/js/'.
+        entryFileNames: 'dist/js/[name].js',
       },
     },
   },
@@ -99,13 +88,8 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        silenceDeprecations: [
-          'mixed-decls',
-          'color-functions',
-          'global-builtin',
-          'import',
-          'legacy-js-api',
-        ],
+        // This helps silence the noisy Sass deprecation warnings in the log.
+        quietDeps: true,
       },
     },
   },

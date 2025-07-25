@@ -1,0 +1,44 @@
+# components/node-teaser/node-teaser.component.yml
+name: 'Node Teaser'
+status: stable
+description: 'Renders a content item in a compact "teaser" format for listings.'
+
+props:
+  type: object
+  properties:
+    # The URL of the full node page.
+    url:
+      type: string
+      title: 'URL'
+      description: 'The canonical URL of the node.'
+    # The title of the node.
+    label:
+      type: object # Can be a string or a render array
+      title: 'Label'
+      description: 'The title of the node.'
+    # The main content of the teaser, typically a summary.
+    content:
+      type: object # Render array
+      title: 'Content'
+      description: 'The main content of the teaser.'
+    # The "Submitted by..." metadata string.
+    submitted:
+      type: object # Render array
+      title: 'Submitted Info'
+      description: 'Metadata, like author and date.'
+    # The author's picture.
+    author_picture:
+      type: object # Render array
+      title: "Author's Picture"
+      description: "The author's profile picture."
+    # A Drupal attributes object for the outer <article> element.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      node-teaser.css: {}

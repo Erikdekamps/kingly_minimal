@@ -1,43 +1,18 @@
 {#
 /**
  * @file
- * Theme override for a branding block.
+ * Theme override for the system branding block.
  *
- * This version integrates a minimal SVG logo directly into the template.
+ * This template acts as a bridge to the 'branding' Single Directory Component.
+ * It passes the necessary variables from the block's context to the component.
  *
- * @see template_preprocess_block()
+ * @see kingly_minimal/components/branding/branding.twig
  */
 #}
-{% set wrapper_attributes = attributes.addClass('site-branding') %}
-
-{#
-If site_name is set, the entire branding block becomes a link to the front
-page. If not, it's a simple div.
-#}
-<a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home" {{ wrapper_attributes }}>
-
-  {#
-  The SVG logo is placed directly here. The `fill="currentColor"` property
-  allows its color to be controlled by the CSS `color` property on the
-  .site-branding class or this <a> tag.
-  #}
-  <div class="site-branding__logo">
-    <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-      <title>Kingly Minimal Logo</title>
-      <path d="M 15,70 H 85 V 85 H 15 Z M 25,35 35,55 25,70 15,55 Z M 50,15 65,50 50,70 35,50 Z M 75,35 85,55 75,70 65,55 Z"/>
-    </svg>
-  </div>
-
-  {% if site_name %}
-    {% if is_front %}
-      <h1 class="site-branding__name">{{ site_name }}</h1>
-    {% else %}
-      <div class="site-branding__name">{{ site_name }}</div>
-    {% endif %}
-  {% endif %}
-
-  {% if site_slogan %}
-    <div class="site-branding__slogan">{{ site_slogan }}</div>
-  {% endif %}
-
-</a>
+{{ include('kingly_minimal:branding', {
+  is_front: is_front,
+  front_page: front_page,
+  site_name: site_name,
+  site_slogan: site_slogan,
+  attributes: attributes,
+}, with_context = false) }}

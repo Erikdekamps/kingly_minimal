@@ -1,5 +1,17 @@
+# .gitignore
+
+# Ignore Mac system files.
 .DS_Store
-.idea/*
+
+# Ignore JetBrains IDE files.
+.idea/
+
+# Ignore the primary build output directory for global assets.
 dist/
-node_modules
-components/*/*.css
+
+# Ignore Node.js dependencies.
+node_modules/
+
+# Ignore all compiled CSS files within any subdirectory of the components folder.
+# This is a critical rule for our SDC workflow.
+components/**/*.css

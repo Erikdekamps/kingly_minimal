@@ -1,0 +1,26 @@
+# components/field-tags/field-tags.component.yml
+name: 'Tags'
+status: stable
+description: 'Renders a list of items (typically taxonomy term links) as styled tags.'
+
+props:
+  type: object
+  properties:
+    # An array of field items. The component expects each item's 'content'
+    # property to be a pre-rendered link.
+    items:
+      type: array
+      title: 'Field Items'
+      description: "An array of Drupal field items. The component will render each item's 'content'."
+      default: []
+    # Drupal attributes object for adding classes or other attributes to the wrapper.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      field-tags.css: {}

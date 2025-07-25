@@ -1,0 +1,58 @@
+// components/node-teaser/node-teaser.scss
+
+// -----------------------------------------------------------------------------
+// Node Teaser Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the node-teaser component.
+[data-component-id='kingly_minimal:node-teaser'] {
+  // Use grid to provide simple structure within the teaser.
+  display: grid;
+  gap: var(--spacing-sm);
+  // Add a border to separate teasers in a list.
+  padding-bottom: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--color-border);
+
+  // --- Teaser Title ---
+  .node__title {
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+    line-height: var(--line-height-heading);
+    margin: 0; // Reset default heading margin.
+
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // --- Metadata (Submitted by...) ---
+  .node__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .node__submitted {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  // Style for the author's picture, if displayed.
+  .user-picture {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  // --- Main Teaser Content ---
+  .node__content {
+    // Add some breathing room between content elements.
+    > *:not(:last-child) {
+      margin-bottom: var(--spacing-md);
+    }
+  }
+}

@@ -7,8 +7,9 @@
 // Scoped to the component to prevent style leakage.
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:branding'] {
-  // .site-branding is the root <a> tag of the component.
-  .site-branding {
+  // The root of the component is the <a> tag.
+  // We add a class for easier targeting and to avoid styling all links.
+  &.site-branding {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
@@ -19,28 +20,28 @@
     &:hover .site-branding__name {
       text-decoration: underline;
     }
+  }
 
-    // Style the hardcoded SVG logo.
-    &__logo svg {
-      height: 40px;
-      width: auto;
-      display: block; // Prevents extra space below the inline SVG.
-    }
+  // Style the hardcoded SVG logo.
+  .site-branding__logo svg {
+    height: 40px;
+    width: auto;
+    display: block; // Prevents extra space below the inline SVG.
+  }
 
-    // Style the site name text (h1 or div).
-    &__name {
-      font-size: var(--font-size-lg);
-      font-weight: bold;
-      font-family: var(--font-family-heading);
-      margin: 0; // Reset margin for h1.
-    }
+  // Style the site name text (h1 or div).
+  .site-branding__name {
+    font-size: var(--font-size-lg);
+    font-weight: bold;
+    font-family: var(--font-family-heading);
+    margin: 0; // Reset margin for h1.
+  }
 
-    // Style the site slogan, if used.
-    &__slogan {
-      font-size: var(--font-size-sm);
-      color: var(--color-text);
-      margin: 0;
-    }
+  // Style the site slogan, if used.
+  .site-branding__slogan {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    margin: 0;
   }
 
   // Adjust logo size on larger screens for better visual balance.

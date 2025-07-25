@@ -1,0 +1,15 @@
+# components/page-title/page-title.component.yml
+name: 'Page Title'
+status: stable
+description: 'Renders the main page title (H1) for a page.'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The main page title text.
+    attributes:
+      type: object
+      title: Attributes
+      description: 'HTML attributes for the h1 element.'

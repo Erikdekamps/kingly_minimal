@@ -3,43 +3,14 @@
  * @file
  * Theme override for status messages.
  *
- * Displays status, error, and warning messages, grouped by type.
+ * This template acts as a bridge to the 'status-messages' Single Directory
+ * Component. It passes the necessary variables from the theme system to the
+ * component, which now handles all markup and styling.
  *
- * An 'status_headings' variable is available to print out the heading for each
- * message type.
- *
- * Available variables:
- * - message_list: A list of messages to be displayed, grouped by type.
- * - status_headings: An array of message headings that contains:
- *   - status: 'Status message'
- *   - error: 'Error message'
- *   - warning: 'Warning message'
- *   - info: 'Informational message'
- * - attributes: HTML attributes for the element, provided by main
- *   template.
- *
- * @see template_preprocess_status_messages()
+ * @see kingly_minimal/components/status-messages/status-messages.twig
  */
 #}
-{% for type, messages in message_list %}
-  {%
-    set classes = [
-    'messages',
-    'messages--' ~ type,
-  ]
-  %}
-  <div role="{{ type == 'status' ? 'status' : 'alert' }}"{{ attributes.addClass(classes) }}>
-    {% if status_headings[type] %}
-      <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
-    {% endif %}
-    {% if messages|length > 1 %}
-      <ul class="messages__list">
-        {% for message in messages %}
-          <li class="messages__item">{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      {{ messages|first }}
-    {% endif %}
-  </div>
-{% endfor %}
+{{ include('kingly_minimal:status-messages', {
+  message_list: message_list,
+  status_headings: status_headings,
+}, with_context = false) }}

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Component template for a page title.
+ *
+ * This component renders the main H1 page title.
+ *
+ * @see kingly_minimal/components/page-title/page-title.component.yml
+ *
+ * Available variables (from props):
+ * - title: The page title text.
+ * - attributes: HTML attributes for the h1 element.
+ */
+#}
+{% if title %}
+  <div class="page-title-wrapper">
+    <h1{{ attributes.addClass('page-title') }}>{{ title }}</h1>
+  </div>
+{% endif %}

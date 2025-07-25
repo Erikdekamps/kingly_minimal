@@ -1,0 +1,26 @@
+// components/page-title/page-title.scss
+
+@use '../../scss/base/mixins' as *;
+
+// -----------------------------------------------------------------------------
+// Page Title Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the page-title component.
+// SDC automatically adds this data attribute to the root element of the component.
+[data-component-id='kingly_minimal:page-title'] {
+
+  // The page title is a direct child of main-content, so it lives in the grid.
+  .page-title {
+    font-family: var(--font-family-heading);
+    line-height: var(--line-height-heading);
+    font-size: 2rem;
+    // Reset any default browser margins on the h1.
+    margin-bottom: 0;
+
+    // Responsive adjustment for larger screens.
+    @include media-query(md) {
+      font-size: 2.5rem;
+    }
+  }
+}

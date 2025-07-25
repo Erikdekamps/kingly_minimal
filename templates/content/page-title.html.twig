@@ -3,19 +3,17 @@
  * @file
  * Theme override for page titles.
  *
- * Available variables:
- * - title_attributes: HTML attributes for the page title element.
- * - title_prefix: Additional output populated by modules, intended to be
- *   displayed in front of the main title tag that appears in the template.
- * - title: The page title, for use with an h1 element.
- * - title_suffix: Additional output populated by modules, intended to be
- *   displayed after the main title tag that appears in the template.
+ * This template acts as a bridge to the 'page-title' Single Directory Component.
+ * It passes the necessary variables from the theme system to the component.
+ *
+ * @see kingly_minimal/components/page-title/page-title.twig
  */
 #}
 {{ title_prefix }}
 {% if title %}
-  <div class="page-title-wrapper">
-    <h1{{ title_attributes.addClass('page-title') }}>{{ title }}</h1>
-  </div>
+  {{ include('kingly_minimal:page-title', {
+    title: title,
+    attributes: title_attributes,
+  }, with_context = false) }}
 {% endif %}
 {{ title_suffix }}

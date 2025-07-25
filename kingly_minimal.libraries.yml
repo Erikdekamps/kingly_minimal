@@ -1,3 +1,4 @@
+# kingly_minimal.libraries.yml
 base:
   css:
     base:
@@ -16,11 +17,6 @@ button:
   css:
     theme:
       dist/css/components/button.css: { minified: true }
-
-messages:
-  css:
-    theme:
-      dist/css/components/messages.css: { minified: true }
 
 node:
   css:

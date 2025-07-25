@@ -1,0 +1,59 @@
+// components/status-messages/status-messages.scss
+
+// -----------------------------------------------------------------------------
+// Status Messages Component Styles
+// The root element of the component receives the data-component-id, so we
+// apply base styles directly to it and use the `&` selector to handle
+// class-based variations on the same element.
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:status-messages'] {
+
+  // Base styles for the message block itself.
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--border-radius);
+
+  // List styling for descendant elements.
+  .messages__list {
+    margin: 0;
+    padding-left: var(--spacing-md);
+  }
+
+  .messages__item {
+    margin-bottom: var(--spacing-xs);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Variations: Apply styles when a class exists on the SAME element as the
+  // data-component-id. The `&` refers to the parent selector.
+  &.messages--status {
+    color: var(--color-status-text);
+    background-color: var(--color-status);
+    border-color: color-mix(in srgb, var(--color-status), #000 10%);
+  }
+
+  &.messages--warning {
+    color: var(--color-warning-text);
+    background-color: var(--color-warning);
+    border-color: color-mix(in srgb, var(--color-warning), #000 10%);
+  }
+
+  &.messages--error {
+    color: var(--color-error-text);
+    background-color: var(--color-error);
+    border-color: color-mix(in srgb, var(--color-error), #000 10%);
+
+    a {
+      color: var(--color-error-text);
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

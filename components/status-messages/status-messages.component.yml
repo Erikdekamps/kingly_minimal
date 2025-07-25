@@ -1,0 +1,19 @@
+# components/status-messages/status-messages.component.yml
+name: 'Status Messages'
+status: stable
+description: 'Displays status, error, and warning messages, grouped by type.'
+props:
+  type: object
+  properties:
+    message_list:
+      type: object
+      title: Message List
+      description: 'A list of messages to be displayed, grouped by type (status, warning, error).'
+    status_headings:
+      type: object
+      title: Status Headings
+      description: 'An array of accessible headings for each message type.'
+    attributes:
+      type: object
+      title: Attributes
+      description: 'HTML attributes for the wrapper element.'

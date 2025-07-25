@@ -27,6 +27,5 @@ libraries:
   - kingly_minimal/base
   - kingly_minimal/global
   - kingly_minimal/button
-  - kingly_minimal/messages
   - kingly_minimal/node
   - kingly_minimal/field

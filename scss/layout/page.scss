@@ -66,18 +66,6 @@ body.gin--horizontal-toolbar .layout-container {
   min-height: calc(100vh - var(--gin-toolbar-height, 0px) - var(--gin-toolbar-secondary-height, 0px));
 }
 
-// -----------------------------------------------------------------------------
-// Base Typography & Page Title
-// -----------------------------------------------------------------------------
-
-// The page title is a direct child of main-content, so it lives in the grid.
-.page-title {
-  font-family: var(--font-family-heading);
-  line-height: var(--line-height-heading);
-  font-size: 2rem;
-  // Reset any default browser margins on the h1.
-  margin-bottom: 0;
-}
 
 // -----------------------------------------------------------------------------
 // Responsive Adjustments
@@ -86,9 +74,5 @@ body.gin--horizontal-toolbar .layout-container {
 @media (min-width: 768px) { // md breakpoint
   .main-content {
     gap: var(--spacing-lg);
-  }
-
-  .page-title {
-    font-size: 2.5rem;
   }
 }

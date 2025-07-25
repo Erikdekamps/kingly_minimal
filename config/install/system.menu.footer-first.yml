@@ -1,0 +1,10 @@
+# Defines the menu for the 'Footer first' region.
+# This menu can be populated with links by a site administrator via the UI.
+uuid: 4a9b8c7d-1e6f-4d3b-8a5f-0c9e7f2d1b9a
+langcode: en
+status: true
+dependencies: {  }
+id: footer-first
+label: 'Footer First'
+description: 'Links for the first column in the site footer.'
+locked: false

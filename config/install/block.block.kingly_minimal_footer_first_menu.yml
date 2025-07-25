@@ -1,0 +1,26 @@
+# Places the 'Footer First' menu as a block in the 'footer_first' region.
+uuid: 5e6f7a8b-9c0d-4e1f-8b2a-3c4d5e6f7a8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-first
+  module:
+    - system
+  theme:
+    - kingly_minimal
+id: kingly_minimal_footer_first_menu
+theme: kingly_minimal
+region: footer_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-first'
+settings:
+  id: 'system_menu_block:footer-first'
+  label: 'Footer First'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

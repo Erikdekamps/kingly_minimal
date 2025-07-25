@@ -1,0 +1,40 @@
+// kingly_minimal/components/social-links/social-links.scss
+
+// -----------------------------------------------------------------------------
+// Social Links Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the social-links component for encapsulation.
+[data-component-id='kingly_minimal:social-links'] {
+  // Use a flex container for the list of icons.
+  .social-links__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  // Style the link element itself.
+  .social-links__link {
+    display: block;
+    color: var(--color-text);
+    // Add a transition for a smooth hover effect.
+    transition: transform 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+  }
+
+  // Style the SVG icon within the link.
+  .social-links__icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    fill: currentColor; // The icon will inherit the link's color.
+  }
+}

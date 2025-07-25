@@ -7,33 +7,34 @@
  * Key changes include moving the breadcrumbs outside the <main> element
  * and using more consistent, BEM-style classes for region wrappers.
  *
- * @see kingly_minimal/scss/layout/page.scss
+ * A new .page-header-wrapper groups the header and breadcrumbs so that the
+ * main layout grid correctly assigns flexible space to the <main> element.
  */
 #}
 <div class="layout-container">
 
-  <header class="page-header" role="banner">
-    {% if page.branding %}
-      <div class="page-header__branding">
-        {{ page.branding }}
-      </div>
-    {% endif %}
-    {% if page.main_navigation %}
-      <div class="page-header__menu">
-        {{ page.main_navigation }}
-      </div>
-    {% endif %}
-  </header>
+  {# This wrapper groups the header and breadcrumbs. It will be styled as a
+     full-width subgrid in page.scss to ensure correct alignment. #}
+  <div class="page-header-wrapper">
+    <header class="page-header" role="banner">
+      {% if page.branding %}
+        <div class="page-header__branding">
+          {{ page.branding }}
+        </div>
+      {% endif %}
+      {% if page.main_navigation %}
+        <div class="page-header__menu">
+          {{ page.main_navigation }}
+        </div>
+      {% endif %}
+    </header>
 
-  {#
-  The breadcrumbs are now placed between the header and main content.
-  The .region-breadcrumbs class is the direct target for the full-bleed CSS rule.
-  #}
-  {% if page.breadcrumbs %}
-    <div class="region-breadcrumbs">
-      {{ page.breadcrumbs }}
-    </div>
-  {% endif %}
+    {% if page.breadcrumbs %}
+      <div class="region-breadcrumbs">
+        {{ page.breadcrumbs }}
+      </div>
+    {% endif %}
+  </div>
 
   <main id="main-content" class="main-content" role="main">
     {# A skip-link target for accessibility. #}

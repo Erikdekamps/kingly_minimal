@@ -62,8 +62,6 @@
   gap: var(--spacing-md);
   // Ensure the grid starts at the top of its allocated space.
   align-content: start;
-  // Add vertical space to separate it from header/footer.
-  padding-block: var(--spacing-lg);
 
   // By default, direct children of the main content grid (our regions)
   // should span all 12 columns.

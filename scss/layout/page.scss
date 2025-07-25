@@ -10,7 +10,7 @@
 
 .layout-container {
   display: grid;
-  // Defines a three-row grid: header, main, footer.
+  // Defines a three-row grid: wrapper, main, footer.
   // The 'main' content area (1fr) takes up all available vertical space.
   grid-template-rows: auto 1fr auto;
   // Defines three columns: a flexible gutter, a max-width content column,
@@ -20,26 +20,41 @@
 }
 
 // --- Grid Placement ---
-// This is the key to the layout. We explicitly place the header and main
-// content in the central column (2), while the breadcrumbs and footer
-// are made to span all three columns (1 / -1), making them full-bleed.
+// The .page-header-wrapper and .page-footer are direct children of the grid
+// and are made to span all three columns, making them full-bleed.
+.page-header-wrapper,
+.page-footer {
+  grid-column: 1 / -1;
+}
 
-// These elements are constrained to the central content column.
-.page-header,
+// The .main-content is constrained to the central content column.
 .main-content {
   grid-column: 2;
   // Prevent wide content from breaking the grid layout.
   min-width: 0;
 }
 
-// These elements span all columns to achieve the full-bleed effect.
-// We target the Drupal region wrapper for maximum reliability.
-.region-breadcrumbs,
-.page-footer {
-  grid-column: 1 / -1;
+
+// --- Subgrid for Header Wrapper ---
+// The wrapper becomes a subgrid, inheriting the parent's column tracks.
+// This allows us to place its children precisely on the main grid lines.
+.page-header-wrapper {
+  display: grid;
+  grid-template-columns: subgrid;
 }
 
-// Styles for the main content wrapper.
+// Now, place the items *within* the subgrid.
+.page-header-wrapper > .page-header {
+  grid-column: 2; // Constrain the header to the content column.
+  min-width: 0;
+}
+.page-header-wrapper > .region-breadcrumbs {
+  grid-column: 1 / -1; // Let the breadcrumbs be full-bleed within the subgrid.
+}
+
+
+// --- Styles for Main Content Grid ---
+// This is the inner grid for regions inside the <main> element.
 .main-content {
   display: grid;
   // A standard 12-column grid for flexible content layout.
@@ -65,7 +80,6 @@
 body.gin--horizontal-toolbar .layout-container {
   min-height: calc(100vh - var(--gin-toolbar-height, 0px) - var(--gin-toolbar-secondary-height, 0px));
 }
-
 
 // -----------------------------------------------------------------------------
 // Responsive Adjustments

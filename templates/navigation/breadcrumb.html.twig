@@ -3,30 +3,14 @@
  * @file
  * Theme override for a breadcrumb trail.
  *
- * This template replaces the default ordered list (<ol>) with an unordered
- * list (<ul>) to remove the numbers. It also applies BEM-style classes for
- * easier styling and better semantics.
+ * This template acts as a bridge to the 'breadcrumbs' Single Directory Component.
+ * It passes the necessary variables from the theme system to the component.
  *
- * Available variables:
- * - breadcrumb: A list of breadcrumb items. Each item contains:
- *   - text: The text of the link.
- *   - url: The URL of the link.
- * - attributes: HTML attributes for the nav element.
+ * @see kingly_minimal/components/breadcrumbs/breadcrumbs.twig
  */
 #}
 {% if breadcrumb %}
-  <nav class="breadcrumb-nav" role="navigation" aria-labelledby="system-breadcrumb">
-    <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ul{{ attributes.addClass('breadcrumb') }}>
-      {% for item in breadcrumb %}
-        <li class="breadcrumb__item">
-          {% if item.url %}
-            <a href="{{ item.url }}" class="breadcrumb__link">{{ item.text }}</a>
-          {% else %}
-            {{ item.text }}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
+  {{ include('kingly_minimal:breadcrumbs', {
+    breadcrumb: breadcrumb,
+  }, with_context = false) }}
 {% endif %}

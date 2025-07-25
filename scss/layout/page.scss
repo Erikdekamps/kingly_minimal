@@ -1,11 +1,8 @@
 // kingly_minimal/scss/layout/page.scss
 
 // This is an entry point file. It will be compiled by Vite.
-
 // This includes the reset styles in our compiled CSS.
 @use '../base/reset';
-// Import the new breadcrumb strip styles.
-@use 'breadcrumb-strip';
 
 // -----------------------------------------------------------------------------
 // Main Page Layout
@@ -13,41 +10,45 @@
 
 .layout-container {
   display: grid;
-  // This now defines a FOUR-row grid: header, breadcrumbs, main, footer.
-  // The 'main' content area (1fr) takes up all remaining vertical space.
-  grid-template-rows: auto auto 1fr auto;
-  min-height: 100vh;
-  // The outer columns are now just gutters. The main content column will have
-  // its own internal padding.
-  grid-template-columns: 1fr minmax(0, var(--container-max-width)) 1fr;
-  gap: var(--spacing-md);
+  // Defines a three-row grid: header, main, footer.
+  // The 'main' content area (1fr) takes up all available vertical space.
+  grid-template-rows: auto 1fr auto;
+  // Defines three columns: a flexible gutter, a max-width content column,
+  // and another flexible gutter. The gutters will not shrink below the
+  // --container-padding value.
+  grid-template-columns: minmax(var(--container-padding), 1fr) minmax(0, var(--container-max-width)) minmax(var(--container-padding), 1fr);
 }
 
-// All direct children of the layout container are placed in the center column.
-.layout-container > * {
+// --- Grid Placement ---
+// This is the key to the layout. We explicitly place the header and main
+// content in the central column (2), while the breadcrumbs and footer
+// are made to span all three columns (1 / -1), making them full-bleed.
+
+// These elements are constrained to the central content column.
+.page-header,
+.main-content {
   grid-column: 2;
+  // Prevent wide content from breaking the grid layout.
   min-width: 0;
 }
 
-// We specifically override the footer and the breadcrumb strip to make them
-// span all columns for full-bleed backgrounds.
-.page-footer,
-.breadcrumb-strip {
+// These elements span all columns to achieve the full-bleed effect.
+// We target the Drupal region wrapper for maximum reliability.
+.region-breadcrumbs,
+.page-footer {
   grid-column: 1 / -1;
-}
-
-// Apply consistent inline padding to the main page sections that are constrained.
-.page-header,
-.main-content {
-  padding-inline: var(--container-padding);
 }
 
 // Styles for the main content wrapper.
 .main-content {
   display: grid;
+  // A standard 12-column grid for flexible content layout.
   grid-template-columns: repeat(12, 1fr);
   gap: var(--spacing-md);
+  // Ensure the grid starts at the top of its allocated space.
   align-content: start;
+  // Add vertical space to separate it from header/footer.
+  padding-block: var(--spacing-lg);
 
   // By default, direct children of the main content grid (our regions)
   // should span all 12 columns.
@@ -60,6 +61,7 @@
 // Admin Toolbar Integration
 // -----------------------------------------------------------------------------
 
+// Adjust the layout container's height when the Gin admin toolbar is present.
 body.gin--horizontal-toolbar .layout-container {
   min-height: calc(100vh - var(--gin-toolbar-height, 0px) - var(--gin-toolbar-secondary-height, 0px));
 }
@@ -68,10 +70,12 @@ body.gin--horizontal-toolbar .layout-container {
 // Base Typography & Page Title
 // -----------------------------------------------------------------------------
 
+// The page title is a direct child of main-content, so it lives in the grid.
 .page-title {
   font-family: var(--font-family-heading);
   line-height: var(--line-height-heading);
   font-size: 2rem;
+  // Reset any default browser margins on the h1.
   margin-bottom: 0;
 }
 
@@ -80,15 +84,6 @@ body.gin--horizontal-toolbar .layout-container {
 // -----------------------------------------------------------------------------
 
 @media (min-width: 768px) { // md breakpoint
-  :root {
-    --container-padding: var(--spacing-lg); // e.g., 32px
-  }
-
-  .layout-container {
-    gap: var(--spacing-lg);
-    grid-template-columns: minmax(var(--spacing-lg), 1fr) minmax(0, var(--container-max-width)) minmax(var(--spacing-lg), 1fr);
-  }
-
   .main-content {
     gap: var(--spacing-lg);
   }

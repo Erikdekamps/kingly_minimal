@@ -1,0 +1,22 @@
+# kingly_minimal/components/breadcrumbs/breadcrumbs.component.yml
+name: 'Breadcrumbs'
+status: stable
+description: 'Renders the breadcrumb trail within a full-bleed container strip.'
+props:
+  type: object
+  properties:
+    breadcrumb:
+      type: array
+      title: Breadcrumb Items
+      description: 'A list of breadcrumb items. Each item contains text and an optional URL.'
+      item:
+        type: object
+        properties:
+          text:
+            type: string
+          url:
+            type: string
+    attributes:
+      type: object
+      title: Attributes
+      description: 'HTML attributes for the inner <ul> element.'

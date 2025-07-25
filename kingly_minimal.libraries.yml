@@ -31,8 +31,3 @@ field:
   css:
     theme:
       dist/css/fields/field.css: { minified: true }
-
-breadcrumbs:
-  css:
-    theme:
-      dist/css/components/breadcrumbs.css: { minified: true }

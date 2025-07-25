@@ -49,12 +49,6 @@ function kingly_minimal_preprocess_page(array &$variables): void {
  *   An associative array of variables passed to the theme hook.
  */
 function kingly_minimal_preprocess_block(array &$variables): void {
-  // Attach the breadcrumbs library to the breadcrumb block.
-  // This ensures the breadcrumb component styles are loaded only when the
-  // block is present on the page.
-  if ($variables['plugin_id'] === 'system_breadcrumb_block') {
-    $variables['#attached']['library'][] = 'kingly_minimal/breadcrumbs';
-  }
 
   // Example: Attach a library to the main menu block.
   // if ($variables['plugin_id'] === 'system_menu_block:main') {

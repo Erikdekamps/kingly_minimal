@@ -1,0 +1,76 @@
+// kingly_minimal/components/breadcrumbs/breadcrumbs.scss
+
+// -----------------------------------------------------------------------------
+// Breadcrumbs Component Styles
+// This file combines styles for the outer strip and the inner list.
+// The entire ruleset is scoped to the component's root element.
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:breadcrumbs'] {
+  // Styles for the outer wrapper that provides the background and borders.
+  // This is the root element of the component.
+  &.breadcrumb-strip {
+    background-color: var(--color-light-gray);
+    border-top: var(--border-width) solid var(--color-border);
+    border-bottom: var(--border-width) solid var(--color-border);
+    padding-block: var(--spacing-sm);
+    // Use a simple grid layout to center the single inner container.
+    display: grid;
+    // The columns are the same as .layout-container to ensure perfect alignment.
+    grid-template-columns: minmax(var(--container-padding), 1fr) minmax(0, var(--container-max-width)) minmax(var(--container-padding), 1fr);
+  }
+
+  // The inner wrapper that constrains the breadcrumbs to the site's max-width.
+  .breadcrumbs-region {
+    // Place this container in the central column of its parent grid.
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  // Use Flexbox to lay out the breadcrumb items in a row.
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    gap: inherit; // Inherit gap from the parent ul for the separator.
+
+    // Add a separator icon before each item, except for the first one.
+    &:not(:first-child)::before {
+      content: '';
+      display: block;
+      // Use the CSS variable for the SVG icon.
+      background-image: var(--breadcrumb-separator-icon);
+      width: 1em; // Scale with font size.
+      height: 1em; // Scale with font size.
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.6;
+    }
+  }
+
+  .breadcrumb__link {
+    color: var(--color-text);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // The last item in the breadcrumb trail is the current page and not a link.
+  .breadcrumb__item:last-child {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+}

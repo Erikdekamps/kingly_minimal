@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Component template for the breadcrumbs.
+ *
+ * This component renders the entire breadcrumb bar, including the full-bleed
+ * container and the breadcrumb trail itself.
+ *
+ * @see kingly_minimal/components/breadcrumbs/breadcrumbs.component.yml
+ *
+ * Available variables (from props):
+ * - breadcrumb: A list of breadcrumb items.
+ * - attributes: HTML attributes for the root element. SDC injects the crucial
+ *   data-component-id attribute here.
+ */
+#}
+{% if breadcrumb %}
+  {#
+  The 'attributes' object is now printed here on the root element.
+  This allows the SDC module to add the data-component-id attribute, which
+  is essential for the component's styles to be applied.
+  #}
+  <div{{ attributes.addClass('breadcrumb-strip') }}>
+    <div class="breadcrumbs-region">
+      <nav class="breadcrumb-nav" role="navigation" aria-labelledby="system-breadcrumb">
+        <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+        {#
+        The 'breadcrumb' class is now added manually. The original attributes
+        object from the theme hook is not used to avoid conflicts with SDC.
+        #}
+        <ul class="breadcrumb">
+          {% for item in breadcrumb %}
+            <li class="breadcrumb__item">
+              {% if item.url %}
+                <a href="{{ item.url }}" class="breadcrumb__link">{{ item.text }}</a>
+              {% else %}
+                {{ item.text }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+{% endif %}

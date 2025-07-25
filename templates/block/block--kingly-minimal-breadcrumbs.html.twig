@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for the breadcrumbs block.
+ *
+ * This template removes the default block wrapper (`<div class="block">...</div>`).
+ * The breadcrumbs component is now self-contained and provides its own wrapper
+ * element, so the default block markup is unnecessary. This results in a
+ * cleaner, more semantic DOM and allows the full-bleed styling to work
+ * correctly.
+ *
+ * The `content` variable contains the output from the `breadcrumb.html.twig`
+ * template, which in turn includes our 'breadcrumbs' Single Directory Component.
+ */
+#}
+{{ content }}

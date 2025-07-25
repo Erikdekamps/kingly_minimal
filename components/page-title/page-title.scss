@@ -7,10 +7,9 @@
 // -----------------------------------------------------------------------------
 
 // Scope all styles to the page-title component.
-// SDC automatically adds this data attribute to the root element of the component.
 [data-component-id='kingly_minimal:page-title'] {
 
-  // The page title is a direct child of main-content, so it lives in the grid.
+  // Target the .page-title class, which is now on the h1 inside the wrapper.
   .page-title {
     font-family: var(--font-family-heading);
     line-height: var(--line-height-heading);

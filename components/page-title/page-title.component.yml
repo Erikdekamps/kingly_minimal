@@ -12,4 +12,4 @@ props:
     attributes:
       type: object
       title: Attributes
-      description: 'HTML attributes for the h1 element.'
+      description: 'HTML attributes for the component''s root wrapper element.'

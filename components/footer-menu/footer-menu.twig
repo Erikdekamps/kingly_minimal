@@ -3,21 +3,12 @@
  * @file
  * Theme override for the footer menu block.
  *
- * This component template provides a semantic <nav> element for the footer menu
- * and improves accessibility by using the block's label as an ARIA label.
+ * This component acts as a wrapper. It renders the semantic <nav> element
+ * and then includes the `kingly_minimal:menu` component to render the menu
+ * tree itself. The specific styling for the footer context is applied by
+ * this component's own stylesheet.
  *
- * It is loaded via a theme hook suggestion in kingly_minimal.theme, targeting
- * the 'footer' menu specifically.
- *
- * Available variables:
- * - plugin_id: The ID of the block implementation.
- * - label: The configured label of the block if visible.
- * - configuration: A list of the block's configuration values.
- * - content: The content of the block (the menu tree).
- * - attributes: HTML attributes for the containing element.
- *
- * @see template_preprocess_block()
- * @see kingly_minimal_preprocess_block()
+ * @see kingly_minimal/components/footer-menu/footer-menu.component.yml
  */
 #}
 {% set heading_id = attributes.id ~ '-label' %}
@@ -45,7 +36,15 @@ Conditionally set the accessible name for the navigation.
     <h2{{ title_attributes.addClass('visually-hidden') }} id="{{ heading_id }}">{{ label }}</h2>
   {% endif %}
   {{ title_suffix }}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+
+  {#
+  We include our generic `menu` SDC. This component's `footer-menu.scss` will
+  automatically apply the necessary contextual style overrides.
+  #}
+  {% if content['#items'] %}
+    {{ include('kingly_minimal:menu', {
+      items: content['#items'],
+      attributes: content['#attributes'],
+    }, with_context = false) }}
+  {% endif %}
 </nav>

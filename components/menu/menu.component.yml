@@ -16,6 +16,10 @@ props:
       title: 'Menu Level'
       description: 'The current depth of the menu, used for styling.'
       default: 0
+    modifier:
+      type: string
+      title: 'Modifier'
+      description: 'An optional BEM modifier class for the menu (e.g., "footer").'
     attributes:
       type: object
       title: 'Attributes'

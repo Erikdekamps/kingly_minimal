@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for a single search result.
+ *
+ * This template now acts as a bridge to the 'search-result' Single Directory
+ * Component. It passes the necessary variables from the theme system to the
+ * component, which now handles all markup and styling.
+ *
+ * @see kingly_minimal/components/search-result/search-result.twig
+ */
+#}
+{{ include('kingly_minimal:search-result', {
+  url: url,
+  title: title,
+  snippet: snippet,
+  info: info,
+  attributes: attributes,
+}, with_context = false) }}

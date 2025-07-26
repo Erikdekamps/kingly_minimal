@@ -28,9 +28,3 @@ regions:
   footer_fourth: 'Footer fourth'
   footer_bottom: 'Footer bottom'
   hidden: 'Hidden'
-
-# Enable the SDC module as a dependency for this theme.
-# This is crucial for Drupal to recognize and process our components,
-# especially the #component render element used in our new SocialLinksBlock.
-dependencies:
-  - drupal:sdc

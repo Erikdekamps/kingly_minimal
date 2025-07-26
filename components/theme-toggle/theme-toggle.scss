@@ -10,34 +10,65 @@
   appearance: none;
   background-color: transparent;
   border: none;
-  padding: var(--spacing-xs); // A small amount of padding around the icon.
+  padding: var(--spacing-xs);
   cursor: pointer;
-  border-radius: 50%; // Make it a perfect circle.
-  line-height: 1; // Prevents extra space that can affect alignment.
+  border-radius: 50%;
+  line-height: 1;
   color: var(--color-text);
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
-  // Center the icon SVG inside the button.
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  // --- Animation Setup ---
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 
   &:hover,
   &:focus {
-    // Add a subtle background on hover/focus for clear feedback.
     background-color: color-mix(in srgb, var(--color-text), transparent 90%);
     color: var(--color-primary);
   }
 
-  // Use focus-visible for a clear keyboard navigation outline.
   &:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 
-  // Override the base icon size specifically for this button context.
   .icon > svg {
     width: 20px;
     height: 20px;
+  }
+
+  // --- Icon Animation Logic ---
+  .theme-toggle__icon-wrapper {
+    grid-area: 1 / 1;
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  // --- Local State-Driven Visibility ---
+  // The component's appearance is now driven by its own `aria-pressed` attribute.
+  // This makes it fully encapsulated and independent of the global theme state.
+
+  // State when NOT pressed (Light Mode)
+  &[aria-pressed="false"] {
+    .theme-toggle__icon-wrapper--dark { // Moon is visible
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+    .theme-toggle__icon-wrapper--light { // Sun is hidden
+      transform: rotate(30deg);
+      opacity: 0;
+    }
+  }
+
+  // State when PRESSED (Dark Mode)
+  &[aria-pressed="true"] {
+    .theme-toggle__icon-wrapper--dark { // Moon is hidden
+      transform: rotate(-30deg);
+      opacity: 0;
+    }
+    .theme-toggle__icon-wrapper--light { // Sun is visible
+      transform: rotate(0deg);
+      opacity: 1;
+    }
   }
 }

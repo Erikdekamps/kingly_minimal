@@ -25,6 +25,22 @@
 <html{{ html_attributes }}>
 <head>
   <head-placeholder token="{{ placeholder_token }}">
+    {#
+    FOUC Prevention Script for Theme Toggle.
+    This inline script runs before the page is rendered to prevent a "flash
+    of the wrong theme." It checks localStorage for a saved theme preference
+    and applies it to the <html> element instantly.
+    #}
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme-preference');
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
       <js-placeholder token="{{ placeholder_token }}">

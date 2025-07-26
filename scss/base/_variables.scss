@@ -66,3 +66,27 @@
   // It's a simple chevron-right icon.
   --breadcrumb-separator-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
 }
+
+// ---------------------------------------------------------------------------
+// Dark Mode Overrides
+// ---------------------------------------------------------------------------
+// These variables are applied when the data-theme="dark" attribute is present
+// on the <html> element. They override the default :root values.
+// ---------------------------------------------------------------------------
+html[data-theme="dark"] {
+  // Colors
+  --color-text: #e1e1e1;
+  --color-background: #121212;
+  --color-primary: #4dabf7; // A slightly lighter blue for better contrast
+  --color-primary-hover: #74c0fc;
+  --color-border: #333;
+  --color-light-gray: #1e1e1e; // This now serves as a slightly lighter dark background
+
+  // Feedback Colors
+  --color-status: #1e4620;
+  --color-status-text: #a3d4a8;
+  --color-warning: #5c4b15;
+  --color-warning-text: #f3e5ab;
+  --color-error: #5a1e22;
+  --color-error-text: #e8b9bf;
+}

@@ -11,7 +11,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * A custom Vite plugin to remove the empty JS wrappers that Vite creates
- * for SCSS entry points.
+ * for SCSS entry points. This is necessary because we treat each SCSS file
+ * as a separate entry point.
  */
 function cssOnlyPlugin() {
   return {
@@ -19,7 +20,13 @@ function cssOnlyPlugin() {
     generateBundle(options, bundle) {
       for (const fileName in bundle) {
         const file = bundle[fileName];
-        if (file.type === 'chunk' && file.facadeModuleId?.endsWith('.scss')) {
+        // Find chunks that are JS files but originated from an SCSS entry point.
+        if (
+          file.type === 'chunk' &&
+          file.isEntry &&
+          file.facadeModuleId?.endsWith('.scss')
+        ) {
+          // Remove the empty JS file.
           delete bundle[fileName];
         }
       }
@@ -39,52 +46,67 @@ export default defineConfig({
   ],
 
   build: {
-    // We set the output directory to the project root. This is required because
-    // we are writing to multiple top-level directories (dist/ and components/).
     outDir: '.',
-    // CRITICAL: We must disable emptyOutDir. If this were true, Vite would
-    // delete your source files in 'components/' on build. We accept the build
-    // warning because this configuration is necessary for our architecture.
     emptyOutDir: false,
 
     rollupOptions: {
+      // Define all non-partial SCSS and JS files as inputs.
       input: Object.fromEntries(
-        globSync('{scss,components}/**/!(_)*.scss').map(file => [
+        globSync('{scss,components}/**/!(_)*.{scss,js}').map((file) => [
+          // Use the file path relative to the project root as the entry name.
+          // e.g., 'components/button/button'
           file.slice(0, file.length - path.extname(file).length),
           fileURLToPath(new URL(file, import.meta.url)),
-        ]),
+        ])
       ),
 
       output: {
+        // --- Output logic for CSS files ---
         assetFileNames: (assetInfo) => {
-          // If the source is from the 'components' directory...
+          // The `assetInfo.name` holds the original entry point path.
+          // e.g., 'components/button/button.scss'
+
+          // For component SCSS files...
           if (assetInfo.name.startsWith('components/')) {
-            // Output the CSS file directly back into its source component folder.
-            // Vite uses `[name]` which corresponds to our input key, e.g., 'components/button/button'.
+            // Place the compiled CSS back into its source directory.
+            // [name] will be 'components/button/button', so the output is 'components/button/button.css'
             return '[name].css';
           }
 
-          // If the source is from the 'scss' directory...
+          // For global SCSS files...
           if (assetInfo.name.startsWith('scss/')) {
-            // Output to 'dist/css/' while maintaining subdirectories.
+            // Remove the 'scss/' prefix and output to 'dist/css/'.
+            // e.g., 'scss/layout/page.scss' becomes 'dist/css/layout/page.css'
             const newPath = assetInfo.name.substring('scss/'.length);
             return `dist/css/${newPath}`;
           }
 
-          // A fallback for any other assets.
-          return 'dist/css/[name].css';
+          // Fallback for any other assets.
+          return 'dist/assets/[name].[ext]';
         },
-        // JS entries would go into 'dist/js/'.
-        entryFileNames: 'dist/js/[name].js',
+
+        // --- Output logic for JS files ---
+        entryFileNames: (chunkInfo) => {
+          // The `chunkInfo.name` is the entry point key.
+          // e.g., 'components/theme-toggle/theme-toggle'
+
+          // For component JS files...
+          if (chunkInfo.name.startsWith('components/')) {
+            // Get the base filename and place it in 'dist/js/'.
+            // e.g., 'components/theme-toggle/theme-toggle' becomes 'dist/js/theme-toggle.js'
+            return `dist/js/${path.basename(chunkInfo.name)}.js`;
+          }
+
+          // Fallback for any other JS files (if we add them later).
+          return 'dist/js/[name].js';
+        },
       },
     },
   },
 
   css: {
     postcss: {
-      plugins: [
-        (await import('autoprefixer')).default({ grid: 'autoplace' }),
-      ],
+      plugins: [(await import('autoprefixer')).default({ grid: 'autoplace' })],
     },
     preprocessorOptions: {
       scss: {
@@ -95,6 +117,7 @@ export default defineConfig({
           'import',
           'legacy-js-api',
         ],
+        quietDeps: true,
       },
     },
   },

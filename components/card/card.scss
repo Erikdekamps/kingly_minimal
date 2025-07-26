@@ -1,0 +1,48 @@
+// components/card/card.scss
+
+// -----------------------------------------------------------------------------
+// Card Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the card component.
+[data-component-id='kingly_minimal:card'] {
+  // Use grid to structure the card's sections (image, content, actions).
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+  box-shadow: var(--box-shadow);
+  overflow: hidden; // Ensures the image's corners are clipped by the border-radius.
+  height: 100%; // Make the card fill the height of its container.
+
+  // The main content area of the card.
+  .card__content {
+    padding: var(--spacing-md);
+    display: grid;
+    gap: var(--spacing-sm);
+  }
+
+  // The card's title.
+  .card__title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-heading);
+    margin: 0;
+
+    .card__title-link {
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // The actions/footer area of the card.
+  .card__actions {
+    padding: var(--spacing-md);
+    margin-top: auto; // Push the actions to the bottom of the card.
+  }
+}

@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override for a form element.
+ *
+ * This template has been refactored to act as a bridge to the 'form-element'
+ * Single Directory Component. It uses Twig's `embed` tag to wrap the form
+ * field (`children`) with the component's structure, passing all necessary
+ * variables as props.
+ *
+ * @see kingly_minimal/components/form-element/form-element.twig
+ */
+#}
+{% set classes = [
+  'js-form-item',
+  'form-item-' ~ name|clean_class,
+  'js-form-type-' ~ type|clean_class,
+  'js-form-item-' ~ name|clean_class,
+  title_attributes.id ? 'form-item--id-' ~ title_attributes.id,
+  label_display == 'invisible' ? 'form-item--label-invisible',
+  disabled ? 'form-item--disabled',
+  errors ? 'form-item--error',
+  prefix ? 'form-item--prefix-attached',
+  suffix ? 'form-item--suffix-attached',
+] %}
+{% set description_classes = [
+  'form-item__description',
+  description_display == 'invisible' ? 'visually-hidden',
+] %}
+
+{% embed 'kingly_minimal:form-element' with {
+  label: label,
+  label_display: label_display,
+  description: description ? {
+    '#type': 'html_tag',
+    '#tag': 'div',
+    '#value': description.content,
+    '#attributes': description.attributes.addClass(description_classes),
+  },
+  description_display: description_display,
+  errors: errors,
+  prefix: prefix,
+  suffix: suffix,
+  attributes: attributes.addClass(classes),
+} %}
+
+  {% block content %}
+    {# The 'children' variable contains the actual <input>, <select>, etc. #}
+    {{ children }}
+  {% endblock %}
+
+{% endembed %}

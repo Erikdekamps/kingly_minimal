@@ -22,7 +22,7 @@
   // Typography
   font-family: inherit;
   font-size: var(--font-size-base);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
@@ -34,7 +34,8 @@
 
   // Interaction
   cursor: pointer;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition: background-color var(--transition-duration) var(--transition-timing-function),
+  border-color var(--transition-duration) var(--transition-timing-function);
 
   // States: Hover, Focus, Disabled
   &:hover {
@@ -50,8 +51,8 @@
 
   // Provide a clear focus indicator for keyboard users (WCAG).
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
   }
 
   &:disabled,
@@ -62,7 +63,3 @@
     pointer-events: none; // Prevent clicks on disabled elements.
   }
 }
-
-// Note: Styles for the `.form-actions` container have been removed from this file.
-// They are correctly located in `scss/forms/forms.scss` to maintain component
-// encapsulation and avoid style duplication.

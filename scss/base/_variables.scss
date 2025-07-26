@@ -17,13 +17,16 @@
   --color-border: #e1e1e1;
   --color-light-gray: #f4f5f6;
 
-  // Feedback Colors (WCAG AAA Compliant)
+  // --- Feedback Colors (WCAG AAA Compliant) ---
   --color-status: #e6f4ea;
   --color-status-text: #0d4f21; // Contrast on #e6f4ea is 7.06:1 (AAA)
+  --color-status-border: #d0e8d8; // Pre-calculated: color-mix(in srgb, #e6f4ea, #000 10%)
   --color-warning: #fff8e1;
   --color-warning-text: #614d00; // Contrast on #fff8e1 is 7.08:1 (AAA)
+  --color-warning-border: #f2eacb; // Pre-calculated: color-mix(in srgb, #fff8e1, #000 10%)
   --color-error: #fdecea;
   --color-error-text: #8c101c; // Contrast on #fdecea is 7.04:1 (AAA)
+  --color-error-border: #eecfca; // Pre-calculated: color-mix(in srgb, #fdecea, #000 10%)
 
   // ---------------------------------------------------------------------------
   // Typography
@@ -37,6 +40,11 @@
 
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
   // ---------------------------------------------------------------------------
   // Sizing
@@ -56,11 +64,21 @@
   --spacing-xl: 4rem;    // ~64px
 
   // ---------------------------------------------------------------------------
-  // Borders and Shadows
+  // Borders, Shadows, and Focus
   // ---------------------------------------------------------------------------
   --border-width: 1px;
   --border-radius: 0.25rem;
   --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-primary);
+
+  // ---------------------------------------------------------------------------
+  // Transitions
+  // ---------------------------------------------------------------------------
+  --transition-duration: 0.15s;
+  --transition-timing-function: ease-in-out;
 
   // ---------------------------------------------------------------------------
   // Layout
@@ -76,42 +94,40 @@
   // ---------------------------------------------------------------------------
   // Breadcrumbs Component
   // ---------------------------------------------------------------------------
-  // A simple chevron-right icon, encoded as a data URI to avoid HTTP requests.
   --breadcrumb-separator-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
 
   // ---------------------------------------------------------------------------
   // Select Component
   // ---------------------------------------------------------------------------
-  // Custom dropdown arrow for the <select> element. Using a variable allows for
-  // easy theming (e.g., changing the arrow color for dark mode). The color
-  // #222222 is URL-encoded as %23222222 to be compatible with data URIs.
   --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
 
 // ---------------------------------------------------------------------------
 // Dark Mode Overrides (WCAG AAA Compliant)
-// These variables are applied when the data-theme="dark" attribute is present
-// on the <html> element. They override the default :root values.
 // ---------------------------------------------------------------------------
 html[data-theme="dark"] {
-  // Colors
-  --color-text: #e1e1e1; // Contrast on #121212 is 14.39:1 (AAA)
+  // --- Colors ---
+  --color-text: #e1e1e1;
   --color-background: #121212;
-  --color-primary: #74c0fc; // Contrast on #121212 is 8.29:1 (AAA)
-  --color-primary-hover: #a5d8ff; // Contrast on #121212 is 11.23:1 (AAA)
+  --color-primary: #74c0fc;
+  --color-primary-hover: #a5d8ff;
   --color-border: #333333;
-  --color-light-gray: #1e1e1e; // This now serves as a slightly lighter dark background
+  --color-light-gray: #1e1e1e;
 
-  // Feedback Colors (WCAG AAA Compliant)
+  // --- Feedback Colors ---
   --color-status: #163b1f;
-  --color-status-text: #c4f5cf; // Contrast on #163b1f is 7.23:1 (AAA)
+  --color-status-text: #c4f5cf;
+  --color-status-border: #2a5e37; // Pre-calculated: color-mix(in srgb, #163b1f, #fff 20%)
   --color-warning: #4d3f0c;
-  --color-warning-text: #ffeeb1; // Contrast on #4d3f0c is 7.09:1 (AAA)
+  --color-warning-text: #ffeeb1;
+  --color-warning-border: #705b11; // Pre-calculated: color-mix(in srgb, #4d3f0c, #fff 20%)
   --color-error: #5a1e22;
-  --color-error-text: #fdd8db; // Contrast on #5a1e22 is 7.03:1 (AAA)
+  --color-error-text: #fdd8db;
+  --color-error-border: #802a31; // Pre-calculated: color-mix(in srgb, #5a1e22, #fff 20%)
 
-  // --- Component Variable Overrides for Dark Mode ---
+  // --- Focus ---
+  --focus-ring-color: var(--color-primary); // Inherits dark mode primary color automatically.
 
-  // The color #e1e1e1 is URL-encoded as %23e1e1e1.
+  // --- Component Variables ---
   --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }

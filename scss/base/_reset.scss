@@ -53,8 +53,8 @@ a {
   // Add a consistent, high-contrast focus style for keyboard users.
   // This covers any link that isn't more specifically styled by a component.
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
     border-radius: var(--border-radius);
   }
 }

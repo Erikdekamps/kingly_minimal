@@ -15,7 +15,8 @@
   border-radius: 50%;
   line-height: 1;
   color: var(--color-text);
-  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition: background-color var(--transition-duration) var(--transition-timing-function),
+  color var(--transition-duration) var(--transition-timing-function);
 
   // --- Animation Setup & Target Size ---
   // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
@@ -32,8 +33,8 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
   }
 
   .icon > svg {

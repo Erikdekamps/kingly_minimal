@@ -32,19 +32,19 @@
   &.messages--status {
     color: var(--color-status-text);
     background-color: var(--color-status);
-    border-color: color-mix(in srgb, var(--color-status), #000 10%);
+    border-color: var(--color-status-border);
   }
 
   &.messages--warning {
     color: var(--color-warning-text);
     background-color: var(--color-warning);
-    border-color: color-mix(in srgb, var(--color-warning), #000 10%);
+    border-color: var(--color-warning-border);
   }
 
   &.messages--error {
     color: var(--color-error-text);
     background-color: var(--color-error);
-    border-color: color-mix(in srgb, var(--color-error), #000 10%);
+    border-color: var(--color-error-border);
 
     a {
       color: var(--color-error-text);

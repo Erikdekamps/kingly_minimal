@@ -31,9 +31,10 @@
     // Typography & Appearance
     color: var(--color-primary);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     border-radius: var(--border-radius);
-    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+    transition: background-color var(--transition-duration) var(--transition-timing-function),
+    color var(--transition-duration) var(--transition-timing-function);
 
     // Hover & Focus States
     &:hover {
@@ -42,8 +43,8 @@
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
     }
   }
 
@@ -52,7 +53,7 @@
     .pager__link {
       background-color: var(--color-primary);
       color: var(--color-background);
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       // Prevent hover effect on the active item.
       &:hover {
         background-color: var(--color-primary);

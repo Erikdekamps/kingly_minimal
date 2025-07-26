@@ -5,7 +5,8 @@
  *
  * This template now acts as a "dispatcher" based on the view mode.
  * - If the view mode is 'teaser', it includes the 'node-teaser' SDC.
- * - For all other view modes (e.g., 'full'), it renders the full node markup.
+ * - For all other view modes (e.g., 'full'), it renders the full node markup,
+ *   now using the `Image` and `Text` components for consistency.
  *
  * @see template_preprocess_node()
  * @see kingly_minimal/components/node-teaser/node-teaser.twig
@@ -56,7 +57,11 @@
 
     {% if display_submitted %}
       <footer class="node__meta">
-        {{ author_picture }}
+        {# Use the Image component for the author's picture. #}
+        {{ include('kingly_minimal:image', {
+          render_array: author_picture,
+          attributes: { class: ['user-picture'] }
+        }, with_context=false) }}
         <div{{ author_attributes.addClass('node__submitted') }}>
           {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
           {{ metadata }}
@@ -65,7 +70,10 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('node__content') }}>
-      {{ content }}
+      {# Use the Text component to render the main content body. #}
+      {{ include('kingly_minimal:text', {
+        content: content
+      }, with_context=false) }}
     </div>
 
   </article>

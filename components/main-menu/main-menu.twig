@@ -3,11 +3,12 @@
  * @file
  * Component template for the main navigation menu.
  *
- * This component has been refactored to be a true wrapper. It renders the
- * semantic <nav> element and then explicitly includes the `kingly_minimal:menu`
- * component to render the menu tree itself.
+ * This component provides a semantic <nav> element and improves accessibility
+ * by using the block's label as an ARIA label.
  *
- * @see kingly_minimal/components/main-menu/main-menu.component.yml
+ * It renders the `content` variable, which allows Drupal's theme system to
+ * use the `menu.html.twig` bridge, which in turn includes our `menu` SDC.
+ * This ensures the render pipeline and attribute injection works correctly.
  */
 #}
 {% set heading_id = attributes.id ~ '-label' %}
@@ -23,6 +24,7 @@ Conditionally set the accessible name for the navigation.
 {% else %}
   {% do nav_attributes.setAttribute('aria-label', 'Main navigation'|t) %}
 {% endif %}
+
 
 {#
 The data-component-id attribute is essential for SDC to discover this component
@@ -40,15 +42,7 @@ and attach its assets (CSS). We merge our conditional nav_attributes here.
   {% endif %}
   {{ title_suffix }}
 
-  {#
-  Instead of printing `{{ content }}`, we now explicitly include our `menu` SDC.
-  We must extract the `items` array from the `content` render array that is
-  passed down from the block.
-  #}
-  {% if content['#items'] %}
-    {{ include('kingly_minimal:menu', {
-      items: content['#items'],
-      attributes: content['#attributes'],
-    }, with_context = false) }}
-  {% endif %}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 </nav>

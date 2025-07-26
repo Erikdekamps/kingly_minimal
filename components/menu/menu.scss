@@ -1,0 +1,68 @@
+// components/menu/menu.scss
+
+@use '../../scss/base/mixins' as *;
+
+// -----------------------------------------------------------------------------
+// Menu Tree Styles (the <ul> element)
+// Scoped to the menu component.
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:menu'] {
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+    // --- Mobile Layout (Default): Vertical List ---
+    flex-direction: column;
+    gap: 0; // Remove gaps for a tight list on mobile.
+
+    // --- Tablet and Desktop Layout: Horizontal List ---
+    @include media-query(md) {
+      // Revert to a horizontal layout for wider screens.
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      // The parent <nav> element should handle alignment (e.g., justify-content).
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Menu Link Styles (the <a> element)
+  // ---------------------------------------------------------------------------
+  .menu__link {
+    // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
+    display: inline-flex; // Allows for vertical alignment.
+    align-items: center; // Vertically center the text.
+    min-height: 44px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-light-gray);
+      text-decoration: none;
+    }
+
+    &.is-active {
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+
+    // On mobile, remove horizontal padding and border-radius for a cleaner,
+    // full-width appearance in the vertical list.
+    @include media-query(md, 'max') {
+      padding-inline: 0;
+      border-radius: 0;
+      width: 100%; // Ensure link takes full width on mobile.
+    }
+  }
+
+  // Hide sub-menus by default as they are not handled in this implementation.
+  .menu__sub-menu {
+    display: none;
+  }
+}

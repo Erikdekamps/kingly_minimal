@@ -63,6 +63,7 @@
   // A standard 12-column grid for flexible content layout.
   grid-template-columns: repeat(12, 1fr);
   gap: var(--spacing-md);
+  padding-block: var(--spacing-lg);
   // Ensure the grid starts at the top of its allocated space.
   align-content: start;
 
@@ -90,6 +91,5 @@ body.gin--horizontal-toolbar .layout-container {
 @media (min-width: 768px) { // md breakpoint
   .main-content {
     gap: var(--spacing-lg);
-    padding-block-end: var(--spacing-lg);
   }
 }

@@ -51,7 +51,12 @@ We call a macro which calls itself to render the full tree.
           item.in_active_trail ? 'is-active',
         ]
         %}
-        {{ link(item.title, item.url, { 'class': link_classes }) }}
+        {#
+        WCAG AAA (2.4.8 Location): Add 'aria-current="page"' to the active link
+        to programmatically identify the user's current location.
+        #}
+        {% set link_attributes = item.in_active_trail ? create_attribute({'aria-current': 'page'}) : create_attribute() %}
+        {{ link(item.title, item.url, link_attributes.addClass(link_classes)) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}

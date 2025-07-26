@@ -50,7 +50,12 @@
           {% else %}
             {% set title = 'Go to page @key'|t({'@key': key}) %}
           {% endif %}
-          <a href="{{ item.href }}" title="{{ title }}"{{ item.attributes|without('href', 'title') }}>
+          {# WCAG AAA (2.4.8 Location): Add 'aria-current="page"' to the active link. #}
+          {% set link_attributes = item.attributes|without('href', 'title') %}
+          {% if key == current %}
+            {% set link_attributes = link_attributes.setAttribute('aria-current', 'page') %}
+          {% endif %}
+          <a href="{{ item.href }}" title="{{ title }}"{{ link_attributes }}>
             <span class="visually-hidden">
               {{ key == current ? 'Current page'|t : 'Page'|t }}
             </span>

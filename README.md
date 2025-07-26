@@ -1,6 +1,6 @@
 # Kingly minimal theme
 
-A minimal, modern Drupal 11 base theme with a Vite-powered SCSS toolchain 
+A minimal, modern Drupal 11 base theme with a Vite-powered SCSS toolchain
 generated with AI.
 
 ## Features
@@ -13,6 +13,54 @@ generated with AI.
   toggle on mobile devices for a better user experience on small screens.
   Styled Breadcrumbs: Breadcrumbs are styled for clarity, removing default list
   numbering and using an inline layout with a custom separator icon.
+
+## Accessibility Compliance
+
+This theme has been enhanced to meet or exceed several WCAG AAA success criteria. The following checklist details the specific improvements made:
+
+### WCAG AAA Checklist
+
+- [x] **1.4.6 Contrast (Enhanced) - AAA:**
+  - The theme's color palette has been audited and adjusted.
+  - All default text has a contrast ratio of at least 7:1 against its background.
+  - Link text, button text, and text within status messages all meet the 7:1 contrast ratio.
+  - Both light and dark modes have been updated to comply.
+
+- [x] **2.4.9 Link Purpose (Link Only) - AAA:**
+  - The `footer-link-list` component has been enhanced to accept an optional `aria_label` for each link.
+  - This allows content editors to provide a clear and distinct accessible name for links that might otherwise be ambiguous (e.g., multiple "Learn More" links pointing to different destinations).
+
+- [x] **2.5.5 Target Size (Enhanced) - AAA:**
+  - All interactive elements (links, buttons, icons) have been updated to ensure they have a minimum target size of 44x44 CSS pixels.
+  - This is achieved by using sufficient padding and minimum height/width, making controls easier to use for people with motor impairments and on touch devices.
+
+- [x] **2.4.7 Focus Visible - AA / 2.4.13 Focus Appearance - AAA:**
+  - All interactive elements (links, buttons, form controls) have a highly visible and consistent focus indicator.
+  - The focus indicator uses a 2px solid outline with a 2px offset, ensuring it is not obscured and has high contrast.
+  - The skip-to-content link has a clear focus style.
+
+- [x] **2.4.5 Multiple Ways - AA:**
+  - The theme provides both a primary navigation menu and breadcrumbs, offering users multiple ways to navigate the site.
+
+- [x] **2.4.6 Headings and Labels - AA:**
+  - Semantic headings are used correctly (e.g., `H1` on front page branding, visually hidden `H2`s for navigation regions).
+  - Form elements and navigation landmarks are programmatically associated with their labels (`aria_labelledby`).
+
+- [x] **2.4.8 Location - AAA:**
+  - The active link in navigation menus (`main-menu`, `pager`, `local-tasks`) is programmatically identified using `aria-current="page"`, clearly informing users of their current location within the site structure.
+
+- [x] **3.2.5 Change on Request - AAA:**
+  - Links that open in a new tab or window (e.g., social media links) now include a warning for all users.
+  - A `visually-hidden` span announces "(opens in a new window)" to screen reader users, while a `title` attribute provides a tooltip for sighted mouse users.
+
+- [x] **3.2.3 Consistent Navigation - AA:**
+  - The main navigation and footer are presented consistently across all pages of the site.
+
+- [x] **3.3.2 Labels or Instructions - A:**
+  - All form controls have associated labels. Navigation and other key regions have accessible names provided via `aria-label` or `aria_labelledby`.
+
+- [x] **4.1.2 Name, Role, Value - A:**
+  - All UI components have the correct role (e.g., `button`, `navigation`, `alert`) and their state (e.g., `aria-pressed`, `aria-current`) is programmatically determinable.
 
 ## Regions
 
@@ -36,31 +84,3 @@ The theme provides the following regions for block placement:
 * **Footer bottom**: For the bottom bar of the footer (e.g., copyright, footer
   menu).
 * **Hidden**: A region for blocks that should not be displayed.
-
-## Development Setup
-
-The theme uses Vite to compile SCSS assets. Node.js and npm are required.
-
-1. **Navigate to the theme directory:**
-   ```bash
-   cd /path/to/your/drupal/themes/custom/kingly_minimal
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-### Build Commands
-
-* **For development:** This command will start Vite in watch mode with live
-  reloading.
-  ```bash
-  npm run dev
-  ```
-
-* **For production:** This command will build and minify all SCSS assets into
-  the `dist/` directory.
-  ```bash
-  npm run build
-  ```

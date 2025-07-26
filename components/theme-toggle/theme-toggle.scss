@@ -10,17 +10,20 @@
   appearance: none;
   background-color: transparent;
   border: none;
-  padding: var(--spacing-xs);
+  padding: 0; // Padding is not needed as size is explicit.
   cursor: pointer;
   border-radius: 50%;
   line-height: 1;
   color: var(--color-text);
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
-  // --- Animation Setup ---
+  // --- Animation Setup & Target Size ---
+  // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
   display: grid;
   place-items: center;
   overflow: hidden;
+  width: 44px;
+  height: 44px;
 
   &:hover,
   &:focus {

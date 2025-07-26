@@ -21,10 +21,24 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-label' %}
-<nav{{ attributes.addClass('block', 'block-menu') }} role="navigation" aria-labelledby="{{ heading_id }}">
+{% set nav_attributes = create_attribute() %}
+
+{#
+Conditionally set the accessible name for the navigation.
+- If a label exists, use aria-labelledby to point to the visually hidden h2.
+- If no label exists, provide a fallback aria-label to prevent an empty name.
+#}
+{% if label %}
+  {% do nav_attributes.setAttribute('aria-labelledby', heading_id) %}
+{% else %}
+  {% do nav_attributes.setAttribute('aria-label', 'Footer menu'|t) %}
+{% endif %}
+
+<nav{{ attributes.addClass('block', 'block-menu').merge(nav_attributes) }} role="navigation">
   {#
   Print the block title as a visually hidden heading. This provides an
   accessible name for the <nav> element via aria-labelledby.
+  This is only printed if the label is provided.
   #}
   {{ title_prefix }}
   {% if label %}

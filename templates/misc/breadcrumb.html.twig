@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * This template acts as a bridge to the 'breadcrumbs' Single Directory Component.
+ * It passes the necessary variables from the theme system to the component.
+ *
+ * It now includes logic to prevent rendering the breadcrumb on the front page,
+ * as it is redundant and creates a "noise" link for screen reader users.
+ *
+ * @see kingly_minimal/components/breadcrumbs/breadcrumbs.twig
+ */
+#}
+{% if breadcrumb and not is_front %}
+  {{ include('kingly_minimal:breadcrumbs', {
+    breadcrumb: breadcrumb,
+  }, with_context = false) }}
+{% endif %}

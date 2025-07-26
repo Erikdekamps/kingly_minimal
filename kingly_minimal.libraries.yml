@@ -14,6 +14,8 @@ global-styles:
       dist/css/layout/page.css: { minified: true, weight: -10 }
       dist/css/layout/header.css: { minified: true, weight: -10 }
       dist/css/layout/footer.css: { minified: true, weight: -10 }
+      # Accessible styling for all form elements.
+      dist/css/forms/forms.css: { minified: true, weight: -9 }
   dependencies:
     - core/drupal
     - core/once

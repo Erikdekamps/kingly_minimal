@@ -14,7 +14,7 @@ props:
     links:
       type: array
       title: 'Links'
-      description: 'An array of link objects. Each object should have a "text" and "url" key.'
+      description: 'An array of link objects. Each object should have a "text", "url", and optional "aria_label" key.'
       default: []
       item:
         type: object
@@ -23,6 +23,11 @@ props:
             type: string
           url:
             type: string
+          # WCAG 2.4.9: Add an optional aria_label to disambiguate links with the same text.
+          aria_label:
+            type: string
+            title: 'ARIA Label'
+            description: '(Optional) Provides a distinct accessible name for the link, crucial if the link text is ambiguous (e.g., "Learn More").'
     attributes:
       type: object
       title: 'Attributes'

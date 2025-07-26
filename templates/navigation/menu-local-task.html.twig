@@ -4,12 +4,23 @@
  * Theme override for a single local task link.
  *
  * This override adds the `tabs__link` class to the link element, which is
- * required for the local-tasks SDC styling to apply correctly.
+ * required for the local-tasks SDC styling to apply correctly. It also adds
+ * `aria-current="page"` to the active tab for accessibility.
  *
  * Available variables:
  * - link: A renderable array for the link element.
+ * - active: A boolean indicating if the link is active.
  *
  * @see template_preprocess_menu_local_task()
  */
 #}
-<li{{ attributes }}>{{ link|merge({ '#attributes': { 'class': [ 'tabs__link' ] } }) }}</li>
+{%
+  set link_attributes = {
+  'class': ['tabs__link'],
+}
+%}
+{# WCAG AAA (2.4.8 Location): Add 'aria-current="page"' to the active tab. #}
+{% if active %}
+  {% set link_attributes = link_attributes|merge({'aria-current': 'page'}) %}
+{% endif %}
+<li{{ attributes }}>{{ link|merge({ '#attributes': link_attributes }) }}</li>

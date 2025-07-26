@@ -49,6 +49,34 @@ a {
     color: var(--color-primary-hover);
     text-decoration: underline;
   }
+
+  // Add a consistent, high-contrast focus style for keyboard users.
+  // This covers any link that isn't more specifically styled by a component.
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--border-radius);
+  }
+}
+
+// Style for the "Skip to main content" link from html.html.twig.
+// It is visually hidden by default and becomes visible on focus for keyboard users.
+.visually-hidden.focusable:focus {
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  text-decoration: none;
+  z-index: 1000;
+  top: 1rem;
+  left: 1rem;
+  border-radius: var(--border-radius);
 }
 
 // Remove all animations and transitions for people that prefer not to see them.

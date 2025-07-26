@@ -1,86 +1,124 @@
-# Kingly minimal theme
+# Kingly Minimal Theme
 
-A minimal, modern Drupal 11 base theme with a Vite-powered SCSS toolchain
-generated with AI.
+A minimal, modern Drupal 11 base theme with a Vite-powered, Single Directory
+Component (SDC) architecture. It is designed for high performance,
+maintainability, and accessibility.
 
 ## Features
 
-* Modern CSS with SCSS and CSS Custom Properties.
-* Component-based library structure.
-* Vite for fast development and optimized production builds.
-* Clean, accessible Twig templates.
-* Responsive Mobile Menu: The main navigation collapses into a hamburger-style
-  toggle on mobile devices for a better user experience on small screens.
-  Styled Breadcrumbs: Breadcrumbs are styled for clarity, removing default list
-  numbering and using an inline layout with a custom separator icon.
+* **Modern Frontend Stack:** Built with SCSS, CSS Custom Properties, and ES6+
+  JavaScript.
+* **Vite Integration:** Lightning-fast development server with Hot Module
+  Replacement (HMR) and optimized production builds.
+* **Single Directory Components (SDC):** A fully component-based architecture
+  for maximum encapsulation, reusability, and maintainability. Component
+  assets (`.twig`, `.yml`, `.scss`, `.js`) are co-located.
+* **WCAG AAA-Ready:** Enhanced with a high-contrast color palette, proper focus
+  management, and semantic markup to meet or exceed awccessibility standards.
+* **Responsive and Mobile-First:** Designed to work beautifully on all devices
+  using modern CSS Grid layouts.
+* **Light/Dark Mode Toggle:** Includes a theme-toggle component for
+  user-preferred color schemes, with a FOUC-prevention script.
+* **Clean Twig Templates:** Core and module template overrides are minimal,
+  acting as bridges to pass data to SDCs.
 
-## Accessibility Compliance
+## Installation & Usage
 
-This theme has been enhanced to meet or exceed several WCAG AAA success criteria. The following checklist details the specific improvements made:
+1. **Place the Theme:**
+   Place the `kingly_minimal` theme in your project's `/web/themes/custom`
+   directory.
 
-### WCAG AAA Checklist
+2. **Install Dependencies:**
+   Navigate to the theme directory and install the required Node.js packages.
+   ```bash
+   cd /path/to/your/project/web/themes/custom/kingly_minimal
+   npm install
+   ```
 
-- [x] **1.4.6 Contrast (Enhanced) - AAA:**
-  - The theme's color palette has been audited and adjusted.
-  - All default text has a contrast ratio of at least 7:1 against its background.
-  - Link text, button text, and text within status messages all meet the 7:1 contrast ratio.
-  - Both light and dark modes have been updated to comply.
+3. **Development:**
+   Run the Vite development server. This will watch for changes in your SCSS and
+   JS files and provide live reloading.
+   ```bash
+   npm run dev
+   ```
 
-- [x] **2.4.9 Link Purpose (Link Only) - AAA:**
-  - The `footer-link-list` component has been enhanced to accept an optional `aria_label` for each link.
-  - This allows content editors to provide a clear and distinct accessible name for links that might otherwise be ambiguous (e.g., multiple "Learn More" links pointing to different destinations).
+4. **Production Build:**
+   When you are ready to deploy, run the build script. This will compile,
+   minify, and optimize all assets for production.
+   ```bash
+   npm run build
+   ```
 
-- [x] **2.5.5 Target Size (Enhanced) - AAA:**
-  - All interactive elements (links, buttons, icons) have been updated to ensure they have a minimum target size of 44x44 CSS pixels.
-  - This is achieved by using sufficient padding and minimum height/width, making controls easier to use for people with motor impairments and on touch devices.
+## Theme Architecture
 
-- [x] **2.4.7 Focus Visible - AA / 2.4.13 Focus Appearance - AAA:**
-  - All interactive elements (links, buttons, form controls) have a highly visible and consistent focus indicator.
-  - The focus indicator uses a 2px solid outline with a 2px offset, ensuring it is not obscured and has high contrast.
-  - The skip-to-content link has a clear focus style.
-
-- [x] **2.4.5 Multiple Ways - AA:**
-  - The theme provides both a primary navigation menu and breadcrumbs, offering users multiple ways to navigate the site.
-
-- [x] **2.4.6 Headings and Labels - AA:**
-  - Semantic headings are used correctly (e.g., `H1` on front page branding, visually hidden `H2`s for navigation regions).
-  - Form elements and navigation landmarks are programmatically associated with their labels (`aria_labelledby`).
-
-- [x] **2.4.8 Location - AAA:**
-  - The active link in navigation menus (`main-menu`, `pager`, `local-tasks`) is programmatically identified using `aria-current="page"`, clearly informing users of their current location within the site structure.
-
-- [x] **3.2.5 Change on Request - AAA:**
-  - Links that open in a new tab or window (e.g., social media links) now include a warning for all users.
-  - A `visually-hidden` span announces "(opens in a new window)" to screen reader users, while a `title` attribute provides a tooltip for sighted mouse users.
-
-- [x] **3.2.3 Consistent Navigation - AA:**
-  - The main navigation and footer are presented consistently across all pages of the site.
-
-- [x] **3.3.2 Labels or Instructions - A:**
-  - All form controls have associated labels. Navigation and other key regions have accessible names provided via `aria-label` or `aria_labelledby`.
-
-- [x] **4.1.2 Name, Role, Value - A:**
-  - All UI components have the correct role (e.g., `button`, `navigation`, `alert`) and their state (e.g., `aria-pressed`, `aria-current`) is programmatically determinable.
+* **/components:** This is the heart of the theme. Each subdirectory is a Single
+  Directory Component containing its own Twig, YAML, SCSS, and JS files. The
+  Vite build process automatically compiles assets into their respective
+  component directories.
+* **/scss:** Contains global SCSS files, including variables, mixins, resets,
+  and base layout styles. These are compiled to the `/dist` directory.
+* **/dist:** The output directory for compiled global CSS assets. **This
+  directory is automatically generated.**
+* **/templates:** Contains Drupal theme hook template overrides (
+  e.g., `page.html.twig`, `node.html.twig`). These templates are kept lean and
+  primarily serve to include SDCs.
 
 ## Regions
 
-The theme provides the following regions for block placement:
+The theme provides the following regions for block placement, including a
+granular "brick" layout for the footer:
 
-* **Page top**: For a banner bar above the header.
-* **Branding**: For the site logo and name.
-* **Main navigation**: For the main menu.
-* **Breadcrumbs**: For the breadcrumb trail.
-* **Page title**: For the page title block.
-* **System messages**: For system messages (status, warning, error).
-* **Tabs**: For local task tabs (e.g., View/Edit).
-* **Content top**: For content placed above the main content area.
-* **Content**: The main content area of the page.
-* **Content bottom**: For content placed below the main content area.
-* **Footer top**: For a full-width region at the top of the footer.
-* **Footer first**: The first column in the footer grid.
-* **Footer second**: The second column in the footer grid.
-* **Footer third**: The third column in the footer grid.
-* **Footer fourth**: The fourth column in the footer grid.
-* **Footer bottom**: For the bottom bar of the footer (e.g., copyright, footer
-  menu).
-* **Hidden**: A region for blocks that should not be displayed.
+* `page_top`: Page top
+* `branding`: Branding
+* `main_navigation`: Main navigation
+* `breadcrumbs`: Breadcrumbs
+* `page_title`: Page title
+* `system_messages`: System messages
+* `tabs`: Tabs
+* `content_top`: Content top
+* `content`: Content
+* `content_bottom`: Content bottom
+* `footer_top_left`: Footer Top Left
+* `footer_top_right`: Footer Top Right
+* `footer_first`: Footer Column 1
+* `footer_second`: Footer Column 2
+* `footer_third`: Footer Column 3
+* `footer_fourth`: Footer Column 4
+* `footer_bottom_left`: Footer Bottom Left
+* `footer_bottom_right`: Footer Bottom Right
+* `hidden`: Hidden
+
+## Accessibility Compliance (WCAG)
+
+This theme has been enhanced to meet or exceed several WCAG success criteria.
+
+- [x] **1.4.6 Contrast (Enhanced) - AAA:** The theme's color palette has been
+  audited and adjusted. Both light and dark modes ensure all default text has a
+  contrast ratio of at least 7:1 against its background.
+- [x] **2.4.9 Link Purpose (Link Only) - AAA:** Components
+  like `footer-link-list` accept an optional `aria_label` to provide a clear,
+  distinct accessible name for links that might otherwise be ambiguous.
+- [x] **2.5.5 Target Size (Enhanced) - AAA:** All interactive elements (links,
+  buttons, icons) are designed to have a minimum target size of 44x44 CSS
+  pixels.
+- [x] **2.4.7 Focus Visible - AA / 2.4.13 Focus Appearance - AAA:** All
+  interactive elements have a highly visible and consistent focus indicator.
+- [x] **2.4.5 Multiple Ways - AA:** The theme provides both a primary navigation
+  menu and breadcrumbs, offering users multiple ways to navigate the site.
+- [x] **2.4.6 Headings and Labels - AA:** Semantic headings are used correctly.
+  Form elements and navigation landmarks are programmatically associated with
+  their labels (`aria_labelledby`).
+- [x] **2.4.8 Location - AAA:** The active link in navigation
+  menus (`main-menu`, `pager`, `local-tasks`) is programmatically identified
+  using `aria-current="page"`.
+- [x] **3.2.5 Change on Request - AAA:** Links that open in a new tab or window
+  include a warning for all users, both visually (via `title` attribute) and for
+  screen readers.
+- [x] **3.2.3 Consistent Navigation - AA:** The main navigation and footer are
+  presented consistently across all pages of the site.
+- [x] **3.3.2 Labels or Instructions - A:** All form controls have associated
+  labels. Navigation and other key regions have accessible names provided
+  via `aria-label` or `aria_labelledby`.
+- [x] **4.1.2 Name, Role, Value - A:** All UI components have the correct role (
+  e.g., `button`, `navigation`, `alert`) and their state (
+  e.g., `aria-pressed`, `aria-current`) is programmatically determinable.

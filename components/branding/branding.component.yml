@@ -10,10 +10,6 @@ props:
       title: Is Front Page
       description: 'A flag indicating if the current page is the front page.'
       default: false
-    front_page:
-      type: string
-      title: Front Page URL
-      description: 'The URL of the front page.'
     site_name:
       type: string
       title: Site Name

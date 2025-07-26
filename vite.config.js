@@ -3,11 +3,11 @@ import liveReload from 'vite-plugin-live-reload';
 import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
-// Corrected import: 'ViteImageOptimizer' with a capital 'V'.
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import autoprefixer from 'autoprefixer';
 
 // Get the absolute path to the theme directory in an ES Module context.
-const themePath = path.resolve(fileURLToPath(import.meta.url));
+const themePath = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * A custom Vite plugin to prevent the creation of empty JavaScript files when
@@ -50,7 +50,6 @@ export default defineConfig({
     viteCssOnlyPlugin(),
 
     // Automatically optimizes images (PNG, JPEG, SVG) during the build process.
-    // Corrected usage: 'ViteImageOptimizer()' with a capital 'V'.
     ViteImageOptimizer({
       // Default settings are generally good. You can uncomment to override.
       // png: { quality: 85 },
@@ -80,7 +79,7 @@ export default defineConfig({
           ignore: '**/_*', // Exclude all partials.
         }).map(file => [
           // Create a clean entry key.
-          // e.g., 'scss/layout/page.scss' becomes 'scss/layout/page'
+          // e.g., 'scss/layout/page.scss' becomes 'dist/css/layout/page'
           // e.g., 'components/button/button.scss' becomes 'components/button/button'
           file.slice(0, file.length - path.extname(file).length),
           // Provide the full, absolute path to the file.
@@ -96,7 +95,6 @@ export default defineConfig({
           // If the entry came from the 'components' directory...
           if (entryPath.startsWith('components/')) {
             // ...output the compiled CSS directly back into its source folder.
-            // Vite's [name] placeholder refers to the entry key from our `input` object.
             // e.g., key 'components/button/button' becomes 'components/button/button.css'
             return '[name].css';
           }
@@ -124,7 +122,7 @@ export default defineConfig({
     postcss: {
       plugins: [
         // Add vendor prefixes for browser compatibility.
-        (await import('autoprefixer')).default({ grid: 'autoplace' }),
+        autoprefixer({ grid: 'autoplace' }),
       ],
     },
     // Pre-processor options for SCSS.

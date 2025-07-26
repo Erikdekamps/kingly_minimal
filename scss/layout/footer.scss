@@ -90,34 +90,3 @@
     justify-content: space-between;
   }
 }
-
-// -----------------------------------------------------------------------------
-// Generic Styles for Block Content Within the Footer
-// These styles are for generic blocks placed in the footer, not for components.
-// -----------------------------------------------------------------------------
-.page-footer {
-  .block__title {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: var(--spacing-sm);
-    font-family: var(--font-family-heading);
-  }
-
-  // Generic menu styles for any NON-component menu placed in the footer columns.
-  .menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: var(--spacing-xs);
-  }
-
-  .menu__link {
-    text-decoration: none;
-    color: var(--color-text);
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}

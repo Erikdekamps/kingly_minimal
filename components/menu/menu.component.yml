@@ -1,0 +1,28 @@
+# kingly_minimal/components/menu/menu.component.yml
+name: 'Menu'
+status: stable
+description: 'Renders a nested list of menu items recursively.'
+
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: 'Menu Items'
+      description: 'A nested list of menu items from Drupal.'
+      default: []
+    menu_level:
+      type: number
+      title: 'Menu Level'
+      description: 'The current depth of the menu, used for styling.'
+      default: 0
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root <ul> element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      menu.css: {}

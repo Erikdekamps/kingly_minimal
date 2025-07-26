@@ -3,17 +3,12 @@
  * @file
  * Component template for the main navigation menu.
  *
- * This component encapsulates the main navigation. It provides a semantic <nav>
- * element and improves accessibility by using the block's label as an
- * ARIA label.
+ * This component provides a semantic <nav> element and improves accessibility
+ * by using the block's label as an ARIA label.
  *
- * It expects the following variables to be passed from its parent (usually
- * a block template):
- * - attributes: HTML attributes for the containing element.
- * - label: The configured label of the block.
- * - content: The render array of the menu tree.
- * - title_prefix: (optional)
- * - title_suffix: (optional)
+ * It renders the `content` variable, which allows Drupal's theme system to
+ * use the `menu.html.twig` bridge, which in turn includes our `menu` SDC.
+ * This ensures the render pipeline and attribute injection works correctly.
  */
 #}
 {% set heading_id = attributes.id ~ '-label' %}

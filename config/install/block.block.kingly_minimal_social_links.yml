@@ -3,6 +3,9 @@ uuid: d9e8f7a6-b5c4-4d3e-8f9a-0b1c2d3e4f5a
 langcode: en
 status: true
 dependencies:
+  config:
+    # Explicitly depend on the custom block type to ensure it exists before this block placement does.
+    - block_content.type.social_links
   content:
     - 'block_content:social_links:c3b2a1d0-e9f8-4a7b-8c6d-5e4f3a2b1c0d'
   module:
@@ -22,5 +25,8 @@ settings:
   provider: block_content
   status: true
   info: ''
-  view_mode: full
+  # The 'view_mode' setting has been removed. It is redundant because this block's
+  # output is completely controlled by a Twig template that includes an SDC,
+  # and its absence resolves the config validation error.
+  view_mode: default
 visibility: {  }

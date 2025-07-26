@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Component template for a single search result.
+ *
+ * @see kingly_minimal/components/search-result/search-result.component.yml
+ *
+ * @props
+ * - url: The URL of the search result.
+ * - title: The title of the search result.
+ * - snippet: A snippet of the search result content.
+ * - info: Additional information about the search result.
+ * - attributes: A Drupal attributes object for the root element.
+ */
+#}
+<article{{ attributes.addClass('search-result') }}>
+  {% if title %}
+    <h3 class="search-result__title">
+      <a href="{{ url }}">{{ title }}</a>
+    </h3>
+  {% endif %}
+
+  {% if info %}
+    <div class="search-result__info">
+      {{ info }}
+    </div>
+  {% endif %}
+
+  {% if snippet %}
+    <div class="search-result__snippet">
+      {{ snippet }}
+    </div>
+  {% endif %}
+</article>

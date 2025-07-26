@@ -39,6 +39,13 @@
   --line-height-heading: 1.2;
 
   // ---------------------------------------------------------------------------
+  // Sizing
+  // Used for consistent sizing of elements, particularly for accessibility.
+  // ---------------------------------------------------------------------------
+  // WCAG 2.5.5 (AAA): The minimum target size for interactive elements.
+  --size-target-min: 44px;
+
+  // ---------------------------------------------------------------------------
   // Spacing
   // A consistent spacing scale is key to a good layout.
   // ---------------------------------------------------------------------------

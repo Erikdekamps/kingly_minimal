@@ -24,8 +24,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
+    min-width: var(--size-target-min);
+    min-height: var(--size-target-min);
     padding: var(--spacing-sm);
 
     // Typography & Appearance
@@ -65,8 +65,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
+    min-width: var(--size-target-min);
+    min-height: var(--size-target-min);
     color: var(--color-text);
   }
 }

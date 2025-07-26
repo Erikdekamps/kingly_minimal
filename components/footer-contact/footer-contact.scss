@@ -22,7 +22,7 @@
     display: flex;
     align-items: center; // Center content vertically
     // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
-    min-height: 44px;
+    min-height: var(--size-target-min);
     gap: var(--spacing-sm); // Space between icon and text.
   }
 
@@ -31,7 +31,7 @@
     // WCAG 2.5.5 (AAA): Ensure link takes up available space for a larger target.
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
+    min-height: var(--size-target-min);
     color: var(--color-text);
     text-decoration: none;
     transition: color 0.15s ease-in-out;

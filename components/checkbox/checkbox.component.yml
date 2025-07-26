@@ -1,0 +1,18 @@
+# kingly_minimal/components/checkbox/checkbox.component.yml
+name: 'Checkbox'
+status: stable
+description: 'Renders a standard HTML checkbox input element.'
+
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the <input type="checkbox"> element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      checkbox.css: {}

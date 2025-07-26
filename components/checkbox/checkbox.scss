@@ -1,0 +1,16 @@
+// components/checkbox/checkbox.scss
+
+// -----------------------------------------------------------------------------
+// Checkbox Component Styles
+// These styles were migrated from the global scss/forms/forms.scss.
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the checkbox component.
+// The data-component-id is applied directly to the <input> element.
+[data-component-id='kingly_minimal:checkbox'] {
+  // WCAG AAA: Apply a clear focus style for keyboard navigation.
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

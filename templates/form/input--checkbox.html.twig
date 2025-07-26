@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' element of type 'checkbox'.
+ *
+ * This template acts as a bridge to the 'checkbox' Single Directory Component.
+ * It passes the attributes from the theme system to the component.
+ *
+ * @see kingly_minimal/components/checkbox/checkbox.twig
+ */
+#}
+{{ include('kingly_minimal:checkbox', {
+  attributes: attributes.addClass('form-checkbox'),
+}, with_context = false) }}

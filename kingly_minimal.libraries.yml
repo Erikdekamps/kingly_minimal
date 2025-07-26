@@ -3,8 +3,7 @@
 # Defines the primary global styles for the theme.
 # This library includes the foundational CSS (variables, resets), main page
 # layout, and generic content styles that apply globally.
-# Component-specific styles are loaded automatically by the SDC module, so
-# their libraries are no longer defined here.
+# Component-specific styles are loaded automatically by the SDC module.
 global-styles:
   version: 1.x
   css:
@@ -15,10 +14,6 @@ global-styles:
       dist/css/layout/page.css: { minified: true, weight: -10 }
       dist/css/layout/header.css: { minified: true, weight: -10 }
       dist/css/layout/footer.css: { minified: true, weight: -10 }
-      # Generic styles for content elements like nodes and fields.
-      # These act as a fallback for content not handled by a specific component.
-      dist/css/content/node.css: { minified: true }
-      dist/css/fields/field.css: { minified: true }
   dependencies:
     - core/drupal
     - core/once

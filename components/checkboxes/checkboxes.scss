@@ -1,0 +1,26 @@
+// components/checkboxes/checkboxes.scss
+
+// -----------------------------------------------------------------------------
+// Checkboxes Wrapper Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the checkboxes component.
+[data-component-id='kingly_minimal:checkboxes'] {
+  // Use CSS Grid for a robust, responsive layout.
+  display: grid;
+  gap: var(--spacing-sm);
+
+  // Define the columns. This will create as many 200px columns as can fit,
+  // and then distribute the remaining space equally.
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+  // The direct children of this container are the .form-item divs for each
+  // individual checkbox, which are rendered by our form-element SDC.
+  // We can add specific styles for them in this context if needed.
+  .form-item--type-checkbox {
+    // Example: Add a border around each item in the grid.
+    // border: 1px solid var(--color-border);
+    // padding: var(--spacing-sm);
+    // border-radius: var(--border-radius);
+  }
+}

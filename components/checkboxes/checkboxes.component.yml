@@ -1,0 +1,23 @@
+# kingly_minimal/components/checkboxes/checkboxes.component.yml
+name: 'Checkboxes'
+status: stable
+description: 'A layout container for a group of checkbox items, typically arranging them in a grid.'
+
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root wrapper element.'
+
+slots:
+  content:
+    title: 'Content'
+    description: 'The rendered list of individual checkbox items.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      checkboxes.css: {}

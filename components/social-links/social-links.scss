@@ -13,20 +13,27 @@
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm); // Reduced gap to fit better.
   }
 
   // Style the link element itself.
   .social-links__link {
-    display: block;
+    // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
+    display: inline-flex; // Use flex to center the icon.
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     color: var(--color-text);
     // Add a transition for a smooth hover effect.
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, background-color 0.15s ease-in-out;
+    border-radius: 50%; // Make the hover state a circle.
 
     &:hover,
     &:focus {
       color: var(--color-primary);
       transform: translateY(-2px);
+      background-color: color-mix(in srgb, var(--color-text), transparent 90%);
     }
   }
 

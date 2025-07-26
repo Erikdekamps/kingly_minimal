@@ -14,11 +14,16 @@
     padding: 0;
     margin: 0;
     display: grid;
-    gap: var(--spacing-sm);
+    gap: 0; // Remove gap as padding on links will handle spacing.
   }
 
   // Style the individual links.
   .footer-link-list__link {
+    // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
+    display: inline-flex; // Use flex to vertically center text.
+    align-items: center;
+    min-height: 44px;
+    padding: var(--spacing-xs) 0; // Add small vertical padding.
     color: var(--color-text);
     text-decoration: none;
     transition: color 0.15s ease-in-out;

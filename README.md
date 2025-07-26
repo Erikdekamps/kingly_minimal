@@ -30,6 +30,10 @@ This theme has been enhanced to meet or exceed several WCAG AAA success criteria
   - The `footer-link-list` component has been enhanced to accept an optional `aria_label` for each link.
   - This allows content editors to provide a clear and distinct accessible name for links that might otherwise be ambiguous (e.g., multiple "Learn More" links pointing to different destinations).
 
+- [x] **2.5.5 Target Size (Enhanced) - AAA:**
+  - All interactive elements (links, buttons, icons) have been updated to ensure they have a minimum target size of 44x44 CSS pixels.
+  - This is achieved by using sufficient padding and minimum height/width, making controls easier to use for people with motor impairments and on touch devices.
+
 - [x] **2.4.7 Focus Visible - AA / 2.4.13 Focus Appearance - AAA:**
   - All interactive elements (links, buttons, form controls) have a highly visible and consistent focus indicator.
   - The focus indicator uses a 2px solid outline with a 2px offset, ensuring it is not obscured and has high contrast.

@@ -22,6 +22,11 @@
   }
 
   .footer-utility-links__link {
+    // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--spacing-xs);
     color: var(--color-text);
     text-decoration: none;
     transition: color 0.15s ease-in-out;

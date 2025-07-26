@@ -1,3 +1,6 @@
+# Defines the menu for the 'Footer third' region.
+# This menu can be populated with links by a site administrator via the UI.
+uuid: 9b7d6c5a-3e4f-4a1b-9c8e-7d6f5a4b3c2d
 langcode: en
 status: true
 dependencies: {  }

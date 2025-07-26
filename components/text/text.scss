@@ -1,0 +1,108 @@
+// components/text/text.scss
+
+// -----------------------------------------------------------------------------
+// Text ("Prose") Component Styles
+//
+// This file styles generic HTML elements within a `.prose` container, making it
+// perfect for WYSIWYG editor output or long-form content from a text field.
+// We use the `> * + *` (lobotomized owl) selector for consistent vertical
+// spacing between elements.
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:text'].prose {
+  // --- Vertical Spacing ---
+  // Apply a consistent top margin to every direct child element that follows
+  // another element. This prevents double margins.
+  > * + * {
+    margin-block-start: 1.25em;
+  }
+
+  // --- Typography & Elements ---
+  p,
+  ul,
+  ol,
+  dl,
+  blockquote {
+    line-height: var(--line-height-base);
+  }
+
+  // --- Headings ---
+  // Style all heading levels within the prose block.
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
+    font-family: var(--font-family-heading);
+    line-height: var(--line-height-heading);
+    font-weight: 700;
+  }
+
+  > h1 { font-size: 2.25rem; }
+  > h2 { font-size: 1.75rem; }
+  > h3 { font-size: 1.5rem; }
+  > h4 { font-size: 1.25rem; }
+  > h5 { font-size: 1.1rem; }
+  > h6 { font-size: 1rem; }
+
+  // --- Lists ---
+  // Apply padding only to the main lists, not nested ones, to avoid
+  // excessive indentation.
+  > ul,
+  > ol {
+    padding-inline-start: 1.5rem;
+  }
+
+  // --- Blockquotes ---
+  > blockquote {
+    padding-inline-start: var(--spacing-md);
+    border-inline-start: 3px solid var(--color-border);
+    font-style: italic;
+    color: color-mix(in srgb, var(--color-text), #fff 20%);
+
+    p {
+      // Don't add extra margins for paragraphs inside a blockquote.
+      margin-block-start: 0;
+    }
+  }
+
+  // --- Links ---
+  a {
+    // A slightly different style for links within prose for better readability.
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary-hover);
+    }
+  }
+
+  // --- Code Blocks & Horizontal Rules ---
+  pre,
+  code {
+    font-family: monospace;
+    background-color: var(--color-light-gray);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  pre {
+    padding: var(--spacing-md);
+    overflow-x: auto;
+  }
+
+  hr {
+    border: none;
+    border-top: var(--border-width) solid var(--color-border);
+  }
+
+  // --- Remove Spacing on First/Last Child ---
+  // Ensures the component doesn't have extra space at its very top or bottom.
+  > *:first-child {
+    margin-block-start: 0;
+  }
+
+  > *:last-child {
+    margin-block-end: 0;
+  }
+}

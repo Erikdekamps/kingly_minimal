@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Component template for styled "prose" text.
+ *
+ * This component simply wraps the provided HTML content in a container element.
+ * The `prose` class, applied via attributes, is the hook for the component's
+ * SCSS to apply styling to all the standard HTML elements within.
+ *
+ * @see kingly_minimal/components/text/text.component.yml
+ *
+ * @props
+ * - content: The rich text or HTML content to be styled.
+ * - element: (Optional) The HTML tag for the root element, defaults to 'div'.
+ * - attributes: A Drupal attributes object for the root element.
+ */
+#}
+<{{ element|default('div') }}{{ attributes.addClass('prose') }}>
+{{- content -}}
+</{{ element|default('div') }}>

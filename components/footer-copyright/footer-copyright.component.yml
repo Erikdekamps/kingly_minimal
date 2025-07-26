@@ -1,0 +1,17 @@
+# components/footer-copyright/footer-copyright.component.yml
+name: 'Footer Copyright'
+status: stable
+description: 'Displays a copyright notice for the footer.'
+
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: 'Copyright Text'
+      description: 'The copyright text to display. [year] will be replaced with the current year.'
+      default: '© [year] Copyright: example.com'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'

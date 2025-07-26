@@ -1,7 +1,7 @@
 // kingly_minimal/scss/layout/footer.scss
 
 // This file defines the layout for the page footer.
-// Component-specific styles (like menus) are handled by their respective SDCs.
+// Component-specific styles are handled by their respective SDCs.
 
 @use '../base/mixins' as *;
 
@@ -32,15 +32,30 @@
 }
 
 // -----------------------------------------------------------------------------
+// Footer Top Bar (For social prompt, etc.)
+// -----------------------------------------------------------------------------
+.page-footer__top {
+  display: flex;
+  flex-wrap: wrap; // Allow items to wrap on smaller screens.
+  justify-content: center; // Center items on mobile when they stack.
+  align-items: center;
+  gap: var(--spacing-md);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: var(--border-width) solid var(--color-border);
+
+  // On medium screens and up, justify content to the edges.
+  @include media-query(md) {
+    justify-content: space-between;
+  }
+}
+
+// -----------------------------------------------------------------------------
 // Footer Columns (The 12-column grid for widgets)
 // -----------------------------------------------------------------------------
 .page-footer__columns {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--spacing-lg);
-  // Separate the columns from the bottom bar.
-  padding-bottom: var(--spacing-lg);
-  border-bottom: var(--border-width) solid var(--color-border);
 }
 
 .page-footer__column {
@@ -64,9 +79,16 @@
 .page-footer__bottom {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center; // Center items on mobile when they stack.
   align-items: center;
   gap: var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: var(--border-width) solid var(--color-border);
+
+  // On medium screens and up, justify content to the edges.
+  @include media-query(md) {
+    justify-content: space-between;
+  }
 }
 
 // -----------------------------------------------------------------------------

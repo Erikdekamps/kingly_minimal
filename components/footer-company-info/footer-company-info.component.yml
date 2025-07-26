@@ -1,0 +1,28 @@
+# components/footer-company-info/footer-company-info.component.yml
+name: 'Footer Company Info'
+status: stable
+description: 'Displays the company name and a short description in the footer.'
+
+props:
+  type: object
+  properties:
+    company_name:
+      type: string
+      title: 'Company Name'
+      description: 'The name of the company.'
+      default: 'Company Name'
+    description:
+      type: string
+      title: 'Description'
+      description: 'A short description or mission statement for the company.'
+      default: 'Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      footer-company-info.css: {}

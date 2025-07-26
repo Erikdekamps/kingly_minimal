@@ -1,0 +1,43 @@
+// components/theme-toggle/theme-toggle.scss
+
+// -----------------------------------------------------------------------------
+// Theme Toggle Component Styles
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:theme-toggle'] {
+  // Reset default button appearance for a clean slate.
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: var(--spacing-xs); // A small amount of padding around the icon.
+  cursor: pointer;
+  border-radius: 50%; // Make it a perfect circle.
+  line-height: 1; // Prevents extra space that can affect alignment.
+  color: var(--color-text);
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+  // Center the icon SVG inside the button.
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    // Add a subtle background on hover/focus for clear feedback.
+    background-color: color-mix(in srgb, var(--color-text), transparent 90%);
+    color: var(--color-primary);
+  }
+
+  // Use focus-visible for a clear keyboard navigation outline.
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  // Override the base icon size specifically for this button context.
+  .icon > svg {
+    width: 20px;
+    height: 20px;
+  }
+}

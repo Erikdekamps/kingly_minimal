@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Component template for the footer company info section.
+ *
+ * @see kingly_minimal/components/footer-company-info/footer-company-info.component.yml
+ *
+ * @props
+ * - company_name: The name of the company.
+ * - description: A short description for the company.
+ * - attributes: A Drupal attributes object for the wrapper.
+ */
+#}
+<div{{ attributes.addClass('footer-company-info') }}>
+  {% if company_name %}
+    <h3 class="footer-company-info__name">{{ company_name }}</h3>
+  {% endif %}
+  {% if description %}
+    <p class="footer-company-info__description">
+      {{ description }}
+    </p>
+  {% endif %}
+</div>

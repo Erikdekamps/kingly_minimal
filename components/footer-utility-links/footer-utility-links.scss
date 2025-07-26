@@ -1,0 +1,35 @@
+// components/footer-utility-links/footer-utility-links.scss
+
+// -----------------------------------------------------------------------------
+// Footer Utility Links Component Styles
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:footer-utility-links'] {
+  // Use flexbox to keep all items on a single row.
+  display: flex;
+  align-items: center;
+  // Use a slightly larger gap to space out the main links from the toggle.
+  gap: var(--spacing-lg);
+
+  .footer-utility-links__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    // Use flexbox for the inner list as well.
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md); // Space between individual links.
+  }
+
+  .footer-utility-links__link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+  }
+}

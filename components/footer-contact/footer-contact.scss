@@ -1,0 +1,55 @@
+// components/footer-contact/footer-contact.scss
+
+// -----------------------------------------------------------------------------
+// Footer Contact Component Styles
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:footer-contact'] {
+  // Style the title of the list.
+  .footer-contact__title {
+    font-family: var(--font-family-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-md);
+  }
+
+  // Style the <ul> element.
+  .footer-contact__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--spacing-sm);
+  }
+
+  // Style each <li> list item.
+  .footer-contact__item {
+    // Use flexbox to align the icon and the text.
+    display: flex;
+    align-items: flex-start; // Aligns items to the top.
+    gap: var(--spacing-sm); // Space between icon and text.
+  }
+
+  // Style the links within the contact info.
+  .footer-contact__link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+  }
+
+  // Style the icon component specifically within this context.
+  .icon {
+    // The icon is shorter than the text, so push it down slightly to
+    // achieve better visual alignment with the first line of text.
+    margin-top: 0.125em;
+    // Prevent the icon from shrinking if the text wraps.
+    flex-shrink: 0;
+  }
+}

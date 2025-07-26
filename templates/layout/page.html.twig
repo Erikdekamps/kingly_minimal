@@ -3,12 +3,8 @@
  * @file
  * Theme override to display a single page.
  *
- * This template has been updated for a more robust CSS grid layout.
- * Key changes include moving the breadcrumbs outside the <main> element
- * and using more consistent, BEM-style classes for region wrappers.
- *
- * A new .page-header-wrapper groups the header and breadcrumbs so that the
- * main layout grid correctly assigns flexible space to the <main> element.
+ * This template has been updated for a more robust CSS grid layout and a new
+ * modular footer structure based on Single Directory Components.
  */
 #}
 <div class="layout-container">
@@ -75,47 +71,59 @@
     {% endif %}
   </main>
 
-  {% if page.footer_top or page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_bottom %}
+  {# Begin Footer Section #}
+  {% set has_footer_content = page.footer_top_left or page.footer_top_right or page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_bottom_left or page.footer_bottom_right %}
+  {% if has_footer_content %}
     <footer class="page-footer" role="contentinfo">
       <div class="page-footer__inner">
-        {% if page.footer_top %}
-          <div class="page-footer__top">
-            {{ page.footer_top }}
-          </div>
-        {% endif %}
 
-        {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-          <div class="page-footer__columns">
-            {% if page.footer_first %}
-              <div class="page-footer__column footer-first">
-                {{ page.footer_first }}
-              </div>
-            {% endif %}
-            {% if page.footer_second %}
-              <div class="page-footer__column footer-second">
-                {{ page.footer_second }}
-              </div>
-            {% endif %}
-            {% if page.footer_third %}
-              <div class="page-footer__column footer-third">
-                {{ page.footer_third }}
-              </div>
-            {% endif %}
-            {% if page.footer_fourth %}
-              <div class="page-footer__column footer-fourth">
-                {{ page.footer_fourth }}
-              </div>
-            {% endif %}
+        <div class="page-footer__top">
+          {# This region would render blocks assigned to Footer Top Left #}
+          <div class="footer-top-left">
+            {{ page.footer_top_left ? page.footer_top_left : include('kingly_minimal:footer-social-prompt') }}
           </div>
-        {% endif %}
+          {# This region would render blocks assigned to Footer Top Right #}
+          <div class="footer-top-right">
+            {{ page.footer_top_right ? page.footer_top_right : include('kingly_minimal:social-links') }}
+          </div>
+        </div>
 
-        {% if page.footer_bottom %}
-          <div class="page-footer__bottom">
-            {{ page.footer_bottom }}
+        <div class="page-footer__columns">
+          {# This region would render blocks assigned to Footer Column 1 #}
+          <div class="page-footer__column footer-first">
+            {{ page.footer_first ? page.footer_first : include('kingly_minimal:footer-company-info') }}
           </div>
-        {% endif %}
+
+          {# This region would render blocks assigned to Footer Column 2 #}
+          <div class="page-footer__column footer-second">
+            {{ page.footer_second ? page.footer_second : include('kingly_minimal:footer-link-list', { title: 'Products', links: [ { text: 'Product 1', url: '#' }, { text: 'Product 2', url: '#' }, { text: 'Product 3', url: '#' } ] }) }}
+          </div>
+
+          {# This region would render blocks assigned to Footer Column 3 #}
+          <div class="page-footer__column footer-third">
+            {{ page.footer_third ? page.footer_third : include('kingly_minimal:footer-link-list', { title: 'Useful links', links: [ { text: 'Pricing', url: '#' }, { text: 'Settings', url: '#' }, { text: 'Orders', url: '#' }, { text: 'Help', url: '#' } ] }) }}
+          </div>
+
+          {# This region would render blocks assigned to Footer Column 4 #}
+          <div class="page-footer__column footer-fourth">
+            {{ page.footer_fourth ? page.footer_fourth : include('kingly_minimal:footer-contact') }}
+          </div>
+        </div>
+
+        <div class="page-footer__bottom">
+          {# This region would render blocks assigned to Footer Bottom Left #}
+          <div class="footer-bottom-left">
+            {{ page.footer_bottom_left ? page.footer_bottom_left : include('kingly_minimal:footer-copyright') }}
+          </div>
+          {# This region would render blocks assigned to Footer Bottom Right #}
+          <div class="footer-bottom-right">
+            {{ page.footer_bottom_right ? page.footer_bottom_right : include('kingly_minimal:footer-utility-links') }}
+          </div>
+        </div>
+
       </div>
     </footer>
   {% endif %}
+  {# End Footer Section #}
 
 </div>{# /.layout-container #}

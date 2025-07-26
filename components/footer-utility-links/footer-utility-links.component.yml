@@ -1,0 +1,30 @@
+# components/footer-utility-links/footer-utility-links.component.yml
+name: 'Footer Utility Links'
+status: stable
+description: 'Renders a list of utility links for the footer bottom bar, like a contact link and theme toggle.'
+
+props:
+  type: object
+  properties:
+    links:
+      type: array
+      title: 'Links'
+      description: 'An array of link objects to render. Each object should have a "text" and "url" key.'
+      default:
+        - text: 'Contact'
+          url: '/contact' # Defaulting to a standard contact page URL.
+    show_theme_toggle:
+      type: boolean
+      title: 'Show Theme Toggle'
+      description: 'Whether to show the light/dark mode theme toggle button.'
+      default: true
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      footer-utility-links.css: {}

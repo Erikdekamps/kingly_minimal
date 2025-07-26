@@ -1,0 +1,38 @@
+# components/footer-contact/footer-contact.component.yml
+name: 'Footer Contact'
+status: stable
+description: 'Displays a titled list of contact information with icons.'
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: 'List Title'
+      description: 'The heading for the contact list.'
+      default: 'Contact'
+    address:
+      type: string
+      title: 'Address'
+      description: 'The physical address.'
+      default: 'Dummy address'
+    email:
+      type: string
+      title: 'Email'
+      description: 'The contact email address.'
+      default: 'info@example.com'
+    phone:
+      type: string
+      title: 'Phone'
+      description: 'The contact phone number.'
+      default: '+ 01 234 567 89'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      footer-contact.css: {}

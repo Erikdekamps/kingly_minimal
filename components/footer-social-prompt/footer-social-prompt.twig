@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Component template for the footer social media prompt.
+ *
+ * Renders a simple paragraph with the provided text.
+ *
+ * @see kingly_minimal/components/footer-social-prompt/footer-social-prompt.component.yml
+ *
+ * @props
+ * - text: The text to be displayed.
+ * - attributes: A Drupal attributes object for the wrapper.
+ */
+#}
+{% if text %}
+  <p{{ attributes.addClass('footer-social-prompt') }}>
+    {{ text }}
+  </p>
+{% endif %}

@@ -1,0 +1,22 @@
+# kingly_minimal/components/textarea/textarea.component.yml
+name: 'Textarea'
+status: stable
+description: 'Renders a standard HTML textarea element.'
+
+props:
+  type: object
+  properties:
+    value:
+      type: string
+      title: 'Value'
+      description: 'The initial content of the textarea.'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the <textarea> element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      textarea.css: {}

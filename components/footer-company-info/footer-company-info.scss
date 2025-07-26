@@ -5,7 +5,8 @@
 // The title styles have been moved to the footer-widget component.
 // -----------------------------------------------------------------------------
 
-[data-component-id='kingly_minimal:footer-company-info'] {
+// Use the component's own class as the primary selector.
+.footer-company-info {
   // Target the description paragraph.
   // Note: The `.prose` class from the Text component will handle the
   // base paragraph styling. We add this class for any specific overrides

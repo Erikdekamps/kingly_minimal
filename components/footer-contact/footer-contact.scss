@@ -5,7 +5,8 @@
 // The title styles have been moved to the footer-widget component.
 // -----------------------------------------------------------------------------
 
-[data-component-id='kingly_minimal:footer-contact'] {
+// Use the component's own class as the primary selector.
+.footer-contact {
   // Style the <ul> element.
   .footer-contact__list {
     list-style: none;

@@ -1,15 +1,12 @@
-# Places the 'Social Links' custom block into the 'footer_fourth' region.
-uuid: d9e8f7a6-b5c4-4d3e-8f9a-0b1c2d3e4f5a
+# Places the custom 'Social Links' block plugin into the 'footer_fourth' region.
+# This version uses a custom PHP plugin, removing the dependency on block_content.
+uuid: 4a9f8e7d-6c5b-4a3e-8f9a-0b1c2d3e4f5a
 langcode: en
 status: true
 dependencies:
-  config:
-    # Explicitly depend on the custom block type to ensure it exists before this block placement does.
-    - block_content.type.social_links
-  content:
-    - 'block_content:social_links:c3b2a1d0-e9f8-4a7b-8c6d-5e4f3a2b1c0d'
   module:
-    - block_content
+    # This block plugin renders an SDC, so it depends on the SDC module.
+    - sdc
   theme:
     - kingly_minimal
 id: kingly_minimal_social_links
@@ -17,16 +14,10 @@ theme: kingly_minimal
 region: footer_fourth
 weight: 0
 provider: null
-plugin: 'block_content:c3b2a1d0-e9f8-4a7b-8c6d-5e4f3a2b1c0d'
+plugin: kingly_minimal_social_links_block
 settings:
-  id: 'block_content:c3b2a1d0-e9f8-4a7b-8c6d-5e4f3a2b1c0d'
+  id: kingly_minimal_social_links_block
   label: 'Follow Us'
   label_display: visible
-  provider: block_content
-  status: true
-  info: ''
-  # The 'view_mode' setting has been removed. It is redundant because this block's
-  # output is completely controlled by a Twig template that includes an SDC,
-  # and its absence resolves the config validation error.
-  view_mode: default
+  provider: kingly_minimal
 visibility: {  }

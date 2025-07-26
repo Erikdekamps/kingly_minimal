@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Component template for a responsive image.
+ *
+ * This component renders an image, handling different use cases:
+ * - If a caption is provided, it uses a semantic <figure> and <figcaption>.
+ * - If a URL is provided, the image becomes a link.
+ * - If a responsive_image_style is provided, it renders a <picture> element
+ *   for optimal performance. (Note: This assumes a Twig extension like
+ *   Twig Tweak is installed to provide a drupal_image() function).
+ * - Otherwise, it renders a standard <img> tag.
+ *
+ * @see kingly_minimal/components/image/image.component.yml
+ *
+ * @props
+ * - responsive_image_style: (Optional) Machine name of a responsive image style.
+ * - src: The URI or URL of the image.
+ * - alt: The required alt text for accessibility.
+ * - width: (Optional) The native width of the image.
+ * - height: (Optional) The native height of the image.
+ * - caption: (Optional) A caption for the image.
+ * - url: (Optional) A URL to make the image a link.
+ * - attributes: A Drupal attributes object for the wrapper.
+ */
+#}
+{% set has_caption = caption is not empty %}
+{# Use a <figure> for semantic correctness if a caption exists. #}
+{% set root_tag = has_caption ? 'figure' : 'div' %}
+
+<{{ root_tag }}{{ attributes.addClass('image-component') }}>
+{% if url %}
+<a href="{{ url }}" class="image-component__link">
+  {% endif %}
+
+  {#
+  Render a responsive <picture> element if a style is specified.
+  This provides the best practice for responsive images in Drupal.
+  NOTE: This requires a helper function, typically from a module like Twig Tweak.
+  Without it, you would need to pass a pre-rendered image to this component.
+  #}
+  {% if responsive_image_style %}
+    {{ drupal_image(src, responsive_image_style, {alt: alt, width: width, height: height}) }}
+  {% else %}
+    {# Fallback to a standard <img> tag if no responsive style is given. #}
+    <img
+      src="{{ src }}"
+      alt="{{ alt }}"
+      {{ width ? 'width="' ~ width ~ '"' }}
+      {{ height ? 'height="' ~ height ~ '"' }}
+      loading="lazy"
+    >
+  {% endif %}
+
+  {% if url %}
+</a>
+{% endif %}
+
+  {% if has_caption %}
+    <figcaption class="image-component__caption">{{ caption }}</figcaption>
+  {% endif %}
+</{{ root_tag }}>

@@ -1,0 +1,31 @@
+# components/text/text.component.yml
+name: 'Text'
+status: stable
+description: 'A component for rendering long-form "prose" or "WYSIWYG" rich text content with consistent, readable styling.'
+
+props:
+  type: object
+  properties:
+    # The main content to be rendered. This should be a string containing HTML.
+    content:
+      type: [string, object] # Can be a string or a render array.
+      title: 'Content'
+      description: 'The rich text or HTML content to be styled.'
+      required: true
+    # HTML tag for the wrapper element.
+    element:
+      type: string
+      title: 'Wrapper Element'
+      description: 'The HTML tag for the root element.'
+      default: 'div'
+    # Drupal attributes object for the wrapper.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      text.css: {}

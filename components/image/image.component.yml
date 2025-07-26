@@ -1,0 +1,57 @@
+# components/image/image.component.yml
+name: 'Image'
+status: stable
+description: 'Renders a responsive image, optionally wrapped in a link and with a caption.'
+
+props:
+  type: object
+  properties:
+    # The responsive image style from Drupal. If provided, it will be used to
+    # render a <picture> element.
+    responsive_image_style:
+      type: string
+      title: 'Responsive Image Style'
+      description: 'The machine name of a Drupal responsive image style to use.'
+      default: ''
+    # Fallback src, used if no responsive_image_style is provided.
+    src:
+      type: string
+      title: 'Image Source'
+      description: 'The URL for the image. Required if responsive_image_style is not set.'
+      default: ''
+    # Alt text is critical for accessibility.
+    alt:
+      type: string
+      title: 'Alt Text'
+      description: 'The alternative text for the image.'
+      required: true
+    # Width and height help prevent Cumulative Layout Shift (CLS).
+    width:
+      type: [string, number]
+      title: 'Width'
+      description: 'The native width of the image.'
+    height:
+      type: [string, number]
+      title: 'Height'
+      description: 'The native height of the image.'
+    # An optional caption. If provided, the component uses <figure>.
+    caption:
+      type: string
+      title: 'Caption'
+      description: 'An optional caption for the image. If provided, the output will be wrapped in a <figure> element.'
+    # An optional URL to make the image a link.
+    url:
+      type: string
+      title: 'URL'
+      description: 'An optional URL to wrap the image in a link.'
+    # A Drupal attributes object for the wrapper element.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      image.css: {}

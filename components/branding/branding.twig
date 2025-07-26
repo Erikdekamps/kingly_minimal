@@ -1,31 +1,32 @@
 {#
 /**
-* @file
-* Component template for the site branding.
-*
-* This component displays the site branding, linking to the front page.
-* It uses a hardcoded SVG logo and renders the site name as an H1 on the
-* front page for SEO purposes.
-*
-* @see kingly_minimal/components/branding/branding.component.yml
-*
-* Available variables (from props):
-* - is_front: A flag indicating if the current page is the front page.
-* - site_name: The name of the site.
-* - site_slogan: (Optional) The slogan of the site.
-* - attributes: HTML attributes for the wrapper element.
-    */
+ * @file
+ * Component template for the site branding.
+ *
+ * This component displays the site branding, linking to the front page.
+ * It uses a hardcoded SVG logo and renders the site name as an H1 on the
+ * front page for SEO purposes.
+ *
+ * @see kingly_minimal/components/branding/branding.component.yml
+ *
+ * Available variables (from props):
+ * - is_front: A flag indicating if the current page is the front page.
+ * - site_name: The name of the site.
+ * - site_slogan: (Optional) The slogan of the site.
+ * - attributes: HTML attributes for the wrapper element.
+ */
 #}
-    {% set wrapper_attributes = attributes.addClass('site-branding') %}
+{% set wrapper_attributes = attributes.addClass('site-branding') %}
+{% set home_label = site_name ? (site_name ~ ' - ' ~ 'Home'|t) : 'Home'|t %}
 
 {#
-WCAG 2.4.4 & 4.1.2: Ensure the link is always accessible.
+WCAG 2.4.4 & 4.1.2: Ensure the link is always accessible and unambiguous.
 - href="{{ url('<front>') }}" provides a reliable URL to the homepage.
-- aria-label provides a consistent, accessible name, even if the
-  site name is hidden. This is the preferred modern approach over the
-  'title' attribute.
+- aria-label provides a consistent, accessible name. It is made more specific
+  by including the site name to differentiate it from other "Home" links on
+  the page (e.g., in the main menu or breadcrumbs).
 #}
-<a href="{{ url('<front>') }}" aria-label="{{ 'Home'|t }}" rel="home" {{ wrapper_attributes }}>
+<a href="{{ url('<front>') }}" aria-label="{{ home_label }}" rel="home" {{ wrapper_attributes }}>
 
   <div class="site-branding__logo">
     {# The SVG logo is hardcoded as per the requirements. #}

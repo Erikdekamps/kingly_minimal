@@ -45,6 +45,10 @@ This theme has been enhanced to meet or exceed several WCAG AAA success criteria
 - [x] **2.4.8 Location - AAA:**
   - The active link in navigation menus (`main-menu`, `pager`, `local-tasks`) is programmatically identified using `aria-current="page"`, clearly informing users of their current location within the site structure.
 
+- [x] **3.2.5 Change on Request - AAA:**
+  - Links that open in a new tab or window (e.g., social media links) now include a warning for all users.
+  - A `visually-hidden` span announces "(opens in a new window)" to screen reader users, while a `title` attribute provides a tooltip for sighted mouse users.
+
 - [x] **3.2.3 Consistent Navigation - AA:**
   - The main navigation and footer are presented consistently across all pages of the site.
 
@@ -76,31 +80,3 @@ The theme provides the following regions for block placement:
 * **Footer bottom**: For the bottom bar of the footer (e.g., copyright, footer
   menu).
 * **Hidden**: A region for blocks that should not be displayed.
-
-## Development Setup
-
-The theme uses Vite to compile SCSS assets. Node.js and npm are required.
-
-1. **Navigate to the theme directory:**
-   ```bash
-   cd /path/to/your/drupal/themes/custom/kingly_minimal
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-### Build Commands
-
-* **For development:** This command will start Vite in watch mode with live
-  reloading.
-  ```bash
-  npm run dev
-  ```
-
-* **For production:** This command will build and minify all SCSS assets into
-  the `dist/` directory.
-  ```bash
-  npm run build
-  ```

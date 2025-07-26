@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for a details element.
+ *
+ * This template now acts as a bridge to the 'details' Single Directory
+ * Component. It uses Twig's `embed` tag to wrap the fieldset's content
+ * (`children`) with the component's structure, passing all necessary
+ * variables as props.
+ *
+ * @see kingly_minimal/components/details/details.twig
+ */
+#}
+{% embed 'kingly_minimal:details' with {
+  title: title,
+  errors: errors,
+  required: required,
+  attributes: attributes,
+} %}
+
+  {% block content %}
+    {{- description -}}
+    {{- children -}}
+    {{- value -}}
+  {% endblock %}
+
+{% endembed %}

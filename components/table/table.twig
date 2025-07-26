@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Component template for a data table.
+ *
+ * This component renders a responsive table. It is wrapped in a div to allow
+ * for horizontal scrolling on smaller screens, preventing page layout breakage.
+ *
+ * @see kingly_minimal/components/table/table.component.yml
+ *
+ * @props
+ * - caption: A localized string for the <caption> tag.
+ * - header: A list of header cells.
+ * - footer: A list of footer cells.
+ * - rows: A list of table rows.
+ * - colgroups: Column group definitions.
+ * - empty: The message to display if the table has no rows.
+ * - table_attributes: HTML attributes for the <table> tag.
+ * - attributes: HTML attributes for the component root wrapper element.
+ */
+#}
+<div{{ attributes.addClass('table-responsive-wrapper') }}>
+  <table{{ table_attributes.addClass('data-table') }}>
+    {% if caption %}
+      <caption>{{ caption }}</caption>
+    {% endif %}
+
+    {% for colgroup in colgroups %}
+      {% if colgroup.cols %}
+        <colgroup{{ colgroup.attributes }}>
+          {% for col in colgroup.cols %}
+            <col{{ col.attributes }}>
+          {% endfor %}
+        </colgroup>
+      {% else %}
+        <colgroup{{ colgroup.attributes }}></colgroup>
+      {% endif %}
+    {% endfor %}
+
+    {% if header %}
+      <thead>
+      <tr>
+        {% for cell in header %}
+        <{{ cell.tag|default('th') }}{{ cell.attributes }}>
+        {{- cell.content -}}
+      </{{ cell.tag|default('th') }}>
+      {% endfor %}
+      </tr>
+      </thead>
+    {% endif %}
+
+    <tbody>
+    {% for row in rows %}
+    <tr{{ row.attributes }}>
+      {% for cell in row.data %}
+        <{{ cell.tag|default('td') }}{{ cell.attributes }}>
+        {{- cell.content -}}
+        </{{ cell.tag|default('td') }}>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    {% if empty and not rows %}
+      <tr class="table-empty">
+        <td colspan="{{ header|length }}" class="empty-message">{{ empty }}</td>
+      </tr>
+    {% endif %}
+    </tbody>
+
+    {% if footer %}
+      <tfoot>
+      {% for row in footer %}
+      <tr{{ row.attributes }}>
+        {% for cell in row.data %}
+          <{{ cell.tag|default('td') }}{{ cell.attributes }}>
+          {{- cell.content -}}
+          </{{ cell.tag|default('td') }}>
+        {% endfor %}
+        </tr>
+      {% endfor %}
+      </tfoot>
+    {% endif %}
+  </table>
+</div>

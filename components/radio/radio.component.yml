@@ -1,0 +1,18 @@
+# kingly_minimal/components/radio/radio.component.yml
+name: 'Radio'
+status: stable
+description: 'Renders a standard HTML radio button input element.'
+
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the <input type="radio"> element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      radio.css: {}

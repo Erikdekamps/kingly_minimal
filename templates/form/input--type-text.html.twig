@@ -1,15 +1,14 @@
 {#
 /**
  * @file
- * Theme override for an 'input' element.
+ * Theme override for a text input.
  *
- * This is a specific override for text inputs.
+ * This template now acts as a bridge to the 'textfield' Single Directory
+ * Component. It passes the attributes from the theme system to the component.
  *
- * Available variables:
- * - attributes: A list of HTML attributes for the input element.
- * - children: (optional) A render array of the child elements.
- *
- * @see template_preprocess_input()
+ * @see kingly_minimal/components/textfield/textfield.twig
  */
 #}
-<input{{ attributes.addClass('form-text') }} />{{ children }}
+{{ include('kingly_minimal:textfield', {
+  attributes: attributes,
+}, with_context = false) }}

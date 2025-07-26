@@ -3,87 +3,19 @@
  * @file
  * Theme override for a 'table' element.
  *
- * Available variables:
- * - attributes: HTML attributes to apply to the <table> tag.
- * - caption: A localized string for the <caption> tag.
- * - colgroups: Column groups. Each group contains the following properties:
- *   - attributes: HTML attributes to apply to the <col> tag.
- *     Note: Drupal currently supports only one colgroup per table.
- * - header: A list of header cells.
- *   - attributes: HTML attributes to apply to the <th> tag.
- *   - content: The content of the header cell.
- *   - field: The field name for the header cell.
- * - footer: A list of footer cells.
- *   - attributes: HTML attributes to apply to the <th> tag.
- *   - content: The content of the footer cell.
- *   - field: The field name for the footer cell.
- * - rows: A list of table rows. Each row contains:
- *   - attributes: HTML attributes to apply to the <tr> tag.
- *   - data: A list of cells.
- *   - no_striping: A boolean indicating that the row should not be striped.
- * - empty: The message to display in an extra row if table does not have
- *   any rows.
- * - sticky: A boolean indicating whether to use a sticky header.
+ * This template now acts as a bridge to the 'table' Single Directory Component.
+ * It passes the necessary variables from the theme system to the component,
+ * which now handles all markup and styling.
  *
- * @see template_preprocess_table()
+ * @see kingly_minimal/components/table/table.twig
  */
 #}
-<table{{ attributes.addClass('data-table') }}>
-  {% if caption %}
-    <caption>{{ caption }}</caption>
-  {% endif %}
-
-  {% for colgroup in colgroups %}
-    {% if colgroup.cols %}
-      <colgroup{{ colgroup.attributes }}>
-        {% for col in colgroup.cols %}
-          <col{{ col.attributes }}>
-        {% endfor %}
-      </colgroup>
-    {% else %}
-      <colgroup{{ colgroup.attributes }}></colgroup>
-    {% endif %}
-  {% endfor %}
-
-  {% if header %}
-    <thead>
-    <tr>
-      {% for cell in header %}
-      <{{ cell.tag|default('th') }}{{ cell.attributes }}>
-      {{- cell.content -}}
-    </{{ cell.tag|default('th') }}>
-    {% endfor %}
-    </tr>
-    </thead>
-  {% endif %}
-
-  <tbody>
-  {% for row in rows %}
-  <tr{{ row.attributes }}>
-    {% for cell in row.data %}
-      <{{ cell.tag|default('td') }}{{ cell.attributes }}>
-      {{- cell.content -}}
-      </{{ cell.tag|default('td') }}>
-    {% endfor %}
-    </tr>
-  {% endfor %}
-  {% if empty %}
-    <tr class="odd">
-      <td colspan="{{ header|length }}" class="empty message">{{ empty }}</td>
-    </tr>
-  {% endif %}
-  </tbody>
-  {% if footer %}
-    <tfoot>
-    {% for row in footer %}
-    <tr{{ row.attributes }}>
-      {% for cell in row.data %}
-        <{{ cell.tag|default('td') }}{{ cell.attributes }}>
-        {{- cell.content -}}
-        </{{ cell.tag|default('td') }}>
-      {% endfor %}
-      </tr>
-    {% endfor %}
-    </tfoot>
-  {% endif %}
-</table>
+{{ include('kingly_minimal:table', {
+  caption: caption,
+  header: header,
+  footer: footer,
+  rows: rows,
+  colgroups: colgroups,
+  empty: empty,
+  table_attributes: attributes,
+}, with_context = false) }}

@@ -1,15 +1,14 @@
 {#
 /**
  * @file
- * Theme override for an 'input' element.
+ * Theme override for an 'input' element of type 'radio'.
  *
- * This is a specific override for radio button inputs.
+ * This template acts as a bridge to the 'radio' Single Directory Component.
+ * It passes the attributes from the theme system to the component.
  *
- * Available variables:
- * - attributes: A list of HTML attributes for the input element.
- * - children: (optional) A render array of the child elements.
- *
- * @see template_preprocess_input()
+ * @see kingly_minimal/components/radio/radio.twig
  */
 #}
-<input{{ attributes.addClass('form-radio') }} />{{ children }}
+{{ include('kingly_minimal:radio', {
+  attributes: attributes,
+}, with_context = false) }}

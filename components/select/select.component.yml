@@ -1,0 +1,22 @@
+# kingly_minimal/components/select/select.component.yml
+name: 'Select'
+status: stable
+description: 'Renders a styled <select> dropdown element with a custom arrow.'
+
+props:
+  type: object
+  properties:
+    options:
+      type: string # The options are passed as a pre-rendered string of HTML.
+      title: 'Options'
+      description: 'The <option> tags to be rendered inside the select element.'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the <select> element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      select.css: {}

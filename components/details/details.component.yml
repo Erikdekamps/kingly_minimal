@@ -1,0 +1,35 @@
+# kingly_minimal/components/details/details.component.yml
+name: 'Details'
+status: stable
+description: 'Renders a collapsible <details> element, often used for fieldsets.'
+
+props:
+  type: object
+  properties:
+    title:
+      type: [string, object] # Can be a string or a render array.
+      title: 'Title'
+      description: 'The text for the <summary> element that controls the accordion.'
+    errors:
+      type: object
+      title: 'Errors'
+      description: 'Errors associated with the element, for styling.'
+    required:
+      type: boolean
+      title: 'Required'
+      description: 'If true, a "required" marker is added to the title.'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root <details> element.'
+
+slots:
+  content:
+    title: 'Content'
+    description: 'The content to be displayed inside the collapsible element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      details.css: {}

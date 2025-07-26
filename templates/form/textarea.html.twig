@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for a 'textarea' element.
+ *
+ * This template preserves the wrapper div required for rich text editors and
+ * acts as a bridge to the 'textarea' Single Directory Component, which handles
+ * the rendering of the <textarea> element itself.
+ *
+ * @see kingly_minimal/components/textarea/textarea.twig
+ */
+#}
+<div{{ wrapper_attributes }}>
+  {{ include('kingly_minimal:textarea', {
+    attributes: attributes.addClass('form-textarea'),
+    value: value,
+  }, with_context = false) }}
+</div>

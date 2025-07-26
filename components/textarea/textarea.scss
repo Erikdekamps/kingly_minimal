@@ -1,0 +1,45 @@
+// components/textarea/textarea.scss
+
+// -----------------------------------------------------------------------------
+// Textarea Component Styles
+// These styles were migrated from the global scss/forms/forms.scss.
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the textarea component.
+// The data-component-id is applied directly to the <textarea> element.
+[data-component-id='kingly_minimal:textarea'] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  // WCAG AAA: High-contrast focus indicator.
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-color: var(--color-primary);
+  }
+
+  // Style for disabled state.
+  &:disabled {
+    background-color: var(--color-light-gray);
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// Style for the error state.
+// This rule targets a textarea component that is inside a wrapper with the
+// .form-item--error class (provided by our form-element component).
+.form-item--error [data-component-id='kingly_minimal:textarea'] {
+  border-color: var(--color-error-text);
+}

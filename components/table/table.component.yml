@@ -1,0 +1,52 @@
+# kingly_minimal/components/table/table.component.yml
+name: 'Table'
+status: stable
+description: 'Renders a structured data table with a responsive wrapper.'
+
+props:
+  type: object
+  properties:
+    caption:
+      type: string
+      title: 'Caption'
+      description: 'A localized string for the table <caption> tag.'
+    header:
+      type: array
+      title: 'Header'
+      description: 'A list of header cells.'
+      default: []
+    footer:
+      type: array
+      title: 'Footer'
+      description: 'A list of footer cells.'
+      default: []
+    rows:
+      type: array
+      title: 'Rows'
+      description: 'A list of table rows.'
+      default: []
+    colgroups:
+      type: array
+      title: 'Column Groups'
+      description: 'Column group definitions.'
+      default: []
+    empty:
+      type: string
+      title: 'Empty Message'
+      description: 'The message to display if the table has no rows.'
+    # Attributes for the <table> element itself.
+    table_attributes:
+      type: object
+      title: 'Table Attributes'
+      description: 'HTML attributes for the <table> tag.'
+    # Attributes for the responsive <div> wrapper.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'HTML attributes for the component root wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      table.css: {}

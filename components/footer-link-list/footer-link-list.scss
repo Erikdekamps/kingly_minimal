@@ -22,7 +22,7 @@
     // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
     display: inline-flex; // Use flex to vertically center text.
     align-items: center;
-    min-height: 44px;
+    min-height: var(--size-target-min);
     padding: var(--spacing-xs) 0; // Add small vertical padding.
     color: var(--color-text);
     text-decoration: none;

@@ -14,7 +14,7 @@ maintainability, and accessibility.
   for maximum encapsulation, reusability, and maintainability. Component
   assets (`.twig`, `.yml`, `.scss`, `.js`) are co-located.
 * **WCAG AAA-Ready:** Enhanced with a high-contrast color palette, proper focus
-  management, and semantic markup to meet or exceed awccessibility standards.
+  management, and semantic markup to meet or exceed accessibility standards.
 * **Responsive and Mobile-First:** Designed to work beautifully on all devices
   using modern CSS Grid layouts.
 * **Light/Dark Mode Toggle:** Includes a theme-toggle component for
@@ -93,7 +93,8 @@ granular "brick" layout for the footer:
 This theme has been enhanced to meet or exceed several WCAG success criteria.
 
 - [x] **1.4.6 Contrast (Enhanced) - AAA:** The theme's color palette has been
-  audited and adjusted. Both light and dark modes ensure all default text has a
+  audited and adjusted. Both light and dark modes ensure all default text has
+  a
   contrast ratio of at least 7:1 against its background.
 - [x] **2.4.9 Link Purpose (Link Only) - AAA:** Components
   like `footer-link-list` accept an optional `aria_label` to provide a clear,
@@ -103,22 +104,53 @@ This theme has been enhanced to meet or exceed several WCAG success criteria.
   pixels.
 - [x] **2.4.7 Focus Visible - AA / 2.4.13 Focus Appearance - AAA:** All
   interactive elements have a highly visible and consistent focus indicator.
-- [x] **2.4.5 Multiple Ways - AA:** The theme provides both a primary navigation
+- [x] **2.4.5 Multiple Ways - AA:** The theme provides both a primary
+  navigation
   menu and breadcrumbs, offering users multiple ways to navigate the site.
-- [x] **2.4.6 Headings and Labels - AA:** Semantic headings are used correctly.
+- [x] **2.4.6 Headings and Labels - AA:** Semantic headings are used
+  correctly.
   Form elements and navigation landmarks are programmatically associated with
   their labels (`aria_labelledby`).
 - [x] **2.4.8 Location - AAA:** The active link in navigation
   menus (`main-menu`, `pager`, `local-tasks`) is programmatically identified
   using `aria-current="page"`.
-- [x] **3.2.5 Change on Request - AAA:** Links that open in a new tab or window
-  include a warning for all users, both visually (via `title` attribute) and for
+- [x] **3.2.5 Change on Request - AAA:** Links that open in a new tab or
+  window
+  include a warning for all users, both visually (via `title` attribute) and
+  for
   screen readers.
 - [x] **3.2.3 Consistent Navigation - AA:** The main navigation and footer are
   presented consistently across all pages of the site.
 - [x] **3.3.2 Labels or Instructions - A:** All form controls have associated
   labels. Navigation and other key regions have accessible names provided
   via `aria-label` or `aria_labelledby`.
-- [x] **4.1.2 Name, Role, Value - A:** All UI components have the correct role (
+- [x] **4.1.2 Name, Role, Value - A:** All UI components have the correct
+  role (
   e.g., `button`, `navigation`, `alert`) and their state (
   e.g., `aria-pressed`, `aria-current`) is programmatically determinable.
+
+## Componentization Roadmap
+
+The following theme hook templates have been identified as candidates for
+conversion to Single Directory Components. This roadmap outlines the path to
+achieving 100% component-based rendering.
+
+- **`field.html.twig`**: A generic `field` SDC could be created to handle the
+  wrapper and label logic. This would standardize the display of all fields that
+  don't have a specific override.
+- **`views-view.html.twig`**: A `views-view` SDC can be created to abstract the
+  complex structure of a view (header, footer, rows, pager). This would make
+  styling different view displays more consistent.
+- **`region.html.twig`**: While simple, creating a `region` SDC could be useful
+  if regions ever required more complex logic or specific styling hooks beyond
+  what a class provides.
+- **`node-edit-form.html.twig`**: The two-column layout for the node edit form
+  could be encapsulated in a `node-form-layout` SDC. This would allow for easy
+  reuse of this layout for other entity forms.
+- **`maintenance-page.html.twig`**: The maintenance page could be its
+  own `maintenance-page` SDC, simplifying the template file and making its
+  styling self-contained.
+- **`block.html.twig`**: The default block template could be converted into
+  a `block` SDC. This would be a low-priority conversion, as many blocks already
+  have specific SDC bridges (e.g., `block--system-menu-block--main.html.twig`),
+  but it would complete the component coverage.

@@ -2,24 +2,16 @@
 
 // -----------------------------------------------------------------------------
 // Footer Company Info Component Styles
+// The title styles have been moved to the footer-widget component.
 // -----------------------------------------------------------------------------
 
 [data-component-id='kingly_minimal:footer-company-info'] {
-  // Target the heading for the company name.
-  .footer-company-info__name {
-    // Use the theme's heading font family for consistency.
-    font-family: var(--font-family-heading);
-    font-size: 1rem; // Match the base font size.
-    font-weight: 700; // Bold weight.
-    text-transform: uppercase;
-    margin-bottom: var(--spacing-md); // Space between name and description.
-  }
-
   // Target the description paragraph.
+  // Note: The `.prose` class from the Text component will handle the
+  // base paragraph styling. We add this class for any specific overrides
+  // we might need for this context.
   .footer-company-info__description {
     // Reset margin in case of user-agent styles.
     margin: 0;
-    // Use a slightly more muted text color if desired, or keep as is.
-    // color: color-mix(in srgb, var(--color-text), #fff 25%);
   }
 }

@@ -88,8 +88,13 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        // This helps silence the noisy Sass deprecation warnings in the log.
-        quietDeps: true,
+        silenceDeprecations: [
+          'mixed-decls',
+          'color-functions',
+          'global-builtin',
+          'import',
+          'legacy-js-api',
+        ],
       },
     },
   },

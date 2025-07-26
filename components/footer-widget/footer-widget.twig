@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Component template for a generic footer widget.
+ *
+ * This component provides the shared structure (a wrapper and a styled title)
+ * for other components to use via Twig's `embed` tag.
+ *
+ * @see kingly_minimal/components/footer-widget/footer-widget.component.yml
+ *
+ * @props
+ * - title: The heading for the widget.
+ * - attributes: A Drupal attributes object for the wrapper.
+ *
+ * @slots
+ * - content: The main content of the widget.
+ */
+#}
+<div{{ attributes.addClass('footer-widget') }}>
+  {% if title %}
+    <h3 class="footer-widget__title">{{ title }}</h3>
+  {% endif %}
+
+  {#
+  The `block` tag defines an area that can be overridden by the template
+  that is embedding this one. This is where the child component's unique
+  content will be injected.
+  #}
+  <div class="footer-widget__content">
+    {% block content %}
+      {# This is fallback content that will be shown if the content block is not overridden. #}
+    {% endblock %}
+  </div>
+</div>

@@ -2,18 +2,10 @@
 
 // -----------------------------------------------------------------------------
 // Footer Contact Component Styles
+// The title styles have been moved to the footer-widget component.
 // -----------------------------------------------------------------------------
 
 [data-component-id='kingly_minimal:footer-contact'] {
-  // Style the title of the list.
-  .footer-contact__title {
-    font-family: var(--font-family-heading);
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: var(--spacing-md);
-  }
-
   // Style the <ul> element.
   .footer-contact__list {
     list-style: none;

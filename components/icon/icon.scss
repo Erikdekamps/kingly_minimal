@@ -14,10 +14,10 @@
 
   // The direct child is the SVG element.
   > svg {
-    // Default size for the icon. This can be overridden by more specific
-    // selectors in components that consume this icon.
-    width: 1.25em;
-    height: 1.25em;
+    // Default size for the icon, now using a design token. This can be
+    // overridden by more specific selectors in components that consume this icon.
+    width: var(--size-icon-md);
+    height: var(--size-icon-md);
 
     // Use 'currentColor' to make the icon's color inherit from the parent's
     // CSS 'color' property. This makes it easy to change icon color.

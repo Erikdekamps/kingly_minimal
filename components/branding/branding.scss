@@ -24,15 +24,15 @@
 
   // Style the hardcoded SVG logo.
   .site-branding__logo svg {
-    height: 40px;
+    height: var(--size-branding-logo-sm);
     width: auto;
     display: block; // Prevents extra space below the inline SVG.
   }
 
   // Style the site name text (h1 or div).
   .site-branding__name {
-    font-size: var(--font-size-lg);
-    font-weight: bold;
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-bold);
     font-family: var(--font-family-heading);
     margin: 0; // Reset margin for h1.
   }
@@ -47,7 +47,7 @@
   // Adjust logo size on larger screens for better visual balance.
   @include media-query(lg) {
     .site-branding__logo svg {
-      height: 50px;
+      height: var(--size-branding-logo-lg);
     }
   }
 }

@@ -8,7 +8,7 @@
 [data-component-id='kingly_minimal:comment'] {
   // Add a separator for comments in a list.
   &:not(:last-child) {
-    border-bottom: var(--border-width) solid var(--color-border);
+    border-bottom: var(--border-width-thin) solid var(--color-border);
     padding-bottom: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
   }
@@ -25,9 +25,9 @@
   .comment__author-picture {
     // Override the default image component border-radius for a circular avatar.
     img {
-      border-radius: 50%;
-      width: 48px; // Fixed size for consistency.
-      height: 48px;
+      border-radius: var(--border-radius-circle);
+      width: var(--size-avatar); // Fixed size for consistency.
+      height: var(--size-avatar);
     }
   }
 
@@ -43,7 +43,7 @@
   }
 
   .comment__author {
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
   }
 
   .comment__date {
@@ -62,7 +62,7 @@
   // The title of the comment, if it exists.
   .comment__title {
     font-family: var(--font-family-heading);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-h4);
     margin-bottom: var(--spacing-md);
   }
 
@@ -74,6 +74,6 @@
     border-radius: var(--border-radius);
     font-size: 0.8em;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
   }
 }

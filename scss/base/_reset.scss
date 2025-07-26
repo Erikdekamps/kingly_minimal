@@ -73,7 +73,7 @@ a {
   background-color: var(--color-primary);
   color: var(--color-background);
   text-decoration: none;
-  z-index: 1000;
+  z-index: var(--z-index-skip-link);
   top: 1rem;
   left: 1rem;
   border-radius: var(--border-radius);

@@ -7,26 +7,24 @@
 :root {
   // ---------------------------------------------------------------------------
   // Colors
-  // WCAG AAA Compliance: The color palette has been updated to ensure all
-  // text meets a minimum contrast ratio of 7:1 against its background.
   // ---------------------------------------------------------------------------
-  --color-text: #222222; // Contrast on #fff is 17.35:1 (AAA)
+  --color-text: #222222;
   --color-background: #ffffff;
-  --color-primary: #004a94; // Contrast on #fff is 7.02:1 (AAA)
-  --color-primary-hover: #003b76; // Contrast on #fff is 9.1:1 (AAA)
+  --color-primary: #004a94;
+  --color-primary-hover: #003b76;
   --color-border: #e1e1e1;
   --color-light-gray: #f4f5f6;
 
   // --- Feedback Colors (WCAG AAA Compliant) ---
   --color-status: #e6f4ea;
-  --color-status-text: #0d4f21; // Contrast on #e6f4ea is 7.06:1 (AAA)
-  --color-status-border: #d0e8d8; // Pre-calculated: color-mix(in srgb, #e6f4ea, #000 10%)
+  --color-status-text: #0d4f21;
+  --color-status-border: #d0e8d8;
   --color-warning: #fff8e1;
-  --color-warning-text: #614d00; // Contrast on #fff8e1 is 7.08:1 (AAA)
-  --color-warning-border: #f2eacb; // Pre-calculated: color-mix(in srgb, #fff8e1, #000 10%)
+  --color-warning-text: #614d00;
+  --color-warning-border: #f2eacb;
   --color-error: #fdecea;
-  --color-error-text: #8c101c; // Contrast on #fdecea is 7.04:1 (AAA)
-  --color-error-border: #eecfca; // Pre-calculated: color-mix(in srgb, #fdecea, #000 10%)
+  --color-error-text: #8c101c;
+  --color-error-border: #eecfca;
 
   // ---------------------------------------------------------------------------
   // Typography
@@ -34,9 +32,16 @@
   --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-family-heading: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
-  --font-size-base: 1rem; // ~16px
-  --font-size-sm: 0.875rem; // ~14px
-  --font-size-lg: 1.25rem; // ~20px
+  --font-size-sm: 0.875rem;   // ~14px
+  --font-size-base: 1rem;     // ~16px
+  --font-size-h6: 1rem;       // ~16px
+  --font-size-h5: 1.1rem;     // ~17.6px
+  --font-size-h4: 1.25rem;    // ~20px
+  --font-size-h3: 1.5rem;     // ~24px
+  --font-size-h2: 1.75rem;    // ~28px
+  --font-size-h1: 2.25rem;    // ~36px
+  --font-size-xl: 2rem;       // ~32px (Page Title Mobile)
+  --font-size-xxl: 2.5rem;    // ~40px (Page Title Desktop)
 
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
@@ -48,14 +53,16 @@
 
   // ---------------------------------------------------------------------------
   // Sizing
-  // Used for consistent sizing of elements, particularly for accessibility.
   // ---------------------------------------------------------------------------
-  // WCAG 2.5.5 (AAA): The minimum target size for interactive elements.
-  --size-target-min: 44px;
+  --size-target-min: 44px;      // WCAG 2.5.5 (AAA)
+  --size-avatar: 48px;
+  --size-branding-logo-sm: 40px;
+  --size-branding-logo-lg: 50px;
+  --size-icon-sm: 20px;
+  --size-icon-md: 24px;
 
   // ---------------------------------------------------------------------------
   // Spacing
-  // A consistent spacing scale is key to a good layout.
   // ---------------------------------------------------------------------------
   --spacing-xs: 0.25rem; // ~4px
   --spacing-sm: 0.5rem;  // ~8px
@@ -66,8 +73,11 @@
   // ---------------------------------------------------------------------------
   // Borders, Shadows, and Focus
   // ---------------------------------------------------------------------------
-  --border-width: 1px;
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
   --border-radius: 0.25rem;
+  --border-radius-circle: 50%;
   --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 
   --focus-ring-width: 2px;
@@ -77,18 +87,29 @@
   // ---------------------------------------------------------------------------
   // Transitions
   // ---------------------------------------------------------------------------
-  --transition-duration: 0.15s;
+  --transition-duration-fast: 0.15s;
+  --transition-duration-medium: 0.2s;
+  --transition-duration-slow: 0.3s;
   --transition-timing-function: ease-in-out;
 
   // ---------------------------------------------------------------------------
-  // Layout
+  // Layout & Grid
   // ---------------------------------------------------------------------------
   --container-max-width: 1280px;
   --container-padding: var(--spacing-md);
+  --grid-column-count: 12;
+
+  // ---------------------------------------------------------------------------
+  // Z-Index
+  // ---------------------------------------------------------------------------
+  --z-index-default: 1;
+  --z-index-sticky: 100;
+  --z-index-modal-backdrop: 900;
+  --z-index-modal: 950;
+  --z-index-skip-link: 1000;
 
   // ===========================================================================
   // Component-Specific Variables
-  // Grouping variables by component for better organization and maintainability.
   // ===========================================================================
 
   // ---------------------------------------------------------------------------
@@ -103,7 +124,7 @@
 }
 
 // ---------------------------------------------------------------------------
-// Dark Mode Overrides (WCAG AAA Compliant)
+// Dark Mode Overrides
 // ---------------------------------------------------------------------------
 html[data-theme="dark"] {
   // --- Colors ---
@@ -117,16 +138,16 @@ html[data-theme="dark"] {
   // --- Feedback Colors ---
   --color-status: #163b1f;
   --color-status-text: #c4f5cf;
-  --color-status-border: #2a5e37; // Pre-calculated: color-mix(in srgb, #163b1f, #fff 20%)
+  --color-status-border: #2a5e37;
   --color-warning: #4d3f0c;
   --color-warning-text: #ffeeb1;
-  --color-warning-border: #705b11; // Pre-calculated: color-mix(in srgb, #4d3f0c, #fff 20%)
+  --color-warning-border: #705b11;
   --color-error: #5a1e22;
   --color-error-text: #fdd8db;
-  --color-error-border: #802a31; // Pre-calculated: color-mix(in srgb, #5a1e22, #fff 20%)
+  --color-error-border: #802a31;
 
   // --- Focus ---
-  --focus-ring-color: var(--color-primary); // Inherits dark mode primary color automatically.
+  --focus-ring-color: var(--color-primary);
 
   // --- Component Variables ---
   --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");

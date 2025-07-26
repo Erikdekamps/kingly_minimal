@@ -61,7 +61,7 @@
 .main-content {
   display: grid;
   // A standard 12-column grid for flexible content layout.
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(var(--grid-column-count), 1fr);
   gap: var(--spacing-md);
   padding-block: var(--spacing-lg);
   // Ensure the grid starts at the top of its allocated space.

@@ -5,13 +5,12 @@
 // As components are created, their styles are removed from this file.
 
 // -----------------------------------------------------------------------------
-// Base Input & Select Styles (Legacy)
+// Base Input Styles (Legacy)
 // -----------------------------------------------------------------------------
 
-// The styles for `.form-text` have been moved to the `textfield` component.
-// The styles for `.form-actions` have been removed as buttons are SDCs.
-.form-textarea,
-.form-select {
+// The styles for `.form-text` and `.form-select` have been moved to their
+// respective SDCs (`textfield`, `select`).
+.form-textarea {
   -webkit-appearance: none;
   appearance: none;
   display: block;
@@ -41,19 +40,9 @@
 
 // Style for error state on non-component inputs.
 .form-item--error {
-  .form-textarea,
-  .form-select {
+  .form-textarea {
     border-color: var(--color-error-text);
   }
-}
-
-// Specific styling for <select> dropdowns to add a custom arrow.
-.form-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right var(--spacing-md) center;
-  background-size: 16px 12px;
-  padding-right: var(--spacing-xl);
 }
 
 // -----------------------------------------------------------------------------

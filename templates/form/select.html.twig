@@ -3,13 +3,14 @@
  * @file
  * Theme override for a select element.
  *
- * Available variables:
- * - attributes: HTML attributes for the <select> tag.
- * - options: The <option> tags.
+ * This template now acts as a bridge to the 'select' Single Directory
+ * Component. It passes the attributes and options from the theme system to
+ * the component.
  *
- * @see template_preprocess_select()
+ * @see kingly_minimal/components/select/select.twig
  */
 #}
-<select{{ attributes.addClass('form-select') }}>
-  {{ options }}
-</select>
+{{ include('kingly_minimal:select', {
+  attributes: attributes,
+  options: options,
+}, with_context = false) }}

@@ -26,6 +26,10 @@ This theme has been enhanced to meet or exceed several WCAG AAA success criteria
   - Link text, button text, and text within status messages all meet the 7:1 contrast ratio.
   - Both light and dark modes have been updated to comply.
 
+- [x] **2.4.9 Link Purpose (Link Only) - AAA:**
+  - The `footer-link-list` component has been enhanced to accept an optional `aria_label` for each link.
+  - This allows content editors to provide a clear and distinct accessible name for links that might otherwise be ambiguous (e.g., multiple "Learn More" links pointing to different destinations).
+
 - [x] **2.4.7 Focus Visible - AA / 2.4.13 Focus Appearance - AAA:**
   - All interactive elements (links, buttons, form controls) have a highly visible and consistent focus indicator.
   - The focus indicator uses a 2px solid outline with a 2px offset, ensuring it is not obscured and has high contrast.
@@ -36,7 +40,7 @@ This theme has been enhanced to meet or exceed several WCAG AAA success criteria
 
 - [x] **2.4.6 Headings and Labels - AA:**
   - Semantic headings are used correctly (e.g., `H1` on front page branding, visually hidden `H2`s for navigation regions).
-  - Form elements and navigation landmarks are programmatically associated with their labels (`aria-labelledby`).
+  - Form elements and navigation landmarks are programmatically associated with their labels (`aria_labelledby`).
 
 - [x] **2.4.8 Location - AAA:**
   - The active link in navigation menus (`main-menu`, `pager`, `local-tasks`) is programmatically identified using `aria-current="page"`, clearly informing users of their current location within the site structure.
@@ -45,7 +49,7 @@ This theme has been enhanced to meet or exceed several WCAG AAA success criteria
   - The main navigation and footer are presented consistently across all pages of the site.
 
 - [x] **3.3.2 Labels or Instructions - A:**
-  - All form controls have associated labels. Navigation and other key regions have accessible names provided via `aria-label` or `aria-labelledby`.
+  - All form controls have associated labels. Navigation and other key regions have accessible names provided via `aria-label` or `aria_labelledby`.
 
 - [x] **4.1.2 Name, Role, Value - A:**
   - All UI components have the correct role (e.g., `button`, `navigation`, `alert`) and their state (e.g., `aria-pressed`, `aria-current`) is programmatically determinable.

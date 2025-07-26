@@ -1,0 +1,28 @@
+# components/footer-widget/footer-widget.component.yml
+name: 'Footer Widget'
+status: stable
+description: 'Provides a reusable wrapper with a styled title for components used in the footer columns.'
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: 'Widget Title'
+      description: 'The heading for the widget.'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+slots:
+  # The 'content' slot is where the child component's unique markup will be placed.
+  content:
+    title: 'Content'
+    description: 'The main content of the widget.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      footer-widget.css: {}

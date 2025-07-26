@@ -26,7 +26,7 @@
     padding: var(--spacing-xs) 0; // Add small vertical padding.
     color: var(--color-text);
     text-decoration: none;
-    transition: color 0.15s ease-in-out;
+    transition: color var(--transition-duration) var(--transition-timing-function);
 
     &:hover,
     &:focus {

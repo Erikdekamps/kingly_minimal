@@ -11,12 +11,12 @@
   gap: var(--spacing-sm);
   // Add a border to separate teasers in a list.
   padding-bottom: var(--spacing-md);
-  border-bottom: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width-thin) solid var(--color-border);
 
   // --- Teaser Title ---
   .node__title {
     font-family: var(--font-family-heading);
-    font-size: 1.5rem;
+    font-size: var(--font-size-h3);
     line-height: var(--line-height-heading);
     margin: 0; // Reset default heading margin.
 
@@ -44,7 +44,7 @@
 
   // Style for the author's picture, if displayed.
   .user-picture {
-    border-radius: 50%;
+    border-radius: var(--border-radius-circle);
     overflow: hidden;
   }
 

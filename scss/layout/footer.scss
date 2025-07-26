@@ -41,7 +41,7 @@
   align-items: center;
   gap: var(--spacing-md);
   padding-bottom: var(--spacing-lg);
-  border-bottom: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width-thin) solid var(--color-border);
 
   // On medium screens and up, justify content to the edges.
   @include media-query(md) {
@@ -54,7 +54,7 @@
 // -----------------------------------------------------------------------------
 .page-footer__columns {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(var(--grid-column-count), 1fr);
   gap: var(--spacing-lg);
 }
 
@@ -83,7 +83,7 @@
   align-items: center;
   gap: var(--spacing-md);
   padding-top: var(--spacing-lg);
-  border-top: var(--border-width) solid var(--color-border);
+  border-top: var(--border-width-thin) solid var(--color-border);
 
   // On medium screens and up, justify content to the edges.
   @include media-query(md) {

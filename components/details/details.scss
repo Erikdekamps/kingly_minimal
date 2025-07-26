@@ -6,7 +6,7 @@
 
 // Scope all styles to the details component.
 [data-component-id='kingly_minimal:details'] {
-  border: var(--border-width) solid var(--color-border);
+  border: var(--border-width-thin) solid var(--color-border);
   border-radius: var(--border-radius);
   margin-bottom: var(--spacing-md);
 
@@ -16,15 +16,15 @@
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-sm) var(--spacing-md);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     list-style: none; // Remove the default browser marker.
     background-color: var(--color-light-gray);
 
     // Give the summary a clear focus state.
     &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
     }
   }
 
@@ -36,20 +36,20 @@
   // The custom marker (our SVG icon).
   .details__marker {
     display: inline-flex;
-    transition: transform 0.2s ease-in-out;
+    transition: transform var(--transition-duration-medium) var(--transition-timing-function);
     transform: rotate(90deg); // Point down when closed.
   }
 
   // The content area inside the details element.
   .details__content {
     padding: var(--spacing-md);
-    border-top: var(--border-width) solid var(--color-border);
+    border-top: var(--border-width-thin) solid var(--color-border);
   }
 
   // State changes when the <details> element is open.
   &[open] {
     > .details__summary {
-      border-bottom: var(--border-width) solid var(--color-border);
+      border-bottom: var(--border-width-thin) solid var(--color-border);
 
       .details__marker {
         transform: rotate(-90deg); // Point up when open.

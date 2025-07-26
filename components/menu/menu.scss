@@ -28,8 +28,8 @@
     padding: var(--spacing-sm) var(--spacing-md);
     text-decoration: none;
     border-radius: var(--border-radius);
-    font-weight: 500;
-    transition: background-color 0.15s ease-in-out;
+    font-weight: var(--font-weight-medium);
+    transition: background-color var(--transition-duration) var(--transition-timing-function);
     color: var(--color-text);
 
     &:hover,
@@ -39,7 +39,7 @@
     }
 
     &.is-active {
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
       color: var(--color-primary);
     }
 

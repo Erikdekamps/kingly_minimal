@@ -36,8 +36,9 @@
     border-bottom: 2px solid transparent;
     text-decoration: none;
     color: var(--color-text);
-    font-weight: 500;
-    transition: border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+    font-weight: var(--font-weight-medium);
+    transition: border-color var(--transition-duration) var(--transition-timing-function),
+    color var(--transition-duration) var(--transition-timing-function);
 
     &:hover {
       color: var(--color-primary);
@@ -45,8 +46,8 @@
 
     // High-visibility focus state for WCAG AAA.
     &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
       border-radius: var(--border-radius); // Give the outline a nice shape.
       z-index: 1; // Ensure the outline is not clipped by other tabs.
     }
@@ -57,7 +58,7 @@
   // chain the selectors: .tabs__link.is-active
   .tabs__link.is-active {
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     border-bottom-color: var(--color-primary);
   }
 

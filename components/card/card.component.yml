@@ -1,0 +1,44 @@
+# kingly_minimal/components/card/card.component.yml
+name: 'Card'
+status: stable
+description: 'A versatile component for displaying content in a card-like format, often used for summaries or promotions.'
+
+props:
+  type: object
+  properties:
+    # Image props, to be passed to the image component.
+    image:
+      type: object
+      title: 'Image'
+      description: 'An object of props for the `kingly_minimal:image` component (e.g., src, alt).'
+    # The main title of the card.
+    title:
+      type: string
+      title: 'Title'
+      description: 'The heading for the card.'
+    # An optional URL for the title.
+    url:
+      type: string
+      title: 'URL'
+      description: 'An optional URL to make the title a link.'
+    # Body content, to be passed to the text component.
+    body:
+      type: [string, object]
+      title: 'Body'
+      description: 'The main text content for the card. Can be a string or render array.'
+    # Button props, to be passed to the button component.
+    button:
+      type: object
+      title: 'Button'
+      description: 'An object of props for the `kingly_minimal:button` component (e.g., text, url).'
+    # HTML attributes for the wrapper element.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      card.css: {}

@@ -8,5 +8,7 @@
       "Drupal\\kingly_minimal\\": "src/"
     }
   },
-  "require": {}
+  "require": {
+    "drupal/twig_tweak": "^3.4"
+  }
 }

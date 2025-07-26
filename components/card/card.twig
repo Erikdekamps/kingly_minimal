@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Component template for a card.
+ *
+ * This component assembles other SDCs to create a versatile card. It uses the
+ * image, text, and button components to render its content.
+ *
+ * @see kingly_minimal/components/card/card.component.yml
+ *
+ * @props
+ * - image: An object of props for the `kingly_minimal:image` component.
+ * - title: The heading for the card.
+ * - url: (Optional) A URL to make the title a link.
+ * - body: The main text content for the card.
+ * - button: An object of props for the `kingly_minimal:button` component.
+ * - attributes: A Drupal attributes object for the root element.
+ */
+#}
+<div{{ attributes.addClass('card') }}>
+
+  {% if image.src %}
+    <div class="card__image">
+      {# Delegate image rendering to the image component. #}
+      {{ include('kingly_minimal:image', image, with_context=false) }}
+    </div>
+  {% endif %}
+
+  <div class="card__content">
+    {% if title %}
+      <h3 class="card__title">
+        {% if url %}
+          <a href="{{ url }}" class="card__title-link">{{ title }}</a>
+        {% else %}
+          {{ title }}
+        {% endif %}
+      </h3>
+    {% endif %}
+
+    {% if body %}
+      <div class="card__body">
+        {# Delegate body rendering to the text component for consistent prose styling. #}
+        {{ include('kingly_minimal:text', { content: body }, with_context=false) }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if button.text %}
+    <div class="card__actions">
+      {# Delegate button rendering to the button component. #}
+      {{ include('kingly_minimal:button', button, with_context=false) }}
+    </div>
+  {% endif %}
+
+</div>

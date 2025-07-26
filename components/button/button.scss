@@ -63,14 +63,6 @@
   }
 }
 
-// -----------------------------------------------------------------------------
-// Drupal-specific container for form buttons
-// This is a global style related to forms, not the button component itself.
-// It remains outside the component's scoped selector.
-// -----------------------------------------------------------------------------
-.form-actions {
-  margin-top: var(--spacing-lg);
-  display: flex;
-  gap: var(--spacing-md);
-  flex-wrap: wrap;
-}
+// Note: Styles for the `.form-actions` container have been removed from this file.
+// They are correctly located in `scss/forms/forms.scss` to maintain component
+// encapsulation and avoid style duplication.

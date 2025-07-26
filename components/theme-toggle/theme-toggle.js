@@ -5,26 +5,27 @@
  * This script adds a click event listener to the theme toggle button. It toggles
  * the `data-theme` attribute on the <html> element, saves the user's
  * preference in localStorage, and updates the button's ARIA state for
- * accessibility.
+ * accessibility. It is fully AJAX-aware.
  */
-(function (Drupal) {
+(function (Drupal, once) {
   'use strict';
 
   // The key used to store the theme preference in localStorage.
   const THEME_STORAGE_KEY = 'theme-preference';
-  const a11y_pressed_button = document.querySelector('.theme-toggle');
 
   /**
-   * Sets the theme on the <html> element.
+   * Sets the theme on the <html> element and updates ARIA attributes.
    *
    * @param {string} theme
    *   The theme to apply ('light' or 'dark').
+   * @param {HTMLElement} button
+   *   The specific button instance being interacted with.
    */
-  const applyTheme = (theme) => {
+  const applyTheme = (theme, button) => {
     document.documentElement.dataset.theme = theme;
     // We check if the button is present before changing its attribute.
-    if (a11y_pressed_button) {
-      a11y_pressed_button.setAttribute('aria-pressed', theme === 'dark');
+    if (button) {
+      button.setAttribute('aria-pressed', theme === 'dark');
     }
   };
 
@@ -44,35 +45,35 @@
    * @type {Drupal~behavior}
    *
    * @prop {Drupal~behaviorAttach} attach
-   *   Attaches the click event listener to the theme toggle button.
+   *   Finds all theme-toggle buttons and attaches the click handler.
    */
   Drupal.behaviors.themeToggle = {
     attach: function (context) {
-      // Use Drupal.once to ensure the event listener is attached only once.
-      const toggleButtons = context.querySelectorAll('.theme-toggle:not(.js-processed)');
-      if (!toggleButtons.length) {
-        return;
-      }
+      // Use once() to ensure the behavior is attached only once per button.
+      // The 'theme-toggle' key is a unique identifier for this behavior.
+      const toggleButtons = once('theme-toggle', '.theme-toggle', context);
 
-      // We only need to set the initial ARIA state once per page load, not per AJAX refresh.
       // The initial theme is set by the inline script in html.html.twig.
+      // We retrieve it here to correctly set the initial state of any buttons
+      // found on the page, including those loaded via AJAX.
       const initialTheme = document.documentElement.dataset.theme || 'light';
-      if (a11y_pressed_button) {
-        a11y_pressed_button.setAttribute('aria-pressed', initialTheme === 'dark');
-      }
 
       toggleButtons.forEach((button) => {
-        button.classList.add('js-processed');
+        // Set the initial ARIA state for this specific button.
+        button.setAttribute('aria-pressed', initialTheme === 'dark');
+
+        // Add the click event listener.
         button.addEventListener('click', () => {
-          // Determine the new theme.
+          // Determine the new theme based on the current state.
           const currentTheme = document.documentElement.dataset.theme || 'light';
           const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
           // Apply the new theme and save the preference.
-          applyTheme(newTheme);
+          // Pass `button` to ensure the correct element is updated.
+          applyTheme(newTheme, button);
           saveThemePreference(newTheme);
         });
       });
     },
   };
-})(Drupal);
+})(Drupal, once);

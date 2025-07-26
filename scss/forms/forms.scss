@@ -1,14 +1,15 @@
 // kingly_minimal/scss/forms/forms.scss
 
-// This file centralizes all default styling for form elements to ensure
-// a consistent and accessible experience.
+// This file centralizes all default styling for form elements that have not
+// yet been converted to Single Directory Components.
+// As components are created, their styles are removed from this file.
 
 // -----------------------------------------------------------------------------
-// Base Input & Select Styles
+// Base Input & Select Styles (Legacy)
 // -----------------------------------------------------------------------------
 
-// Target standard Drupal form element classes.
-.form-text,
+// The styles for `.form-text` have been moved to the `textfield` component.
+// The styles for `.form-actions` have been removed as buttons are SDCs.
 .form-textarea,
 .form-select {
   -webkit-appearance: none;
@@ -25,14 +26,12 @@
   border-radius: var(--border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-  // WCAG AAA: High-contrast focus indicator for keyboard navigation.
   &:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-color: var(--color-primary);
   }
 
-  // Style for disabled state.
   &:disabled {
     background-color: var(--color-light-gray);
     opacity: 0.7;
@@ -40,9 +39,8 @@
   }
 }
 
-// Style for error state.
+// Style for error state on non-component inputs.
 .form-item--error {
-  .form-text,
   .form-textarea,
   .form-select {
     border-color: var(--color-error-text);
@@ -51,35 +49,21 @@
 
 // Specific styling for <select> dropdowns to add a custom arrow.
 .form-select {
-  // The background-image is an inline SVG for a chevron-down icon.
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right var(--spacing-md) center;
   background-size: 16px 12px;
-  // Add extra padding on the right to not overlap the arrow.
   padding-right: var(--spacing-xl);
 }
 
 // -----------------------------------------------------------------------------
-// Radio & Checkbox Styles
+// Radio & Checkbox Styles (Legacy)
 // -----------------------------------------------------------------------------
 
 .form-radio,
 .form-checkbox {
-  // WCAG AAA: Apply a clear focus style for keyboard navigation.
   &:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
-}
-
-// -----------------------------------------------------------------------------
-// Form Actions (Submit Buttons container)
-// -----------------------------------------------------------------------------
-
-.form-actions {
-  margin-top: var(--spacing-lg);
-  display: flex;
-  gap: var(--spacing-md);
-  flex-wrap: wrap;
 }

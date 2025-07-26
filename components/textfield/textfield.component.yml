@@ -1,0 +1,18 @@
+# kingly_minimal/components/textfield/textfield.component.yml
+name: 'Textfield'
+status: stable
+description: 'Renders a standard HTML text input element.'
+
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the <input> element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      textfield.css: {}

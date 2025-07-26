@@ -1,0 +1,55 @@
+# kingly_minimal/components/form-element/form-element.component.yml
+name: 'Form Element'
+status: stable
+description: 'A wrapper for a form field that provides consistent layout for its label, description, and error messages.'
+
+props:
+  type: object
+  properties:
+    label:
+      type: object # Render array
+      title: 'Label'
+      description: 'The renderable array for the form element label.'
+    label_display:
+      type: string
+      title: 'Label Display'
+      description: 'The display setting for the label (e.g., "before", "after", "invisible").'
+      default: 'before'
+    description:
+      type: object # Render array
+      title: 'Description'
+      description: 'A renderable array for the form element description.'
+    description_display:
+      type: string
+      title: 'Description Display'
+      description: 'The display setting for the description (e.g., "before", "after", "invisible").'
+      default: 'after'
+    errors:
+      type: object # Render array
+      title: 'Errors'
+      description: 'Any validation errors for this form element.'
+    prefix:
+      type: object # Render array
+      title: 'Prefix'
+      description: 'The form element prefix.'
+    suffix:
+      type: object # Render array
+      title: 'Suffix'
+      description: 'The form element suffix.'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# A slot is a placeholder for child content. In this case, it will hold the
+# actual <input>, <select>, or <textarea> element.
+slots:
+  content:
+    title: 'Content'
+    description: 'The form element itself (e.g., the textfield, select list, etc.).'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      form-element.css: {}

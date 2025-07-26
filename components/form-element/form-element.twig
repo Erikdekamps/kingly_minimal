@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Component template for a form element wrapper.
+ *
+ * This component provides the standard structure for a form field, including
+ * the label, description, and error messages. The actual input control
+ * is injected into the 'content' slot.
+ *
+ * @see kingly_minimal/components/form-element/form-element.component.yml
+ *
+ * @props
+ * - label: The renderable array for the label.
+ * - label_display: The display setting for the label.
+ * - description: A renderable array for the description.
+ * - description_display: The display setting for the description.
+ * - errors: Any validation errors for this form element.
+ * - prefix: The form element prefix.
+ * - suffix: The form element suffix.
+ * - attributes: A Drupal attributes object for the wrapper.
+ *
+ * @slots
+ * - content: The form element itself (e.g., input, select).
+ */
+#}
+<div{{ attributes.addClass('form-item') }}>
+
+  {% if label and label_display == 'before' %}
+    {{ label }}
+  {% endif %}
+
+  {% if description and description_display == 'before' %}
+    {{ description }}
+  {% endif %}
+
+  {% if prefix %}
+    <span class="form-item__prefix">{{ prefix }}</span>
+  {% endif %}
+
+  {# The 'content' block is the placeholder for the actual form input. #}
+  <div class="form-item__content">
+    {% block content %}{% endblock %}
+  </div>
+
+  {% if suffix %}
+    <span class="form-item__suffix">{{ suffix }}</span>
+  {% endif %}
+
+  {% if label and label_display == 'after' %}
+    {{ label }}
+  {% endif %}
+
+  {% if errors %}
+    <div class="form-item__error-message">
+      {{ errors }}
+    </div>
+  {% endif %}
+
+  {% if description and description_display == 'after' %}
+    {{ description }}
+  {% endif %}
+
+</div>

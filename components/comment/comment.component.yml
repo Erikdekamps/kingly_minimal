@@ -1,0 +1,57 @@
+# kingly_minimal/components/comment/comment.component.yml
+name: 'Comment'
+status: stable
+description: 'Renders a single comment, including author, metadata, and content.'
+
+props:
+  type: object
+  properties:
+    author_picture:
+      type: object # Render array
+      title: "Author's Picture"
+      description: "A renderable array for the author's picture."
+    author_name:
+      type: string
+      title: 'Author Name'
+      description: "The comment author's name."
+    created_date:
+      type: string
+      title: 'Creation Date'
+      description: 'The formatted date the comment was posted.'
+    permalink:
+      type: string
+      title: 'Permalink'
+      description: 'A URL linking directly to the comment.'
+    is_new:
+      type: boolean
+      title: 'Is New'
+      description: 'A flag indicating if the comment is new.'
+      default: false
+    new_text:
+      type: string
+      title: 'New Text'
+      description: 'The text to display for new comments (e.g., "new").'
+    content:
+      type: object # Render array
+      title: 'Content'
+      description: "The comment's main content."
+    title:
+      type: object # Render array
+      title: 'Title'
+      description: "The comment's title."
+    title_prefix:
+      type: object
+      title: 'Title Prefix'
+    title_suffix:
+      type: object
+      title: 'Title Suffix'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root <article> element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      comment.css: {}

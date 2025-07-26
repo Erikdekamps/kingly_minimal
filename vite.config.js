@@ -74,6 +74,7 @@ export default defineConfig({
     rollupOptions: {
       // Define all SCSS files that are not partials (don't start with '_')
       // as entry points for the build.
+      // The glob pattern now includes both the 'scss' and 'components' directories.
       input: Object.fromEntries(
         globSync('{scss,components}/**/*.scss', {
           ignore: '**/_*', // Exclude all partials.

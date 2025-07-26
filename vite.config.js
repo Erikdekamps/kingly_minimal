@@ -48,8 +48,9 @@ export default defineConfig({
     emptyOutDir: false,
 
     rollupOptions: {
+      // Find all SCSS and JS files that don't start with an underscore.
       input: Object.fromEntries(
-        globSync('{scss,components}/**/!(_)*.scss').map(file => [
+        globSync('{scss,components}/**/!(_)*.{scss,js}').map(file => [
           file.slice(0, file.length - path.extname(file).length),
           fileURLToPath(new URL(file, import.meta.url)),
         ]),
@@ -60,7 +61,6 @@ export default defineConfig({
           // If the source is from the 'components' directory...
           if (assetInfo.name.startsWith('components/')) {
             // Output the CSS file directly back into its source component folder.
-            // Vite uses `[name]` which corresponds to our input key, e.g., 'components/button/button'.
             return '[name].css';
           }
 
@@ -74,8 +74,18 @@ export default defineConfig({
           // A fallback for any other assets.
           return 'dist/css/[name].css';
         },
-        // JS entries would go into 'dist/js/'.
-        entryFileNames: 'dist/js/[name].js',
+        // JS entries will now use a function to determine their output path.
+        entryFileNames: (chunkInfo) => {
+          // If the JS source is from the 'components' directory...
+          if (chunkInfo.facadeModuleId && chunkInfo.facadeModuleId.includes('/components/')) {
+            // Flatten the path and output to 'dist/js/'.
+            // e.g., 'components/theme-toggle/theme-toggle.js' becomes 'dist/js/theme-toggle.js'
+            return `dist/js/${path.basename(chunkInfo.name)}.js`;
+          }
+
+          // Fallback for any non-component JS entries.
+          return 'dist/js/[name].js';
+        },
       },
     },
   },

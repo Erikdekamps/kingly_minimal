@@ -1,7 +1,7 @@
 # components/theme-toggle/theme-toggle.component.yml
 name: 'Theme Toggle'
 status: stable
-description: 'A placeholder button for toggling between light and dark themes. Renders an icon button.'
+description: 'A button for toggling between light and dark themes. Requires JavaScript.'
 
 props:
   type: object
@@ -12,8 +12,16 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the button element.'
 
-# Define the component's CSS assets.
+# Defines the component's assets.
 library:
   css:
     component:
       theme-toggle.css: {}
+  # The JavaScript library for this component.
+  js:
+    # Vite compiles our component JS to the dist/js directory.
+    dist/js/theme-toggle.js: { minified: true }
+  # Add dependencies required by our theme-toggle.js script.
+  dependencies:
+    - core/drupal
+    - core/once

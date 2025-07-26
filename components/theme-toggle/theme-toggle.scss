@@ -40,4 +40,20 @@
     width: 20px;
     height: 20px;
   }
+
+  // --- Icon Visibility Logic ---
+  // By default (light theme), hide the sun icon.
+  .theme-toggle__icon-wrapper--light {
+    display: none;
+  }
+
+  // When the theme is dark, hide the moon icon and show the sun icon.
+  html[data-theme="dark"] & {
+    .theme-toggle__icon-wrapper--dark {
+      display: none;
+    }
+    .theme-toggle__icon-wrapper--light {
+      display: inline-flex;
+    }
+  }
 }

@@ -3,8 +3,10 @@
  * @file
  * Component template for a theme toggle button.
  *
- * This is a placeholder component that renders a button with an icon.
- * The actual toggling functionality will be added later via JavaScript.
+ * This component renders a button that contains both the "moon" and "sun"
+ * icons. CSS is used to control which icon is visible based on the `data-theme`
+ * attribute on the <html> element. This approach avoids DOM manipulation in
+ * JavaScript, which is cleaner and more performant.
  *
  * @see kingly_minimal/components/theme-toggle/theme-toggle.component.yml
  *
@@ -12,11 +14,11 @@
  * - attributes: A Drupal attributes object for the button.
  */
 #}
-<button{{ attributes.addClass('theme-toggle').setAttribute('aria-label', 'Toggle light and dark theme') }}>
-  {#
-  We include the 'icon' component here. For now, it's hardcoded to 'moon'.
-  In a future iteration with JS, we would dynamically switch between
-  'moon' and 'sun' icons.
-  #}
-  {{ include('kingly_minimal:icon', { name: 'moon' }, with_context = false) }}
+<button{{ attributes.addClass('theme-toggle').setAttribute('aria-label', 'Toggle light and dark theme').setAttribute('aria-pressed', 'false') }}>
+  <span class="theme-toggle__icon-wrapper theme-toggle__icon-wrapper--dark">
+    {{ include('kingly_minimal:icon', { name: 'moon' }, with_context = false) }}
+  </span>
+  <span class="theme-toggle__icon-wrapper theme-toggle__icon-wrapper--light">
+    {{ include('kingly_minimal:icon', { name: 'sun' }, with_context = false) }}
+  </span>
 </button>

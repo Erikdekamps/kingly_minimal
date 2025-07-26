@@ -8,8 +8,8 @@
 // Base Input Styles (Legacy)
 // -----------------------------------------------------------------------------
 
-// The styles for `.form-text` and `.form-select` have been moved to their
-// respective SDCs (`textfield`, `select`).
+// The styles for form inputs like textfield, select, checkbox, and radio have
+// all been moved to their respective SDCs. Only textarea remains.
 .form-textarea {
   -webkit-appearance: none;
   appearance: none;
@@ -42,17 +42,5 @@
 .form-item--error {
   .form-textarea {
     border-color: var(--color-error-text);
-  }
-}
-
-// -----------------------------------------------------------------------------
-// Radio & Checkbox Styles (Legacy)
-// -----------------------------------------------------------------------------
-
-.form-radio,
-.form-checkbox {
-  &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
   }
 }

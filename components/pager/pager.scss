@@ -1,0 +1,72 @@
+// components/pager/pager.scss
+
+// -----------------------------------------------------------------------------
+// Pager Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the pager component for complete encapsulation.
+[data-component-id='kingly_minimal:pager'] {
+
+  // The <ul> element that wraps all pager items.
+  .pager__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // The link element within each pager item. This is our primary target for styling.
+  .pager__link {
+    // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--spacing-sm);
+
+    // Typography & Appearance
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+    // Hover & Focus States
+    &:hover {
+      background-color: var(--color-light-gray);
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Styles for the active pager item.
+  .pager__item.is-active {
+    .pager__link {
+      background-color: var(--color-primary);
+      color: var(--color-background);
+      font-weight: 700;
+      // Prevent hover effect on the active item.
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+  }
+
+  // The non-interactive ellipsis item.
+  .pager__item--ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--color-text);
+  }
+}

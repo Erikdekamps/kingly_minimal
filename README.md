@@ -36,8 +36,23 @@ already exists in `scss/base/_variables.scss`.
 **How to Apply This:**
 
 1. **Consult `_variables.scss`:** This file is the theme's design system
-   dictionary. It contains pre-defined, semantic variables for colors, spacing,
-   typography, focus rings, transitions, and more.
+   dictionary. It contains a comprehensive and well-organized set of design
+   tokens, including:
+
+* **Colors:** The full application color palette, including feedback and border
+  colors.
+* **Typography:** Font families, a full `h1`-`h6` responsive font size scale,
+  line heights, and font weights.
+* **Sizing:** A scale for element sizes, including the minimum accessible target
+  size (`--size-target-min`), avatars, and icons.
+* **Spacing:** A standard `xs` to `xl` spacing scale for margins, padding, and
+  gaps.
+* **Borders & Focus:** Variables for border widths, radii, and a globally
+  consistent focus ring.
+* **Transitions:** A scale for animation durations and timing functions.
+* **Layout:** Tokens for container widths and grid properties.
+* **Z-Index:** A managed scale for stacking contexts.
+
 2. **Use Existing Variables:** Always prefer using an existing variable over a
    hardcoded value.
 
@@ -45,13 +60,10 @@ already exists in `scss/base/_variables.scss`.
 * **Bad:** `font-weight: 600;`
 
 3. **Add New Variables When Necessary:** If you need a value that is not already
-   defined but is likely to be reused (or represents a core design choice), add
-   it as a new variable to `_variables.scss`. Give it a clear, semantic name (
-   e.g., `--size-avatar`, not `--size-50px`).
-4. **Scope Appropriately:** Global design tokens belong in `:root`. Variables
-   specific to dark mode belong in `html[data-theme="dark"]`. Component-specific
-   tokens that are still globally configurable should be placed under
-   the `Component-Specific Variables` section.
+   defined but is likely to be reused, add it as a new variable to the
+   appropriate category in `_variables.scss`.
+4. **Scope Appropriately:** Global design tokens belong in `:root`. Dark mode
+   overrides go in `html[data-theme="dark"]`.
 
 By adhering to this principle, we ensure that the theme remains easy to update,
 scale, and re-brand. A change to a single variable in `_variables.scss` will

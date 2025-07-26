@@ -1,31 +1,45 @@
 {#
 /**
-* @file
-* Component template for the main navigation menu.
-*
-* This component encapsulates the main navigation. It provides a semantic <nav>
-* element and improves accessibility by using the block's label as an
-* ARIA label.
-*
-* It expects the following variables to be passed from its parent (usually
-* a block template):
-* - attributes: HTML attributes for the containing element.
-* - label: The configured label of the block.
-* - content: The render array of the menu tree.
-* - title_prefix: (optional)
-* - title_suffix: (optional)
-*/
+ * @file
+ * Component template for the main navigation menu.
+ *
+ * This component encapsulates the main navigation. It provides a semantic <nav>
+ * element and improves accessibility by using the block's label as an
+ * ARIA label.
+ *
+ * It expects the following variables to be passed from its parent (usually
+ * a block template):
+ * - attributes: HTML attributes for the containing element.
+ * - label: The configured label of the block.
+ * - content: The render array of the menu tree.
+ * - title_prefix: (optional)
+ * - title_suffix: (optional)
+ */
 #}
 {% set heading_id = attributes.id ~ '-label' %}
+{% set nav_attributes = create_attribute() %}
+
+{#
+Conditionally set the accessible name for the navigation.
+- If a label exists, use aria-labelledby to point to the visually hidden h2.
+- If no label exists, provide a fallback aria-label to prevent an empty name.
+#}
+{% if label %}
+  {% do nav_attributes.setAttribute('aria-labelledby', heading_id) %}
+{% else %}
+  {% do nav_attributes.setAttribute('aria-label', 'Main navigation'|t) %}
+{% endif %}
+
 
 {#
 The data-component-id attribute is essential for SDC to discover this component
-and attach its assets (CSS).
+and attach its assets (CSS). We merge our conditional nav_attributes here.
 #}
-<nav {{ attributes }} role="navigation" aria-labelledby="{{ heading_id }}">
+<nav {{ attributes.merge(nav_attributes) }} role="navigation">
   {#
   Print the block title as a visually hidden heading. This provides an
   accessible name for the <nav> element via aria-labelledby.
+  This is only printed if the label is provided.
   #}
   {{ title_prefix }}
   {% if label %}

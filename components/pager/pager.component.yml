@@ -1,0 +1,32 @@
+# kingly_minimal/components/pager/pager.component.yml
+name: 'Pager'
+status: stable
+description: 'Renders a styled pagination control for navigating through lists of content.'
+
+props:
+  type: object
+  properties:
+    # The list of pager items (first, previous, pages, next, last)
+    # provided by Drupal's pager service.
+    items:
+      type: object
+      title: 'Pager Items'
+      description: 'The structured list of pager links and text.'
+      default: {}
+    # The ID for the accessible heading, linking the nav to its label.
+    heading_id:
+      type: string
+      title: 'Heading ID'
+      description: 'The HTML ID for the visually hidden h4 heading.'
+      default: 'pagination-heading'
+    # HTML attributes for the <nav> element.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root <nav> element.'
+
+# Define the component's CSS assets. The build process will create this file.
+library:
+  css:
+    component:
+      pager.css: {}

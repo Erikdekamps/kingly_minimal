@@ -141,7 +141,12 @@
           }) }}
         </div>
         <div class="footer-bottom-right">
-          {{ page.footer_bottom_right ? page.footer_bottom_right : include('kingly_minimal:footer-utility-links') }}
+          {{ page.footer_bottom_right ? page.footer_bottom_right : include('kingly_minimal:footer-utility-links', {
+            links: [
+              { text: 'Contact', url: '/contact' }
+            ],
+            show_theme_toggle: true
+          }) }}
         </div>
       </div>
 

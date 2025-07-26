@@ -3,17 +3,11 @@
  * @file
  * Component template for the main navigation menu.
  *
- * This component encapsulates the main navigation. It provides a semantic <nav>
- * element and improves accessibility by using the block's label as an
- * ARIA label.
+ * This component has been refactored to be a true wrapper. It renders the
+ * semantic <nav> element and then explicitly includes the `kingly_minimal:menu`
+ * component to render the menu tree itself.
  *
- * It expects the following variables to be passed from its parent (usually
- * a block template):
- * - attributes: HTML attributes for the containing element.
- * - label: The configured label of the block.
- * - content: The render array of the menu tree.
- * - title_prefix: (optional)
- * - title_suffix: (optional)
+ * @see kingly_minimal/components/main-menu/main-menu.component.yml
  */
 #}
 {% set heading_id = attributes.id ~ '-label' %}
@@ -29,7 +23,6 @@ Conditionally set the accessible name for the navigation.
 {% else %}
   {% do nav_attributes.setAttribute('aria-label', 'Main navigation'|t) %}
 {% endif %}
-
 
 {#
 The data-component-id attribute is essential for SDC to discover this component
@@ -47,7 +40,15 @@ and attach its assets (CSS). We merge our conditional nav_attributes here.
   {% endif %}
   {{ title_suffix }}
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+  {#
+  Instead of printing `{{ content }}`, we now explicitly include our `menu` SDC.
+  We must extract the `items` array from the `content` render array that is
+  passed down from the block.
+  #}
+  {% if content['#items'] %}
+    {{ include('kingly_minimal:menu', {
+      items: content['#items'],
+      attributes: content['#attributes'],
+    }, with_context = false) }}
+  {% endif %}
 </nav>

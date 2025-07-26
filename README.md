@@ -22,6 +22,41 @@ maintainability, and accessibility.
 * **Clean Twig Templates:** Core and module template overrides are minimal,
   acting as bridges to pass data to SDCs.
 
+## Frontend Development Guidelines
+
+This theme follows a strict "Single Source of Truth" philosophy for all
+design-related values. The goal is to create a highly maintainable and
+consistent codebase by eliminating "magic numbers" and repeated declarations.
+
+**The Core Principle:** Before adding any static value (
+e.g., `font-weight: 600`, `min-height: 44px`, `transition-duration: 0.15s`) to a
+component's stylesheet, you **must** first check if a suitable design token
+already exists in `scss/base/_variables.scss`.
+
+**How to Apply This:**
+
+1. **Consult `_variables.scss`:** This file is the theme's design system
+   dictionary. It contains pre-defined, semantic variables for colors, spacing,
+   typography, focus rings, transitions, and more.
+2. **Use Existing Variables:** Always prefer using an existing variable over a
+   hardcoded value.
+
+* **Good:** `font-weight: var(--font-weight-semibold);`
+* **Bad:** `font-weight: 600;`
+
+3. **Add New Variables When Necessary:** If you need a value that is not already
+   defined but is likely to be reused (or represents a core design choice), add
+   it as a new variable to `_variables.scss`. Give it a clear, semantic name (
+   e.g., `--size-avatar`, not `--size-50px`).
+4. **Scope Appropriately:** Global design tokens belong in `:root`. Variables
+   specific to dark mode belong in `html[data-theme="dark"]`. Component-specific
+   tokens that are still globally configurable should be placed under
+   the `Component-Specific Variables` section.
+
+By adhering to this principle, we ensure that the theme remains easy to update,
+scale, and re-brand. A change to a single variable in `_variables.scss` will
+correctly propagate throughout the entire component library.
+
 ## Installation & Usage
 
 1. **Place the Theme:**

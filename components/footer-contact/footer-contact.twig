@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Component template for the footer contact section.
+ *
+ * This component displays contact information and demonstrates component
+ * composition by including the 'icon' component for each item.
+ *
+ * @see kingly_minimal/components/footer-contact/footer-contact.component.yml
+ *
+ * @props
+ * - title: The heading for the contact list.
+ * - address: The physical address.
+ * - email: The contact email address.
+ * - phone: The contact phone number.
+ * - attributes: A Drupal attributes object for the wrapper.
+ */
+#}
+<div{{ attributes.addClass('footer-contact') }}>
+  {% if title %}
+    <h3 class="footer-contact__title">{{ title }}</h3>
+  {% endif %}
+
+  <ul class="footer-contact__list">
+    {% if address %}
+      <li class="footer-contact__item">
+        {{ include('kingly_minimal:icon', { name: 'house' }, with_context = false) }}
+        <span>{{ address }}</span>
+      </li>
+    {% endif %}
+
+    {% if email %}
+      <li class="footer-contact__item">
+        {{ include('kingly_minimal:icon', { name: 'envelope' }, with_context = false) }}
+        <a href="mailto:{{ email }}" class="footer-contact__link">{{ email }}</a>
+      </li>
+    {% endif %}
+
+    {% if phone %}
+      <li class="footer-contact__item">
+        {# We strip spaces from the phone prop to create a valid tel: link. #}
+        {{ include('kingly_minimal:icon', { name: 'phone' }, with_context = false) }}
+        <a href="tel:{{ phone|replace({' ': ''}) }}" class="footer-contact__link">{{ phone }}</a>
+      </li>
+    {% endif %}
+  </ul>
+</div>

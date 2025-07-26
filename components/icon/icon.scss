@@ -1,0 +1,26 @@
+// components/icon/icon.scss
+
+// -----------------------------------------------------------------------------
+// Icon Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the icon component for encapsulation.
+[data-component-id='kingly_minimal:icon'] {
+  // Use 'display: inline-flex' to ensure the icon aligns well with adjacent
+  // text and other inline elements.
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // The direct child is the SVG element.
+  > svg {
+    // Default size for the icon. This can be overridden by more specific
+    // selectors in components that consume this icon.
+    width: 1.25em;
+    height: 1.25em;
+
+    // Use 'currentColor' to make the icon's color inherit from the parent's
+    // CSS 'color' property. This makes it easy to change icon color.
+    fill: currentColor;
+  }
+}

@@ -1,0 +1,19 @@
+# components/theme-toggle/theme-toggle.component.yml
+name: 'Theme Toggle'
+status: stable
+description: 'A placeholder button for toggling between light and dark themes. Renders an icon button.'
+
+props:
+  type: object
+  properties:
+    # HTML attributes for the wrapper element.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the button element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      theme-toggle.css: {}

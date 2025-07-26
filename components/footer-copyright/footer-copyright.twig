@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Component template for the footer copyright notice.
+ *
+ * @see kingly_minimal/components/footer-copyright/footer-copyright.component.yml
+ *
+ * @props
+ * - text: The copyright text. '[year]' is replaced with the current year.
+ * - attributes: A Drupal attributes object for the wrapper.
+ */
+#}
+{% if text %}
+  {#
+  Replace the [year] placeholder with the current year using Twig's date function.
+  See: https://twig.symfony.com/doc/3.x/functions/date.html
+  #}
+  {% set copyright_text = text|replace({'[year]': "now"|date("Y")}) %}
+
+  <div{{ attributes.addClass('footer-copyright') }}>
+    {{- copyright_text -}}
+  </div>
+{% endif %}

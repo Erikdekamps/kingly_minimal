@@ -1,0 +1,35 @@
+# components/footer-link-list/footer-link-list.component.yml
+name: 'Footer Link List'
+status: stable
+description: 'Displays a titled list of links, for use in the footer columns.'
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: 'List Title'
+      description: 'The heading for the list of links.'
+      required: true
+    links:
+      type: array
+      title: 'Links'
+      description: 'An array of link objects. Each object should have a "text" and "url" key.'
+      default: []
+      item:
+        type: object
+        properties:
+          text:
+            type: string
+          url:
+            type: string
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      footer-link-list.css: {}

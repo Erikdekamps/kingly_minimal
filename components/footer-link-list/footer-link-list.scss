@@ -1,0 +1,39 @@
+// components/footer-link-list/footer-link-list.scss
+
+// -----------------------------------------------------------------------------
+// Footer Link List Component Styles
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:footer-link-list'] {
+  // Style the title of the list.
+  .footer-link-list__title {
+    font-family: var(--font-family-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-md);
+  }
+
+  // Style the <ul> element.
+  .footer-link-list__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    // Define the space between each link in the list.
+    gap: var(--spacing-sm);
+  }
+
+  // Style the individual links.
+  .footer-link-list__link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+  }
+}

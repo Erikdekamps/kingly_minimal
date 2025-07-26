@@ -3,12 +3,8 @@
  * @file
  * Theme override to display a single page.
  *
- * This template has been updated for a more robust CSS grid layout.
- * Key changes include moving the breadcrumbs outside the <main> element
- * and using more consistent, BEM-style classes for region wrappers.
- *
- * A new .page-header-wrapper groups the header and breadcrumbs so that the
- * main layout grid correctly assigns flexible space to the <main> element.
+ * This template has been updated for a more robust CSS grid layout and a new
+ * modular footer structure based on Single Directory Components.
  */
 #}
 <div class="layout-container">
@@ -75,47 +71,82 @@
     {% endif %}
   </main>
 
-  {% if page.footer_top or page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_bottom %}
-    <footer class="page-footer" role="contentinfo">
-      <div class="page-footer__inner">
-        {% if page.footer_top %}
-          <div class="page-footer__top">
-            {{ page.footer_top }}
-          </div>
-        {% endif %}
+  {# Begin Footer Section #}
+  <footer class="page-footer" role="contentinfo">
+    <div class="page-footer__inner">
 
-        {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-          <div class="page-footer__columns">
-            {% if page.footer_first %}
-              <div class="page-footer__column footer-first">
-                {{ page.footer_first }}
-              </div>
-            {% endif %}
-            {% if page.footer_second %}
-              <div class="page-footer__column footer-second">
-                {{ page.footer_second }}
-              </div>
-            {% endif %}
-            {% if page.footer_third %}
-              <div class="page-footer__column footer-third">
-                {{ page.footer_third }}
-              </div>
-            {% endif %}
-            {% if page.footer_fourth %}
-              <div class="page-footer__column footer-fourth">
-                {{ page.footer_fourth }}
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-
-        {% if page.footer_bottom %}
-          <div class="page-footer__bottom">
-            {{ page.footer_bottom }}
-          </div>
-        {% endif %}
+      <div class="page-footer__top">
+        <div class="footer-top-left">
+          {{ page.footer_top_left ? page.footer_top_left : include('kingly_minimal:footer-social-prompt', {
+            text: 'Get connected with us on social networks:'
+          }) }}
+        </div>
+        <div class="footer-top-right">
+          {{ page.footer_top_right ? page.footer_top_right : include('kingly_minimal:social-links', {
+            links: [
+              { url: 'https://www.facebook.com', text: 'Facebook' },
+              { url: 'https://www.twitter.com', text: 'Twitter' },
+              { url: 'https://www.linkedin.com', text: 'LinkedIn' },
+              { url: 'https://www.instagram.com', text: 'Instagram' }
+            ]
+          }) }}
+        </div>
       </div>
-    </footer>
-  {% endif %}
+
+      <div class="page-footer__columns">
+        <div class="page-footer__column footer-first">
+          {{ page.footer_first ? page.footer_first : include('kingly_minimal:footer-company-info', {
+            company_name: 'Company Name',
+            description: 'Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+          }) }}
+        </div>
+
+        <div class="page-footer__column footer-second">
+          {{ page.footer_second ? page.footer_second : include('kingly_minimal:footer-link-list', {
+            title: 'Products',
+            links: [
+              { text: 'Product 1', url: '#' },
+              { text: 'Product 2', url: '#' },
+              { text: 'Product 3', url: '#' }
+            ]
+          }) }}
+        </div>
+
+        <div class="page-footer__column footer-third">
+          {{ page.footer_third ? page.footer_third : include('kingly_minimal:footer-link-list', {
+            title: 'Useful links',
+            links: [
+              { text: 'Pricing', url: '#' },
+              { text: 'Settings', url: '#' },
+              { text: 'Orders', url: '#' },
+              { text: 'Help', url: '#' }
+            ]
+          }) }}
+        </div>
+
+        <div class="page-footer__column footer-fourth">
+          {{ page.footer_fourth ? page.footer_fourth : include('kingly_minimal:footer-contact', {
+            title: 'Contact',
+            address: 'Dummy address',
+            email: 'info@example.com',
+            phone: '+ 01 234 567 89'
+          }) }}
+        </div>
+      </div>
+
+      <div class="page-footer__bottom">
+        <div class="footer-bottom-left">
+          {{ page.footer_bottom_left ? page.footer_bottom_left : include('kingly_minimal:footer-copyright', {
+            text: '© [year] Copyright: example.com'
+          }) }}
+        </div>
+        <div class="footer-bottom-right">
+          {{ page.footer_bottom_right ? page.footer_bottom_right : include('kingly_minimal:footer-utility-links') }}
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  {# End Footer Section #}
 
 </div>{# /.layout-container #}

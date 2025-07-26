@@ -1,0 +1,30 @@
+# components/icon/icon.component.yml
+name: 'Icon'
+status: stable
+description: 'Renders a reusable inline SVG icon from a predefined library within the component.'
+
+props:
+  type: object
+  properties:
+    # The machine name of the icon to render (e.g., 'house', 'envelope').
+    name:
+      type: string
+      title: 'Icon Name'
+      description: 'The machine name of the icon to display.'
+      required: true
+    # An optional label for accessibility. If not provided, the icon name is used.
+    label:
+      type: string
+      title: 'Accessible Label'
+      description: 'The accessible text for the icon. Defaults to a capitalized version of the name.'
+    # HTML attributes for the wrapper element.
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the wrapper element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      icon.css: {}

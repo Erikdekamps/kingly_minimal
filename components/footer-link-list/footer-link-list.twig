@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Component template for a titled list of links in the footer.
+ *
+ * @see kingly_minimal/components/footer-link-list/footer-link-list.component.yml
+ *
+ * @props
+ * - title: The heading for the list of links.
+ * - links: An array of link objects, each with 'text' and 'url'.
+ * - attributes: A Drupal attributes object for the wrapper.
+ */
+#}
+<div{{ attributes.addClass('footer-link-list') }}>
+  {% if title %}
+    <h3 class="footer-link-list__title">{{ title }}</h3>
+  {% endif %}
+
+  {% if links %}
+    <ul class="footer-link-list__list">
+      {% for link in links %}
+        <li class="footer-link-list__item">
+          <a href="{{ link.url }}" class="footer-link-list__link">{{ link.text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

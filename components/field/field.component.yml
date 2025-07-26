@@ -1,0 +1,41 @@
+# components/field/field.component.yml
+name: 'Field'
+status: stable
+description: 'Renders a generic field, including its label and items. Provides a consistent wrapper for all fields.'
+
+props:
+  type: object
+  properties:
+    label_hidden:
+      type: boolean
+      title: 'Label Hidden'
+      description: 'A flag indicating whether to show the field label or not.'
+      default: false
+    label:
+      type: [string, object] # Can be a string or a render array
+      title: 'Label'
+      description: 'The label for the field.'
+    title_attributes:
+      type: object
+      title: 'Title Attributes'
+      description: 'HTML attributes for the label element.'
+    items:
+      type: array
+      title: 'Field Items'
+      description: "A list of field items. Each item's 'content' property will be rendered."
+      default: []
+    multiple:
+      type: boolean
+      title: 'Multiple'
+      description: 'TRUE if the field can contain multiple items. Affects wrapper markup.'
+      default: false
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'HTML attributes for the containing element.'
+
+# Define the component's CSS assets.
+library:
+  css:
+    component:
+      field.css: {}

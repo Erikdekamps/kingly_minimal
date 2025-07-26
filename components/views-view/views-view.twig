@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Component template for a generic view.
+ *
+ * This component provides the structure for a view, replicating the logic
+ * of Drupal's default views-view.html.twig.
+ *
+ * @see kingly_minimal/components/views-view/views-view.component.yml
+ *
+ * @props
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - title: The title of the view.
+ * - header: The header section of the view.
+ * - footer: The footer section of the view.
+ * - rows: The a list of rows in the view.
+ * - empty: The "no results" content of the view.
+ * - pager: The pager section of the view.
+ * - exposed: The exposed form section of the view.
+ * - more: The "more" link for the view.
+ * - feed_icons: The feed icons for the view.
+ * - attachment_before: Content attached before the main content.
+ * - attachment_after: Content attached after the main content.
+ * - title_prefix: Additional output populated by modules.
+ * - title_suffix: Additional output populated by modules.
+ */
+#}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if title %}
+    {{ title }}
+  {% endif %}
+  {{ title_suffix }}
+  {% if header %}
+    <div class="view-header">
+      {{ header }}
+    </div>
+  {% endif %}
+  {% if exposed %}
+    <div class="view-filters">
+      {{ exposed }}
+    </div>
+  {% endif %}
+  {% if attachment_before %}
+    <div class="attachment attachment-before">
+      {{ attachment_before }}
+    </div>
+  {% endif %}
+
+  {% if rows %}
+    <div class="view-content">
+      {{ rows }}
+    </div>
+  {% elseif empty %}
+    <div class="view-empty">
+      {{ empty }}
+    </div>
+  {% endif %}
+
+  {% if pager %}
+    {{ pager }}
+  {% endif %}
+  {% if attachment_after %}
+    <div class="attachment attachment-after">
+      {{ attachment_after }}
+    </div>
+  {% endif %}
+  {% if more %}
+    {{ more }}
+  {% endif %}
+  {% if footer %}
+    <div class="view-footer">
+      {{ footer }}
+    </div>
+  {% endif %}
+  {% if feed_icons %}
+    <div class="feed-icons">
+      {{ feed_icons }}
+    </div>
+  {% endif %}
+</div>

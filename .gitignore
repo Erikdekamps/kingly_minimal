@@ -12,6 +12,9 @@ dist/
 # Ignore Node.js dependencies.
 node_modules/
 
-# Ignore all compiled CSS files within any subdirectory of the components folder.
+# Ignore all compiled assets within any subdirectory of the components folder.
 # This is a critical rule for our SDC workflow.
 components/**/*.css
+components/**/*.js
+components/**/*.css.map
+components/**/*.js.map

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Component template for a checkboxes wrapper.
+ *
+ * This component provides a container for a group of checkbox items.
+ * Its primary purpose is to apply layout styles (like a grid) to the group.
+ *
+ * @see kingly_minimal/components/checkboxes/checkboxes.component.yml
+ *
+ * @props
+ * - attributes: A Drupal attributes object for the root wrapper element.
+ *
+ * @slots
+ * - content: The rendered list of individual checkbox items.
+ */
+#}
+<div{{ attributes.addClass('checkboxes') }}>
+  {% block content %}{% endblock %}
+</div>

@@ -3,83 +3,36 @@
  * @file
  * Theme override for a main views template.
  *
- * Available variables:
- * - attributes: A list of HTML attributes for the wrapper element.
- * - css_name: A CSS-safe version of the view name.
- * - css_class: A CSS-safe version of the view display name.
- * - view: The view object.
- * - dom_id: A unique DOM ID for the view.
- * - header: The header section of the view.
- * - footer: The footer section of the view.
- * - rows: The a list of rows in the view.
- * - empty: The "no results" content of the view.
- * - pager: The pager section of the view.
- * - exposed: The exposed form section of the view.
- * - more: The "more" link for the view.
- * - feed_icons: The feed icons for the view.
- * - title: The title of the view.
+ * This template has been refactored to act as a bridge to the generic
+ * `views-view` Single Directory Component. It maps the variables from the theme
+ * system to the props expected by the component.
  *
- * @see template_preprocess_views_view()
+ * @see kingly_minimal/components/views-view/views-view.twig
  */
 #}
-{% set classes = [
+{%
+  set view_classes = [
   'view',
   'view-' ~ id()|clean_class,
   'view-id-' ~ id()|clean_class,
   'view-display-id-' ~ display_id,
   dom_id ? 'js-view-dom-id-' ~ dom_id,
-] %}
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {% if title %}
-    {{ title }}
-  {% endif %}
-  {{ title_suffix }}
-  {% if header %}
-    <div class="view-header">
-      {{ header }}
-    </div>
-  {% endif %}
-  {% if exposed %}
-    <div class="view-filters">
-      {{ exposed }}
-    </div>
-  {% endif %}
-  {% if attachment_before %}
-    <div class="attachment attachment-before">
-      {{ attachment_before }}
-    </div>
-  {% endif %}
+]
+%}
 
-  {% if rows %}
-    <div class="view-content">
-      {{ rows }}
-    </div>
-  {% elseif empty %}
-    <div class="view-empty">
-      {{ empty }}
-    </div>
-  {% endif %}
-
-  {% if pager %}
-    {{ pager }}
-  {% endif %}
-  {% if attachment_after %}
-    <div class="attachment attachment-after">
-      {{ attachment_after }}
-    </div>
-  {% endif %}
-  {% if more %}
-    {{ more }}
-  {% endif %}
-  {% if footer %}
-    <div class="view-footer">
-      {{ footer }}
-    </div>
-  {% endif %}
-  {% if feed_icons %}
-    <div class="feed-icons">
-      {{ feed_icons }}
-    </div>
-  {% endif %}
-</div>
+{{ include('kingly_minimal:views-view', {
+  title: title,
+  header: header,
+  footer: footer,
+  rows: rows,
+  empty: empty,
+  pager: pager,
+  exposed: exposed,
+  more: more,
+  feed_icons: feed_icons,
+  attachment_before: attachment_before,
+  attachment_after: attachment_after,
+  attributes: attributes.addClass(view_classes),
+  title_prefix: title_prefix,
+  title_suffix: title_suffix,
+}, with_context = false) }}

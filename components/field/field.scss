@@ -1,0 +1,26 @@
+// components/field/field.scss
+
+// -----------------------------------------------------------------------------
+// Generic Field Component Styles
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:field'] {
+  // Styles for the field label.
+  .field__label {
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  // Styles for the wrapper around multiple items.
+  .field__items {
+    display: grid;
+    gap: var(--spacing-sm);
+  }
+
+  // Styles for a single field item.
+  // By default, there are no specific styles, but this provides a hook.
+  .field__item {
+    // Example: You could add a border for debugging field items.
+    // border: 1px solid red;
+  }
+}

@@ -182,22 +182,23 @@ The following theme hook templates have been identified as candidates for
 conversion to Single Directory Components. This roadmap outlines the path to
 achieving 100% component-based rendering.
 
-- **`field.html.twig`**: A generic `field` SDC could be created to handle the
-  wrapper and label logic. This would standardize the display of all fields that
-  don't have a specific override.
-- **`views-view.html.twig`**: A `views-view` SDC can be created to abstract the
-  complex structure of a view (header, footer, rows, pager). This would make
-  styling different view displays more consistent.
-- **`region.html.twig`**: While simple, creating a `region` SDC could be useful
-  if regions ever required more complex logic or specific styling hooks beyond
-  what a class provides.
-- **`node-edit-form.html.twig`**: The two-column layout for the node edit form
-  could be encapsulated in a `node-form-layout` SDC. This would allow for easy
-  reuse of this layout for other entity forms.
-- **`maintenance-page.html.twig`**: The maintenance page could be its
+- [x] **`field.html.twig`**: A generic `field` SDC could be created to handle
+  the wrapper and label logic. This would standardize the display of all
+  fields that don't have a specific override.
+- [x] **`views-view.html.twig`**: A `views-view` SDC can be created to
+  abstract the complex structure of a view (header, footer, rows, pager). This
+  would make styling different view displays more consistent.
+- [ ] **`region.html.twig`**: While simple, creating a `region` SDC could be
+  useful if regions ever required more complex logic or specific styling hooks
+  beyond what a class provides.
+- [ ] **`node-edit-form.html.twig`**: The two-column layout for the node edit
+  form could be encapsulated in a `node-form-layout` SDC. This would allow for
+  easy reuse of this layout for other entity forms.
+- [ ] **`maintenance-page.html.twig`**: The maintenance page could be its
   own `maintenance-page` SDC, simplifying the template file and making its
   styling self-contained.
-- **`block.html.twig`**: The default block template could be converted into
-  a `block` SDC. This would be a low-priority conversion, as many blocks already
-  have specific SDC bridges (e.g., `block--system-menu-block--main.html.twig`),
-  but it would complete the component coverage.
+- [ ] **`block.html.twig`**: The default block template could be converted
+  into a `block` SDC. This would be a low-priority conversion, as many blocks
+  already have specific SDC bridges (
+  e.g., `block--system-menu-block--main.html.twig`), but it would complete the
+  component coverage.

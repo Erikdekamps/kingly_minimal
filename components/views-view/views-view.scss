@@ -1,0 +1,36 @@
+// components/views-view/views-view.scss
+
+// -----------------------------------------------------------------------------
+// Generic Views View Component Styles
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:views-view'] {
+  // Use grid to provide a basic layout for the view's sections.
+  display: grid;
+  gap: var(--spacing-lg);
+
+  // Style for the main view content area.
+  .view-content {
+    // If the view is using a grid format, we can provide some default
+    // styling for it here.
+    // display: grid;
+    // gap: var(--spacing-lg);
+  }
+
+  // Style for the view's exposed filter form.
+  .view-filters {
+    background-color: var(--color-light-gray);
+    padding: var(--spacing-md);
+    border: var(--border-width-thin) solid var(--color-border);
+    border-radius: var(--border-radius);
+  }
+
+  // Style for the "no results" message.
+  .view-empty {
+    // This is often styled similarly to a status message.
+    padding: var(--spacing-lg);
+    background-color: var(--color-light-gray);
+    text-align: center;
+    border-radius: var(--border-radius);
+  }
+}

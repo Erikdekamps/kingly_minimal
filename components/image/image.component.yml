@@ -6,6 +6,11 @@ description: 'Renders a responsive image, optionally wrapped in a link and with 
 props:
   type: object
   properties:
+    # This new prop allows us to pass in a pre-rendered Drupal image.
+    render_array:
+      type: object
+      title: 'Render Array'
+      description: 'A pre-rendered Drupal image or picture element. If provided, this will be used instead of constructing an image from src/alt.'
     # The responsive image style from Drupal. If provided, it will be used to
     # render a <picture> element.
     responsive_image_style:
@@ -23,8 +28,7 @@ props:
     alt:
       type: string
       title: 'Alt Text'
-      description: 'The alternative text for the image.'
-      required: true
+      description: 'The alternative text for the image. Not required if passing a pre-rendered `render_array`.'
     # Width and height help prevent Cumulative Layout Shift (CLS).
     width:
       type: [string, number]

@@ -3,6 +3,10 @@
  * @file
  * Component template for the footer company info section.
  *
+ * This component has been refactored to use the `Text` component for its
+ * description. This allows the description to contain simple HTML (like links
+ * or bold text) and have it styled consistently by the `prose` styles.
+ *
  * @see kingly_minimal/components/footer-company-info/footer-company-info.component.yml
  *
  * @props
@@ -16,8 +20,14 @@
     <h3 class="footer-company-info__name">{{ company_name }}</h3>
   {% endif %}
   {% if description %}
-    <p class="footer-company-info__description">
-      {{ description }}
-    </p>
+    {#
+    Delegate rendering of the description to the Text component.
+    This ensures that if the description contains any simple HTML,
+    it will be styled correctly by the .prose class.
+    #}
+    {{ include('kingly_minimal:text', {
+      content: description,
+      attributes: { class: ['footer-company-info__description'] }
+    }, with_context=false) }}
   {% endif %}
 </div>

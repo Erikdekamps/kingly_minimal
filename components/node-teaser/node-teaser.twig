@@ -3,8 +3,9 @@
  * @file
  * Component template for a node teaser.
  *
- * This component structures the content for a node teaser, including the title,
- * metadata, and content summary. It's designed to be used in lists of content.
+ * This component structures the content for a node teaser. It now delegates
+ * rendering of the author picture and content body to the `image` and `text`
+ * components respectively for better consistency and maintainability.
  *
  * @see kingly_minimal/components/node-teaser/node-teaser.component.yml
  *
@@ -27,16 +28,29 @@
   {# Render the "Submitted by" metadata if it exists. #}
   {% if submitted %}
     <footer class="node__meta">
-      {{ author_picture }}
+      {#
+      Delegate rendering of the author's picture to our Image component.
+      We pass the pre-rendered `author_picture` array directly.
+      #}
+      {{ include('kingly_minimal:image', {
+        render_array: author_picture,
+        attributes: { class: ['user-picture'] }
+      }, with_context=false) }}
+
       <div class="node__submitted">
         {{ submitted }}
       </div>
     </footer>
   {% endif %}
 
-  {# Render the main teaser content (e.g., summary). #}
+  {#
+  Render the main teaser content using our Text component.
+  This ensures consistent WYSIWYG styling.
+  #}
   <div class="node__content">
-    {{ content }}
+    {{ include('kingly_minimal:text', {
+      content: content
+    }, with_context=false) }}
   </div>
 
 </article>

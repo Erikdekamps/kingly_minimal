@@ -1,4 +1,4 @@
-# components/text/text.component.yml
+# themes/custom/kingly_minimal/components/text/text.component.yml
 name: 'Text'
 status: stable
 description: 'A component for rendering long-form "prose" or "WYSIWYG" rich text content with consistent, readable styling.'
@@ -6,7 +6,7 @@ description: 'A component for rendering long-form "prose" or "WYSIWYG" rich text
 props:
   type: object
   properties:
-    # The main content to be rendered. This should be a string containing HTML.
+    # The main content to be rendered. This is now a prop.
     content:
       type: [string, object] # Can be a string or a render array.
       title: 'Content'
@@ -23,6 +23,8 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root element.'
+
+# The slot has been removed.
 
 # Define the component's CSS assets.
 library:

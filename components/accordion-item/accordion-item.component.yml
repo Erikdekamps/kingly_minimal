@@ -6,6 +6,14 @@ description: 'A single collapsible panel within an accordion. Uses the native HT
 props:
   type: object
   properties:
+    heading:
+      type: [string, object]
+      title: 'Heading'
+      description: 'The content for the <summary> element, which is the clickable title of the item.'
+    content:
+      type: [string, object]
+      title: 'Content'
+      description: 'The collapsible content within the item.'
     attributes:
       type: object
       title: 'Attributes'
@@ -16,13 +24,7 @@ props:
       description: 'If true, this item will be open when the page loads.'
       default: false
 
-slots:
-  heading:
-    title: 'Heading'
-    description: 'The content for the <summary> element, which is the clickable title of the item.'
-  content:
-    title: 'Content'
-    description: 'The collapsible content within the item.'
+# Slots have been removed in favor of props.
 
 library:
   css:

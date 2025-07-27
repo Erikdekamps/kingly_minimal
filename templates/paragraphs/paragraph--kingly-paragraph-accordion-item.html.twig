@@ -3,30 +3,20 @@
  * @file
  * Theme override for the Accordion Item paragraph.
  *
- * This template acts as a bridge, mapping the paragraph's fields to the
- * slots of the 'kingly_minimal:accordion-item' Single Directory Component.
- *
- * It now passes the raw `.value` of the content field and applies the `|raw`
- * filter to ensure HTML is rendered correctly.
+ * This template acts as a bridge, mapping the paragraph's raw field values
+ * directly to the props of the 'kingly_minimal:accordion-item' SDC.
+ * This bypasses all intermediate field templates for the cleanest possible markup.
  *
  * @see kingly_minimal/components/accordion-item/accordion-item.twig
  */
 #}
-{% embed 'kingly_minimal:accordion-item' with {
+{#
+- Access the raw value from the paragraph entity for clean data.
+- Apply the `|raw` filter to the content field to render its HTML.
+- The heading is a plain text string, so it doesn't need the raw filter.
+#}
+{{ include('kingly_minimal:accordion-item', {
   attributes: attributes,
-} %}
-
-  {% block heading %}
-    {# The heading is a simple string, so `content.` is fine and safe. #}
-    {{ content.field_kingly_accordion_heading }}
-  {% endblock %}
-
-  {% block content %}
-    {#
-    CORRECTION: Apply the `|raw` filter to the field's value.
-    This tells Twig to render the HTML tags instead of escaping them.
-    #}
-    {{ paragraph.field_kingly_accordion_content.value|raw }}
-  {% endblock %}
-
-{% endembed %}
+  heading: paragraph.field_kingly_accordion_heading.value,
+  content: paragraph.field_kingly_accordion_content.value|raw,
+}, with_context = false) }}

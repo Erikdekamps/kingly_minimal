@@ -3,32 +3,29 @@
  * @file
  * Component template for a single accordion item.
  *
- * This component uses the native <details> and <summary> HTML elements to
- * ensure it is accessible and functional out-of-the-box.
+ * This component now renders the `heading` and `content` from props instead
+ * of slots for a cleaner data flow from Drupal.
  *
  * @see kingly_minimal/components/accordion-item/accordion-item.component.yml
  *
  * @props
- * - attributes: A Drupal attributes object for the <details> element.
- * - is_open: A boolean to control if the item is open by default.
- *
- * @slots
  * - heading: The content for the clickable <summary> element.
  * - content: The collapsible content.
+ * - attributes: A Drupal attributes object for the <details> element.
+ * - is_open: A boolean to control if the item is open by default.
  */
 #}
 <details{{ attributes.addClass('accordion-item') }}{{ is_open ? ' open' }}>
   <summary class="accordion-item__header">
-    <span class="accordion-item__heading">{% block heading %}{% endblock %}</span>
+    <span class="accordion-item__heading">{{ heading }}</span>
     <span class="accordion-item__icon">
-      {# The icon component provides a consistent visual indicator. #}
       {{ include('kingly_minimal:icon', { name: 'chevron-down' }, with_context = false) }}
     </span>
   </summary>
   <div class="accordion-item__content">
     {# Delegate content rendering to the text component for consistent prose styling. #}
     {{ include('kingly_minimal:text', {
-      content: block('content')
+      content: content
     }, with_context = false) }}
   </div>
 </details>

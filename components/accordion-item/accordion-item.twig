@@ -4,7 +4,8 @@
  * Component template for a single accordion item.
  *
  * This component now renders the `heading` and `content` from props instead
- * of slots for a cleaner data flow from Drupal.
+ * of slots for a cleaner data flow from Drupal. An inner wrapper has been
+ * added to the content area to facilitate smooth CSS animations.
  *
  * @see kingly_minimal/components/accordion-item/accordion-item.component.yml
  *
@@ -23,9 +24,11 @@
     </span>
   </summary>
   <div class="accordion-item__content">
-    {# Delegate content rendering to the text component for consistent prose styling. #}
-    {{ include('kingly_minimal:text', {
-      content: content
-    }, with_context = false) }}
+    {# This inner wrapper is essential for the grid-template-rows animation. #}
+    <div class="accordion-item__content-inner">
+      {{ include('kingly_minimal:text', {
+        content: content
+      }, with_context = false) }}
+    </div>
   </div>
 </details>

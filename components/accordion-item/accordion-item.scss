@@ -30,28 +30,52 @@
     }
   }
 
-  // The content wrapper div.
+  // The content wrapper div, configured for animation.
   .accordion-item__content {
+    display: grid;
+    // Set the initial (closed) state.
+    grid-template-rows: 0fr;
+    // Define the transition for the grid rows.
+    transition: grid-template-rows var(--transition-duration-slow) ease-in-out;
+  }
+
+  // The inner wrapper is required for the animation to work correctly.
+  .accordion-item__content-inner {
+    // The padding is moved here so it animates with the content.
     padding: var(--spacing-md);
-    border-top: var(--border-width-thin) solid var(--color-border);
+    // This allows the element's height to shrink to zero.
+    overflow: hidden;
+    min-height: 0;
   }
 
   // The custom icon wrapper.
   .accordion-item__icon {
     display: inline-flex;
-    transition: transform var(--transition-duration-medium) ease-in-out;
-    // WCAG: Ensure motion is disabled for users who prefer it.
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
+    transition: transform var(--transition-duration-slow) ease-in-out;
   }
 
   // State change when the <details> element is open.
   &[open] {
     > .accordion-item__header {
+      // Add a border between the header and content when open.
+      border-bottom: var(--border-width-thin) solid var(--color-border);
+
       .accordion-item__icon {
         transform: rotate(180deg);
       }
+    }
+
+    // When open, transition the grid rows to reveal the content.
+    .accordion-item__content {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  // WCAG: Respect user preference for reduced motion.
+  @media (prefers-reduced-motion: reduce) {
+    .accordion-item__icon,
+    .accordion-item__content {
+      transition: none;
     }
   }
 }

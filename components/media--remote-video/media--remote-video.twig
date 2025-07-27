@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Component template for a remote video media item.
+ *
+ * This version now receives the rendered field via a 'content' prop instead
+ * of a slot.
+ *
+ * @see kingly_minimal/components/media--remote-video/media--remote-video.component.yml
+ *
+ * @props
+ * - media_entity: The full remote video media entity object.
+ * - content: The rendered video iframe.
+ * - attributes: A Drupal attributes object for the wrapper element.
+ */
+#}
+<div{{ attributes.addClass('media--remote-video') }}>
+  {{- content -}}
+</div>

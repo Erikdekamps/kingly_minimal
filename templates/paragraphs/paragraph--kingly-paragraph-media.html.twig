@@ -3,10 +3,10 @@
  * @file
  * Theme override for the Media paragraph type.
  *
- * This template acts as a bridge to the 'kingly_minimal:media' component.
- * It now passes the raw media entity as a prop, allowing the component to
- * add contextual classes for styling. The rendered media field is passed
- * into the component's 'content' slot.
+ * This template acts as a bridge to the 'kingly_minimal:media' dispatcher
+ * component. It passes the raw media entity as a prop, allowing the component
+ * to determine the media type and include the correct sub-component. The
+ * rendered media field is passed into the component's 'content' slot.
  *
  * @see kingly_minimal/components/media/media.twig
  */

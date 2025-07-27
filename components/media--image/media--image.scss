@@ -1,0 +1,18 @@
+// themes/custom/kingly_minimal/components/media--image/media--image.scss
+
+// -----------------------------------------------------------------------------
+// Media: Image Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:media--image'] {
+  // Target the img or picture element rendered by Drupal inside the slot.
+  // Using `:where` keeps specificity low, making it easy to override these
+  // styles in a more specific context (like a card component).
+  :where(img, picture) {
+    // Ensure the image scales down proportionally.
+    max-width: 100%;
+    // Maintain the image's aspect ratio.
+    height: auto;
+    // Remove the small space that browsers sometimes add below inline images.
+    display: block;
+  }
+}

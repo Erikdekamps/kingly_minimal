@@ -1,11 +1,13 @@
 {#
 /**
  * @file
- * Component template for a media item.
+ * Dispatcher component for media entities.
  *
- * This component acts as a smart wrapper. It inspects the passed media_entity
- * to add a contextual BEM class (e.g., 'kingly-media--image') to the wrapper,
- * making it easier to apply specific styles for different media types.
+ * This component inspects the media entity's bundle and includes the
+ * corresponding sub-component using an if/elseif chain.
+ *
+ * This version uses `include` and passes the rendered content down as a prop
+ * to prevent a recursive loop that causes memory exhaustion.
  *
  * @see kingly_minimal/components/media/media.component.yml
  *
@@ -17,17 +19,55 @@
  * - content: The rendered media entity.
  */
 #}
-{% set base_class = 'kingly-media' %}
+{% if media_entity %}
+  {% set media_type = media_entity.bundle() %}
 
-{#
-- Get the media type (bundle) from the entity.
-- Add a BEM modifier class based on the type.
-#}
-{% set classes = [
-  base_class,
-  media_entity ? base_class ~ '--' ~ media_entity.bundle()|clean_class,
-] %}
+  {# Capture the content from the slot into a variable first. #}
+  {% set rendered_content %}
+    {% block content %}{% endblock %}
+  {% endset %}
 
-<div{{ attributes.addClass(classes) }}>
-  {% block content %}{% endblock %}
-</div>
+  {# Use an if/elseif chain to include the correct component. #}
+  {% if media_type == 'audio' %}
+    {{ include('kingly_minimal:media--audio', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'document' %}
+    {{ include('kingly_minimal:media--document', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'image' %}
+    {{ include('kingly_minimal:media--image', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'remote_video' %}
+    {{ include('kingly_minimal:media--remote-video', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'svg_image' %}
+    {{ include('kingly_minimal:media--svg-image', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'video' %}
+    {{ include('kingly_minimal:media--video', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% else %}
+    {# Fallback for any unhandled media types. #}
+    <div{{ attributes.addClass('media--unhandled') }}>
+      {{ rendered_content }}
+    </div>
+  {% endif %}
+{% endif %}

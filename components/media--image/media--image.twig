@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Component template for an image media item.
+ *
+ * This version now receives the rendered field via a 'content' prop instead
+ * of a slot to work correctly with the dispatcher component.
+ *
+ * @see kingly_minimal/components/media--image/media--image.component.yml
+ *
+ * @props
+ * - media_entity: The full image media entity object.
+ * - content: The rendered image or picture element.
+ * - attributes: A Drupal attributes object for the wrapper element.
+ */
+#}
+<div{{ attributes.addClass('media--image') }}>
+  {{- content -}}
+</div>

@@ -1,0 +1,27 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Media: SVG Image'
+status: stable
+description: 'Renders an SVG image media entity with a contextual wrapper.'
+
+props:
+  type: object
+  properties:
+    media_entity:
+      type: object
+      title: Media Entity
+      description: 'The full SVG image media entity object.'
+      required: true
+    content:
+      type: [string, object]
+      title: Content
+      required: true
+      description: 'The rendered SVG image element.'
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the wrapper element.
+
+library:
+  css:
+    component:
+      media--svg-image.css: {}

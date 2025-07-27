@@ -1,0 +1,19 @@
+// themes/custom/kingly_minimal/components/media--video/media--video.scss
+
+// -----------------------------------------------------------------------------
+// Media: Video Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:media--video'] {
+  // Target the video element rendered by Drupal within the content slot.
+  video {
+    // Ensure the video scales with its container.
+    width: 100%;
+    // Use the CSS aspect-ratio property for a modern, robust solution to
+    // maintain the video's shape.
+    aspect-ratio: 16 / 9;
+    // Set height to auto to respect the aspect ratio.
+    height: auto;
+    // Remove the default border that some browsers may add.
+    border: 0;
+  }
+}

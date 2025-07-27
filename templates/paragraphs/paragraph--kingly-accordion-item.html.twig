@@ -12,6 +12,7 @@
 {% embed 'kingly_minimal:accordion-item' with {
   attributes: attributes,
 } %}
+
   {% block heading %}
     {{ content.field_kingly_accordion_heading }}
   {% endblock %}
@@ -19,4 +20,5 @@
   {% block content %}
     {{ content.field_kingly_accordion_content }}
   {% endblock %}
+
 {% endembed %}

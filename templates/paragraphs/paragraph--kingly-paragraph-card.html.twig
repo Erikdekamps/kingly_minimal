@@ -4,7 +4,7 @@
  * Theme override for the Card paragraph type.
  *
  * This template acts as a bridge, mapping the paragraph's rendered content
- * into the 'content' slot of the 'kingly_sdc:card' Single Directory Component.
+ * into the 'content' slot of the 'kingly_minimal:card' Single Directory Component.
  * The SDC provides the main wrapper and styling, while Drupal's view mode
  * configuration handles the inner field layout (horizontal vs. vertical).
  *
@@ -15,7 +15,7 @@
  * - All DDC variables are available.
  */
 #}
-{% embed 'kingly_sdc:card' with {
+{% embed 'kingly_minimal:card' with {
   attributes: attributes,
 } %}
 

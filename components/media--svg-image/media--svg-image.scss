@@ -1,0 +1,16 @@
+// themes/custom/kingly_minimal/components/media--svg-image/media--svg-image.scss
+
+// -----------------------------------------------------------------------------
+// Media: SVG Image Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:media--svg-image'] {
+  // Target the img element that Drupal uses to render the SVG.
+  img {
+    // Ensure the SVG scales down proportionally.
+    max-width: 100%;
+    // Maintain the image's aspect ratio.
+    height: auto;
+    // Remove the small space that browsers sometimes add below inline images.
+    display: block;
+  }
+}

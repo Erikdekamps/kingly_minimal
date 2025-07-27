@@ -1,0 +1,17 @@
+// themes/custom/kingly_minimal/components/media--remote-video/media--remote-video.scss
+
+// -----------------------------------------------------------------------------
+// Media: Remote Video Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:media--remote-video'] {
+  // Target the iframe rendered by Drupal within the content slot.
+  iframe {
+    // Ensure the iframe scales with its container.
+    width: 100%;
+    // Use the CSS aspect-ratio property for a modern, robust solution to
+    // maintain the video's shape without extra wrapper divs.
+    aspect-ratio: 16 / 9;
+    // Remove the default border that some browsers add to iframes.
+    border: 0;
+  }
+}

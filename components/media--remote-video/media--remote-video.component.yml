@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Media
+name: 'Media: Remote Video'
 status: stable
-description: 'A dispatcher component that inspects a media entity and renders the appropriate sub-component (e.g., media--image, media--video).'
+description: 'Renders a remote video media entity (e.g., from YouTube or Vimeo) with a contextual wrapper.'
 
 props:
   type: object
@@ -9,7 +9,7 @@ props:
     media_entity:
       type: object
       title: Media Entity
-      description: 'The full media entity object. Used to determine the media type for contextual styling and dispatching.'
+      description: 'The full remote video media entity object.'
       required: true
     attributes:
       type: object
@@ -20,9 +20,9 @@ slots:
   content:
     title: Content
     required: true
-    description: The rendered media entity (e.g., an <img> or <iframe>) to be passed to the sub-component.
+    description: 'The rendered video iframe.'
 
 library:
   css:
     component:
-      media.css: {}
+      media--remote-video.css: {}

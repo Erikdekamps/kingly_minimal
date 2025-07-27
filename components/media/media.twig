@@ -1,11 +1,11 @@
 {#
 /**
  * @file
- * Component template for a media item.
+ * Dispatcher component for media entities.
  *
- * This component acts as a smart wrapper. It inspects the passed media_entity
- * to add a contextual BEM class (e.g., 'kingly-media--image') to the wrapper,
- * making it easier to apply specific styles for different media types.
+ * This component inspects the media entity's bundle and includes the
+ * corresponding sub-component (e.g., 'media--image', 'media--video').
+ * It passes its own props and slots down to the child component.
  *
  * @see kingly_minimal/components/media/media.component.yml
  *
@@ -17,17 +17,36 @@
  * - content: The rendered media entity.
  */
 #}
-{% set base_class = 'kingly-media' %}
+{% if media_entity %}
+  {% set media_type = media_entity.bundle() %}
 
-{#
-- Get the media type (bundle) from the entity.
-- Add a BEM modifier class based on the type.
-#}
-{% set classes = [
-  base_class,
-  media_entity ? base_class ~ '--' ~ media_entity.bundle()|clean_class,
-] %}
+  {# Map media bundle names to their SDC component names. #}
+  {% set component_map = {
+    'audio': 'kingly_minimal:media--audio',
+    'document': 'kingly_minimal:media--document',
+    'image': 'kingly_minimal:media--image',
+    'remote_video': 'kingly_minimal:media--remote-video',
+    'svg_image': 'kingly_minimal:media--svg-image',
+    'video': 'kingly_minimal:media--video',
+  } %}
 
-<div{{ attributes.addClass(classes) }}>
-  {% block content %}{% endblock %}
-</div>
+  {% set component_name = component_map[media_type] %}
+
+  {% if component_name %}
+    {# Embed the specific media component, passing all props and slots. #}
+    {% embed component_name with {
+      attributes: attributes,
+      media_entity: media_entity,
+    } %}
+      {% block content %}
+        {# This passes the content from the parent template into the child's slot. #}
+        {{ block('content') }}
+      {% endblock %}
+    {% endembed %}
+  {% else %}
+    {# Fallback for any unhandled media types. #}
+    <div{{ attributes.addClass('media--unhandled') }}>
+      {% block content %}{% endblock %}
+    </div>
+  {% endif %}
+{% endif %}

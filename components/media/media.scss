@@ -1,32 +1,12 @@
 // themes/custom/kingly_minimal/components/media/media.scss
 
 // -----------------------------------------------------------------------------
-// Media Component Styles
+// Media Dispatcher Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:media'] {
-  // Base styles for the component wrapper can go here if needed.
-  // For now, it's a simple block-level element.
+  // The dispatcher itself is a simple container. By default, it will take up
+  // the full width of its parent and has no visual styling. All specific
+  // styles will be applied by the sub-components (media--image, etc.).
+  display: block;
   width: 100%;
-
-  // Contextual styles for specific media types using the BEM modifier.
-  &.kingly-media--image {
-    // These styles will ONLY apply when the media entity is an image.
-    img {
-      max-width: 100%;
-      height: auto; // Maintain aspect ratio.
-      display: block; // Remove bottom space.
-    }
-  }
-
-  &.kingly-media--remote-video {
-    // Add styles for video wrappers to ensure they are responsive.
-    iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9; // Default to a 16:9 aspect ratio.
-      border: 0;
-    }
-  }
-
-  // Add more contextual styles for other media types as needed.
-  // &.kingly-media--document { ... }
 }

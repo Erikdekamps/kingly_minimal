@@ -11,16 +11,15 @@ props:
       title: Media Entity
       description: 'The full image media entity object.'
       required: true
+    content:
+      type: [string, object]
+      title: Content
+      required: true
+      description: 'The rendered image or picture element.'
     attributes:
       type: object
       title: Attributes
       description: HTML attributes for the wrapper element.
-
-slots:
-  content:
-    title: Content
-    required: true
-    description: 'The rendered image or picture element.'
 
 library:
   css:

@@ -3,16 +3,17 @@
  * @file
  * Component template for an audio media item.
  *
+ * This version now receives the rendered field via a 'content' prop instead
+ * of a slot.
+ *
  * @see kingly_minimal/components/media--audio/media--audio.component.yml
  *
  * @props
  * - media_entity: The full audio media entity object.
- * - attributes: A Drupal attributes object for the wrapper element.
- *
- * @slots
  * - content: The rendered audio player.
+ * - attributes: A Drupal attributes object for the wrapper element.
  */
 #}
 <div{{ attributes.addClass('media--audio') }}>
-  {% block content %}{% endblock %}
+  {{- content -}}
 </div>

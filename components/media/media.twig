@@ -4,8 +4,10 @@
  * Dispatcher component for media entities.
  *
  * This component inspects the media entity's bundle and includes the
- * corresponding sub-component (e.g., 'media--image', 'media--video').
- * It passes its own props and slots down to the child component.
+ * corresponding sub-component using an if/elseif chain.
+ *
+ * This version uses `include` and passes the rendered content down as a prop
+ * to prevent a recursive loop that causes memory exhaustion.
  *
  * @see kingly_minimal/components/media/media.component.yml
  *
@@ -20,33 +22,52 @@
 {% if media_entity %}
   {% set media_type = media_entity.bundle() %}
 
-  {# Map media bundle names to their SDC component names. #}
-  {% set component_map = {
-    'audio': 'kingly_minimal:media--audio',
-    'document': 'kingly_minimal:media--document',
-    'image': 'kingly_minimal:media--image',
-    'remote_video': 'kingly_minimal:media--remote-video',
-    'svg_image': 'kingly_minimal:media--svg-image',
-    'video': 'kingly_minimal:media--video',
-  } %}
+  {# Capture the content from the slot into a variable first. #}
+  {% set rendered_content %}
+    {% block content %}{% endblock %}
+  {% endset %}
 
-  {% set component_name = component_map[media_type] %}
-
-  {% if component_name %}
-    {# Embed the specific media component, passing all props and slots. #}
-    {% embed component_name with {
+  {# Use an if/elseif chain to include the correct component. #}
+  {% if media_type == 'audio' %}
+    {{ include('kingly_minimal:media--audio', {
       attributes: attributes,
       media_entity: media_entity,
-    } %}
-      {% block content %}
-        {# This passes the content from the parent template into the child's slot. #}
-        {{ block('content') }}
-      {% endblock %}
-    {% endembed %}
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'document' %}
+    {{ include('kingly_minimal:media--document', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'image' %}
+    {{ include('kingly_minimal:media--image', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'remote_video' %}
+    {{ include('kingly_minimal:media--remote-video', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'svg_image' %}
+    {{ include('kingly_minimal:media--svg-image', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
+  {% elseif media_type == 'video' %}
+    {{ include('kingly_minimal:media--video', {
+      attributes: attributes,
+      media_entity: media_entity,
+      content: rendered_content,
+    }, with_context = false) }}
   {% else %}
     {# Fallback for any unhandled media types. #}
     <div{{ attributes.addClass('media--unhandled') }}>
-      {% block content %}{% endblock %}
+      {{ rendered_content }}
     </div>
   {% endif %}
 {% endif %}

@@ -11,16 +11,15 @@ props:
       title: Media Entity
       description: 'The full local video media entity object.'
       required: true
+    content:
+      type: [string, object]
+      title: Content
+      required: true
+      description: 'The rendered HTML5 video player.'
     attributes:
       type: object
       title: Attributes
       description: HTML attributes for the wrapper element.
-
-slots:
-  content:
-    title: Content
-    required: true
-    description: 'The rendered HTML5 video player.'
 
 library:
   css:

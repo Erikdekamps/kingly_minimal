@@ -3,16 +3,17 @@
  * @file
  * Component template for an SVG image media item.
  *
+ * This version now receives the rendered field via a 'content' prop instead
+ * of a slot.
+ *
  * @see kingly_minimal/components/media--svg-image/media--svg-image.component.yml
  *
  * @props
  * - media_entity: The full SVG image media entity object.
- * - attributes: A Drupal attributes object for the wrapper element.
- *
- * @slots
  * - content: The rendered SVG image element.
+ * - attributes: A Drupal attributes object for the wrapper element.
  */
 #}
 <div{{ attributes.addClass('media--svg-image') }}>
-  {% block content %}{% endblock %}
+  {{- content -}}
 </div>

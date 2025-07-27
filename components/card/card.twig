@@ -30,11 +30,10 @@
   for the link, making its purpose clear without needing a separate aria-label.
 #}
 {% set tag = link.url ? 'a' : 'article' %}
-{% set link_url = url(link.url) %}
 
 <{{ tag }}
   {{ attributes.addClass(classes) }}
-  {% if tag == 'a' %}href="{{ link_url }}"{% endif %}
+    {% if tag == 'a' %}href="{{ link.url }}"{% endif %}
 >
 
 <div class="card__wrapper">

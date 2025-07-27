@@ -1,41 +1,48 @@
 # components/button/button.component.yml
 name: 'Button'
 status: stable
-description: 'Renders a versatile and accessible button element.'
+description: 'Renders a versatile and accessible button element with optional style variations and icons.'
 
 props:
   type: object
   properties:
-    # The text content to be displayed inside the button.
     text:
       type: string
       title: 'Text'
       description: 'The label displayed on the button.'
       default: ''
-    # The URL the button links to. If provided, the component renders as an <a> tag.
-    # If omitted, it renders as a <button> tag.
     url:
       type: string
       title: 'URL'
       description: 'The destination URL. Renders the component as a link.'
       default: ''
-    # The HTML element to use for the button. Defaults to 'button'.
-    # Can be set to 'a' for links styled as buttons.
     element:
       type: string
       title: 'HTML Element'
       description: 'The HTML tag to use for the button (e.g., "button" or "a").'
       default: 'button'
-    # Additional HTML attributes for the button/link element.
+    style:
+      type: string
+      title: Style
+      description: 'The visual style of the button.'
+      default: 'primary'
+      enum:
+        - 'primary'
+        - 'secondary'
+    icon_before:
+      type: string
+      title: 'Icon Before'
+      description: 'The machine name of an icon from the `kingly_minimal:icon` component to display before the text.'
+    icon_after:
+      type: string
+      title: 'Icon After'
+      description: 'The machine name of an icon from the `kingly_minimal:icon` component to display after the text.'
     attributes:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for adding classes, IDs, etc.'
 
-# Defines the assets that this component needs to render correctly.
-# The SDC module will automatically discover and attach these.
 library:
   css:
     component:
-      # Points to the compiled CSS file within this component's directory.
       button.css: {}

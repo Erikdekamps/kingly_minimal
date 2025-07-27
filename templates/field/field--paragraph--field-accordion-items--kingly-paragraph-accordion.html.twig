@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for the 'field_accordion_items' field.
+ *
+ * This template removes all default field wrappers (e.g., .field__items,
+ * .field__item) for the accordion items. This ensures that the accordion-item
+ * components are direct children of the accordion container, which is
+ * required for the "exclusive open" JavaScript to function correctly.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}

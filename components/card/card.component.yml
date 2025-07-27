@@ -1,12 +1,12 @@
-# kingly_minimal/components/card/card.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Card'
 status: stable
-description: 'A versatile component for displaying content in a card-like format, often used for summaries or promotions.'
+description: 'A versatile component for displaying content in a card-like format. Composes other SDCs like image, text, and button.'
 
 props:
   type: object
   properties:
-    # Image props, to be passed to the image component.
+    # Props to be passed directly to the `kingly_minimal:image` component.
     image:
       type: object
       title: 'Image'
@@ -15,18 +15,18 @@ props:
     title:
       type: string
       title: 'Title'
-      description: 'The heading for the card.'
-    # An optional URL for the title.
+      description: 'The main heading for the card.'
+    # An optional URL to make the title a link.
     url:
       type: string
       title: 'URL'
       description: 'An optional URL to make the title a link.'
-    # Body content, to be passed to the text component.
+    # Body content, passed to the text component to handle rich text.
     body:
-      type: [string, object]
+      type: [string, object] # Can be a string or render array
       title: 'Body'
-      description: 'The main text content for the card. Can be a string or render array.'
-    # Button props, to be passed to the button component.
+      description: 'The main content for the card, passed to the `text` component for consistent prose styling.'
+    # Props to be passed directly to the `kingly_minimal:button` component.
     button:
       type: object
       title: 'Button'
@@ -38,6 +38,7 @@ props:
       description: 'A Drupal attributes object for the root element.'
 
 # Define the component's CSS assets.
+# Vite will compile card.scss into this card.css file.
 library:
   css:
     component:

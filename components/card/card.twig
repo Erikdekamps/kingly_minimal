@@ -3,25 +3,26 @@
  * @file
  * Component template for a card.
  *
- * This component assembles other SDCs to create a versatile card. It uses the
- * image, text, and button components to render its content.
+ * This component now acts as a "composer", assembling other SDCs (image, text,
+ * button) based on the props it receives. This data-driven approach results
+* in cleaner, more predictable markup.
  *
  * @see kingly_minimal/components/card/card.component.yml
  *
  * @props
- * - image: An object of props for the `kingly_minimal:image` component.
- * - title: The heading for the card.
+ * - image: (Optional) An object of props for the `kingly_minimal:image` component.
+ * - title: (Optional) The heading for the card.
  * - url: (Optional) A URL to make the title a link.
- * - body: The main text content for the card.
- * - button: An object of props for the `kingly_minimal:button` component.
+ * - body: (Optional) The main text content for the card.
+ * - button: (Optional) An object of props for the `kingly_minimal:button` component.
  * - attributes: A Drupal attributes object for the root element.
  */
 #}
-<div{{ attributes.addClass('card') }}>
+<article{{ attributes.addClass('card') }}>
 
-  {% if image.src %}
+  {% if image.src or image.render_array %}
     <div class="card__image">
-      {# Delegate image rendering to the image component. #}
+      {# Delegate image rendering to the image component for consistency. #}
       {{ include('kingly_minimal:image', image, with_context=false) }}
     </div>
   {% endif %}
@@ -40,7 +41,10 @@
     {% if body %}
       <div class="card__body">
         {# Delegate body rendering to the text component for consistent prose styling. #}
-        {{ include('kingly_minimal:text', { content: body }, with_context=false) }}
+        {{ include('kingly_minimal:text', {
+          content: body,
+          attributes: create_attribute().addClass('card__body-text')
+        }, with_context=false) }}
       </div>
     {% endif %}
   </div>
@@ -52,4 +56,4 @@
     </div>
   {% endif %}
 
-</div>
+</article>

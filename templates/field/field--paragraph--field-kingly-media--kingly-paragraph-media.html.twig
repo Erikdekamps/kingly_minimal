@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for the 'field_kingly_media' field within a 'kingly_paragraph_media' paragraph.
+ *
+ * This template strips all default field wrappers (e.g., .field, .field__item)
+ * and renders only the raw content of the field's items. This provides the
+ * cleanest possible output for the 'media' component to consume.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}

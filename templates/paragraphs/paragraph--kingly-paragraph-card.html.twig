@@ -14,6 +14,8 @@
  * @see kingly_minimal/components/card/card.twig
  */
 #}
+{% set link_item = paragraph.field_card_link|first %}
+
 {%
   set card_props = {
   'variant': paragraph.field_card_variant.value,
@@ -24,8 +26,8 @@
   'title': paragraph.field_card_title.value,
   'body': content.field_card_body,
   'link': {
-    'text': paragraph.field_card_link|first ? paragraph.field_card_link.first.title : '',
-    'url': paragraph.field_card_link|first ? paragraph.field_card_link.first.uri|render|image_url,
+    'text': link_item ? link_item.title : '',
+    'url': link_item ? link_item.url,
   },
 }
 %}

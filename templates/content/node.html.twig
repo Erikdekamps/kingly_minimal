@@ -3,10 +3,12 @@
  * @file
  * Theme override to display a node.
  *
- * This template now acts as a "dispatcher" based on the view mode.
+ * This template acts as a "dispatcher" based on the view mode.
  * - If the view mode is 'teaser', it includes the 'node-teaser' SDC.
- * - For all other view modes (e.g., 'full'), it renders the full node markup,
- *   now using the `Image` and `Text` components for consistency.
+ * - For all other view modes (e.g., 'full'), it renders the full node markup.
+ *
+ * It no longer wraps the entire content in a `text` component, instead
+ * rendering the content directly to allow paragraph components to render correctly.
  *
  * @see template_preprocess_node()
  * @see kingly_minimal/components/node-teaser/node-teaser.twig
@@ -57,7 +59,6 @@
 
     {% if display_submitted %}
       <footer class="node__meta">
-        {# Use the Image component for the author's picture. #}
         {{ include('kingly_minimal:image', {
           render_array: author_picture,
           attributes: { class: ['user-picture'] }
@@ -70,10 +71,12 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('node__content') }}>
-      {# Use the Text component to render the main content body. #}
-      {{ include('kingly_minimal:text', {
-        content: content
-      }, with_context=false) }}
+      {#
+      CORRECTION: Render the content directly.
+      This allows Drupal to render the paragraph fields, which in turn will
+      call our paragraph--*.html.twig bridge templates.
+      #}
+      {{ content }}
     </div>
 
   </article>

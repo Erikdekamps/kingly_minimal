@@ -1,0 +1,11 @@
+// themes/custom/kingly_minimal/components/accordion/accordion.scss
+
+// -----------------------------------------------------------------------------
+// Accordion Container Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:accordion'] {
+  // Use a grid layout with a gap to ensure consistent spacing between
+  // the accordion-item children.
+  display: grid;
+  gap: var(--spacing-sm);
+}

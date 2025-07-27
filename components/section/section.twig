@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Component template for a section.
+ *
+ * This component provides a simple wrapper for content, primarily for use with
+ * Layout Paragraphs. It ensures that the layout's output is contained within
+ * a consistent element.
+ *
+ * @see kingly_sdc/components/section/section.component.yml
+ *
+ * @props
+ * - attributes: A Drupal attributes object for the wrapper element.
+ *
+ * @slots
+ * - content: The main content of the section.
+ */
+#}
+<div{{ attributes.addClass('kingly-section') }}>
+  {% block content %}{% endblock %}
+</div>

@@ -15,6 +15,5 @@ node_modules/
 # Ignore all compiled assets within any subdirectory of the components folder.
 # This is a critical rule for our SDC workflow.
 components/**/*.css
-components/**/*.js
 components/**/*.css.map
-components/**/*.js.map
+components/**/*.js.gmap

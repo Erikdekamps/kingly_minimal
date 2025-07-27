@@ -1,0 +1,27 @@
+# themes/custom/kingly_minimal/components/accordion/accordion.component.yml
+name: 'Accordion'
+status: stable
+description: 'A container for a set of vertically stacked, collapsible panels (accordion items).'
+
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'HTML attributes for the component''s root wrapper element.'
+
+slots:
+  content:
+    title: 'Content'
+    description: 'The slot where the individual accordion-item components should be placed.'
+
+library:
+  css:
+    component:
+      accordion.css: {}
+  js:
+    accordion.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

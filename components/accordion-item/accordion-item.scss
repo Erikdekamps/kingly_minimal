@@ -1,0 +1,57 @@
+// themes/custom/kingly_minimal/components/accordion-item/accordion-item.scss
+
+// -----------------------------------------------------------------------------
+// Accordion Item Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:accordion-item'] {
+  // The root <details> element.
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-duration-fast) var(--transition-timing-function);
+
+  // The <summary> element that acts as the controller.
+  .accordion-item__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    list-style: none; // Remove the default browser marker.
+
+    // Remove the default outline on WebKit browsers.
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      background-color: var(--color-light-gray);
+    }
+  }
+
+  // The content wrapper div.
+  .accordion-item__content {
+    padding: var(--spacing-md);
+    border-top: var(--border-width-thin) solid var(--color-border);
+  }
+
+  // The custom icon wrapper.
+  .accordion-item__icon {
+    display: inline-flex;
+    transition: transform var(--transition-duration-medium) ease-in-out;
+    // WCAG: Ensure motion is disabled for users who prefer it.
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  // State change when the <details> element is open.
+  &[open] {
+    > .accordion-item__header {
+      .accordion-item__icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

@@ -1,30 +1,33 @@
 {#
 /**
  * @file
- * Theme override for the Card paragraph type.
+ * Theme override for the Kingly Card paragraph type.
  *
  * This template acts as a bridge, mapping the paragraph's raw field values
  * directly to the props of the 'kingly_minimal:card' SDC. This data-driven
  * approach completely bypasses the Drupal field rendering system, resulting
- * in the cleanest possible markup.
+ * in the cleanest possible markup and adhering to our component-first architecture.
+ *
+ * It extracts all necessary data from the paragraph entity and passes it into
+ * the SDC in a structured format.
  *
  * @see kingly_minimal/components/card/card.twig
  */
 #}
 {%
   set card_props = {
+  'variant': paragraph.field_card_variant.value,
   'attributes': attributes.addClass('paragraph--type--card'),
   'image': {
     'render_array': content.field_card_image,
   },
   'title': paragraph.field_card_title.value,
   'body': content.field_card_body,
-  'button': {
-    'text': paragraph.field_card_link[0].title,
-    'url': paragraph.field_card_link[0].url,
+  'link': {
+    'text': paragraph.field_card_link|first ? paragraph.field_card_link.first.title : '',
+    'url': paragraph.field_card_link|first ? paragraph.field_card_link.first.uri|render|image_url,
   },
-  'url': paragraph.field_card_link[0].url,
 }
 %}
 
-{{ include('kingly_minimal:card', card_props, with_context = false) }}
+{{ include('kingly_minimal:card', card_props, with_context=false) }}

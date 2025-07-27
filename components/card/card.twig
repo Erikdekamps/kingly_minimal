@@ -3,57 +3,70 @@
  * @file
  * Component template for a card.
  *
- * This component now acts as a "composer", assembling other SDCs (image, text,
- * button) based on the props it receives. This data-driven approach results
-* in cleaner, more predictable markup.
+ * This component has been refactored to be fully prop-driven. It now supports
+ * layout variants and can render the entire card as a single, accessible link.
  *
  * @see kingly_minimal/components/card/card.component.yml
  *
  * @props
+ * - variant: (String) The layout variant ('vertical' or 'horizontal').
  * - image: (Optional) An object of props for the `kingly_minimal:image` component.
  * - title: (Optional) The heading for the card.
- * - url: (Optional) A URL to make the title a link.
  * - body: (Optional) The main text content for the card.
- * - button: (Optional) An object of props for the `kingly_minimal:button` component.
+ * - link: (Optional) An object with 'url' and 'text'. If present, the card becomes a link.
  * - attributes: A Drupal attributes object for the root element.
  */
 #}
-<article{{ attributes.addClass('card') }}>
+{% set base_class = 'card' %}
+{% set classes = [
+  base_class,
+  variant ? base_class ~ '--' ~ variant,
+] %}
 
-  {% if image.src or image.render_array %}
+{#
+- The root element is an <a> tag if a link is provided, otherwise an <article>.
+- WCAG 2.4.4 Link Purpose (In Context) - AAA: The combination of the image's alt text,
+  the visible title, body text, and CTA text provides a rich, accessible name
+  for the link, making its purpose clear without needing a separate aria-label.
+#}
+{% set tag = link.url ? 'a' : 'article' %}
+{% set link_url = url(link.url) %}
+
+<{{ tag }}
+  {{ attributes.addClass(classes) }}
+  {% if tag == 'a' %}href="{{ link_url }}"{% endif %}
+>
+
+<div class="card__wrapper">
+
+  {% if image.render_array %}
     <div class="card__image">
-      {# Delegate image rendering to the image component for consistency. #}
       {{ include('kingly_minimal:image', image, with_context=false) }}
     </div>
   {% endif %}
 
-  <div class="card__content">
-    {% if title %}
-      <h3 class="card__title">
-        {% if url %}
-          <a href="{{ url }}" class="card__title-link">{{ title }}</a>
-        {% else %}
-          {{ title }}
-        {% endif %}
-      </h3>
-    {% endif %}
+  {# Create a wrapper for the main content and the call-to-action #}
+  <div class="card__main-and-cta">
+    <div class="card__main">
+      {% if title %}
+        <h3 class="card__title">{{ title }}</h3>
+      {% endif %}
 
-    {% if body %}
-      <div class="card__body">
-        {# Delegate body rendering to the text component for consistent prose styling. #}
-        {{ include('kingly_minimal:text', {
-          content: body,
-          attributes: create_attribute().addClass('card__body-text')
-        }, with_context=false) }}
+      {% if body %}
+        <div class="card__body">
+          {{ include('kingly_minimal:text', {
+            content: body,
+          }, with_context=false) }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if link.text %}
+      <div class="card__cta">
+        {{- link.text -}}
       </div>
     {% endif %}
   </div>
 
-  {% if button.text %}
-    <div class="card__actions">
-      {# Delegate button rendering to the button component. #}
-      {{ include('kingly_minimal:button', button, with_context=false) }}
-    </div>
-  {% endif %}
-
-</article>
+</div>
+</{{ tag }}>

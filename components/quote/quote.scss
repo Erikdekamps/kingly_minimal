@@ -1,0 +1,41 @@
+// kingly_minimal/components/quote/quote.scss
+
+// -----------------------------------------------------------------------------
+// Quote Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the component for encapsulation.
+[data-component-id='kingly_minimal:quote'] {
+  // The root element is the <blockquote>
+  display: block; // Ensure block-level behavior.
+  margin: 0; // Reset any user-agent margins.
+  padding-left: var(--spacing-lg);
+  border-left: var(--border-width-thick) solid var(--color-primary);
+
+  // The main text of the quote.
+  .quote__text {
+    font-size: var(--font-size-h4);
+    font-style: italic;
+    line-height: var(--line-height-heading);
+    color: var(--color-text);
+
+    // Remove margins from the <p> tag that comes from the rich text field.
+    p {
+      margin: 0;
+    }
+  }
+
+  // The attribution/source of the quote.
+  .quote__attribution {
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-style: normal; // Contrast with the italic quote.
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+
+    // Add a decorative em dash before the attribution text.
+    &::before {
+      content: '— ';
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Component template for a blockquote.
+ *
+ * This component renders the quote text and an optional attribution within a
+ * semantic <blockquote> element.
+ *
+ * @see kingly_minimal/components/quote/quote.component.yml
+ *
+ * @props
+ * - quote_text: The main content of the quote.
+ * - attribution: (Optional) The source of the quote.
+ * - attributes: A Drupal attributes object for the root element.
+ */
+#}
+<blockquote{{ attributes.addClass('quote') }}>
+  <div class="quote__text">
+    {{- quote_text -}}
+  </div>
+  {% if attribution %}
+    <footer class="quote__attribution">
+      {{- attribution -}}
+    </footer>
+  {% endif %}
+</blockquote>

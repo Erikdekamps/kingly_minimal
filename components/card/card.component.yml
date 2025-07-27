@@ -6,39 +6,45 @@ description: 'A versatile component for displaying content in a card-like format
 props:
   type: object
   properties:
-    # Props to be passed directly to the `kingly_minimal:image` component.
+    variant:
+      type: string
+      title: Variant
+      description: Controls the layout of the card.
+      default: 'vertical'
+      enum:
+        - 'vertical'
+        - 'horizontal'
     image:
       type: object
       title: 'Image'
       description: 'An object of props for the `kingly_minimal:image` component (e.g., src, alt).'
-    # The main title of the card.
     title:
       type: string
       title: 'Title'
       description: 'The main heading for the card.'
-    # An optional URL to make the title a link.
-    url:
-      type: string
-      title: 'URL'
-      description: 'An optional URL to make the title a link.'
-    # Body content, passed to the text component to handle rich text.
     body:
       type: [string, object] # Can be a string or render array
       title: 'Body'
       description: 'The main content for the card, passed to the `text` component for consistent prose styling.'
-    # Props to be passed directly to the `kingly_minimal:button` component.
-    button:
+    link:
       type: object
-      title: 'Button'
-      description: 'An object of props for the `kingly_minimal:button` component (e.g., text, url).'
-    # HTML attributes for the wrapper element.
+      title: Link
+      description: An object containing the link URL and text. If provided, the entire card becomes a clickable link.
+      properties:
+        url:
+          type: string
+          title: URL
+        text:
+          type: string
+          title: Text
     attributes:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root element.'
 
-# Define the component's CSS assets.
-# Vite will compile card.scss into this card.css file.
+# This component is fully prop-driven, so it does not define slots.
+slots: {}
+
 library:
   css:
     component:

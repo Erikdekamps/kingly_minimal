@@ -1,64 +1,107 @@
-// components/card/card.scss
+// kingly_minimal/components/card/card.scss
+
+@use '../../scss/base/mixins' as *;
 
 // -----------------------------------------------------------------------------
 // Card Component Styles
 // -----------------------------------------------------------------------------
-
-// Scope all styles to the card component using its data-component-id.
 [data-component-id='kingly_minimal:card'] {
-  // Use grid to structure the card's sections (image, content, actions).
-  display: grid;
-  grid-template-rows: auto 1fr auto; // Image, flexible content, actions.
+  // --- Base Card Styles ---
+  // The root element is a link, so we style it as a block container.
+  display: block;
+  text-decoration: none; // Remove the default link underline from the card.
+  color: inherit; // Inherit text color, don't use the default link color.
+  background-color: var(--color-background);
   border: var(--border-width-thin) solid var(--color-border);
   border-radius: var(--border-radius);
-  background-color: var(--color-background);
   box-shadow: var(--box-shadow);
-  overflow: hidden; // Ensures the image's corners are clipped by the border-radius.
-  height: 100%; // Make the card fill the height of its grid container.
+  overflow: hidden;
+  height: 100%; // Fill the height of its parent grid container.
+  transition: transform var(--transition-duration-medium) var(--transition-timing-function),
+  box-shadow var(--transition-duration-medium) var(--transition-timing-function);
 
-  // The main content area of the card.
-  .card__content {
+  // WCAG 2.4.7/2.4.13 (AAA): Add a prominent focus state and a subtle hover state.
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  // --- Layout Variants ---
+  // The inner wrapper controls the layout.
+  .card__wrapper {
+    display: grid;
+    height: 100%;
+  }
+
+  // --- Vertical Variant (Default) ---
+  &.card--vertical .card__wrapper {
+    grid-template-rows: auto 1fr auto; // Image | Main Content | CTA
+  }
+
+  // --- Horizontal Variant ---
+  // On mobile, the horizontal variant stacks just like the vertical one.
+  &.card--horizontal .card__wrapper {
+    grid-template-rows: auto 1fr auto;
+  }
+
+  // On medium screens and up, the horizontal variant switches to a 2-column layout.
+  @include media-query(md) {
+    &.card--horizontal .card__wrapper {
+      grid-template-rows: 1fr; // Reset rows to a single track.
+      grid-template-columns: 1fr 1.5fr; // Image | Main Content
+
+      .card__image {
+        grid-row: 1; // Ensure the image stays in the single row.
+        height: 100%;
+
+        // Make the image fill the height of the card.
+        img, picture {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .card__main {
+        display: grid; // Create a new grid for content and CTA.
+        grid-template-rows: 1fr auto; // Flexible content, fixed CTA at the bottom.
+        padding: var(--spacing-md);
+      }
+    }
+  }
+
+  // --- Card Sections ---
+  .card__main {
     padding: var(--spacing-md);
     display: grid;
     gap: var(--spacing-sm);
-    // Ensure this area starts at the top of its grid cell.
-    align-content: start;
+    align-content: start; // Align content to the top.
   }
 
-  // The card's title.
   .card__title {
     font-family: var(--font-family-heading);
     font-size: var(--font-size-h4);
     line-height: var(--line-height-heading);
     font-weight: var(--font-weight-bold);
     margin: 0;
-
-    .card__title-link {
-      color: inherit;
-      text-decoration: none;
-      // Add a focus state for the linked title.
-      &:focus-visible {
-        outline: var(--focus-ring-width) solid var(--focus-ring-color);
-        outline-offset: var(--focus-ring-offset);
-        border-radius: var(--border-radius);
-      }
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 
-  // The main body text wrapper.
-  .card__body-text {
-    // We remove the default margin from the `text` component's wrapper
-    // because the card's grid gap is already handling the spacing.
-    margin: 0;
-  }
-
-  // The actions/footer area of the card.
-  .card__actions {
+  // The call-to-action text at the bottom.
+  .card__cta {
     padding: var(--spacing-md);
-    margin-top: auto; // Push the actions to the bottom of the card.
-    padding-top: 0; // The content area above provides the padding.
+    margin-top: auto; // Push the CTA to the bottom in vertical layouts.
+    padding-top: 0;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: underline; // Explicitly underline the CTA text for clarity.
+  }
+
+  // When the whole card is hovered, give the CTA an extra visual cue.
+  &:hover .card__cta {
+    color: var(--color-primary-hover);
   }
 }

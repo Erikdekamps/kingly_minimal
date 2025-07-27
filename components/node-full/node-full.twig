@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Component template for the full view of a node.
+ *
+ * This component's markup is a direct migration from the 'full' view mode
+ * logic in the original node.html.twig template.
+ *
+ * @see kingly_minimal/components/node-full/node-full.component.yml
+ */
+#}
+<article{{ attributes }}>
+
+  {# The node title is typically hidden in the 'full' view mode because the
+     page_title_block will render it instead. We keep the logic here for other
+     potential view modes that might use this component. #}
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes.addClass('node__title') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer class="node__meta">
+      {# Delegate rendering of the author's picture to our Image component. #}
+      {{ include('kingly_minimal:image', {
+        render_array: author_picture,
+        attributes: { class: ['user-picture'] }
+      }, with_context=false) }}
+
+      <div class="node__submitted">
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {#
+    The 'content' prop contains all the rendered fields of the node,
+    such as the paragraph field.
+    #}
+    {{ content }}
+  </div>
+
+</article>

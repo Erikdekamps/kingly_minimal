@@ -1,0 +1,38 @@
+// components/node-full/node-full.scss
+
+// -----------------------------------------------------------------------------
+// Node Full View Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all styles to the node-full component.
+[data-component-id='kingly_minimal:node-full'] {
+  // --- Metadata (Submitted by...) ---
+  .node__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg); // Add space between meta and content.
+  }
+
+  .node__submitted {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+  }
+
+  // Style for the author's picture, if displayed.
+  .user-picture {
+    border-radius: var(--border-radius-circle);
+    overflow: hidden;
+  }
+
+  // --- Main Content ---
+  // The .node__content wrapper receives styles for its children.
+  .node__content {
+    // This is a good place to ensure there is vertical rhythm between
+    // top-level fields/paragraphs if needed, though often the components
+    // themselves will handle their own spacing.
+    > *:not(:last-child) {
+      margin-bottom: var(--spacing-lg);
+    }
+  }
+}

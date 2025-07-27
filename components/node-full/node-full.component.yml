@@ -1,0 +1,63 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Node Full'
+status: stable
+description: 'Renders the full content of a node, including title, metadata, and all fields.'
+
+props:
+  type: object
+  properties:
+    label:
+      type: [string, object]
+      title: 'Label'
+      description: 'The title of the node.'
+    page:
+      type: boolean
+      title: 'Is Page'
+      description: 'A flag indicating if the node is the main content of the page. Used to conditionally display the title.'
+    url:
+      type: string
+      title: 'URL'
+      description: 'The canonical URL of the node, for linking the title.'
+    display_submitted:
+      type: boolean
+      title: 'Display Submitted Info'
+      description: 'A flag to control the visibility of the author and date metadata.'
+    author_picture:
+      type: object # Render array
+      title: "Author's Picture"
+      description: "The author's profile picture, passed to the image component."
+    author_name:
+      type: string
+      title: 'Author Name'
+      description: "The name of the node's author."
+    date:
+      type: string
+      title: 'Date'
+      description: 'The formatted creation or update date of the node.'
+    metadata:
+      type: object # Render array
+      title: 'Metadata'
+      description: 'Additional metadata render array from Drupal.'
+    content:
+      type: object # Render array
+      title: 'Content'
+      description: 'The main rendered content of the node (fields, paragraphs, etc.).'
+    content_attributes:
+      type: object
+      title: 'Content Attributes'
+      description: 'A Drupal attributes object for the content wrapper.'
+    title_prefix:
+      type: object
+      title: 'Title Prefix'
+    title_suffix:
+      type: object
+      title: 'Title Suffix'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root <article> element.'
+
+library:
+  css:
+    component:
+      node-full.css: {}

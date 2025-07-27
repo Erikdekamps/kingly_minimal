@@ -4,8 +4,7 @@
  * Component template for a button.
  *
  * This component renders a button or a link styled as a button. It dynamically
- * chooses the correct HTML tag based on the provided props, ensuring semantic
-* and accessible output.
+ * chooses the correct HTML tag and can now include leading and trailing icons.
  *
  * @see kingly_minimal/components/button/button.component.yml
  *
@@ -13,16 +12,40 @@
  * - text: The label for the button.
  * - url: (Optional) The URL for the link. If present, an <a> tag is rendered.
  * - element: (Optional) The HTML tag to use, defaults to 'button' if no URL.
+ * - style: (Optional) The style variant ('primary', 'secondary').
+ * - icon_before: (Optional) Machine name of an icon to render before the text.
+ * - icon_after: (Optional) Machine name of an icon to render after the text.
  * - attributes: A Drupal attributes object for adding custom classes, etc.
  */
 #}
 {% set tag = url ? 'a' : element|default('button') %}
+{% set base_class = 'button' %}
+{% set classes = [
+  base_class,
+  style ? base_class ~ '--' ~ style,
+] %}
 
 <{{ tag }}
   {% if tag == 'a' and url %}
     href="{{ url }}"
   {% endif %}
-  {{ attributes }}
+  {{ attributes.addClass(classes) }}
 >
-{{- text -}}
+{% if icon_before %}
+  {{ include('kingly_minimal:icon', {
+    name: icon_before,
+    attributes: create_attribute().addClass(base_class ~ '__icon', base_class ~ '__icon--before'),
+  }, with_context=false) }}
+{% endif %}
+
+  {% if text %}
+    <span class="{{ base_class }}__text">{{ text }}</span>
+  {% endif %}
+
+  {% if icon_after %}
+    {{ include('kingly_minimal:icon', {
+      name: icon_after,
+      attributes: create_attribute().addClass(base_class ~ '__icon', base_class ~ '__icon--after'),
+    }, with_context=false) }}
+  {% endif %}
 </{{ tag }}>

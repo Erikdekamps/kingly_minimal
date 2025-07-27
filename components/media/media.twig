@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Component template for a media item.
+ *
+ * This component acts as a smart wrapper. It inspects the passed media_entity
+ * to add a contextual BEM class (e.g., 'kingly-media--image') to the wrapper,
+ * making it easier to apply specific styles for different media types.
+ *
+ * @see kingly_minimal/components/media/media.component.yml
+ *
+ * @props
+ * - media_entity: The full media entity object.
+ * - attributes: A Drupal attributes object for the wrapper element.
+ *
+ * @slots
+ * - content: The rendered media entity.
+ */
+#}
+{% set base_class = 'kingly-media' %}
+
+{#
+- Get the media type (bundle) from the entity.
+- Add a BEM modifier class based on the type.
+#}
+{% set classes = [
+  base_class,
+  media_entity ? base_class ~ '--' ~ media_entity.bundle()|clean_class,
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+  {% block content %}{% endblock %}
+</div>

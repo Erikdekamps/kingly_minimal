@@ -1,0 +1,27 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Media
+status: stable
+description: 'A smart wrapper for a media entity. It adds a contextual class based on the media type (e.g., image, video).'
+
+props:
+  type: object
+  properties:
+    media_entity:
+      type: object
+      title: Media Entity
+      description: 'The full media entity object. Used to determine the media type for contextual styling.'
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the wrapper element.
+
+slots:
+  content:
+    title: Content
+    required: true
+    description: The rendered media entity (e.g., an <img> or <iframe>).
+
+library:
+  css:
+    component:
+      media.css: {}

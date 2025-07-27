@@ -1,4 +1,3 @@
-{# file: themes/contrib/kingly_minimal/templates/paragraphs/paragraph--kingly-paragraph-card.html.twig #}
 {#
 /**
  * @file
@@ -28,7 +27,7 @@
   'body': content.field_card_body,
   'link': {
     'text': link_item ? link_item.title : '',
-    'url': link_item ? url(link_item.uri),
+    'url': link_item ? url(link_item.url),
   },
 }
 %}

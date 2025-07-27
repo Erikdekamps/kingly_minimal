@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override for the Media paragraph type.
+ *
+ * This template acts as a bridge, mapping the paragraph's media field into the
+ * 'content' slot of the 'kingly_sdc:media' Single Directory Component.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity.
+ * - content: All paragraph items. Preprocessed.
+ * - attributes: HTML attributes for the wrapper.
+ * - All DDC variables are available.
+ */
+#}
+{% embed 'kingly_sdc:media' with {
+  attributes: attributes,
+} %}
+
+  {% block content %}
+    {{ content.field_kingly_media }}
+  {% endblock %}
+
+{% endembed %}

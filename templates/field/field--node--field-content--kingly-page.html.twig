@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for the 'field_content' field on the 'kingly_page' node type.
+ *
+ * This template strips all default field wrappers (e.g., .field, .field__items)
+ * and renders only the raw content of the field's items, which are the
+ * paragraphs themselves. This makes the paragraphs direct children of the
+ * main content container for the cleanest possible markup.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}

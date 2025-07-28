@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Component template for a testimonial card.
+ *
+ * @see kingly_minimal/components/testimonial/testimonial.component.yml
+ *
+ * @props
+ * - image: The rendered author image.
+ * - rating: The numerical rating (e.g., 4.5).
+ * - quote: The testimonial text.
+ * - name: The author's name.
+ * - job_title: The author's job title/company.
+ * - date: The formatted date of the testimonial.
+ * - attributes: A Drupal attributes object for the root element.
+ */
+#}
+<article{{ attributes.addClass('testimonial-card') }}>
+  {% if image %}
+    <div class="testimonial-card__image">
+      {{ image }}
+    </div>
+  {% endif %}
+
+  <div class="testimonial-card__content">
+    {% if rating %}
+      <div class="testimonial-card__rating" role="img" aria-label="{{ '%s out of 5 stars'|format(rating) }}" style="--rating: {{ rating }};">
+      </div>
+    {% endif %}
+
+    {% if quote %}
+      <blockquote class="testimonial-card__quote">
+        {{ quote }}
+      </blockquote>
+    {% endif %}
+
+    <footer class="testimonial-card__footer">
+      <div class="testimonial-card__author-name">{{ name }}</div>
+      {% if job_title %}
+        <div class="testimonial-card__author-title">{{ job_title }}</div>
+      {% endif %}
+      {% if date %}
+        <time class="testimonial-card__date">{{ date }}</time>
+      {% endif %}
+    </footer>
+  </div>
+</article>

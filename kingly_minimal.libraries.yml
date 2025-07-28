@@ -1,5 +1,4 @@
-# kingly_minimal.libraries.yml
-
+# file: themes/custom/kingly_minimal/kingly_minimal.libraries.yml
 # Defines the primary global styles for the theme.
 # This library includes the foundational CSS (variables, resets), main page
 # layout, and generic content styles that apply globally.
@@ -17,6 +16,23 @@ global-styles:
   dependencies:
     - core/drupal
     - core/once
+
+# Defines third-party libraries used by components.
+splide:
+  version: 4.1.4
+  remote: https://splidejs.com/
+  license:
+    name: MIT
+    url: https://github.com/Splidejs/splide/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    # Download from https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+    dist/vendor/splide/splide.min.js: { minified: true }
+  css:
+    theme:
+      # Download from https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css
+      # This is the minimal core style, allowing our component to provide the theme.
+      dist/vendor/splide/splide-core.min.css: { minified: true }
 
 # Note: All other components like buttons, breadcrumbs, menus, etc., are now
 # Single Directory Components. The SDC module automatically discovers and

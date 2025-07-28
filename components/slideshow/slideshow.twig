@@ -1,0 +1,64 @@
+{#
+/**
+ * @file
+ * Component template for the slideshow.
+ *
+ * This template provides the HTML structure required by Splide.js. It includes
+ * the main container, an optional title with navigation buttons, and the track
+ * for the slides.
+ *
+ * The `data-` attributes are used to pass configuration from the props to the
+ * component's JavaScript behavior.
+ *
+ * @see kingly_minimal/components/slideshow/slideshow.component.yml
+ *
+ * @props
+ * - uuid: A unique ID for this slideshow instance.
+ * - title: The main heading for the slideshow.
+ * - columns_mobile: The number of slides to show per page on mobile.
+ * - columns_tablet: The number of slides to show per page on tablet.
+ * - columns_desktop: The number of slides to show per page on desktop.
+ * - attributes: A Drupal attributes object for the root wrapper element.
+ *
+ * @slots
+ * - content: The slot for the <li> slide items.
+ */
+#}
+<div{{ attributes.addClass('slideshow') }}>
+  {% if title %}
+    <div class="slideshow__header">
+      <h2 class="slideshow__title">{{ title }}</h2>
+      {# The navigation elements are part of the header. #}
+      {# The classes are required by Splide for its controls. #}
+      <div class="slideshow__navigation splide__arrows">
+        <button class="splide__arrow splide__arrow--prev" type="button" aria-label="{{ 'Previous slide'|t }}">
+          {{ include('kingly_minimal:icon', { name: 'chevron-left' }, with_context = false) }}
+        </button>
+        <button class="splide__arrow splide__arrow--next" type="button" aria-label="{{ 'Next slide'|t }}">
+          {{ include('kingly_minimal:icon', { name: 'chevron-right' }, with_context = false) }}
+        </button>
+      </div>
+    </div>
+  {% endif %}
+
+  {#
+  This is the main Splide container. We attach a unique ID for the JS to
+  target and data attributes to hold our responsive settings.
+  #}
+  <div
+    class="splide"
+    id="splide-{{ uuid }}"
+    role="region"
+    aria-label="{{ title|default('Slideshow')|t }}"
+    data-columns-mobile="{{ columns_mobile }}"
+    data-columns-tablet="{{ columns_tablet }}"
+    data-columns-desktop="{{ columns_desktop }}"
+  >
+    <div class="splide__track">
+      <ul class="splide__list">
+        {# The individual slide <li> elements will be rendered here. #}
+        {% block content %}{% endblock %}
+      </ul>
+    </div>
+  </div>
+</div>

@@ -6,18 +6,26 @@
  * This template produces the markup for a single <li> item that the
  * timeline SDC expects in its content slot. It pulls data directly from
  * the paragraph entity for the cleanest possible data-driven output.
+ *
+ * This version is structured to support a two-sided vertical timeline layout.
  */
 #}
 {% set base_class = 'timeline-item' %}
 {% set link_item = paragraph.field_timeline_item_link|first %}
 
 <li{{ attributes.addClass(base_class) }}>
-  <div class="{{ base_class }}__dot"></div>
 
+  {# The date is placed first for the left column. #}
   <div class="{{ base_class }}__date">
     {{ paragraph.field_timeline_item_date.value }}
   </div>
 
+  {# This wrapper is the central column for the dot and the connecting line. #}
+  <div class="{{ base_class }}__connector">
+    <div class="{{ base_class }}__dot"></div>
+  </div>
+
+  {# The main content is placed last for the right column. #}
   <div class="{{ base_class }}__content">
     {% if link_item.url %}
       <a href="{{ link_item.url }}" class="{{ base_class }}__title-link">
@@ -29,6 +37,7 @@
 
     {% if content.field_timeline_item_desc %}
       <div class="{{ base_class }}__description">
+        {# We render the content variable here to process the rich text field. #}
         {{ content.field_timeline_item_desc }}
       </div>
     {% endif %}

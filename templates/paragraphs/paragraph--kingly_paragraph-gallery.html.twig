@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Theme override for the Gallery paragraph type.
+ *
+ * This template acts as a bridge, wrapping the rendered gallery items
+ * (from content.field_gallery_items) in the 'kingly_minimal:gallery' SDC.
+ * It also iterates over the items to wrap each one in a list item tag,
+ * ensuring valid and accessible markup.
+ *
+ * @see kingly_minimal/components/gallery/gallery.twig
+ */
+#}
+{% embed 'kingly_minimal:gallery' with {
+  attributes: attributes,
+  layout: paragraph.field_gallery_layout.value,
+} %}
+
+  {% block content %}
+    {#
+    Loop through the rendered field items from content.field_gallery_items.
+    Each item is a fully rendered media entity. We wrap each one in an <li>
+    to create a valid list structure for our gallery.
+    #}
+    {% for key, item in content.field_gallery_items %}
+      {% if key|first != '#' %}
+        <li class="gallery__item">
+          {{ item }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  {% endblock %}
+
+{% endembed %}

@@ -3,9 +3,9 @@
  * @file
  * Component template for the slideshow.
  *
- * This template provides the HTML structure required by Splide.js. It includes
- * the main container, an optional title with navigation buttons, and the track
- * for the slides.
+ * This template provides the HTML structure required by Splide.js. It has been
+ * refactored to allow Splide to generate its own arrows, which are then
+ * visually repositioned into the header using CSS for a clean layout.
  *
  * The `data-` attributes are used to pass configuration from the props to the
  * component's JavaScript behavior.
@@ -25,25 +25,10 @@
  */
 #}
 <div{{ attributes.addClass('slideshow') }}>
-  {% if title %}
-    <div class="slideshow__header">
-      <h2 class="slideshow__title">{{ title }}</h2>
-      {# The navigation elements are part of the header. #}
-      {# The classes are required by Splide for its controls. #}
-      <div class="slideshow__navigation splide__arrows">
-        <button class="splide__arrow splide__arrow--prev" type="button" aria-label="{{ 'Previous slide'|t }}">
-          {{ include('kingly_minimal:icon', { name: 'chevron-left' }, with_context = false) }}
-        </button>
-        <button class="splide__arrow splide__arrow--next" type="button" aria-label="{{ 'Next slide'|t }}">
-          {{ include('kingly_minimal:icon', { name: 'chevron-right' }, with_context = false) }}
-        </button>
-      </div>
-    </div>
-  {% endif %}
-
   {#
-  This is the main Splide container. We attach a unique ID for the JS to
-  target and data attributes to hold our responsive settings.
+  This is the main Splide container. It now wraps everything.
+  We attach a unique ID for the JS to target and data attributes to hold our
+  responsive settings.
   #}
   <div
     class="splide"
@@ -54,6 +39,14 @@
     data-columns-tablet="{{ columns_tablet }}"
     data-columns-desktop="{{ columns_desktop }}"
   >
+    <div class="slideshow__header">
+      {% if title %}
+        <h2 class="slideshow__title">{{ title }}</h2>
+      {% endif %}
+      {# This empty div is now just a placeholder. Splide's arrows will be
+         appended here by the `mount()` function in our JavaScript. #}
+    </div>
+
     <div class="splide__track">
       <ul class="splide__list">
         {# The individual slide <li> elements will be rendered here. #}

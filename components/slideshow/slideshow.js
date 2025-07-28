@@ -4,7 +4,7 @@
  *
  * This script uses a Drupal behavior to find all slideshow components, read their
  * responsive configuration from data attributes, and initialize a Splide.js
- * instance for each one.
+ * instance for each one. It also moves the generated arrows into the header.
  */
 (function (Drupal, once, Splide) {
   'use strict';
@@ -20,6 +20,11 @@
       const slideshowElements = once('slideshow-init', '.splide', context);
 
       slideshowElements.forEach((slideshow) => {
+        // Find the header element within this specific slideshow component.
+        const header = slideshow.querySelector('.slideshow__header');
+        // Find the Splide-generated arrows container.
+        const arrowsContainer = slideshow.querySelector('.splide__arrows');
+
         // Read the responsive settings from the data attributes.
         const { columnsMobile, columnsTablet, columnsDesktop } = slideshow.dataset;
 
@@ -33,31 +38,31 @@
 
         // Initialize a new Splide instance with our custom configuration.
         const splide = new Splide(slideshow, {
-          // A standard slider that does not loop.
-          type: 'slide',
-          // Explicitly set the slide direction to left-to-right. This is a
-          // safeguard against potential issues and ensures perPage works as expected.
+          type: 'loop',
           direction: 'ltr',
-          // Set the base (mobile) number of slides per page.
           perPage: perPageMobile,
-          // Use the theme's variable for consistent spacing.
           gap: gap,
-          // Disable pagination dots as they were not requested.
           pagination: false,
-          // Ensure arrow navigation is enabled.
           arrows: true,
-          // Define how the slideshow should change at different screen sizes.
-          // These values should correspond to the theme's breakpoints.
+          mediaQuery: 'min',
           breakpoints: {
-            // Tablet breakpoint (from kingly_minimal.breakpoints.yml).
             768: {
               perPage: perPageTablet,
             },
-            // Desktop breakpoint (from kingly_minimal.breakpoints.yml).
             991: {
               perPage: perPageDesktop,
             },
           },
+        });
+
+        // Use the 'mounted' event to move the arrows after Splide has
+        // created them. This is the official, recommended way to modify
+        // the DOM after initialization.
+        splide.on('mounted', function () {
+          if (header && arrowsContainer) {
+            // Append the arrows container to the header.
+            header.appendChild(arrowsContainer);
+          }
         });
 
         // Mount the instance to activate it.

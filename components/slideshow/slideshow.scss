@@ -6,6 +6,9 @@
 
 // Scope all custom styles to the slideshow component's root class.
 .slideshow {
+  // Use a relative position context for the absolutely positioned arrows.
+  position: relative;
+
   // --- Header ---
   &__header {
     display: flex;
@@ -22,29 +25,30 @@
     margin: 0; // Reset any default heading margins.
   }
 
-  &__navigation {
-    // Ensure the arrow buttons are aligned horizontally with a gap.
-    display: flex;
-    gap: var(--spacing-sm);
-  }
-
   // --- Splide.js Theme Overrides ---
   // We target the Splide classes within our component to apply our theme.
   .splide {
+    // This allows the header to be a flex container for the arrows.
+    .splide__arrows {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
     // Override Splide's default arrow styles.
     .splide__arrow {
       // Reset default Splide styles for a clean slate.
       background: transparent;
       opacity: 1;
+      // Position is now static as they will live inside the header flex container.
       position: static;
       transform: none;
+      width: var(--size-target-min);
+      height: var(--size-target-min);
 
       // Apply our theme's button styles.
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: var(--size-target-min);
-      height: var(--size-target-min);
       border-radius: var(--border-radius-circle);
       border: var(--border-width-thin) solid var(--color-border);
       color: var(--color-text);
@@ -70,7 +74,7 @@
         outline-offset: var(--focus-ring-offset);
       }
 
-      // Style for the disabled state (e.g., at the start or end of a non-looping slider).
+      // Style for the disabled state.
       &:disabled {
         opacity: 0.5;
         cursor: not-allowed;

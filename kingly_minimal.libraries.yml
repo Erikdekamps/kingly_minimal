@@ -17,22 +17,12 @@ global-styles:
     - core/drupal
     - core/once
 
-# Defines third-party libraries used by components.
 splide:
-  version: 4.1.4
-  remote: https://splidejs.com/
-  license:
-    name: MIT
-    url: https://github.com/Splidejs/splide/blob/master/LICENSE
-    gpl-compatible: true
-  js:
-    # Download from https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
-    dist/vendor/splide/splide.min.js: { minified: true }
   css:
     theme:
-      # Download from https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css
-      # This is the minimal core style, allowing our component to provide the theme.
-      dist/vendor/splide/splide-core.min.css: { minified: true }
+      node_modules/@splidejs/splide/dist/css/splide.min.css: { }
+  js:
+    node_modules/@splidejs/splide/dist/js/splide.min.js: { }
 
 # Note: All other components like buttons, breadcrumbs, menus, etc., are now
 # Single Directory Components. The SDC module automatically discovers and

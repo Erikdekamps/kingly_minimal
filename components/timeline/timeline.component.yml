@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Timeline'
+status: stable
+description: 'Renders a responsive, accessible timeline with vertical or horizontal orientation.'
+
+props:
+  type: object
+  properties:
+    orientation:
+      type: string
+      title: 'Orientation'
+      description: 'The visual layout of the timeline.'
+      default: 'vertical'
+      enum: ['vertical', 'horizontal']
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root wrapper element.'
+
+slots:
+  content:
+    title: 'Timeline Items'
+    description: 'The slot where the individual timeline item <li> elements should be placed.'
+
+library:
+  css:
+    component:
+      timeline.css: {}

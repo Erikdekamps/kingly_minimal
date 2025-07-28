@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Theme override for the 'field_timeline_items' field.
+ *
+ * This template removes all default field wrappers. This is critical to ensure
+ * the <li> elements from the timeline-item paragraphs are direct children of
+ * the <ol> in the timeline SDC, which is required for correct styling and
+ * semantic markup.
+ */
+#}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}

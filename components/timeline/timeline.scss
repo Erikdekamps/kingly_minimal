@@ -20,126 +20,124 @@
   }
 
   // --- Vertical Layout ---
-  &.timeline--vertical {
-    // Mobile-first: A simple, single-column layout.
+  // The .timeline--vertical class is now added directly by the SDC.
+  // Mobile-first: A simple, single-column layout.
+  .timeline-item {
+    position: relative;
+    padding-left: calc(var(--spacing-lg) + var(--timeline-dot-size));
+    padding-bottom: var(--spacing-lg);
+
+    // The dot for each item on mobile.
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.25rem; // Align with the first line of text.
+      width: var(--timeline-dot-size);
+      height: var(--timeline-dot-size);
+      border-radius: var(--border-radius-circle);
+      background-color: var(--color-background);
+      border: var(--timeline-dot-border-width) solid var(--color-primary);
+      z-index: 1;
+    }
+
+    // The vertical line connecting the dots on mobile.
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: calc(var(--timeline-dot-size) / 2 + var(--timeline-dot-border-width) - (var(--timeline-line-width) / 2));
+      top: calc(var(--timeline-dot-size) + var(--spacing-sm));
+      bottom: calc(-1 * var(--spacing-lg)); // Extend line into the gap.
+      width: var(--timeline-line-width);
+      background-color: var(--timeline-line-color);
+    }
+  }
+
+  // Hide the desktop-only connector element on mobile.
+  .timeline-item__connector {
+    display: none;
+  }
+
+  // On medium screens and up, switch to the two-sided, left-aligned layout.
+  @include media-query(md) {
+    .timeline__list {
+      display: grid;
+      // Asymmetric grid: Left column (date) is 1 part, right (content) is 3 parts.
+      grid-template-columns: 1fr var(--spacing-lg) 3fr;
+    }
+
     .timeline-item {
-      position: relative;
-      padding-left: calc(var(--spacing-lg) + var(--timeline-dot-size));
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1; // Span all 3 columns of the parent grid.
+      gap: var(--spacing-md);
+      padding-left: 0;
       padding-bottom: var(--spacing-lg);
+      // Vertically center all grid items in the row.
+      align-items: center;
 
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0.25rem;
-        width: var(--timeline-dot-size);
-        height: var(--timeline-dot-size);
-        border-radius: var(--border-radius-circle);
-        background-color: var(--color-background);
-        border: var(--timeline-dot-border-width) solid var(--color-primary);
-        z-index: 1;
-      }
-
-      &:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        left: calc(var(--timeline-dot-size) / 2 + var(--timeline-dot-border-width) - (var(--timeline-line-width) / 2));
-        top: calc(var(--timeline-dot-size) + var(--spacing-sm));
-        bottom: calc(-1 * var(--spacing-lg));
-        width: var(--timeline-line-width);
-        background-color: var(--timeline-line-color);
+      // Hide the mobile-only pseudo-elements.
+      &::before, &::after {
+        display: none;
       }
     }
 
     .timeline-item__connector {
-      display: none;
+      display: grid;
+      grid-column: 2;
+      place-items: center;
+      position: relative;
+      z-index: 1;
+      height: 100%; // Ensure the connector fills the row height.
+
+      // The vertical line, now attached to the connector for perfect centering.
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--timeline-line-width);
+        background-color: var(--timeline-line-color);
+        z-index: -1; // Place it behind the dot.
+      }
     }
 
-    // On medium screens and up, switch to the two-sided layout.
-    @include media-query(md) {
-      .timeline__list {
-        position: relative;
-        display: grid;
-        // ** THE FIX: Create an asymmetric grid. **
-        // The left column (date) gets 1 part of the space, while the
-        // right column (content) gets 3 parts.
-        grid-template-columns: 1fr var(--spacing-lg) 3fr;
+    .timeline-item__dot {
+      width: var(--timeline-dot-size);
+      height: var(--timeline-dot-size);
+      border-radius: var(--border-radius-circle);
+      background-color: var(--color-background);
+      border: var(--timeline-dot-border-width) solid var(--color-primary);
+    }
 
-        // The line is now handled by the connector, so this is removed.
-        &::before {
-          display: none;
-        }
-      }
+    .timeline-item__date {
+      grid-column: 1;
+      text-align: right;
+      font-weight: var(--font-weight-semibold);
+    }
 
-      .timeline-item {
-        display: grid;
-        grid-template-columns: subgrid;
-        grid-column: 1 / -1;
-        gap: var(--spacing-md);
-        padding-left: 0;
-        padding-bottom: var(--spacing-lg);
-        align-items: center;
+    .timeline-item__content {
+      grid-column: 3;
+      border: var(--border-width-thin) solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
+      background-color: var(--color-background);
+      position: relative;
 
-        &::before, &::after {
-          display: none;
-        }
-      }
-
-      .timeline-item__connector {
-        display: grid;
-        grid-column: 2;
-        place-items: center;
-        position: relative;
-        z-index: 1;
-        // ** THE FIX: The line is now attached to the connector. **
-        // This ensures it's always perfectly centered in the middle column.
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: var(--timeline-line-width);
-          background-color: var(--timeline-line-color);
-          z-index: -1; // Place it behind the dot
-        }
-      }
-
-      .timeline-item__dot {
-        width: var(--timeline-dot-size);
-        height: var(--timeline-dot-size);
-        border-radius: var(--border-radius-circle);
-        background-color: var(--color-background);
-        border: var(--timeline-dot-border-width) solid var(--color-primary);
-      }
-
-      .timeline-item__date {
-        grid-column: 1;
-        text-align: right;
-        font-weight: var(--font-weight-semibold);
-      }
-
-      .timeline-item__content {
-        grid-column: 3;
-        border: var(--border-width-thin) solid var(--color-border);
-        border-radius: var(--border-radius);
-        padding: var(--spacing-md);
-        background-color: var(--color-background);
-        position: relative;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          left: calc(-1 * var(--timeline-card-arrow-size));
-          width: 0;
-          height: 0;
-          border-top: var(--timeline-card-arrow-size) solid transparent;
-          border-bottom: var(--timeline-card-arrow-size) solid transparent;
-          border-right: var(--timeline-card-arrow-size) solid var(--color-border);
-        }
+      // The triangular arrow pointing to the dot.
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: calc(-1 * var(--timeline-card-arrow-size));
+        width: 0;
+        height: 0;
+        border-top: var(--timeline-card-arrow-size) solid transparent;
+        border-bottom: var(--timeline-card-arrow-size) solid transparent;
+        border-right: var(--timeline-card-arrow-size) solid var(--color-border);
       }
     }
   }
@@ -164,72 +162,6 @@
   .timeline-item__description {
     p:last-child {
       margin-bottom: 0;
-    }
-  }
-
-  // --- Horizontal Layout (Unaffected by the redesign) ---
-  &.timeline--horizontal {
-    padding-bottom: var(--spacing-lg);
-
-    .timeline__list {
-      display: flex;
-      gap: var(--spacing-md);
-      overflow-x: auto;
-      padding-inline: var(--container-padding);
-      padding-bottom: var(--spacing-lg);
-      position: relative;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: calc(var(--timeline-dot-size) / 2 + var(--timeline-dot-border-width) - (var(--timeline-line-width) / 2));
-        height: var(--timeline-line-width);
-        background-color: var(--timeline-line-color);
-        z-index: 0;
-      }
-    }
-
-    .timeline-item {
-      flex: 0 0 80%;
-      min-width: 300px;
-      scroll-snap-align: start;
-      padding-bottom: calc(var(--timeline-dot-size) + var(--spacing-md));
-      position: relative;
-
-      .timeline-item__dot {
-        position: absolute;
-        bottom: calc(var(--timeline-dot-border-width) * -1);
-        left: var(--spacing-md);
-        width: var(--timeline-dot-size);
-        height: var(--timeline-dot-size);
-        border-radius: var(--border-radius-circle);
-        background-color: var(--color-background);
-        border: var(--timeline-dot-border-width) solid var(--color-primary);
-        z-index: 1;
-      }
-
-      .timeline-item__date {
-        display: none;
-      }
-
-      .timeline-item__content {
-        border: var(--border-width-thin) solid var(--color-border);
-        border-radius: var(--border-radius);
-        padding: var(--spacing-md);
-        background-color: var(--color-background);
-        height: 100%;
-      }
-    }
-
-    @include media-query(md) {
-      .timeline-item {
-        flex-basis: 40%;
-      }
     }
   }
 }

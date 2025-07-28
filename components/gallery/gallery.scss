@@ -102,8 +102,6 @@
       grid-template-columns: 2fr 1fr 1fr;
       // Create two rows of equal height.
       grid-template-rows: repeat(2, 1fr);
-      // We set an explicit aspect ratio for the grid container to maintain shape.
-      aspect-ratio: 16 / 9;
 
       > :first-child {
         // The first item spans both rows of the first column.

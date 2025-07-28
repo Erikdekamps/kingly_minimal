@@ -1,0 +1,105 @@
+@use '../../scss/base/mixins' as *;
+
+// -----------------------------------------------------------------------------
+// Testimonial Card Component Styles
+// -----------------------------------------------------------------------------
+
+[data-component-id='kingly_minimal:testimonial'] {
+  display: grid;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--color-background);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  // --- Mobile Layout (Stacked) ---
+  grid-template-columns: 1fr;
+  text-align: center;
+
+  // --- Tablet & Desktop Layout (Side-by-side) ---
+  @include media-query(sm) {
+    grid-template-columns: auto 1fr; // Image takes its own width, content takes the rest
+    text-align: left;
+  }
+
+  .testimonial-card__image {
+    // Center the image on mobile
+    margin-inline: auto;
+
+    // Constrain image size
+    img, picture {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius-circle);
+      object-fit: cover;
+    }
+
+    @include media-query(sm) {
+      margin-inline: 0; // Reset centering
+    }
+  }
+
+  .testimonial-card__content {
+    display: grid;
+    gap: var(--spacing-md);
+    align-content: start;
+  }
+
+  .testimonial-card__rating {
+    // --- Star Rating ---
+    // A modern, clean way to render fractional stars with CSS.
+    --star-size: 1.25rem;
+    --star-color: #d1d5db; // A light gray for empty stars
+    --star-background: #f59e0b; // A gold/yellow for filled stars
+
+    font-size: var(--star-size);
+    font-family: Times; // A font with a good star character
+    line-height: 1;
+
+    // Center on mobile
+    margin-inline: auto;
+    @include media-query(sm) {
+      margin-inline: 0;
+    }
+
+    &::before {
+      content: '★★★★★';
+      letter-spacing: 0.2rem;
+      background: linear-gradient(90deg, var(--star-background) calc(var(--rating) / 5 * 100%), var(--star-color) calc(var(--rating) / 5 * 100%));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .testimonial-card__quote {
+    font-size: var(--font-size-base);
+    font-style: italic;
+    border: 0;
+    padding: 0;
+    margin: 0;
+
+    p {
+      margin: 0; // Reset margin from rich text editor
+    }
+  }
+
+  .testimonial-card__footer {
+    font-size: var(--font-size-sm);
+  }
+
+  .testimonial-card__author-name {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .testimonial-card__author-title {
+    color: color-mix(in srgb, var(--color-text), transparent 30%);
+  }
+
+  .testimonial-card__date {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: 0.8em;
+    color: color-mix(in srgb, var(--color-text), transparent 40%);
+  }
+}

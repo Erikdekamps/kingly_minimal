@@ -20,10 +20,9 @@
       const slideshowElements = once('slideshow-init', '.splide', context);
 
       slideshowElements.forEach((slideshow) => {
-        // Find the header element within this specific slideshow component.
-        const header = slideshow.querySelector('.slideshow__header');
-        // Find the Splide-generated arrows container.
-        const arrowsContainer = slideshow.querySelector('.splide__arrows');
+        // Find the header element by looking at the parent of the .splide element.
+        const parentContainer = slideshow.closest('.slideshow');
+        const header = parentContainer ? parentContainer.querySelector('.slideshow__header') : null;
 
         // Read the responsive settings from the data attributes.
         const { columnsMobile, columnsTablet, columnsDesktop } = slideshow.dataset;
@@ -44,12 +43,21 @@
           gap: gap,
           pagination: false,
           arrows: true,
+          autoplay: false,
+
+          // WCAG: Respect user's motion preferences.
+          reducedMotion: {
+            speed: 0,
+            rewindSpeed: 0,
+            autoplay: 'pause',
+          },
+
           mediaQuery: 'min',
           breakpoints: {
-            768: {
+            768: { // Corresponds to the 'md' breakpoint
               perPage: perPageTablet,
             },
-            991: {
+            991: { // Corresponds to the 'lg' breakpoint
               perPage: perPageDesktop,
             },
           },
@@ -59,6 +67,9 @@
         // created them. This is the official, recommended way to modify
         // the DOM after initialization.
         splide.on('mounted', function () {
+          // MOVED: Query for arrows *inside* the mounted event to ensure they exist.
+          const arrowsContainer = slideshow.querySelector('.splide__arrows');
+
           if (header && arrowsContainer) {
             // Append the arrows container to the header.
             header.appendChild(arrowsContainer);

@@ -3,12 +3,9 @@
  * @file
  * Component template for the slideshow.
  *
- * This template provides the HTML structure required by Splide.js. It has been
- * refactored to allow Splide to generate its own arrows, which are then
- * visually repositioned into the header using CSS for a clean layout.
- *
- * The `data-` attributes are used to pass configuration from the props to the
- * component's JavaScript behavior.
+ * This template provides the HTML structure required by Splide.js. The custom
+ * header is now a sibling to the .splide container for a cleaner DOM structure,
+ * and the JS is responsible for moving the generated arrows into it.
  *
  * @see kingly_minimal/components/slideshow/slideshow.component.yml
  *
@@ -25,10 +22,19 @@
  */
 #}
 <div{{ attributes.addClass('slideshow') }}>
+  <div class="slideshow__header">
+    {% if title %}
+      <h2 class="slideshow__title">{{ title }}</h2>
+    {% endif %}
+    {# This empty area is a placeholder. Splide's generated arrows will be
+       programmatically appended here by our JavaScript. #}
+  </div>
+
   {#
-  This is the main Splide container. It now wraps everything.
-  We attach a unique ID for the JS to target and data attributes to hold our
-  responsive settings.
+  This is the main Splide container. It is now a sibling to the header.
+  - A unique ID allows the JS to target this specific instance.
+  - `role="region"` and `aria-label` make it a distinct landmark for screen readers.
+  - `data-*` attributes hold our responsive settings for the JS to consume.
   #}
   <div
     class="splide"
@@ -39,17 +45,9 @@
     data-columns-tablet="{{ columns_tablet }}"
     data-columns-desktop="{{ columns_desktop }}"
   >
-    <div class="slideshow__header">
-      {% if title %}
-        <h2 class="slideshow__title">{{ title }}</h2>
-      {% endif %}
-      {# This empty div is now just a placeholder. Splide's arrows will be
-         appended here by the `mount()` function in our JavaScript. #}
-    </div>
-
     <div class="splide__track">
       <ul class="splide__list">
-        {# The individual slide <li> elements will be rendered here. #}
+        {# The individual slide <li> elements will be rendered here from the content slot. #}
         {% block content %}{% endblock %}
       </ul>
     </div>

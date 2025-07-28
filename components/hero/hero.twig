@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Component template for a hero section.
+ *
+ * @see kingly_minimal/components/hero/hero.component.yml
+ *
+ * @props
+ * - background_image: The rendered background image element.
+ * - title: The main heading for the hero.
+ * - subtitle: The sub-heading for the hero.
+ * - cta_link: An object with "url" and "text" for the CTA button.
+ * - height: The height variant ('sm', 'md', 'lg', 'xl').
+ * - attributes: A Drupal attributes object for the root wrapper element.
+ */
+#}
+{% set base_class = 'hero' %}
+{% set classes = [
+  base_class,
+  height ? base_class ~ '--height-' ~ height,
+] %}
+
+<section{{ attributes.addClass(classes) }}>
+  <div class="{{ base_class }}__background">
+    {{ background_image }}
+  </div>
+  <div class="{{ base_class }}__overlay"></div>
+  <div class="{{ base_class }}__content">
+    <div class="{{ base_class }}__text-wrapper">
+      {% if title %}
+        <h2 class="{{ base_class }}__title">{{ title }}</h2>
+      {% endif %}
+      {% if subtitle %}
+        <p class="{{ base_class }}__subtitle">{{ subtitle }}</p>
+      {% endif %}
+    </div>
+    {% if cta_link.url and cta_link.text %}
+      <div class="{{ base_class }}__cta">
+        {{ include('kingly_minimal:button', {
+          url: cta_link.url,
+          text: cta_link.text,
+          style: 'primary',
+        }, with_context = false) }}
+      </div>
+    {% endif %}
+  </div>
+</section>

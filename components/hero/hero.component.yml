@@ -1,0 +1,46 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Hero'
+status: stable
+description: 'Renders a full-width hero section with a background image, centered text, and a call-to-action.'
+
+props:
+  type: object
+  properties:
+    background_image:
+      type: object
+      title: 'Background Image'
+      description: 'The rendered background image element (typically a <picture> tag).'
+      required: true
+    title:
+      type: string
+      title: 'Title'
+      description: 'The main heading for the hero.'
+      required: true
+    subtitle:
+      type: string
+      title: 'Subtitle'
+      description: 'The sub-heading for the hero.'
+    cta_link:
+      type: object
+      title: 'Call to Action'
+      description: 'An object with "url" and "text" for the CTA button.'
+      properties:
+        url:
+          type: string
+        text:
+          type: string
+    height:
+      type: string
+      title: 'Height'
+      description: 'The height variant of the hero section.'
+      default: 'md'
+      enum: ['sm', 'md', 'lg', 'xl']
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the root wrapper element.'
+
+library:
+  css:
+    component:
+      hero.css: {}

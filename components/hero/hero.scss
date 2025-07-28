@@ -1,0 +1,74 @@
+// file: themes/custom/kingly_minimal/components/hero/hero.scss
+
+[data-component-id='kingly_minimal:hero'] {
+  --hero-height-sm: 40vh;
+  --hero-height-md: 50vh;
+  --hero-height-lg: 65vh;
+  --hero-height-xl: 80vh;
+
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #ffffff; // High-contrast text color on overlay.
+  text-align: center;
+  padding: var(--spacing-lg) var(--container-padding);
+  min-height: var(--hero-height-sm);
+
+  // Height variants
+  &.hero--height-sm {
+    min-height: var(--hero-height-sm);
+  }
+  &.hero--height-md {
+    min-height: var(--hero-height-md);
+  }
+  &.hero--height-lg {
+    min-height: var(--hero-height-lg);
+  }
+  &.hero--height-xl {
+    min-height: var(--hero-height-xl);
+  }
+
+  .hero__background {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    // Ensure the image/picture fills the container.
+    img, picture {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  // Dark overlay for text readability (WCAG AAA).
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: rgb(0 0 0 / 0.5);
+  }
+
+  .hero__content {
+    display: grid;
+    gap: var(--spacing-lg);
+    justify-items: center;
+    max-width: 80ch; // Optimal line length for readability.
+  }
+
+  .hero__title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-heading);
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+  }
+
+  .hero__subtitle {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-base);
+    margin: 0;
+  }
+}

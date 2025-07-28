@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override for the Timeline container paragraph.
+ *
+ * This template embeds the 'timeline' SDC, passing the orientation as a prop.
+ * It places the rendered timeline items into the component's content slot.
+ *
+ * @see kingly_minimal/components/timeline/timeline.twig
+ */
+#}
+{% embed 'kingly_minimal:timeline' with {
+  attributes: attributes,
+  orientation: paragraph.field_timeline_orientation.value,
+} %}
+  {% block content %}
+    {#
+    This renders the child paragraphs (the timeline items).
+    A specific field template override ensures no extra wrappers are added.
+    #}
+    {{ content.field_timeline_items }}
+  {% endblock %}
+{% endembed %}

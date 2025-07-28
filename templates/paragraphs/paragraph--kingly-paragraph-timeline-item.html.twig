@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Theme override for the Timeline Item paragraph.
+ *
+ * This template produces the markup for a single <li> item that the
+ * timeline SDC expects in its content slot. It pulls data directly from
+ * the paragraph entity for the cleanest possible data-driven output.
+ */
+#}
+{% set base_class = 'timeline-item' %}
+{% set link_item = paragraph.field_timeline_item_link|first %}
+
+<li{{ attributes.addClass(base_class) }}>
+  <div class="{{ base_class }}__dot"></div>
+
+  <div class="{{ base_class }}__date">
+    {{ paragraph.field_timeline_item_date.value }}
+  </div>
+
+  <div class="{{ base_class }}__content">
+    {% if link_item.url %}
+      <a href="{{ link_item.url }}" class="{{ base_class }}__title-link">
+        <h3 class="{{ base_class }}__title">{{ paragraph.field_timeline_item_title.value }}</h3>
+      </a>
+    {% else %}
+      <h3 class="{{ base_class }}__title">{{ paragraph.field_timeline_item_title.value }}</h3>
+    {% endif %}
+
+    {% if content.field_timeline_item_desc %}
+      <div class="{{ base_class }}__description">
+        {{ content.field_timeline_item_desc }}
+      </div>
+    {% endif %}
+  </div>
+</li>

@@ -1,0 +1,86 @@
+// themes/custom/kingly_minimal/components/timeline/timeline.scss
+
+@use '../../scss/base/mixins' as *;
+
+// -----------------------------------------------------------------------------
+// Timeline Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:timeline'] {
+  --timeline-line-color: var(--color-border);
+  --timeline-line-width: 2px;
+  --timeline-dot-size: 1rem; // 16px
+  --timeline-dot-border-width: 3px;
+
+  .timeline__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  // --- Vertical Layout ---
+  &.timeline--vertical {
+    .timeline__list {
+      display: grid;
+      gap: var(--spacing-lg);
+      position: relative;
+      padding-left: calc(var(--spacing-lg) * 2);
+
+      // The main vertical line
+      &::before {
+        content: '';
+        position: absolute;
+        top: var(--spacing-sm);
+        bottom: var(--spacing-sm);
+        left: calc(var(--timeline-dot-size) / 2 + var(--timeline-dot-border-width) - (var(--timeline-line-width) / 2));
+        width: var(--timeline-line-width);
+        background-color: var(--timeline-line-color);
+        z-index: 0;
+      }
+    }
+  }
+
+  // --- Horizontal Layout ---
+  &.timeline--horizontal {
+    padding-bottom: var(--spacing-lg); // Space for the line and dots.
+
+    .timeline__list {
+      display: flex;
+      gap: var(--spacing-md);
+      overflow-x: auto;
+      // Add padding to the container to show a "peek" of the next item.
+      padding-inline: var(--container-padding);
+      padding-bottom: var(--spacing-lg);
+      position: relative;
+
+      // Improve scroll experience on touch devices
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin; // Firefox
+      -webkit-overflow-scrolling: touch;
+
+      // The main horizontal line
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: calc(var(--timeline-dot-size) / 2 + var(--timeline-dot-border-width) - (var(--timeline-line-width) / 2));
+        height: var(--timeline-line-width);
+        background-color: var(--timeline-line-color);
+        z-index: 0;
+      }
+
+      > .timeline-item {
+        flex: 0 0 80%; // Each item takes up 80% of the container width
+        min-width: 300px;
+        scroll-snap-align: start;
+        padding-bottom: calc(var(--timeline-dot-size) + var(--spacing-md)); // Space for the dot
+      }
+
+      @include media-query(md) {
+        > .timeline-item {
+          flex-basis: 40%; // Show more items on larger screens.
+        }
+      }
+    }
+  }
+}

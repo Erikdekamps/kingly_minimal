@@ -6,7 +6,7 @@
  * responsive configuration from data attributes, and initialize a Splide.js
  * instance for each one.
  */
-(function (Drupal, once, Splide) {
+(function (Drupal, once) {
   'use strict';
 
   /**
@@ -63,4 +63,4 @@
     },
   };
 
-})(Drupal, once, Splide);
+})(Drupal, once);

@@ -40,7 +40,7 @@ slots:
     title: Slides
     description: 'The slot where the list of individual slide items (<li> elements) should be placed.'
 
-library:
+libraryOverrides:
   # This component depends on the Splide.js library, which we will define in the theme's .libraries.yml file.
   dependencies:
     - kingly_minimal/splide

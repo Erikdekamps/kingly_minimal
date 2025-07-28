@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Component template for a gallery.
+ *
+ * This component renders a list wrapper for gallery items. It applies a CSS
+ * modifier class based on the chosen layout, allowing the stylesheet to
+ * define the grid structure.
+ *
+ * @see kingly_minimal/components/gallery/gallery.component.yml
+ *
+ * @props
+ * - layout: The machine name of the grid layout to apply (e.g., 'grid-3-col').
+ * - attributes: A Drupal attributes object for the root wrapper element.
+ *
+ * @slots
+ * - content: The slot for the individual gallery items (<li> elements).
+ */
+#}
+{% set base_class = 'gallery' %}
+{% set classes = [
+  base_class,
+  layout ? base_class ~ '--' ~ layout,
+] %}
+
+<ul{{ attributes.addClass(classes) }}>
+  {% block content %}{% endblock %}
+</ul>

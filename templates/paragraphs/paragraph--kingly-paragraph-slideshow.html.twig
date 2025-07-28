@@ -12,7 +12,7 @@
 #}
 {% embed 'kingly_minimal:slideshow' with {
   attributes: attributes,
-  uuid: paragraph.uuid(),
+  uuid: paragraph.id(),
   title: paragraph.field_slideshow_title.value,
   columns_mobile: paragraph.field_slideshow_columns_mobile.value,
   columns_tablet: paragraph.field_slideshow_columns_tablet.value,

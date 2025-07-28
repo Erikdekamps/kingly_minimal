@@ -6,7 +6,7 @@
  * responsive configuration from data attributes, and initialize a Splide.js
  * instance for each one.
  */
-(function (Drupal, once) {
+(function (Drupal, once, Splide) {
   'use strict';
 
   /**
@@ -35,6 +35,9 @@
         const splide = new Splide(slideshow, {
           // A standard slider that does not loop.
           type: 'slide',
+          // Explicitly set the slide direction to left-to-right. This is a
+          // safeguard against potential issues and ensures perPage works as expected.
+          direction: 'ltr',
           // Set the base (mobile) number of slides per page.
           perPage: perPageMobile,
           // Use the theme's variable for consistent spacing.
@@ -63,4 +66,4 @@
     },
   };
 
-})(Drupal, once);
+})(Drupal, once, Splide);

@@ -22,6 +22,12 @@
     margin: 0; // Reset any default heading margins.
   }
 
+  &__navigation {
+    // Ensure the arrow buttons are aligned horizontally with a gap.
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
   // --- Splide.js Theme Overrides ---
   // We target the Splide classes within our component to apply our theme.
   .splide {
@@ -81,5 +87,20 @@
     // This ensures that child items (our cards) stretch to the full height
     // of the track, creating a uniform appearance.
     align-items: stretch;
+  }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] {
+  .slideshow {
+    .splide__arrow {
+      // Improve visibility of disabled arrows in dark mode.
+      &:disabled {
+        // Use a semi-transparent version of the dark theme's text color.
+        color: rgba(255, 255, 255, 0.4);
+        border-color: rgba(255, 255, 255, 0.2);
+        opacity: 1; // Override the light-mode opacity rule.
+      }
+    }
   }
 }

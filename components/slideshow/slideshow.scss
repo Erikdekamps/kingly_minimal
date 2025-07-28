@@ -1,0 +1,85 @@
+// file: themes/custom/kingly_minimal/components/slideshow/slideshow.scss
+
+// -----------------------------------------------------------------------------
+// Slideshow Component Styles
+// -----------------------------------------------------------------------------
+
+// Scope all custom styles to the slideshow component's root class.
+.slideshow {
+  // --- Header ---
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  &__title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-heading);
+    margin: 0; // Reset any default heading margins.
+  }
+
+  // --- Splide.js Theme Overrides ---
+  // We target the Splide classes within our component to apply our theme.
+  .splide {
+    // Override Splide's default arrow styles.
+    .splide__arrow {
+      // Reset default Splide styles for a clean slate.
+      background: transparent;
+      opacity: 1;
+      position: static;
+      transform: none;
+
+      // Apply our theme's button styles.
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--size-target-min);
+      height: var(--size-target-min);
+      border-radius: var(--border-radius-circle);
+      border: var(--border-width-thin) solid var(--color-border);
+      color: var(--color-text);
+      transition: background-color var(--transition-duration-fast) var(--transition-timing-function),
+      border-color var(--transition-duration-fast) var(--transition-timing-function),
+      color var(--transition-duration-fast) var(--transition-timing-function);
+
+      // Override SVG size.
+      svg {
+        width: var(--size-icon-sm);
+        height: var(--size-icon-sm);
+      }
+
+      &:hover {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-background);
+      }
+
+      // WCAG: Ensure a highly visible focus state.
+      &:focus-visible {
+        outline: var(--focus-ring-width) solid var(--focus-ring-color);
+        outline-offset: var(--focus-ring-offset);
+      }
+
+      // Style for the disabled state (e.g., at the start or end of a non-looping slider).
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        border-color: var(--color-border);
+        background-color: transparent;
+        color: var(--color-text);
+      }
+    }
+  }
+
+  // The splide__list contains the <li> items. Our slide paragraphs will be
+  // rendered inside these.
+  .splide__list {
+    // This ensures that child items (our cards) stretch to the full height
+    // of the track, creating a uniform appearance.
+    align-items: stretch;
+  }
+}

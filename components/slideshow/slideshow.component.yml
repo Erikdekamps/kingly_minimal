@@ -1,0 +1,53 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Slideshow'
+status: stable
+description: 'Renders a responsive, accessible slideshow/carousel using the Splide.js library. It includes a title, navigation controls, and a slot for slide items.'
+
+props:
+  type: object
+  properties:
+    uuid:
+      type: string
+      title: UUID
+      description: 'A unique ID for this slideshow instance, used to initialize the JavaScript.'
+      required: true
+    title:
+      type: string
+      title: Title
+      description: 'The main heading for the slideshow.'
+    columns_mobile:
+      type: [string, number]
+      title: 'Columns (Mobile)'
+      description: 'The number of slides to show per page on mobile.'
+      default: 1
+    columns_tablet:
+      type: [string, number]
+      title: 'Columns (Tablet)'
+      description: 'The number of slides to show per page on tablet.'
+      default: 2
+    columns_desktop:
+      type: [string, number]
+      title: 'Columns (Desktop)'
+      description: 'The number of slides to show per page on desktop.'
+      default: 3
+    attributes:
+      type: object
+      title: Attributes
+      description: 'A Drupal attributes object for the root wrapper element.'
+
+slots:
+  content:
+    title: Slides
+    description: 'The slot where the list of individual slide items (<li> elements) should be placed.'
+
+library:
+  # This component depends on the Splide.js library, which we will define in the theme's .libraries.yml file.
+  dependencies:
+    - kingly_minimal/splide
+    - core/drupal
+    - core/once
+  css:
+    component:
+      slideshow.css: {}
+  js:
+    slideshow.js: {}

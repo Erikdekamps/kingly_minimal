@@ -7,7 +7,9 @@
  * timeline SDC expects in its content slot. It pulls data directly from
  * the paragraph entity for the cleanest possible data-driven output.
  *
- * This version is structured to support a two-sided vertical timeline layout.
+ * It renders the description field's content without its label, ensuring a
+ * clean frontend presentation while allowing the backend preview to remain
+ * informative.
  */
 #}
 {% set base_class = 'timeline-item' %}
@@ -15,17 +17,14 @@
 
 <li{{ attributes.addClass(base_class) }}>
 
-  {# The date is placed first for the left column. #}
   <div class="{{ base_class }}__date">
     {{ paragraph.field_timeline_item_date.value }}
   </div>
 
-  {# This wrapper is the central column for the dot and the connecting line. #}
   <div class="{{ base_class }}__connector">
     <div class="{{ base_class }}__dot"></div>
   </div>
 
-  {# The main content is placed last for the right column. #}
   <div class="{{ base_class }}__content">
     {% if link_item.url %}
       <a href="{{ link_item.url }}" class="{{ base_class }}__title-link">
@@ -37,8 +36,8 @@
 
     {% if content.field_timeline_item_desc %}
       <div class="{{ base_class }}__description">
-        {# We render the content variable here to process the rich text field. #}
-        {{ content.field_timeline_item_desc }}
+        {# By rendering only the content of the field, we strip the label. #}
+        {{ content.field_timeline_item_desc.0 }}
       </div>
     {% endif %}
   </div>

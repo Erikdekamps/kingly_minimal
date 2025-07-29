@@ -6,8 +6,12 @@ description: 'A button for toggling between light and dark themes. Requires Java
 props:
   type: object
   properties:
-    # HTML attributes for the wrapper element.
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the button element.'
+      description: 'A Drupal attributes object for the `<button>` element.'
+
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

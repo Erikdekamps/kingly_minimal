@@ -1,10 +1,3 @@
-// components/pager/pager.scss
-
-// -----------------------------------------------------------------------------
-// Pager Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the pager component for complete encapsulation.
 [data-component-id='kingly_minimal:pager'] {
 
   // The <ul> element that wraps all pager items.
@@ -26,15 +19,15 @@
     justify-content: center;
     min-width: var(--size-target-min);
     min-height: var(--size-target-min);
-    padding: var(--spacing-sm);
+    padding-inline: var(--spacing-sm);
 
     // Typography & Appearance
     color: var(--color-primary);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
     border-radius: var(--border-radius);
-    transition: background-color var(--transition-duration) var(--transition-timing-function),
-    color var(--transition-duration) var(--transition-timing-function);
+    transition: background-color var(--transition-duration-fast) var(--transition-timing-function),
+    color var(--transition-duration-fast) var(--transition-timing-function);
 
     // Hover & Focus States
     &:hover {
@@ -45,6 +38,7 @@
     &:focus-visible {
       outline: var(--focus-ring-width) solid var(--focus-ring-color);
       outline-offset: var(--focus-ring-offset);
+      z-index: 1;
     }
   }
 

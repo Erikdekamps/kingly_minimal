@@ -3,9 +3,8 @@
  * @file
  * Component template for a form element wrapper.
  *
- * This component provides the standard structure for a form field, including
- * the label, description, and error messages. The actual input control
- * is injected into the 'content' slot.
+ * This component now includes the `form-label` component to render its label,
+ * delegating that specific logic.
  *
  * @see kingly_minimal/components/form-element/form-element.component.yml
  *
@@ -17,6 +16,8 @@
  * - errors: (Object) Any validation errors for this form element.
  * - prefix: (Object) The form element prefix.
  * - suffix: (Object) The form element suffix.
+ * - required: (Boolean) Whether the element is required.
+ * - id: (String) The ID of the form element, passed to the label's `for` attribute.
  * - attributes: (Object) A Drupal attributes object for the wrapper.
  *
  * @slots
@@ -25,7 +26,12 @@
 #}
 <div{{ attributes }}>
   {% if label and label_display == 'before' %}
-    {{ label }}
+    {{ include('kingly_minimal:form-label', {
+      text: label.text,
+      for_id: id,
+      required: required,
+      attributes: label.attributes
+    }, with_context=false) }}
   {% endif %}
 
   {% if description and description_display == 'before' %}
@@ -48,7 +54,12 @@
   </div>
 
   {% if label and label_display == 'after' %}
-    {{ label }}
+    {{ include('kingly_minimal:form-label', {
+      text: label.text,
+      for_id: id,
+      required: required,
+      attributes: label.attributes
+    }, with_context=false) }}
   {% endif %}
 
   {% if errors %}

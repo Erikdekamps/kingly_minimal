@@ -1,0 +1,10 @@
+[data-component-id='kingly_minimal:form-label'] {
+  display: block;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-sm);
+
+  .required-marker {
+    color: var(--color-error-text);
+    padding-left: var(--spacing-xs);
+  }
+}

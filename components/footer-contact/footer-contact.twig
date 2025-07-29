@@ -3,8 +3,8 @@
  * @file
  * Component template for the footer contact section.
  *
- * This component embeds the `footer-widget` component, delegating the wrapper
- * and title markup to it.
+ * This component now uses the `list`, `list-item`, and `link` SDCs for maximum
+ * consistency and reusability.
  *
  * @see kingly_minimal/components/footer-contact/footer-contact.component.yml
  *
@@ -21,29 +21,53 @@
   attributes: attributes.addClass('footer-contact')
 } %}
   {% block content %}
-    <ul class="footer-contact__list">
-      {% if address %}
-        <li class="footer-contact__item">
-          {{ include('kingly_minimal:icon', { name: 'house' }, with_context = false) }}
-          <span>{{ address }}</span>
-        </li>
-      {% endif %}
+    {% embed 'kingly_minimal:list' with {
+      attributes: create_attribute().addClass('footer-contact__list')
+    } %}
+      {% block content %}
+        {% if address %}
+          {% embed 'kingly_minimal:list-item' with {
+            attributes: create_attribute().addClass('footer-contact__item')
+          } %}
+            {% block content %}
+              {{ include('kingly_minimal:icon', { name: 'house' }, with_context = false) }}
+              <span>{{ address }}</span>
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
 
-      {% if email %}
-        <li class="footer-contact__item">
-          {{ include('kingly_minimal:icon', { name: 'envelope' }, with_context = false) }}
-          <a href="mailto:{{ email }}" class="footer-contact__link">{{ email }}</a>
-        </li>
-      {% endif %}
+        {% if email %}
+          {% embed 'kingly_minimal:list-item' with {
+            attributes: create_attribute().addClass('footer-contact__item')
+          } %}
+            {% block content %}
+              {{ include('kingly_minimal:icon', { name: 'envelope' }, with_context = false) }}
+              {{ include('kingly_minimal:link', {
+                text: email,
+                url: 'mailto:' ~ email,
+                attributes: create_attribute().addClass('footer-contact__link')
+              }, with_context=false) }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
 
-      {% if phone %}
-        <li class="footer-contact__item">
-          {# We strip non-numeric characters from the phone prop to create a valid tel: link. #}
-          {% set phone_link = phone|replace({'+': '', ' ': '', '(': '', ')': '', '-': ''}) %}
-          {{ include('kingly_minimal:icon', { name: 'phone' }, with_context = false) }}
-          <a href="tel:+{{ phone_link }}" class="footer-contact__link">{{ phone }}</a>
-        </li>
-      {% endif %}
-    </ul>
+        {% if phone %}
+          {% embed 'kingly_minimal:list-item' with {
+            attributes: create_attribute().addClass('footer-contact__item')
+          } %}
+            {% block content %}
+              {# We strip non-numeric characters from the phone prop to create a valid tel: link. #}
+              {% set phone_link = phone|replace({'+': '', ' ': '', '(': '', ')': '', '-': ''}) %}
+              {{ include('kingly_minimal:icon', { name: 'phone' }, with_context = false) }}
+              {{ include('kingly_minimal:link', {
+                text: phone,
+                url: 'tel:+' ~ phone_link,
+                attributes: create_attribute().addClass('footer-contact__link')
+              }, with_context=false) }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
   {% endblock %}
 {% endembed %}

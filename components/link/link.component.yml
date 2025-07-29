@@ -1,0 +1,23 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Link'
+status: stable
+description: 'A simple, unstyled utility component for rendering an `<a>` tag. This is the canonical component for creating non-button links.'
+
+props:
+  type: object
+  properties:
+    text:
+      type: [ string, object ]
+      title: 'Text'
+      description: 'The visible text or render array for the link.'
+    url:
+      type: string
+      title: 'URL'
+      description: 'The href attribute for the link.'
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the `<a>` element.'
+  required:
+    - text
+    - url

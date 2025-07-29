@@ -3,8 +3,7 @@
  * @file
  * Component template for a heading.
  *
- * Renders a semantic heading tag with a visual style that can be decoupled
- * from the tag itself.
+ * Uses the `kingly_minimal:link` component to render linked headings.
  *
  * @see kingly_minimal/components/heading/heading.component.yml
  *
@@ -26,7 +25,10 @@
 
 <{{ tag }}{{ attributes.addClass(classes) }}>
 {% if url %}
-  <a href="{{ url }}">{{ text }}</a>
+  {{ include('kingly_minimal:link', {
+    url: url,
+    text: text,
+  }, with_context = false) }}
 {% else %}
   {{ text }}
 {% endif %}

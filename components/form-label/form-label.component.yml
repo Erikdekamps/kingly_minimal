@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Form Label'
+status: stable
+description: 'Renders a `<label>` for a form element, including an optional "required" marker.'
+
+props:
+  type: object
+  properties:
+    text:
+      type: [ string, object ]
+      title: 'Label Text'
+      description: 'The text or render array for the label.'
+    for_id:
+      type: string
+      title: 'For ID'
+      description: 'The `id` of the form element this label is for.'
+    required:
+      type: boolean
+      title: 'Is Required'
+      description: 'If true, a "required" marker is added to the label.'
+      default: false
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the `<label>` element.'
+  required:
+    - text
+    - for_id

@@ -3,10 +3,9 @@
  * @file
  * Theme override for a form element.
  *
- * This template has been refactored to act as a bridge to the 'form-element'
- * Single Directory Component. It uses Twig's `embed` tag to wrap the form
- * field (`children`) with the component's structure, passing all necessary
- * variables as props.
+ * REFACTORED: This bridge template now passes additional props (`id` and `required`)
+ * to the `form-element` component, which are needed by the new `form-label`
+ * component it now includes.
  *
  * @see kingly_minimal/components/form-element/form-element.twig
  */
@@ -28,8 +27,13 @@
   description_display == 'invisible' ? 'visually-hidden',
 ] %}
 
+{% set label_props = {
+  'text': label.text,
+  'attributes': label.attributes,
+} %}
+
 {% embed 'kingly_minimal:form-element' with {
-  label: label,
+  label: label_props,
   label_display: label_display,
   description: description ? {
     '#type': 'html_tag',
@@ -42,6 +46,8 @@
   prefix: prefix,
   suffix: suffix,
   attributes: attributes.addClass(classes),
+  id: id,
+  required: required,
 } %}
 
   {% block content %}

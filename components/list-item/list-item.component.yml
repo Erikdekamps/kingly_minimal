@@ -1,0 +1,18 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'List Item'
+status: stable
+description: 'Renders a list item (`<li>`) tag. Designed to be used inside the `kingly_minimal:list` component.'
+
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: 'Attributes'
+      description: 'A Drupal attributes object for the `<li>` element.'
+
+slots:
+  content:
+    title: Content
+    description: 'The content of the list item.'
+    required: true

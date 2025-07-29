@@ -1,13 +1,13 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Quote'
 status: stable
-description: 'Renders a blockquote with an optional attribution. Ideal for testimonials or highlighting text.'
+description: 'Renders a blockquote with an optional attribution.'
 
 props:
   type: object
   properties:
     quote_text:
-      type: [string, object] # Can be a string or a render array
+      type: [ string, object ] # Can be a string or a render array
       title: 'Quote Text'
       description: 'The main content of the quote.'
     attribution:
@@ -17,6 +17,6 @@ props:
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the root element.'
+      description: 'A Drupal attributes object for the root `<blockquote>` element.'
   required:
     - quote_text

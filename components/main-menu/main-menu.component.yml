@@ -1,19 +1,20 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Main Menu'
 status: stable
-description: 'Renders the main navigation menu. It displays horizontally on desktop and stacks vertically on mobile.'
+description: 'Renders the main navigation menu. Wraps the canonical `menu` component and applies contextual styles.'
+
 props:
   type: object
   properties:
     label:
       type: string
       title: Label
-      description: The accessible label for the navigation.
+      description: 'The accessible label for the navigation.'
     content:
-      type: object
+      type: object # Render array
       title: Content
-      description: The render array for the menu tree.
+      description: 'The render array for the menu tree.'
     attributes:
       type: object
       title: Attributes
-      description: HTML attributes for the wrapper.
+      description: 'HTML attributes for the root `<nav>` wrapper.'

@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Component template for a heading.
+ *
+ * Renders a semantic heading tag with a visual style that can be decoupled
+ * from the tag itself.
+ *
+ * @see kingly_minimal/components/heading/heading.component.yml
+ *
+ * @props
+ * - text: The content of the heading.
+ * - level: The semantic HTML tag to use (h1-h6, div).
+ * - display: (Optional) The visual size of the heading. Defaults to match the level.
+ * - url: (Optional) If provided, the heading will be wrapped in a link.
+ * - attributes: HTML attributes for the heading element.
+ */
+#}
+{% set tag = level|default('h2') %}
+{% set display_size = display|default(level) %}
+
+{% set classes = [
+  'heading',
+  'heading--' ~ display_size,
+] %}
+
+<{{ tag }}{{ attributes.addClass(classes) }}>
+{% if url %}
+  <a href="{{ url }}">{{ text }}</a>
+{% else %}
+  {{ text }}
+{% endif %}
+</{{ tag }}>

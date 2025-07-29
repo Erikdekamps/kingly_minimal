@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Section'
 status: stable
-description: 'A generic container component, typically used to wrap content from Layout Paragraphs to ensure consistent spacing and containment.'
+description: 'A generic container component, used to wrap content from Layout Paragraphs to ensure consistent containment.'
 
 props:
   type: object
@@ -9,10 +9,9 @@ props:
     attributes:
       type: object
       title: Attributes
-      description: HTML attributes for the wrapper element.
+      description: 'HTML attributes for the root `<div>` wrapper element.'
 
 slots:
   content:
     title: Content
-    required: true
-    description: The main content of the section.
+    description: 'The main content of the section, typically a rendered layout.'

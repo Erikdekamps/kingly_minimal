@@ -9,7 +9,7 @@ props:
     layout:
       type: string
       title: 'Layout'
-      description: 'The machine name of the grid layout to apply.'
+      description: 'The machine name of the CSS grid layout pattern to apply.'
       default: 'grid-3-col'
       enum:
         - 'grid-2-col'
@@ -20,9 +20,9 @@ props:
     attributes:
       type: object
       title: Attributes
-      description: 'A Drupal attributes object for the root wrapper element.'
+      description: 'A Drupal attributes object for the root `<ul>` wrapper element.'
 
 slots:
   content:
     title: 'Gallery Items'
-    description: 'The slot where the individual gallery items should be placed.'
+    description: 'The slot where the individual gallery `<li>` items should be placed.'

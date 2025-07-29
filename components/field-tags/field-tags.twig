@@ -10,15 +10,17 @@
  * @see kingly_minimal/components/field-tags/field-tags.component.yml
  *
  * @props
- * - items: An array of field items from Drupal.
- * - attributes: A Drupal attributes object for the wrapper.
+ * - items: (Array) An array of field items from Drupal.
+ * - attributes: (Object) A Drupal attributes object for the wrapper.
  */
 #}
 <div{{ attributes }}>
   {% for item in items %}
-    {# Each item.content is expected to be a render array, which we print directly. #}
-    {# The .field__item class is added here for styling hooks, though our SDC #}
-    {# styles target the `a` tag within it. #}
+    {#
+    Each item.content is expected to be a render array (the linked term).
+    The .field__item class is added here for styling hooks and consistency
+    with Drupal's default field markup structure.
+    #}
     <div class="field__item">{{ item.content }}</div>
   {% endfor %}
 </div>

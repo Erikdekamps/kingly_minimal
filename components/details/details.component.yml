@@ -1,23 +1,24 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Details'
 status: stable
-description: 'Renders a collapsible <details> element, often used for fieldsets.'
+description: 'Renders a collapsible <details> element, often used for fieldsets in forms.'
 
 props:
   type: object
   properties:
     title:
-      type: [string, object] # Can be a string or a render array.
+      type: [ string, object ] # Can be a string or a render array.
       title: 'Title'
-      description: 'The text for the <summary> element that controls the accordion.'
+      description: 'The text for the <summary> element that controls the disclosure widget.'
     errors:
       type: object
       title: 'Errors'
-      description: 'Errors associated with the element, for styling.'
+      description: 'Errors associated with the element. If present, an error style is applied.'
     required:
       type: boolean
       title: 'Required'
       description: 'If true, a "required" marker is added to the title.'
+      default: false
     attributes:
       type: object
       title: 'Attributes'

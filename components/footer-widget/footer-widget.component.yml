@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer Widget'
 status: stable
-description: 'Provides a reusable wrapper with a styled title for components used in the footer columns.'
+description: 'Provides a reusable wrapper with a styled title (using the `heading` component) for components used in the footer columns.'
 
 props:
   type: object
@@ -16,7 +16,6 @@ props:
       description: 'A Drupal attributes object for the wrapper element.'
 
 slots:
-  # The 'content' slot is where the child component's unique markup will be placed.
   content:
     title: 'Content'
-    description: 'The main content of the widget.'
+    description: 'The main content of the widget, typically provided by an embedding component.'

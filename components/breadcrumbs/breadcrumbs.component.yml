@@ -1,14 +1,15 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Breadcrumbs'
 status: stable
-description: 'Renders the breadcrumb trail within a full-bleed container strip.'
+description: 'Renders the breadcrumb trail within a full-bleed container strip, providing a secondary navigation landmark.'
+
 props:
   type: object
   properties:
     breadcrumb:
       type: array
-      title: Breadcrumb Items
-      description: 'A list of breadcrumb items. Each item contains text and an optional URL.'
+      title: Breadcrumb Links
+      description: 'An ordered list of parent breadcrumb links.'
       item:
         type: object
         properties:
@@ -19,4 +20,4 @@ props:
     attributes:
       type: object
       title: Attributes
-      description: 'HTML attributes for the inner <ul> element.'
+      description: 'HTML attributes for the root `<div>` wrapper element.'

@@ -14,11 +14,10 @@
     margin-bottom: var(--spacing-md);
   }
 
+  // Title styles are now handled by the canonical `heading` component.
+  // The class is kept as a hook for potential future overrides.
   .slideshow__title {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-h2);
-    line-height: var(--line-height-heading);
-    margin: 0;
+    // No styles needed here by default.
   }
 
   // --- Splide.js Theme Overrides ---
@@ -31,7 +30,6 @@
   }
 
   .splide__arrow {
-    // MODIFICATION: Add a background color for the default state.
     background-color: var(--color-light-gray);
     opacity: 1;
     position: static;
@@ -42,7 +40,6 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--border-radius-circle);
-    // MODIFICATION: Set the default border to be transparent.
     border: var(--border-width-thin) solid transparent;
     color: var(--color-text);
     transition: background-color var(--transition-duration-fast) var(--transition-timing-function),
@@ -55,7 +52,6 @@
       fill: currentColor;
     }
 
-    // The hover state correctly overrides the default background.
     &:hover {
       background-color: var(--color-primary);
       border-color: var(--color-primary);
@@ -67,8 +63,6 @@
       outline-offset: var(--focus-ring-offset);
     }
 
-    // The disabled state will now correctly inherit the light-gray background
-    // and apply the opacity to it.
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -84,14 +78,12 @@
   .splide__list {
     align-items: stretch;
   }
-
 }
 
 // Dark Mode Overrides for disabled arrows.
-[data-component-id='kingly_minimal:slideshow'][data-theme="dark"] .splide__arrow:disabled {
+[data-theme="dark"] [data-component-id='kingly_minimal:slideshow'] .splide__arrow:disabled {
   opacity: 1;
   color: var(--color-text);
-  // The background will be the dark mode version of light-gray already.
   border-color: transparent;
 
   svg {

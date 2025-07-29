@@ -4,8 +4,8 @@
  * Component template for an accordion container.
  *
  * This component provides a wrapper for a set of accordion-item components.
- * It does not render any visible content itself but serves as the target
- * for the JavaScript behavior that controls the accordion items within it.
+ * It serves as the target for the JavaScript behavior that controls the
+ * accordion items within it.
  *
  * @see kingly_minimal/components/accordion/accordion.component.yml
  *
@@ -13,7 +13,7 @@
  * - attributes: A Drupal attributes object for the wrapper element.
  *
  * @slots
- * - content: The slot for accordion-item components.
+ * - content: The slot where kingly_minimal:accordion-item components should be placed.
  */
 #}
 <div{{ attributes.addClass('accordion-container') }}>

@@ -1,5 +1,3 @@
-// kingly_minimal/scss/layout/footer.scss
-
 // This file defines the layout for the page footer.
 // Component-specific styles are handled by their respective SDCs.
 
@@ -9,7 +7,6 @@
 // Footer Main Structure (Full Bleed Wrapper)
 // -----------------------------------------------------------------------------
 .page-footer {
-  // Apply background color and vertical padding to the full-width wrapper.
   background-color: var(--color-light-gray);
   padding-block: var(--spacing-lg);
   font-size: var(--font-size-sm);
@@ -36,14 +33,13 @@
 // -----------------------------------------------------------------------------
 .page-footer__top {
   display: flex;
-  flex-wrap: wrap; // Allow items to wrap on smaller screens.
+  flex-wrap: wrap;
   justify-content: center; // Center items on mobile when they stack.
   align-items: center;
   gap: var(--spacing-md);
   padding-bottom: var(--spacing-lg);
   border-bottom: var(--border-width-thin) solid var(--color-border);
 
-  // On medium screens and up, justify content to the edges.
   @include media-query(md) {
     justify-content: space-between;
   }
@@ -62,7 +58,7 @@
   // Mobile (default): Each column takes the full width.
   grid-column: 1 / -1;
 
-  // Tablet (md): Each column spans 6 of the 12 tracks, creating a 2x2 grid.
+  // Tablet (md): Each column spans 6 of the 12 tracks, creating a 2-column grid.
   @include media-query(md) {
     grid-column: span 6;
   }
@@ -85,7 +81,6 @@
   padding-top: var(--spacing-lg);
   border-top: var(--border-width-thin) solid var(--color-border);
 
-  // On medium screens and up, justify content to the edges.
   @include media-query(md) {
     justify-content: space-between;
   }

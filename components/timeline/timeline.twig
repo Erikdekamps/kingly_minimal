@@ -6,21 +6,14 @@
  * @see kingly_minimal/components/timeline/timeline.component.yml
  *
  * @props
- * - orientation: The visual layout ('vertical' or 'horizontal').
- * - attributes: A Drupal attributes object for the root wrapper element.
+ * - attributes: (Object) A Drupal attributes object for the root wrapper element.
  *
  * @slots
  * - content: The slot for timeline-item <li> elements.
  */
 #}
-{% set base_class = 'timeline' %}
-{% set classes = [
-  base_class,
-  orientation ? base_class ~ '--' ~ orientation,
-] %}
-
-<div{{ attributes.addClass(classes) }}>
-  <ol class="{{ base_class }}__list">
+<div{{ attributes.addClass('timeline') }}>
+  <ol class="timeline__list">
     {% block content %}{% endblock %}
   </ol>
 </div>

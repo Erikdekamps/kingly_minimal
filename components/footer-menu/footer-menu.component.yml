@@ -1,19 +1,20 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Footer Menu'
+name: 'Footer: Menu'
 status: stable
-description: 'Renders a menu, styled for the footer region, by wrapping the canonical `menu` component and applying contextual style overrides.'
+description: 'Renders a menu styled for the footer. Wraps the canonical `menu` component and applies contextual style overrides.'
+
 props:
   type: object
   properties:
     label:
       type: string
       title: Label
-      description: The accessible label for the navigation.
+      description: 'The accessible label for the navigation, used for aria-labelledby.'
     content:
-      type: object
+      type: object # Render array
       title: Content
-      description: The render array for the menu tree.
+      description: 'The render array for the menu tree, passed to the `menu` component.'
     attributes:
       type: object
       title: Attributes
-      description: HTML attributes for the wrapper.
+      description: 'HTML attributes for the root `<nav>` wrapper.'

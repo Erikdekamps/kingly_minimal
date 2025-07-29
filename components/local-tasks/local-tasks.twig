@@ -3,26 +3,26 @@
  * @file
  * Component template for local task tabs.
  *
- * Renders primary and secondary local task lists within accessible <nav> elements.
- * The variables `primary` and `secondary` are expected to contain pre-rendered
- * <li> elements from Drupal's menu system.
- *
  * @see kingly_minimal/components/local-tasks/local-tasks.component.yml
  *
  * @props
- * - primary: Render array of primary task <li> elements.
- * - secondary: Render array of secondary task <li> elements.
- * - attributes: HTML attributes for the main wrapper.
+ * - primary: (Object) Render array of primary task <li> elements.
+ * - secondary: (Object) Render array of secondary task <li> elements.
+ * - attributes: (Object) HTML attributes for the main wrapper.
  */
 #}
 {% if primary or secondary %}
   <div{{ attributes.addClass('local-tasks') }}>
-
     {% if primary %}
       <nav class="local-tasks__primary" role="navigation" aria-labelledby="primary-tabs-title">
-        <h2 id="primary-tabs-title" class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-        {# The 'primary' variable contains the rendered <li> elements #}
-        <ul class="tabs local-tasks__list local-tasks__list--primary">
+        {# Use the heading component for the visually hidden heading. #}
+        {{ include('kingly_minimal:heading', {
+          text: 'Primary tabs'|t,
+          level: 'h2',
+          attributes: create_attribute().addClass('visually-hidden').setAttribute('id', 'primary-tabs-title')
+        }, with_context = false) }}
+
+        <ul class="tabs tabs--primary">
           {{ primary }}
         </ul>
       </nav>
@@ -30,13 +30,17 @@
 
     {% if secondary %}
       <nav class="local-tasks__secondary" role="navigation" aria-labelledby="secondary-tabs-title">
-        <h2 id="secondary-tabs-title" class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-        {# The 'secondary' variable contains the rendered <li> elements #}
-        <ul class="tabs local-tasks__list local-tasks__list--secondary">
+        {# Use the heading component for the visually hidden heading. #}
+        {{ include('kingly_minimal:heading', {
+          text: 'Secondary tabs'|t,
+          level: 'h2',
+          attributes: create_attribute().addClass('visually-hidden').setAttribute('id', 'secondary-tabs-title')
+        }, with_context = false) }}
+
+        <ul class="tabs tabs--secondary">
           {{ secondary }}
         </ul>
       </nav>
     {% endif %}
-
   </div>
 {% endif %}

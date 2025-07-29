@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Media: Document'
 status: stable
-description: 'Renders a document media entity with a contextual wrapper.'
+description: 'Renders a document media entity as a styled link.'
 
 props:
   type: object
@@ -9,15 +9,15 @@ props:
     media_entity:
       type: object
       title: Media Entity
-      description: 'The full document media entity object.'
+      description: 'The full document media entity object, passed from the dispatcher.'
     content:
-      type: [string, object]
+      type: [ string, object ]
       title: Content
       description: 'The rendered document link.'
     attributes:
       type: object
       title: Attributes
-      description: HTML attributes for the wrapper element.
+      description: 'HTML attributes for the wrapper `<div>` element.'
   required:
     - media_entity
     - content

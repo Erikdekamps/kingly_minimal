@@ -3,15 +3,16 @@
  * @file
  * Component template for the footer company info section.
  *
- * This component has been refactored to embed the `footer-widget` component,
- * delegating the wrapper and title markup and styling to it.
+ * This component embeds the `footer-widget` component, delegating the wrapper
+ * and title markup to it. It places its own content (the description) into
+ * the `content` block of the widget.
  *
  * @see kingly_minimal/components/footer-company-info/footer-company-info.component.yml
  *
  * @props
- * - company_name: The name of the company.
- * - description: A short description for the company.
- * - attributes: A Drupal attributes object for the wrapper.
+ * - company_name: (String) The name of the company.
+ * - description: (String|Object) A short description for the company.
+ * - attributes: (Object) A Drupal attributes object for the wrapper.
  */
 #}
 {% embed 'kingly_minimal:footer-widget' with {

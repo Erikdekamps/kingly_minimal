@@ -1,10 +1,5 @@
-// themes/custom/kingly_minimal/components/media--remote-video/media--remote-video.scss
-
-// -----------------------------------------------------------------------------
-// Media: Remote Video Component Styles
-// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:media--remote-video'] {
-  // Target the iframe rendered by Drupal within the content slot.
+  // Target the iframe rendered by Drupal.
   iframe {
     // Ensure the iframe scales with its container.
     width: 100%;

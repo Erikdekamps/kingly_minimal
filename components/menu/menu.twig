@@ -8,18 +8,18 @@
  * @see kingly_minimal/components/menu/menu.component.yml
  *
  * @props
- * - items: A nested list of menu items.
- * - menu_level: The current depth of the menu.
- * - attributes: A Drupal attributes object for the root <ul> element.
+ * - items: (Array) A nested list of menu items.
+ * - menu_level: (Number) The current depth of the menu.
+ * - attributes: (Object) A Drupal attributes object for the root <ul> element.
  */
 #}
 {% import _self as menus %}
 
 {#
-We call a macro which calls itself to render the full tree.
+Call the macro which calls itself to render the full tree.
 @see https://twig.symfony.com/doc/3.x/tags/macro.html
 #}
-{{ menus.menu_links(items, attributes, menu_level) }}
+{{ menus.menu_links(items, attributes, menu_level|default(0)) }}
 
 {% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
@@ -43,10 +43,7 @@ We call a macro which calls itself to render the full tree.
           'menu__link--level-' ~ menu_level,
           item.in_active_trail ? 'is-active',
         ] %}
-        {#
-        WCAG AAA (2.4.8 Location): Add 'aria-current="page"' to the active link
-        to programmatically identify the user's current location.
-        #}
+        {# WCAG 2.4.8 (AAA): Add 'aria-current="page"' to the active link. #}
         {% set link_attributes = item.in_active_trail ? create_attribute({'aria-current': 'page'}) : create_attribute() %}
         {{ link(item.title, item.url, link_attributes.addClass(link_classes)) }}
         {% if item.below %}

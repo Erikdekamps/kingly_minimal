@@ -3,14 +3,12 @@
  * @file
  * Component template for status messages.
  *
- * Displays status, error, and warning messages, grouped by type.
- *
  * @see kingly_minimal/components/status-messages/status-messages.component.yml
  *
- * Available variables (from props):
- * - message_list: A list of messages to be displayed, grouped by type.
- * - status_headings: An array of message headings for each message type.
- * - attributes: HTML attributes for the wrapper element.
+ * @props
+ * - message_list: (Object) A list of messages to be displayed, grouped by type.
+ * - status_headings: (Object) An array of message headings for each message type.
+ * - attributes: (Object) HTML attributes for the wrapper element.
  */
 #}
 {% for type, messages in message_list %}
@@ -18,9 +16,14 @@
     'messages',
     'messages--' ~ type,
   ] %}
-  <div role="{{ type == 'status' ? 'status' : 'alert' }}"{{ attributes.addClass(classes) }}>
+  {# WCAG 4.1.3: Use role="status" for polite announcements and "alert" for assertive ones. #}
+  <div role="{{ type == 'status' ? 'status' : 'alert' }}"{{ attributes.addClass(classes)|without('role') }}>
     {% if status_headings[type] %}
-      <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
+      {{ include('kingly_minimal:heading', {
+        text: status_headings[type],
+        level: 'h2',
+        attributes: create_attribute().addClass('visually-hidden')
+      }) }}
     {% endif %}
     {% if messages|length > 1 %}
       <ul class="messages__list">

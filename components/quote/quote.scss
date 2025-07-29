@@ -1,10 +1,3 @@
-// kingly_minimal/components/quote/quote.scss
-
-// -----------------------------------------------------------------------------
-// Quote Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the component for encapsulation.
 [data-component-id='kingly_minimal:quote'] {
   // The root element is the <blockquote>
   display: block; // Ensure block-level behavior.
@@ -19,9 +12,13 @@
     line-height: var(--line-height-heading);
     color: var(--color-text);
 
-    // Remove margins from the <p> tag that comes from the rich text field.
-    p {
-      margin: 0;
+    // Remove margins from the <p> tag that might come from a rich text field.
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
     }
   }
 

@@ -3,7 +3,7 @@
  * @file
  * Component template for a single accordion item.
  *
- * This component now renders the `heading` and `content` from props instead
+ * This component renders the `heading` and `content` from props instead
  * of slots for a cleaner data flow from Drupal. An inner wrapper has been
  * added to the content area to facilitate smooth CSS animations.
  *
@@ -20,14 +20,21 @@
   <summary class="accordion-item__header">
     <span class="accordion-item__heading">{{ heading }}</span>
     <span class="accordion-item__icon">
-      {{ include('kingly_minimal:icon', { name: 'chevron-down' }, with_context = false) }}
+      {# The icon is purely decorative as the open/closed state is conveyed
+         by the <details> element's `open` attribute. #}
+      {{ include('kingly_minimal:icon', { name: 'chevron-down', 'attributes': create_attribute().setAttribute('aria-hidden', 'true') }, with_context = false) }}
     </span>
   </summary>
   <div class="accordion-item__content">
     {# This inner wrapper is essential for the grid-template-rows animation. #}
     <div class="accordion-item__content-inner">
+      {#
+      Delegate rendering of the main content to the Text component.
+      This ensures consistent WYSIWYG styling.
+      #}
       {{ include('kingly_minimal:text', {
-        content: content
+        content: content,
+        attributes: create_attribute().addClass('accordion-item__body')
       }, with_context = false) }}
     </div>
   </div>

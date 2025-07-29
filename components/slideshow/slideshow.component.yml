@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Slideshow'
 status: stable
-description: 'Renders a responsive, accessible slideshow/carousel using the Splide.js library. It includes a title, navigation controls, and a slot for slide items.'
+description: 'Renders a responsive slideshow using Splide.js. Composes the `heading` component for its title.'
 
 props:
   type: object
@@ -13,7 +13,7 @@ props:
     title:
       type: string
       title: Title
-      description: 'The main heading for the slideshow.'
+      description: 'The main heading for the slideshow, passed to the `heading` component.'
     columns_mobile:
       type: [string, number]
       title: 'Columns (Mobile)'
@@ -42,13 +42,7 @@ slots:
     description: 'The slot where the list of individual slide items (<li> elements) should be placed.'
 
 libraryOverrides:
-  # This component depends on the Splide.js library defined in kingly_minimal.libraries.yml.
   dependencies:
     - kingly_minimal/splide
     - core/drupal
     - core/once
-  css:
-    component:
-      slideshow.css: {}
-  js:
-    slideshow.js: {}

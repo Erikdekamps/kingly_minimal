@@ -1,9 +1,5 @@
 @use '../../scss/base/mixins' as *;
 
-// -----------------------------------------------------------------------------
-// Testimonial Card Component Styles
-// -----------------------------------------------------------------------------
-
 [data-component-id='kingly_minimal:testimonial'] {
   display: grid;
   gap: var(--spacing-md);
@@ -48,7 +44,6 @@
 
   .testimonial-card__rating {
     // --- Star Rating ---
-    // A modern, clean way to render fractional stars with CSS.
     --star-size: 1.25rem;
     --star-color: #d1d5db; // A light gray for empty stars
     --star-background: #f59e0b; // A gold/yellow for filled stars
@@ -88,8 +83,9 @@
     font-size: var(--font-size-sm);
   }
 
+  // Author name styles are now handled by the canonical `heading` component.
   .testimonial-card__author-name {
-    font-weight: var(--font-weight-bold);
+    // No styles needed here by default.
   }
 
   .testimonial-card__author-title {

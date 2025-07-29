@@ -1,42 +1,39 @@
-// components/footer-menu/footer-menu.scss
-
 // -----------------------------------------------------------------------------
 // Footer Menu Component Styles
 //
 // This file provides context-specific overrides for the generic `menu` component
-// when it is used inside the `footer-menu` component.
+// when it is used inside the `footer-menu` wrapper.
 // -----------------------------------------------------------------------------
 
 // The data-component-id is on the <nav> wrapper. We target the .menu
 // class of the `menu` component within it.
 [data-component-id='kingly_minimal:footer-menu'] {
 
-  // Override the layout of the generic menu.
+  // Override the layout of the generic menu for the footer context.
   .menu {
-    // The footer menu is always horizontal and wrapped, regardless of breakpoint.
     flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm) var(--spacing-md);
+    justify-content: center; // Center items on mobile.
   }
 
   // Override the link styles for the footer context.
   .menu__link {
-    // Reset styles from the generic menu component.
-    padding: 0;
-    min-height: auto;
+    padding: 0; // Reset padding.
+    min-height: auto; // Reset min-height.
     border-radius: 0;
-    font-weight: normal;
+    font-weight: var(--font-weight-normal);
     font-size: var(--font-size-sm);
 
     // Provide footer-specific interaction styles.
     &:hover,
-    &:focus {
+    &:focus-visible {
       background-color: transparent;
       text-decoration: underline;
     }
 
     &.is-active {
-      font-weight: normal;
+      font-weight: var(--font-weight-normal);
       text-decoration: underline;
       color: var(--color-text); // Reset active color from primary.
     }

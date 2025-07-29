@@ -35,12 +35,19 @@
     {% endif %}
 
     <footer class="testimonial-card__footer">
-      <div class="testimonial-card__author-name">{{ name }}</div>
+      {# Delegate rendering of the author's name to our Heading component. #}
+      {{ include('kingly_minimal:heading', {
+        text: name,
+        level: 'h3',
+        display: 'h5',
+        attributes: create_attribute().addClass('testimonial-card__author-name')
+      }, with_context = false) }}
+
       {% if job_title %}
         <div class="testimonial-card__author-title">{{ job_title }}</div>
       {% endif %}
       {% if date %}
-        <time class="testimonial-card__date">{{ date }}</time>
+        <time class="testimonial-card__date" datetime="{{ date|date('Y-m-d') }}">{{ date }}</time>
       {% endif %}
     </footer>
   </div>

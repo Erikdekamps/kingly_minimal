@@ -1,5 +1,3 @@
-// components/field/field.scss
-
 // -----------------------------------------------------------------------------
 // Generic Field Component Styles
 // -----------------------------------------------------------------------------
@@ -20,7 +18,10 @@
   // Styles for a single field item.
   // By default, there are no specific styles, but this provides a hook.
   .field__item {
-    // Example: You could add a border for debugging field items.
-    // border: 1px solid red;
+    // This is a good place for default styles if needed,
+    // e.g., for spacing between rich text paragraphs within a single item.
+    > *:not(:last-child) {
+      margin-bottom: 1em;
+    }
   }
 }

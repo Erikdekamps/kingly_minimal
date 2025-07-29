@@ -2,16 +2,11 @@
 /**
  * @file
  * Component template for a local video media item.
- *
- * This version now receives the rendered field via a 'content' prop instead
- * of a slot.
- *
  * @see kingly_minimal/components/media--video/media--video.component.yml
- *
  * @props
- * - media_entity: The full local video media entity object.
- * - content: The rendered HTML5 video player.
- * - attributes: A Drupal attributes object for the wrapper element.
+ * - media_entity: (Object) The full local video media entity object.
+ * - content: (Object) The rendered HTML5 video player.
+ * - attributes: (Object) A Drupal attributes object for the wrapper element.
  */
 #}
 <div{{ attributes.addClass('media--video') }}>

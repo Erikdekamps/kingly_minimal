@@ -1,14 +1,3 @@
-// components/text/text.scss
-
-// -----------------------------------------------------------------------------
-// Text ("Prose") Component Styles
-//
-// This file styles generic HTML elements within a `.prose` container, making it
-// perfect for WYSIWYG editor output or long-form content from a text field.
-// We use the `> * + *` (lobotomized owl) selector for consistent vertical
-// spacing between elements.
-// -----------------------------------------------------------------------------
-
 [data-component-id='kingly_minimal:text'].prose {
   // --- Vertical Spacing ---
   // Apply a consistent top margin to every direct child element that follows
@@ -60,19 +49,14 @@
     border-inline-start: var(--border-width-thick) solid var(--color-border);
     font-style: italic;
     color: color-mix(in srgb, var(--color-text), #fff 20%);
-
-    p {
-      // Don't add extra margins for paragraphs inside a blockquote.
-      margin-block-start: 0;
-    }
   }
 
   // --- Links ---
   a {
-    // A slightly different style for links within prose for better readability.
     text-decoration: underline;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: var(--color-primary-hover);
     }
   }

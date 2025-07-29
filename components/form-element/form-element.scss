@@ -1,5 +1,3 @@
-// components/form-element/form-element.scss
-
 // -----------------------------------------------------------------------------
 // Form Element Component Styles
 // -----------------------------------------------------------------------------
@@ -9,13 +7,6 @@
   // Use grid for a simple, robust layout.
   display: grid;
   gap: var(--spacing-xs);
-
-  // --- Label Styles ---
-  // The label styles are handled by Drupal Core's form-label.html.twig,
-  // which adds the .form-label class. We target it here.
-  .form-label {
-    font-weight: var(--font-weight-semibold);
-  }
 
   // --- Description Styles ---
   .form-item__description {
@@ -28,10 +19,11 @@
     color: var(--color-error-text);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
   }
 
   // When the component's wrapper has the .form-item--error class (added by
-  // Drupal), we can style the label to match the error state.
+  // the bridge template), we can style the label to match the error state.
   &.form-item--error .form-label {
     color: var(--color-error-text);
   }
@@ -43,13 +35,12 @@
     align-items: center;
     padding: var(--spacing-sm) var(--spacing-md);
     background-color: var(--color-light-gray);
-    border: var(--border-width) solid var(--color-border);
+    border: var(--border-width-thin) solid var(--color-border);
     border-radius: var(--border-radius);
     white-space: nowrap;
   }
 
   // A common pattern is to have a prefix attached to an input.
-  // We can use flexbox on the content wrapper to handle this.
   &.form-item--prefix-attached,
   &.form-item--suffix-attached {
     .form-item__content {

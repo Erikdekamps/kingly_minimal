@@ -1,31 +1,33 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Node Full'
+name: 'Node: Full'
 status: stable
-description: 'Renders the full content of a node, including title, metadata, and all fields.'
+description: 'Renders the full content of a node, including metadata and all fields.'
 
 props:
   type: object
   properties:
     label:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Label'
       description: 'The title of the node.'
     page:
       type: boolean
       title: 'Is Page'
       description: 'A flag indicating if the node is the main content of the page. Used to conditionally display the title.'
+      default: false
     url:
       type: string
       title: 'URL'
-      description: 'The canonical URL of the node, for linking the title.'
+      description: 'The canonical URL of the node.'
     display_submitted:
       type: boolean
       title: 'Display Submitted Info'
       description: 'A flag to control the visibility of the author and date metadata.'
+      default: true
     author_picture:
       type: object # Render array
       title: "Author's Picture"
-      description: "The author's profile picture, passed to the image component."
+      description: "The author's profile picture, passed to the `image` component."
     author_name:
       type: string
       title: 'Author Name'
@@ -37,7 +39,7 @@ props:
     metadata:
       type: object # Render array
       title: 'Metadata'
-      description: 'Additional metadata render array from Drupal.'
+      description: 'Additional metadata render array from Drupal (e.g., comment link).'
     content:
       type: object # Render array
       title: 'Content'
@@ -45,7 +47,7 @@ props:
     content_attributes:
       type: object
       title: 'Content Attributes'
-      description: 'A Drupal attributes object for the content wrapper.'
+      description: 'A Drupal attributes object for the content wrapper `<div>`.'
     title_prefix:
       type: object
       title: 'Title Prefix'
@@ -55,4 +57,4 @@ props:
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the root <article> element.'
+      description: 'A Drupal attributes object for the root `<article>` element.'

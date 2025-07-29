@@ -4,16 +4,14 @@
  * Dispatcher component for media entities.
  *
  * This component inspects the media entity's bundle and includes the
- * corresponding sub-component using an if/elseif chain.
- *
- * This version uses `include` and passes the rendered content down as a prop
- * to prevent a recursive loop that causes memory exhaustion.
+ * corresponding sub-component. It passes the rendered content down as a prop
+ * to the sub-component.
  *
  * @see kingly_minimal/components/media/media.component.yml
  *
  * @props
- * - media_entity: The full media entity object.
- * - attributes: A Drupal attributes object for the wrapper element.
+ * - media_entity: (Object) The full media entity object.
+ * - attributes: (Object) A Drupal attributes object for the wrapper element.
  *
  * @slots
  * - content: The rendered media entity.
@@ -27,7 +25,7 @@
     {% block content %}{% endblock %}
   {% endset %}
 
-  {# Use an if/elseif chain to include the correct component. #}
+  {# Use an if/elseif/else chain to include the correct component. #}
   {% if media_type == 'audio' %}
     {{ include('kingly_minimal:media--audio', {
       attributes: attributes,

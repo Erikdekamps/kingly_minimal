@@ -1,10 +1,3 @@
-// components/comment/comment.scss
-
-// -----------------------------------------------------------------------------
-// Comment Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the comment component.
 [data-component-id='kingly_minimal:comment'] {
   // Add a separator for comments in a list.
   &:not(:last-child) {
@@ -28,6 +21,7 @@
       border-radius: var(--border-radius-circle);
       width: var(--size-avatar); // Fixed size for consistency.
       height: var(--size-avatar);
+      object-fit: cover;
     }
   }
 
@@ -35,6 +29,7 @@
   .comment__submitted {
     font-size: var(--font-size-sm);
     color: var(--color-text);
+    line-height: 1.4;
 
     // Remove default margins from the paragraphs within this container.
     p {
@@ -47,27 +42,24 @@
   }
 
   .comment__date {
-    // Add a separator between the author and date.
+    // Add a decorative separator between the author and date.
     &::before {
       content: '·';
       margin-inline: var(--spacing-sm);
+      opacity: 0.7;
     }
-  }
-
-  // The main content area of the comment.
-  .comment__content {
-    // The 'text' component will handle prose styling. This is for any overrides.
   }
 
   // The title of the comment, if it exists.
   .comment__title {
     font-family: var(--font-family-heading);
     font-size: var(--font-size-h4);
+    line-height: var(--line-height-heading);
     margin-bottom: var(--spacing-md);
   }
 
   // The "new" indicator.
-  .new {
+  .new-marker {
     background-color: var(--color-primary);
     color: var(--color-background);
     padding: 0.1em 0.4em;
@@ -75,5 +67,7 @@
     font-size: 0.8em;
     text-transform: uppercase;
     font-weight: var(--font-weight-bold);
+    vertical-align: middle;
+    margin-left: var(--spacing-sm);
   }
 }

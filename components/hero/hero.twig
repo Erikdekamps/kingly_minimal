@@ -6,12 +6,12 @@
  * @see kingly_minimal/components/hero/hero.component.yml
  *
  * @props
- * - background_image: The rendered background image element.
- * - title: The main heading for the hero.
- * - subtitle: The sub-heading for the hero.
- * - cta_link: An object with "url" and "text" for the CTA button.
- * - height: The height variant ('sm', 'md', 'lg', 'xl').
- * - attributes: A Drupal attributes object for the root wrapper element.
+ * - background_image: (Object) The rendered background image element.
+ * - title: (String) The main heading for the hero.
+ * - subtitle: (String) The sub-heading for the hero.
+ * - cta_link: (Object) An object with "url" and "text" for the CTA button.
+ * - height: (String) The height variant ('sm', 'md', 'lg', 'xl').
+ * - attributes: (Object) A Drupal attributes object for the root wrapper element.
  */
 #}
 {% set base_class = 'hero' %}
@@ -28,7 +28,12 @@
   <div class="{{ base_class }}__content">
     <div class="{{ base_class }}__text-wrapper">
       {% if title %}
-        <h2 class="{{ base_class }}__title">{{ title }}</h2>
+        {{ include('kingly_minimal:heading', {
+          text: title,
+          level: 'h2',
+          display: 'h1',
+          attributes: create_attribute().addClass(base_class ~ '__title')
+        }, with_context = false) }}
       {% endif %}
       {% if subtitle %}
         <p class="{{ base_class }}__subtitle">{{ subtitle }}</p>

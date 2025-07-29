@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Button'
 status: stable
-description: 'Renders a versatile and accessible button element with optional style variations and icons.'
+description: 'Renders a versatile and accessible button or link with optional style variations and icons.'
 
 props:
   type: object
@@ -9,17 +9,17 @@ props:
     text:
       type: string
       title: 'Text'
-      description: 'The label displayed on the button.'
+      description: 'The visible label and accessible name for the button.'
       default: ''
     url:
       type: string
       title: 'URL'
-      description: 'The destination URL. Renders the component as a link.'
+      description: 'If provided, the component renders as an `<a>` tag with this `href` value. Otherwise, it renders as a `<button>`.'
       default: ''
     element:
       type: string
       title: 'HTML Element'
-      description: 'The HTML tag to use for the button (e.g., "button" or "a").'
+      description: 'The HTML tag to use for the button. Defaults to `button` if no `url` is provided, otherwise `a`.'
       default: 'button'
     style:
       type: string
@@ -32,12 +32,12 @@ props:
     icon_before:
       type: string
       title: 'Icon Before'
-      description: 'The machine name of an icon from the `kingly_minimal:icon` component to display before the text.'
+      description: 'The machine name of an icon (from `kingly_minimal:icon`) to display before the text.'
     icon_after:
       type: string
       title: 'Icon After'
-      description: 'The machine name of an icon from the `kingly_minimal:icon` component to display after the text.'
+      description: 'The machine name of an icon (from `kingly_minimal:icon`) to display after the text.'
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for adding classes, IDs, etc.'
+      description: 'A Drupal attributes object for adding custom attributes like `type`, `aria-label`, etc.'

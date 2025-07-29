@@ -1,39 +1,28 @@
-// components/menu/menu.scss
-
 @use '../../scss/base/mixins' as *;
 
-// -----------------------------------------------------------------------------
-// Generic Menu Component Styles
-// This component is now unaware of specific contexts like 'footer'.
-// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:menu'] {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  flex-direction: column; // Default is vertical (for mobile main menu).
+  gap: 0; // Spacing is handled by link padding on mobile.
 
-  // By default, this is the main menu, so it becomes horizontal on desktop.
-  @include media-query(md) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-  }
-
+  // --- Link Styles ---
   .menu__link {
     display: inline-flex;
     align-items: center;
+    // WCAG 2.5.5 (AAA): Ensure minimum target size.
     min-height: var(--size-target-min);
     padding: var(--spacing-sm) var(--spacing-md);
     text-decoration: none;
     border-radius: var(--border-radius);
     font-weight: var(--font-weight-medium);
-    transition: background-color var(--transition-duration) var(--transition-timing-function);
+    transition: background-color var(--transition-duration-fast) var(--transition-timing-function);
     color: var(--color-text);
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       background-color: var(--color-light-gray);
       text-decoration: none;
     }
@@ -42,15 +31,11 @@
       font-weight: var(--font-weight-bold);
       color: var(--color-primary);
     }
-
-    // Mobile-specific styles for the default menu.
-    @include media-query(md, 'max') {
-      padding-inline: 0;
-      border-radius: 0;
-      width: 100%;
-    }
   }
 
+  // --- Sub-menu ---
+  // Sub-menus are typically hidden by default in this architecture and would be
+  // revealed by JavaScript (e.g., on click for a dropdown).
   .menu__sub-menu {
     display: none;
   }

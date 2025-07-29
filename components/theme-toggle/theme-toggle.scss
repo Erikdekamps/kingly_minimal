@@ -1,24 +1,16 @@
-// components/theme-toggle/theme-toggle.scss
-
-// -----------------------------------------------------------------------------
-// Theme Toggle Component Styles
-// -----------------------------------------------------------------------------
-
 [data-component-id='kingly_minimal:theme-toggle'] {
-  // Reset default button appearance for a clean slate.
   -webkit-appearance: none;
   appearance: none;
   background-color: transparent;
   border: none;
-  padding: 0; // Padding is not needed as size is explicit.
+  padding: 0;
   cursor: pointer;
   border-radius: 50%;
   line-height: 1;
   color: var(--color-text);
-  transition: background-color var(--transition-duration) var(--transition-timing-function),
-  color var(--transition-duration) var(--transition-timing-function);
+  transition: background-color var(--transition-duration-fast) var(--transition-timing-function),
+  color var(--transition-duration-fast) var(--transition-timing-function);
 
-  // --- Animation Setup & Target Size ---
   // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
   display: grid;
   place-items: center;
@@ -27,7 +19,7 @@
   height: var(--size-target-min);
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background-color: color-mix(in srgb, var(--color-text), transparent 90%);
     color: var(--color-primary);
   }
@@ -49,17 +41,16 @@
   }
 
   // --- Local State-Driven Visibility ---
-  // The component's appearance is now driven by its own `aria-pressed` attribute.
-  // This makes it fully encapsulated and independent of the global theme state.
+  // The component's appearance is driven by its own `aria-pressed` attribute.
 
   // State when NOT pressed (Light Mode)
   &[aria-pressed="false"] {
     .theme-toggle__icon-wrapper--dark { // Moon is visible
-      transform: rotate(0deg);
+      transform: rotate(0deg) scale(1);
       opacity: 1;
     }
     .theme-toggle__icon-wrapper--light { // Sun is hidden
-      transform: rotate(30deg);
+      transform: rotate(30deg) scale(0.5);
       opacity: 0;
     }
   }
@@ -67,11 +58,11 @@
   // State when PRESSED (Dark Mode)
   &[aria-pressed="true"] {
     .theme-toggle__icon-wrapper--dark { // Moon is hidden
-      transform: rotate(-30deg);
+      transform: rotate(-30deg) scale(0.5);
       opacity: 0;
     }
     .theme-toggle__icon-wrapper--light { // Sun is visible
-      transform: rotate(0deg);
+      transform: rotate(0deg) scale(1);
       opacity: 1;
     }
   }

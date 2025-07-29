@@ -9,6 +9,11 @@
  * this component's own stylesheet.
  *
  * @see kingly_minimal/components/footer-menu/footer-menu.component.yml
+ *
+ * @props
+ * - label: (String) The accessible label for the navigation.
+ * - content: (Object) The render array for the menu tree.
+ * - attributes: (Object) HTML attributes for the wrapper.
  */
 #}
 {% set heading_id = attributes.id ~ '-label' %}
@@ -29,7 +34,6 @@ Conditionally set the accessible name for the navigation.
   {#
   Print the block title as a visually hidden heading. This provides an
   accessible name for the <nav> element via aria-labelledby.
-  This is only printed if the label is provided.
   #}
   {{ title_prefix }}
   {% if label %}
@@ -37,10 +41,7 @@ Conditionally set the accessible name for the navigation.
   {% endif %}
   {{ title_suffix }}
 
-  {#
-  We include our generic `menu` SDC. This component's `footer-menu.scss` will
-  automatically apply the necessary contextual style overrides.
-  #}
+  {# Include our generic `menu` SDC to render the actual list. #}
   {% if content['#items'] %}
     {{ include('kingly_minimal:menu', {
       items: content['#items'],

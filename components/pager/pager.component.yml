@@ -6,21 +6,17 @@ description: 'Renders a styled pagination control for navigating through lists o
 props:
   type: object
   properties:
-    # The list of pager items (first, previous, pages, next, last)
-    # provided by Drupal's pager service.
     items:
       type: object
       title: 'Pager Items'
-      description: 'The structured list of pager links and text.'
-      default: {}
-    # The ID for the accessible heading, linking the nav to its label.
+      description: 'The structured list of pager links and text provided by Drupal''s pager service.'
+      default: { }
     heading_id:
       type: string
       title: 'Heading ID'
-      description: 'The HTML ID for the visually hidden h4 heading.'
+      description: 'The HTML ID for the visually hidden h4 heading, used for `aria-labelledby`.'
       default: 'pagination-heading'
-    # HTML attributes for the <nav> element.
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the root <nav> element.'
+      description: 'A Drupal attributes object for the root `<nav>` element.'

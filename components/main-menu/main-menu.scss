@@ -3,20 +3,35 @@
 @use '../../scss/base/mixins' as *;
 
 // -----------------------------------------------------------------------------
-// Main Navigation Component
-// The root selector targets the <nav> element. Its only job is to control the
-// layout and alignment of the menu component within it.
-// All styles for the <ul> and <a> elements have been moved to the `menu` SDC.
+// Main Navigation Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:main-menu'] {
-  // On mobile, the nav container should take up the available width.
+  // On mobile, the nav container takes up the available width.
   width: 100%;
 
-  // On desktop, the width is determined by its content.
+  // On desktop, align the menu to the right.
   @include media-query(md) {
     width: auto;
-    // Align the menu items to the end of the flex container on desktop.
     display: flex;
     justify-content: flex-end;
+  }
+
+  // --- Contextual Overrides for the `menu` component ---
+  .menu {
+    // On desktop, the main menu is horizontal.
+    @include media-query(md) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+  }
+
+  .menu__link {
+    // On mobile, the main menu links are full-width and have no side padding.
+    @include media-query(md, 'max') {
+      width: 100%;
+      padding-inline: 0;
+      border-radius: 0;
+    }
   }
 }

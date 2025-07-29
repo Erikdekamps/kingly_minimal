@@ -1,8 +1,5 @@
-// components/textfield/textfield.scss
-
 // -----------------------------------------------------------------------------
 // Textfield Component Styles
-// These styles were migrated from the global scss/forms/forms.scss.
 // -----------------------------------------------------------------------------
 
 // Scope all styles to the textfield component.
@@ -18,12 +15,12 @@
   line-height: var(--line-height-base);
   color: var(--color-text);
   background-color: var(--color-background);
-  border: var(--border-width) solid var(--color-border);
+  border: var(--border-width-thin) solid var(--color-border);
   border-radius: var(--border-radius);
-  transition: border-color var(--transition-duration) var(--transition-timing-function),
-  box-shadow var(--transition-duration) var(--transition-timing-function);
+  transition: border-color var(--transition-duration-fast) var(--transition-timing-function),
+  box-shadow var(--transition-duration-fast) var(--transition-timing-function);
 
-  // WCAG AAA: High-contrast focus indicator for keyboard navigation.
+  // WCAG 2.4.7: High-contrast focus indicator for keyboard navigation.
   &:focus-visible {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);
@@ -42,5 +39,9 @@
 // This rule targets a textfield component that is inside a wrapper with the
 // .form-item--error class (which is provided by our form-element component).
 .form-item--error [data-component-id='kingly_minimal:textfield'] {
-  border-color: var(--color-error-text);
+  border-color: var(--color-error-border);
+
+  &:focus-visible {
+    border-color: var(--color-primary); // Ensure focus color overrides error color
+  }
 }

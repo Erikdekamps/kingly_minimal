@@ -3,20 +3,25 @@
  * @file
  * Component template for a page title.
  *
- * This component renders the main H1 page title inside a wrapper.
+ * This component renders the main H1 page title inside a wrapper by composing
+ * the `heading` component.
  *
  * @see kingly_minimal/components/page-title/page-title.component.yml
  *
- * Available variables (from props):
- * - title: The page title text.
- * - attributes: HTML attributes for the wrapper element. SDC will inject the
- *   data-component-id into this object.
+ * @props
+ * - title: (String|Object) The page title text or render array.
+ * - attributes: (Object) HTML attributes for the wrapper element.
  */
 #}
 {% if title %}
-  {# The attributes are now applied to the wrapper div. #}
+  {# The attributes are applied to the wrapper div. #}
   <div{{ attributes.addClass('page-title-wrapper') }}>
-    {# The h1 now has a static class for styling hooks. #}
-    <h1 class="page-title">{{ title }}</h1>
+    {# Delegate rendering to the canonical `heading` component. #}
+    {{ include('kingly_minimal:heading', {
+      text: title,
+      level: 'h1',
+      display: 'h1',
+      attributes: create_attribute().addClass('page-title')
+    }, with_context = false) }}
   </div>
 {% endif %}

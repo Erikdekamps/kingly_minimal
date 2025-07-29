@@ -6,20 +6,17 @@ description: 'Renders a reusable inline SVG icon from a predefined library withi
 props:
   type: object
   properties:
-    # The machine name of the icon to render (e.g., 'house', 'envelope').
     name:
       type: string
       title: 'Icon Name'
-      description: 'The machine name of the icon to display.'
-    # An optional label for accessibility. If not provided, the icon name is used.
+      description: 'The machine name of the icon to display (e.g., "house", "envelope").'
     label:
       type: string
       title: 'Accessible Label'
-      description: 'The accessible text for the icon. Defaults to a capitalized version of the name.'
-    # HTML attributes for the wrapper element.
+      description: 'The accessible text for the icon. If not provided, it defaults to a capitalized version of the name. Can be overridden by passing `aria-hidden` in attributes.'
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
+      description: 'A Drupal attributes object for the root `<span>` wrapper.'
   required:
     - name

@@ -6,27 +6,25 @@
  * @see kingly_minimal/components/details/details.component.yml
  *
  * @props
- * - title: The text for the <summary> element.
- * - errors: Any errors associated with the element.
- * - required: A flag indicating if the element is required.
- * - attributes: A Drupal attributes object for the <details> element.
+ * - title: (String|Object) The text for the <summary> element.
+ * - errors: (Object) Any errors associated with the element.
+ * - required: (Boolean) A flag indicating if the element is required.
+ * - attributes: (Object) A Drupal attributes object for the <details> element.
  *
  * @slots
  * - content: The content to be displayed inside the collapsible element.
  */
 #}
-<details{{ attributes.addClass('details') }}>
+<details{{ attributes }}>
   {% if title %}
     <summary class="details__summary">
       <span class="details__summary-text">{{ title }}</span>
       {% if required %}
-        <span class="required-marker">*</span>
+        <span class="required-marker" aria-hidden="true">*</span>
       {% endif %}
       <span class="details__marker">
-        {# Inlined SVG chevron for the marker to allow easy CSS rotation. #}
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
-          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-        </svg>
+        {# The icon is decorative as the open/closed state is conveyed by the `open` attribute. #}
+        {{ include('kingly_minimal:icon', { name: 'chevron-down', 'attributes': create_attribute().setAttribute('aria-hidden', 'true') }, with_context = false) }}
       </span>
     </summary>
   {% endif %}

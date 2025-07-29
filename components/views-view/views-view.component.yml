@@ -7,53 +7,41 @@ props:
   type: object
   properties:
     title:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Title'
-      description: 'The title of the view.'
     header:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Header'
-      description: 'The header section of the view.'
     footer:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Footer'
-      description: 'The footer section of the view.'
     rows:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Rows'
-      description: 'A list of rows in the view.'
     empty:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Empty Message'
-      description: 'The "no results" content of the view.'
     pager:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Pager'
-      description: 'The pager section of the view.'
     exposed:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Exposed Filters'
-      description: 'The exposed form section of the view.'
     more:
-      type: [string, object]
+      type: [ string, object ]
       title: 'More Link'
-      description: 'The "more" link for the view.'
     feed_icons:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Feed Icons'
-      description: 'The feed icons for the view.'
     attachment_before:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Attachment Before'
-      description: 'Content attached before the main content.'
     attachment_after:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Attachment After'
-      description: 'Content attached after the main content.'
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A list of HTML attributes for the wrapper element.'
     title_prefix:
       type: object
       title: 'Title Prefix'

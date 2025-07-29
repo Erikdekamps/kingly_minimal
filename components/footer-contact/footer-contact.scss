@@ -1,10 +1,3 @@
-// components/footer-contact/footer-contact.scss
-
-// -----------------------------------------------------------------------------
-// Footer Contact Component Styles
-// The title styles have been moved to the footer-widget component.
-// -----------------------------------------------------------------------------
-
 // Use the component's own class as the primary selector.
 .footer-contact {
   // Style the <ul> element.
@@ -13,31 +6,27 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 0; // Remove gap as item padding will handle spacing.
+    gap: var(--spacing-sm);
   }
 
   // Style each <li> list item.
   .footer-contact__item {
     // Use flexbox to align the icon and the text.
     display: flex;
-    align-items: center; // Center content vertically
-    // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
-    min-height: var(--size-target-min);
+    align-items: flex-start; // Align to the top for multi-line text.
     gap: var(--spacing-sm); // Space between icon and text.
+    // WCAG 2.5.5 (AAA): Ensure a minimum target size.
+    min-height: var(--size-target-min);
   }
 
   // Style the links within the contact info.
   .footer-contact__link {
-    // WCAG 2.5.5 (AAA): Ensure link takes up available space for a larger target.
-    display: inline-flex;
-    align-items: center;
-    min-height: var(--size-target-min);
     color: var(--color-text);
     text-decoration: none;
-    transition: color 0.15s ease-in-out;
+    transition: color var(--transition-duration-fast) ease-in-out;
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       color: var(--color-primary);
       text-decoration: underline;
     }
@@ -45,9 +34,7 @@
 
   // Style the icon component specifically within this context.
   .icon {
-    // The icon is shorter than the text, so push it down slightly to
-    // achieve better visual alignment with the first line of text.
-    margin-top: 0; // Reset margin-top as we are now center-aligning.
+    margin-top: 0.125em; // Push icon down slightly for better visual alignment with first line of text.
     flex-shrink: 0;
   }
 }

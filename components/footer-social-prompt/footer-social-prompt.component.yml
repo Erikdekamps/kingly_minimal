@@ -1,19 +1,17 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Footer Social Prompt'
+name: 'Footer: Social Prompt'
 status: stable
 description: 'Displays a simple text prompt for social media links in the footer.'
 
 props:
   type: object
   properties:
-    # The text content to display.
     text:
       type: string
       title: 'Prompt Text'
       description: 'The text to be displayed.'
       default: 'Get connected with us on social networks:'
-    # HTML attributes for the wrapper element.
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
+      description: 'A Drupal attributes object for the `<p>` wrapper element.'

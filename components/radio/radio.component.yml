@@ -9,4 +9,4 @@ props:
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the <input type="radio"> element.'
+      description: 'A Drupal attributes object for the `<input type="radio">` element.'

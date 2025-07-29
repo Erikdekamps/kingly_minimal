@@ -1,7 +1,7 @@
 # Card
 
 A versatile component for displaying content in a card-like format. It is highly
-composable, using other SDCs like `image` and `text` to render its content.
+composable, using other SDCs like `image` and `heading` to render its content.
 
 ## Features
 
@@ -14,8 +14,9 @@ composable, using other SDCs like `image` and `text` to render its content.
   text provides a rich, accessible name for the link, making its purpose clear
   without needing a separate `aria-label`. This is known as the "stretched-link"
   pattern.
-- **Composable:** Delegates image rendering to `kingly_minimal:image` and body
-  text rendering to `kingly_minimal:text` for consistency.
+- **Composable:** Delegates image rendering to `kingly_minimal:image`, the title
+  to `kingly_minimal:heading`, and body text to `kingly_minimal:text` for
+  consistency.
 
 ## WCAG Compliance
 

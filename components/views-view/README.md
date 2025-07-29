@@ -14,3 +14,6 @@ system and provides a consistent wrapper.
 - **1.3.1 Info and Relationships (A):** Provides a consistent and predictable
   structure for Views output, helping users understand the relationships between
   a view's header, filters, content, and pager.
+- **2.4.6 Headings and Labels (AA):** Renders the view's title in a
+  semantic `<h2>` tag (via the `heading` component), contributing to the page's
+  document outline.

@@ -6,9 +6,9 @@ metadata, and the comment content.
 ## Features
 
 - **Composable:** This component composes other SDCs for consistency. It
-  uses `kingly_minimal:image` to render the author's avatar
-  and `kingly_minimal:text` to render the main comment body, ensuring consistent
-  styling for user-generated content.
+  uses `kingly_minimal:image` to render the author's
+  avatar, `kingly_minimal:heading` for the title, and `kingly_minimal:text` to
+  render the main comment body.
 - **Semantic Markup:** Uses `<article>` for the comment wrapper and `<footer>`
   for the submission metadata, providing a meaningful structure for assistive
   technologies.
@@ -29,5 +29,3 @@ This component helps to meet the following success criteria:
 - **3.2.4 Consistent Identification (AA):** Renders all comments with a
   consistent layout and structure, making them easy for users to identify and
   parse.
-- **4.1.2 Name, Role, Value (A):** The semantic
-  elements (`article`, `footer`, `h3`) have the correct implicit roles.

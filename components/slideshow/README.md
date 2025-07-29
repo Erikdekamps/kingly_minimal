@@ -5,8 +5,8 @@ It includes a title, navigation controls, and a slot for slide items.
 
 ## Features
 
-- **Library-Powered:** Uses the excellent [Splide.js](https://splidejs.com/)
-  library for robust, accessible carousel functionality.
+- **Library-Powered:** Uses the [Splide.js](https://splidejs.com/) library for
+  robust, accessible carousel functionality.
 - **Composable:** Renders its title using the canonical `kingly_minimal:heading`
   component.
 - **Accessible:** The Splide container is an ARIA `region` with an accessible

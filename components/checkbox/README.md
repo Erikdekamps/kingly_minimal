@@ -23,14 +23,8 @@ following success criteria:
   the `for` and `id` attributes.
 - **2.1.1 Keyboard (A):** As a native HTML element, it is fully focusable and
   operable (using the `Space` key) with a keyboard.
-- **2.4.3 Focus Order (A):** The component fits into a logical tab order within
-  the form.
-- **2.4.6 Headings and Labels (AA):** Relies on the parent `form-element`
-  component to provide a visible, descriptive label.
 - **2.4.7 Focus Visible (AA):** A clear, high-contrast focus ring is applied on
   keyboard focus.
-- **2.5.3 Label in Name (AA):** The accessible name of the input is determined
-  by its associated label, ensuring consistency for speech input users.
 - **4.1.2 Name, Role, Value (A):** Renders an `<input>` with `type="checkbox"`,
   giving it the correct role. Its state (`checked`) is programmatically
   determinable.

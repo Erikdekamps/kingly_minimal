@@ -9,8 +9,7 @@ A button for toggling between light and dark themes.
 - **CSS-driven Animation:** The icon switch (sun to moon) is a pure CSS
   transition driven by the button's `aria-pressed` state, not DOM manipulation.
 - **Accessible:** The component is a `<button>` with a clear `aria-label`. Its
-  state (`pressed` for dark mode, `not pressed` for light mode) is conveyed to
-  assistive technologies via the `aria-pressed` attribute.
+  state is conveyed to assistive technologies via the `aria-pressed` attribute.
 
 ## WCAG Compliance
 

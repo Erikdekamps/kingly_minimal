@@ -15,8 +15,8 @@ Renders the main `<h1>` title for a page.
 
 This component helps to meet the following success criteria:
 
+- **2.4.2 Page Titled (A):** Ensures that every webpage has a descriptive
+  title (the `<h1>`) that identifies its topic or purpose.
 - **2.4.6 Headings and Labels (AA):** Provides the primary `<h1>` for the page,
   which serves as the main entry point for the content and is a critical
   accessibility landmark.
-- **2.4.2 Page Titled (A):** Ensures that every webpage has a descriptive
-  title (the `<h1>`) that identifies its topic or purpose.

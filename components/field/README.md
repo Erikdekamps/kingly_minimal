@@ -11,11 +11,9 @@ template. It accepts all the standard variables from Drupal's field rendering
 system.
 
 ```twig
-{# From field.html.twig #}
 {{ include('kingly_minimal:field', {
   label_hidden: label_hidden,
   label: label,
-  title_attributes: title_attributes,
   items: items,
   multiple: multiple,
   attributes: attributes,

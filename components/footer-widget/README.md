@@ -14,6 +14,6 @@ feature.
 
 ## WCAG Compliance
 
-- **1.3.1 Info and Relationships (A):** Provides a semantic `<h3>` for each
-  widget in the footer, creating a clear and navigable structure for screen
-  reader users browsing by headings.
+- **2.4.6 Headings and Labels (AA):** Provides a semantic `<h3>` for each widget
+  in the footer, creating a clear and navigable structure for screen reader
+  users browsing by headings.

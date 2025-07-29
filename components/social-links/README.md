@@ -9,9 +9,8 @@ Renders a list of social media icons with links.
 - **Auto-Detection:** Automatically matches a known icon to a link based on its
   URL (e.g., finds the "facebook" icon for a `facebook.com` link).
 - **Accessible:** For links that open in a new tab, it provides both a
-  visual `title` attribute and a `visually-hidden` text warning for screen
-  reader users, satisfying WCAG requirements for notifying users of context
-  changes.
+  visual `title` attribute and `visually-hidden` text warning for screen reader
+  users.
 
 ## WCAG Compliance
 

@@ -7,8 +7,8 @@ Renders the primary and secondary local task tabs (e.g., View, Edit, Revisions).
 - **Accessible:** Renders the tabs within a `<nav>` element with a
   proper `aria-labelledby` attribute. The active tab is identified
   with `aria-current="page"`.
-- **Modern Styling:** Uses a modern, clean tab style with a prominent bottom
-  border on the active tab for clear visual indication.
+- **Modern Styling:** Uses a clean tab style with a prominent bottom border on
+  the active tab for clear visual indication.
 
 ## WCAG Compliance
 

@@ -1,18 +1,18 @@
 {#
 /**
- * @file
- * Component template for a titled list of links in the footer.
- *
- * This component embeds the `footer-widget` component, delegating the wrapper
- * and title markup and styling to it.
- *
- * @see kingly_minimal/components/footer-link-list/footer-link-list.component.yml
- *
- * @props
- * - title: (String) The heading for the list of links.
- * - links: (Array) An array of link objects, each with 'text', 'url', and optional 'aria_label'.
- * - attributes: (Object) A Drupal attributes object for the wrapper.
- */
+* @file
+* Component template for a titled list of links in the footer.
+*
+* This component embeds the `footer-widget` component, delegating the wrapper
+* and title markup and styling to it.
+*
+* @see kingly_minimal/components/footer-link-list/footer-link-list.component.yml
+*
+* @props
+* - title: (String) The heading for the list of links.
+* - links: (Array) An array of link objects, each with 'text', 'url', and optional 'aria_label'.
+* - attributes: (Object) A Drupal attributes object for the wrapper.
+    */
 #}
 {% embed 'kingly_minimal:footer-widget' with {
   title: title,
@@ -35,4 +35,4 @@
       </ul>
     {% endif %}
   {% endblock %}
-{% endembed %} {# <-- THIS LINE WAS MISSING. #}
+{% endembed %}

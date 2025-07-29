@@ -5,10 +5,8 @@ Renders a content item in a compact "teaser" format for listings.
 ## Features
 
 - **Composable:** This is a highly composed component. It delegates rendering
-  to:
-- `kingly_minimal:heading` for the title.
-- `kingly_minimal:image` for the author's picture.
-- `kingly_minimal:text` for the main body/summary.
+  to `kingly_minimal:heading` for the title, `kingly_minimal:image` for the
+  author's picture, and `kingly_minimal:text` for the body.
 - **Semantic Markup:** Uses `<article>` for the teaser wrapper, `<footer>` for
   metadata, and a semantic `<h2>` (via the `heading` component) for the title.
 - **Accessible:** The title is a proper, accessible link.

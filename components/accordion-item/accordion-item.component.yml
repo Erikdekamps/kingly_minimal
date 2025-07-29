@@ -9,11 +9,11 @@ props:
     heading:
       type: [string, object]
       title: 'Heading'
-      description: 'The content for the <summary> element, which is the clickable title of the item.'
+      description: 'The content for the clickable <summary> element, which is the title of the item. Can be a string or a render array.'
     content:
       type: [string, object]
       title: 'Content'
-      description: 'The collapsible content within the item.'
+      description: 'The collapsible content within the item. Can be a string or a render array.'
     attributes:
       type: object
       title: 'Attributes'
@@ -23,3 +23,6 @@ props:
       title: 'Is Open by Default'
       description: 'If true, this item will be open when the page loads.'
       default: false
+  required:
+    - heading
+    - content

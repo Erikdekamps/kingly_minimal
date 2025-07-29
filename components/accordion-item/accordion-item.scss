@@ -1,5 +1,3 @@
-// themes/custom/kingly_minimal/components/accordion-item/accordion-item.scss
-
 // -----------------------------------------------------------------------------
 // Accordion Item Component Styles
 // -----------------------------------------------------------------------------
@@ -28,6 +26,13 @@
     &:hover {
       background-color: var(--color-light-gray);
     }
+
+    // WCAG 2.4.7: Ensure a clear focus state.
+    &:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
+      z-index: 1; // Ensure outline is not clipped by adjacent items.
+    }
   }
 
   // The content wrapper div, configured for animation.
@@ -36,7 +41,7 @@
     // Set the initial (closed) state.
     grid-template-rows: 0fr;
     // Define the transition for the grid rows.
-    transition: grid-template-rows var(--transition-duration-slow) ease-in-out;
+    transition: grid-template-rows var(--transition-duration-slow) var(--transition-timing-function);
   }
 
   // The inner wrapper is required for the animation to work correctly.
@@ -51,7 +56,7 @@
   // The custom icon wrapper.
   .accordion-item__icon {
     display: inline-flex;
-    transition: transform var(--transition-duration-slow) ease-in-out;
+    transition: transform var(--transition-duration-slow) var(--transition-timing-function);
   }
 
   // State change when the <details> element is open.
@@ -71,7 +76,7 @@
     }
   }
 
-  // WCAG: Respect user preference for reduced motion.
+  // Respect user preference for reduced motion.
   @media (prefers-reduced-motion: reduce) {
     .accordion-item__icon,
     .accordion-item__content {

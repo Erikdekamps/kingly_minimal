@@ -1,23 +1,20 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Text'
+name: 'Text (Prose)'
 status: stable
 description: 'A component for rendering long-form "prose" or "WYSIWYG" rich text content with consistent, readable styling.'
 
 props:
   type: object
   properties:
-    # The main content to be rendered. This is now a prop.
     content:
       type: [string, object] # Can be a string or a render array.
       title: 'Content'
       description: 'The rich text or HTML content to be styled.'
-    # HTML tag for the wrapper element.
     element:
       type: string
       title: 'Wrapper Element'
       description: 'The HTML tag for the root element.'
       default: 'div'
-    # Drupal attributes object for the wrapper.
     attributes:
       type: object
       title: 'Attributes'

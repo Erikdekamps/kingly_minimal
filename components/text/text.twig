@@ -3,23 +3,14 @@
  * @file
  * Component template for styled "prose" text.
  *
- * This component now renders the `content` prop directly.
- *
  * @see kingly_minimal/components/text/text.component.yml
  *
  * @props
- * - content: The rich text or HTML content to be styled.
- * - element: (Optional) The HTML tag for the root element, defaults to 'div'.
- * - attributes: A Drupal attributes object for the root element.
+ * - content: (String|Object) The rich text or HTML content to be styled.
+ * - element: (String) The HTML tag for the root element, defaults to 'div'.
+ * - attributes: (Object) A Drupal attributes object for the root element.
  */
 #}
 <{{ element|default('div') }}{{ attributes.addClass('prose') }}>
-{#-
-We render the `content` prop directly.
-Crucially, we do NOT apply the |raw filter here. The template that
-*calls* this component is responsible for ensuring the data is safe
-and passing it pre-raw'd. This makes the component itself more secure
-by default.
--#}
-  {{- content -}}
+{{- content -}}
 </{{ element|default('div') }}>

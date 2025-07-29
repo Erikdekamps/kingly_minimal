@@ -1,15 +1,15 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Comment'
 status: stable
-description: 'Renders a single comment, including author, metadata, and content.'
+description: 'Renders a single comment, including author, metadata, and content. Composes the `image` and `text` components.'
 
 props:
   type: object
   properties:
     author_picture:
-      type: object # Render array
+      type: object
       title: "Author's Picture"
-      description: "A renderable array for the author's picture."
+      description: "A renderable array for the author's picture, passed to the `image` component."
     author_name:
       type: string
       title: 'Author Name'
@@ -21,7 +21,7 @@ props:
     permalink:
       type: string
       title: 'Permalink'
-      description: 'A URL linking directly to the comment.'
+      description: 'The URL linking directly to the comment.'
     is_new:
       type: boolean
       title: 'Is New'
@@ -34,18 +34,25 @@ props:
     content:
       type: object # Render array
       title: 'Content'
-      description: "The comment's main content."
+      description: "The comment's main content, passed to the `text` component."
     title:
-      type: object # Render array
+      type: [ string, object ]
       title: 'Title'
-      description: "The comment's title."
+      description: "The comment's title (optional)."
     title_prefix:
       type: object
       title: 'Title Prefix'
+      description: 'Render array for content before the title (e.g., from Drupal hooks).'
     title_suffix:
       type: object
       title: 'Title Suffix'
+      description: 'Render array for content after the title (e.g., from Drupal hooks).'
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the root <article> element.'
+      description: 'A Drupal attributes object for the root `<article>` element.'
+  required:
+    - author_name
+    - created_date
+    - permalink
+    - content

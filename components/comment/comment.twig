@@ -39,9 +39,9 @@
         <span class="comment__date">{{ created_date }}</span>
       </p>
       <p class="comment__links">
-        <a href="{{ permalink }}" class="permalink" rel="bookmark">{{ 'Permalink'|t }}</a>
+        <a href="{{ permalink }}" rel="bookmark">{{ 'Permalink'|t }}</a>
         {% if is_new %}
-          <mark class="new">{{ new_text }}</mark>
+          <mark class="new-marker">{{ new_text }}</mark>
         {% endif %}
       </p>
     </div>
@@ -54,10 +54,13 @@
     {% endif %}
     {{ title_suffix }}
 
-    {# Delegate rendering of the main content to the Text component. #}
-    {# This ensures consistent WYSIWYG styling. #}
+    {#
+    Delegate rendering of the main content to the Text component.
+    This ensures consistent WYSIWYG styling.
+    #}
     {{ include('kingly_minimal:text', {
-      content: content
+      content: content,
+      attributes: create_attribute().addClass('comment__body'),
     }, with_context=false) }}
   </div>
 </article>

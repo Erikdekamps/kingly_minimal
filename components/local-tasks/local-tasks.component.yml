@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Local Tasks'
 status: stable
-description: 'Renders the primary and secondary local task tabs (e.g., View, Edit, Revisions) in a style inspired by the Olivero theme.'
+description: 'Renders the primary and secondary local task tabs (e.g., View, Edit, Revisions).'
 
 props:
   type: object
@@ -10,13 +10,13 @@ props:
       type: object # A render array containing the list items.
       title: 'Primary Tasks'
       description: 'The renderable array of primary task links.'
-      default: {}
+      default: { }
     secondary:
       type: object # A render array containing the list items.
       title: 'Secondary Tasks'
       description: 'The renderable array of secondary task links.'
-      default: {}
+      default: { }
     attributes:
       type: object
       title: Attributes
-      description: 'A Drupal attributes object for the wrapper element.'
+      description: 'A Drupal attributes object for the root `<div>` wrapper.'

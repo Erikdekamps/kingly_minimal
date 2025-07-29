@@ -1,4 +1,4 @@
-# components/image/image.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Image'
 status: stable
 description: 'Renders a responsive image, optionally wrapped in a link and with a caption.'
@@ -53,9 +53,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root element.'
-
-# Define the component's CSS assets.
-library:
-  css:
-    component:
-      image.css: {}

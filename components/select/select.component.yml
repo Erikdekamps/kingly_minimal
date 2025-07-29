@@ -1,4 +1,4 @@
-# kingly_minimal/components/select/select.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Select'
 status: stable
 description: 'Renders a styled <select> dropdown element with a custom arrow.'
@@ -14,9 +14,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the <select> element.'
-
-# Define the component's CSS assets.
-library:
-  css:
-    component:
-      select.css: {}

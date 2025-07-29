@@ -27,7 +27,7 @@
       #}
       {{ include('kingly_minimal:text', {
         content: description,
-        attributes: { class: ['footer-company-info__description'] }
+        attributes: create_attribute().addClass('footer-company-info__description'),
       }, with_context=false) }}
     {% endif %}
   {% endblock %}

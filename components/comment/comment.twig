@@ -29,7 +29,7 @@
     {% if author_picture %}
       {{ include('kingly_minimal:image', {
         render_array: author_picture,
-        attributes: { class: ['comment__author-picture'] }
+        attributes: create_attribute().addClass('comment__author-picture'),
       }, with_context=false) }}
     {% endif %}
 

@@ -1,4 +1,4 @@
-# components/footer-company-info/footer-company-info.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer Company Info'
 status: stable
 description: 'Displays the company name and a short description in the footer.'
@@ -20,9 +20,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the wrapper element.'
-
-# Define the component's CSS assets.
-library:
-  css:
-    component:
-      footer-company-info.css: {}

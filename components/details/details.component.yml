@@ -1,4 +1,4 @@
-# kingly_minimal/components/details/details.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Details'
 status: stable
 description: 'Renders a collapsible <details> element, often used for fieldsets.'
@@ -27,9 +27,3 @@ slots:
   content:
     title: 'Content'
     description: 'The content to be displayed inside the collapsible element.'
-
-# Define the component's CSS assets.
-library:
-  css:
-    component:
-      details.css: {}

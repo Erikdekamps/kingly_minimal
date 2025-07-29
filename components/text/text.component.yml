@@ -1,4 +1,4 @@
-# themes/custom/kingly_minimal/components/text/text.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Text'
 status: stable
 description: 'A component for rendering long-form "prose" or "WYSIWYG" rich text content with consistent, readable styling.'
@@ -11,7 +11,6 @@ props:
       type: [string, object] # Can be a string or a render array.
       title: 'Content'
       description: 'The rich text or HTML content to be styled.'
-      required: true
     # HTML tag for the wrapper element.
     element:
       type: string
@@ -23,11 +22,5 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root element.'
-
-# The slot has been removed.
-
-# Define the component's CSS assets.
-library:
-  css:
-    component:
-      text.css: {}
+  required:
+    - content

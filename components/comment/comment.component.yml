@@ -1,4 +1,4 @@
-# kingly_minimal/components/comment/comment.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Comment'
 status: stable
 description: 'Renders a single comment, including author, metadata, and content.'
@@ -49,9 +49,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root <article> element.'
-
-# Define the component's CSS assets.
-library:
-  css:
-    component:
-      comment.css: {}

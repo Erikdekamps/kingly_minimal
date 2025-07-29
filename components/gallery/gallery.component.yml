@@ -1,4 +1,3 @@
-# file: themes/custom/kingly_minimal/components/gallery/gallery.component.yml
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Gallery'
 status: stable
@@ -27,8 +26,3 @@ slots:
   content:
     title: 'Gallery Items'
     description: 'The slot where the individual gallery items should be placed.'
-
-library:
-  css:
-    component:
-      gallery.css: {}

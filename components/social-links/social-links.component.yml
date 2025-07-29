@@ -1,4 +1,4 @@
-# Defines the 'social-links' Single Directory Component.
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Social Links'
 status: stable
 description: 'Renders a list of social media icons. The links are hardcoded within the component.'
@@ -22,7 +22,3 @@ props:
           text: 'LinkedIn'
         - url: 'https://www.instagram.com'
           text: 'Instagram'
-library:
-  css:
-    component:
-      social-links.css: {}

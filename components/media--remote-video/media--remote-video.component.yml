@@ -10,18 +10,14 @@ props:
       type: object
       title: Media Entity
       description: 'The full remote video media entity object.'
-      required: true
     content:
       type: [string, object]
       title: Content
-      required: true
       description: 'The rendered video iframe.'
     attributes:
       type: object
       title: Attributes
       description: HTML attributes for the wrapper element.
-
-library:
-  css:
-    component:
-      media--remote-video.css: {}
+  required:
+    - media_entity
+    - content

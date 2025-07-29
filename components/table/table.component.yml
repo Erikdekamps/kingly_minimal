@@ -1,4 +1,4 @@
-# kingly_minimal/components/table/table.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Table'
 status: stable
 description: 'Renders a structured data table with a responsive wrapper.'
@@ -44,9 +44,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'HTML attributes for the component root wrapper element.'
-
-# Define the component's CSS assets.
-library:
-  css:
-    component:
-      table.css: {}

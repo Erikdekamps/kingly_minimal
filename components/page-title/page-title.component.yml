@@ -1,4 +1,4 @@
-# components/page-title/page-title.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Page Title'
 status: stable
 description: 'Renders the main page title (H1) for a page.'

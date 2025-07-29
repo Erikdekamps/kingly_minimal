@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Footer Utility Links'
+name: 'Footer: Utility Links'
 status: stable
-description: 'Renders a list of utility links for the footer bottom bar, like a contact link and theme toggle.'
+description: 'Renders a list of utility links for the footer bottom bar and composes the theme-toggle.'
 
 props:
   type: object
@@ -9,16 +9,16 @@ props:
     links:
       type: array
       title: 'Links'
-      description: 'An array of link objects to render. Each object should have a "text" and "url" key.'
+      description: 'An array of link objects to render. Each object should have "text" and "url" keys.'
       default:
         - text: 'Contact'
-          url: '/contact' # Defaulting to a standard contact page URL.
+          url: '/contact'
     show_theme_toggle:
       type: boolean
       title: 'Show Theme Toggle'
-      description: 'Whether to show the light/dark mode theme toggle button.'
+      description: 'If true, the light/dark mode theme toggle button will be displayed.'
       default: true
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
+      description: 'A Drupal attributes object for the wrapper `<div>` element.'

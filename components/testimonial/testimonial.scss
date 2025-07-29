@@ -1,10 +1,5 @@
-// components/testimonial/testimonial.scss
-
 @use '../../scss/base/mixins' as *;
 
-// -----------------------------------------------------------------------------
-// Testimonial Card Component Styles
-// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:testimonial'] {
   display: grid;
   gap: var(--spacing-md);

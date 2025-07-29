@@ -1,8 +1,3 @@
-// -----------------------------------------------------------------------------
-// Comment Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the comment component.
 [data-component-id='kingly_minimal:comment'] {
   // Add a separator for comments in a list.
   &:not(:last-child) {

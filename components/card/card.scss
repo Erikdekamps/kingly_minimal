@@ -7,28 +7,28 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:card'] {
   // --- Base Card Styles ---
-  display: block;
+  display: block; // Ensures the link or article takes up block-level space.
   text-decoration: none;
   color: inherit;
   background-color: var(--color-background);
   border: var(--border-width-thin) solid var(--color-border);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  overflow: hidden;
+  overflow: hidden; // Keeps child elements (like images) contained within the rounded corners.
+  height: 100%; // Allows the card to fill the height of its grid container.
 
-  // Add a transition only for the button's background color on hover.
-  // The transition is placed on the child to be more performant.
+  // Transition the CTA button for a smooth hover effect.
   .card__cta {
     transition: background-color var(--transition-duration-medium) var(--transition-timing-function);
   }
 
   // --- Hover & Focus States ---
-  // The primary hover effect is now on the CTA button.
+  // The primary hover effect is on the CTA button.
   &:hover .card__cta {
     background-color: var(--color-primary-hover);
   }
 
-  // A clear focus state is crucial for accessibility.
+  // WCAG 2.4.7: A clear focus state is crucial for accessibility.
   &:focus-visible {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);
@@ -59,7 +59,9 @@
       .card__image {
         height: 100%;
 
-        img, picture {
+        .image-component,
+        img,
+        picture {
           height: 100%;
           object-fit: cover;
         }

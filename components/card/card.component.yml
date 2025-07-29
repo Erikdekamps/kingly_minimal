@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Card'
 status: stable
-description: 'A versatile component for displaying content in a card-like format. Composes other SDCs like image, text, and button.'
+description: 'A versatile component for displaying content in a card format. Composes other SDCs like image and text, and can be rendered as a single clickable link.'
 
 props:
   type: object
@@ -9,7 +9,7 @@ props:
     variant:
       type: string
       title: Variant
-      description: Controls the layout of the card.
+      description: 'Controls the layout of the card.'
       default: 'vertical'
       enum:
         - 'vertical'
@@ -17,7 +17,7 @@ props:
     image:
       type: object
       title: 'Image'
-      description: 'An object of props for the `kingly_minimal:image` component (e.g., src, alt).'
+      description: 'An object of props to be passed to the `kingly_minimal:image` component.'
     title:
       type: string
       title: 'Title'
@@ -29,15 +29,17 @@ props:
     link:
       type: object
       title: Link
-      description: An object containing the link URL and text. If provided, the entire card becomes a clickable link.
+      description: 'If provided, the entire card becomes a clickable link. The `text` is used for the "call to action" button styling.'
       properties:
         url:
           type: string
           title: URL
+          required: true
         text:
           type: string
           title: Text
+          required: true
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the root element.'
+      description: 'A Drupal attributes object for the root element (`<a>` or `<article>`).'

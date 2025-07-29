@@ -19,12 +19,15 @@
   &.hero--height-sm {
     min-height: var(--hero-height-sm);
   }
+
   &.hero--height-md {
     min-height: var(--hero-height-md);
   }
+
   &.hero--height-lg {
     min-height: var(--hero-height-lg);
   }
+
   &.hero--height-xl {
     min-height: var(--hero-height-xl);
   }
@@ -58,12 +61,9 @@
     max-width: 80ch; // Optimal line length for readability.
   }
 
+  // Title styles are handled by the `heading` component.
   .hero__title {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-h1);
-    line-height: var(--line-height-heading);
-    font-weight: var(--font-weight-bold);
-    margin: 0;
+    // No specific styles needed here.
   }
 
   .hero__subtitle {

@@ -1,14 +1,8 @@
-// themes/custom/kingly_minimal/components/media--audio/media--audio.scss
-
-// -----------------------------------------------------------------------------
-// Media: Audio Component Styles
-// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:media--audio'] {
   // Target the audio player element rendered by Drupal.
   audio {
-    // Ensure the audio player does not exceed the width of its container.
+    // Ensure the audio player scales with its container.
     max-width: 100%;
-    // Set a width of 100% to make it fill the container by default.
     width: 100%;
   }
 }

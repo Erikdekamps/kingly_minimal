@@ -7,11 +7,11 @@
 [data-component-id='kingly_minimal:footer-widget'] {
   // Style the title of the widget. This style will now be shared by all
   // components that use this widget.
+  // The base font styles (family, weight, size) are handled by the `heading`
+  // component. We only apply context-specific overrides here.
   .footer-widget__title {
-    font-family: var(--font-family-heading);
-    font-size: 1rem;
-    font-weight: 700;
     text-transform: uppercase;
+    font-size: 1rem; // Override default h3 size for a smaller footer title.
     margin-bottom: var(--spacing-md);
   }
 }

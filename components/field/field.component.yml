@@ -1,7 +1,11 @@
+
+### File: `components/field/field.component.yml`
+
+  ```yaml
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Field'
 status: stable
-description: 'Renders a generic field, including its label and items. Provides a consistent wrapper for all fields.'
+description: 'Renders a generic field, including its label and items. Provides a consistent wrapper for all fields that do not have a more specific component override.'
 
 props:
   type: object
@@ -12,7 +16,7 @@ props:
       description: 'A flag indicating whether to show the field label or not.'
       default: false
     label:
-      type: [string, object] # Can be a string or a render array
+      type: [string, object]
       title: 'Label'
       description: 'The label for the field.'
     title_attributes:
@@ -32,4 +36,4 @@ props:
     attributes:
       type: object
       title: 'Attributes'
-      description: 'HTML attributes for the containing element.'
+      description: 'HTML attributes for the root containing element.'

@@ -6,18 +6,23 @@
  * @see kingly_minimal/components/search-result/search-result.component.yml
  *
  * @props
- * - url: The URL of the search result.
- * - title: The title of the search result.
- * - snippet: A snippet of the search result content.
- * - info: Additional information about the search result.
- * - attributes: A Drupal attributes object for the root element.
+ * - url: (String) The URL of the search result.
+ * - title: (String) The title of the search result.
+ * - snippet: (Object) A snippet of the search result content.
+ * - info: (Object) Additional information about the search result.
+ * - attributes: (Object) A Drupal attributes object for the root element.
  */
 #}
 <article{{ attributes.addClass('search-result') }}>
   {% if title %}
-    <h3 class="search-result__title">
-      <a href="{{ url }}">{{ title }}</a>
-    </h3>
+    {# Delegate rendering of the linked title to our Heading component. #}
+    {{ include('kingly_minimal:heading', {
+      text: title,
+      level: 'h3',
+      display: 'h4',
+      url: url,
+      attributes: create_attribute().addClass('search-result__title')
+    }, with_context = false) }}
   {% endif %}
 
   {% if info %}

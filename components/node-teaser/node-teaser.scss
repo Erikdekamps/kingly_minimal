@@ -14,20 +14,10 @@
   border-bottom: var(--border-width-thin) solid var(--color-border);
 
   // --- Teaser Title ---
+  // All styles are now handled by the `heading` component.
+  // The class is kept as a hook for potential future overrides.
   .node__title {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-h3);
-    line-height: var(--line-height-heading);
-    margin: 0; // Reset default heading margin.
-
-    a {
-      text-decoration: none;
-      color: inherit;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+    // No styles needed here.
   }
 
   // --- Metadata (Submitted by...) ---
@@ -44,8 +34,10 @@
 
   // Style for the author's picture, if displayed.
   .user-picture {
-    border-radius: var(--border-radius-circle);
-    overflow: hidden;
+    img {
+      border-radius: var(--border-radius-circle);
+      overflow: hidden;
+    }
   }
 
   // --- Main Teaser Content ---

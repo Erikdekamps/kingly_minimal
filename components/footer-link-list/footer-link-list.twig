@@ -1,18 +1,18 @@
 {#
 /**
-* @file
-* Component template for a titled list of links in the footer.
-*
-* This component has been refactored to embed the `footer-widget` component,
-* delegating the wrapper and title markup and styling to it.
-*
-* @see kingly_minimal/components/footer-link-list/footer-link-list.component.yml
-*
-* @props
-* - title: The heading for the list of links.
-* - links: An array of link objects, each with 'text', 'url', and optional 'aria_label'.
-* - attributes: A Drupal attributes object for the wrapper.
-    */
+ * @file
+ * Component template for a titled list of links in the footer.
+ *
+ * This component embeds the `footer-widget` component, delegating the wrapper
+ * and title markup and styling to it.
+ *
+ * @see kingly_minimal/components/footer-link-list/footer-link-list.component.yml
+ *
+ * @props
+ * - title: (String) The heading for the list of links.
+ * - links: (Array) An array of link objects, each with 'text', 'url', and optional 'aria_label'.
+ * - attributes: (Object) A Drupal attributes object for the wrapper.
+ */
 #}
 {% embed 'kingly_minimal:footer-widget' with {
   title: title,
@@ -23,16 +23,3 @@
   footer-widget.twig template. Everything inside this block will be
   injected into the widget's content area.
   #}
-  {% block content %}
-    {% if links %}
-      <ul class="footer-link-list__list">
-        {% for link in links %}
-          <li class="footer-link-list__item">
-            {# WCAG 2.4.9: Add aria-label if provided to distinguish ambiguous links. #}
-            <a href="{{ link.url }}" class="footer-link-list__link"{{ link.aria_label ? ' aria-label="' ~ link.aria_label ~ '"' }}>{{ link.text }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endblock %}
-{% endembed %}

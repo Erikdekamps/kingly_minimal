@@ -1,5 +1,3 @@
-// components/details/details.scss
-
 // -----------------------------------------------------------------------------
 // Details Component Styles
 // -----------------------------------------------------------------------------
@@ -8,7 +6,10 @@
 [data-component-id='kingly_minimal:details'] {
   border: var(--border-width-thin) solid var(--color-border);
   border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-md);
+  // Add margin for spacing when details elements are stacked in a form.
+  &:not(:last-child) {
+    margin-bottom: var(--spacing-md);
+  }
 
   // The <summary> element that acts as the controller.
   .details__summary {
@@ -21,10 +22,16 @@
     list-style: none; // Remove the default browser marker.
     background-color: var(--color-light-gray);
 
+    // Remove the default outline on WebKit browsers.
+    &::-webkit-details-marker {
+      display: none;
+    }
+
     // Give the summary a clear focus state.
     &:focus-visible {
       outline: var(--focus-ring-width) solid var(--focus-ring-color);
       outline-offset: var(--focus-ring-offset);
+      z-index: 1;
     }
   }
 
@@ -36,8 +43,15 @@
   // The custom marker (our SVG icon).
   .details__marker {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: transform var(--transition-duration-medium) var(--transition-timing-function);
-    transform: rotate(90deg); // Point down when closed.
+    transform-origin: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   // The content area inside the details element.
@@ -49,22 +63,29 @@
   // State changes when the <details> element is open.
   &[open] {
     > .details__summary {
-      border-bottom: var(--border-width-thin) solid var(--color-border);
-
       .details__marker {
-        transform: rotate(-90deg); // Point up when open.
+        transform: rotate(180deg);
       }
     }
   }
 
-  // Error state for forms.
-  &.has-error > .details__summary {
+  // Error state for forms (class added by form-element bridge).
+  &.form-item--error > .details__summary {
     background-color: var(--color-error);
+    border-color: var(--color-error-border);
     color: var(--color-error-text);
   }
 
   // Required marker for forms.
   .required-marker {
     color: var(--color-error-text);
+    font-weight: var(--font-weight-bold);
+  }
+
+  // Respect user preference for reduced motion.
+  @media (prefers-reduced-motion: reduce) {
+    .details__marker {
+      transition: none;
+    }
   }
 }

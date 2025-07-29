@@ -3,19 +3,18 @@
  * @file
  * Component template for the slideshow.
  *
- * This template provides the HTML structure required by Splide.js. The custom
- * header is now a sibling to the .splide container for a cleaner DOM structure,
- * and the JS is responsible for moving the generated arrows into it.
+ * This template provides the HTML structure required by Splide.js. It now
+ * uses the `heading` component to render its title.
  *
  * @see kingly_minimal/components/slideshow/slideshow.component.yml
  *
  * @props
- * - uuid: A unique ID for this slideshow instance.
- * - title: The main heading for the slideshow.
- * - columns_mobile: The number of slides to show per page on mobile.
- * - columns_tablet: The number of slides to show per page on tablet.
- * - columns_desktop: The number of slides to show per page on desktop.
- * - attributes: A Drupal attributes object for the root wrapper element.
+ * - uuid: (String) A unique ID for this slideshow instance.
+ * - title: (String) The main heading for the slideshow.
+ * - columns_mobile: (String|Number) The number of slides to show per page on mobile.
+ * - columns_tablet: (String|Number) The number of slides to show per page on tablet.
+ * - columns_desktop: (String|Number) The number of slides to show per page on desktop.
+ * - attributes: (Object) A Drupal attributes object for the root wrapper element.
  *
  * @slots
  * - content: The slot for the <li> slide items.
@@ -24,15 +23,18 @@
 <div{{ attributes.addClass('slideshow') }}>
   <div class="slideshow__header">
     {% if title %}
-      <h2 class="slideshow__title">{{ title }}</h2>
+      {# Delegate rendering to the canonical `heading` component. #}
+      {{ include('kingly_minimal:heading', {
+        text: title,
+        level: 'h2',
+        attributes: create_attribute().addClass('slideshow__title')
+      }, with_context = false) }}
     {% endif %}
-    {# This empty area is a placeholder. Splide's generated arrows will be
-       programmatically appended here by our JavaScript. #}
+    {# Placeholder for Splide's generated arrows. #}
   </div>
 
   {#
-  This is the main Splide container. It is now a sibling to the header.
-  - A unique ID allows the JS to target this specific instance.
+  This is the main Splide container.
   - `role="region"` and `aria-label` make it a distinct landmark for screen readers.
   - `data-*` attributes hold our responsive settings for the JS to consume.
   #}
@@ -47,7 +49,6 @@
   >
     <div class="splide__track">
       <ul class="splide__list">
-        {# The individual slide <li> elements will be rendered here from the content slot. #}
         {% block content %}{% endblock %}
       </ul>
     </div>

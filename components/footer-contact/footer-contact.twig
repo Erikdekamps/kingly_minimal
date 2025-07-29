@@ -3,17 +3,17 @@
  * @file
  * Component template for the footer contact section.
  *
- * This component has been refactored to embed the `footer-widget` component,
- * delegating the wrapper and title markup and styling to it.
+ * This component embeds the `footer-widget` component, delegating the wrapper
+ * and title markup to it.
  *
  * @see kingly_minimal/components/footer-contact/footer-contact.component.yml
  *
  * @props
- * - title: The heading for the contact list.
- * - address: The physical address.
- * - email: The contact email address.
- * - phone: The contact phone number.
- * - attributes: A Drupal attributes object for the wrapper.
+ * - title: (String) The heading for the contact list.
+ * - address: (String) The physical address.
+ * - email: (String) The contact email address.
+ * - phone: (String) The contact phone number.
+ * - attributes: (Object) A Drupal attributes object for the wrapper.
  */
 #}
 {% embed 'kingly_minimal:footer-widget' with {
@@ -38,9 +38,10 @@
 
       {% if phone %}
         <li class="footer-contact__item">
-          {# We strip spaces from the phone prop to create a valid tel: link. #}
+          {# We strip non-numeric characters from the phone prop to create a valid tel: link. #}
+          {% set phone_link = phone|replace({'+': '', ' ': '', '(': '', ')': '', '-': ''}) %}
           {{ include('kingly_minimal:icon', { name: 'phone' }, with_context = false) }}
-          <a href="tel:{{ phone|replace({' ': ''}) }}" class="footer-contact__link">{{ phone }}</a>
+          <a href="tel:+{{ phone_link }}" class="footer-contact__link">{{ phone }}</a>
         </li>
       {% endif %}
     </ul>

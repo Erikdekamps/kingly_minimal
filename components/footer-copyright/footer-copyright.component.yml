@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Footer Copyright'
+name: 'Footer: Copyright'
 status: stable
-description: 'Displays a copyright notice for the footer.'
+description: 'Displays a copyright notice for the footer, with a dynamic year.'
 
 props:
   type: object
@@ -9,9 +9,9 @@ props:
     text:
       type: string
       title: 'Copyright Text'
-      description: 'The copyright text to display. [year] will be replaced with the current year.'
+      description: 'The copyright text to display. The `[year]` placeholder will be replaced with the current year.'
       default: '© [year] Copyright: example.com'
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
+      description: 'A Drupal attributes object for the `<div>` wrapper element.'

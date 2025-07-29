@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Footer Contact'
+name: 'Footer: Contact Info'
 status: stable
-description: 'Displays a titled list of contact information with icons.'
+description: 'Displays a titled list of contact information with icons. Built by embedding the `footer-widget` component.'
 
 props:
   type: object
@@ -9,23 +9,20 @@ props:
     title:
       type: string
       title: 'List Title'
-      description: 'The heading for the contact list.'
+      description: 'The heading for the contact list, passed to the `footer-widget`.'
       default: 'Contact'
     address:
       type: string
       title: 'Address'
-      description: 'The physical address.'
-      default: 'Dummy address'
+      description: '(Optional) The physical address.'
     email:
       type: string
       title: 'Email'
-      description: 'The contact email address.'
-      default: 'info@example.com'
+      description: '(Optional) The contact email address.'
     phone:
       type: string
       title: 'Phone'
-      description: 'The contact phone number.'
-      default: '+ 01 234 567 89'
+      description: '(Optional) The contact phone number.'
     attributes:
       type: object
       title: 'Attributes'

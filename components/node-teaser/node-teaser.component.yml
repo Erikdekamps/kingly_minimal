@@ -1,38 +1,36 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Node Teaser'
 status: stable
-description: 'Renders a content item in a compact "teaser" format for listings.'
+description: 'Renders a content item in a compact "teaser" format for listings. Composes the `heading`, `image`, and `text` components.'
 
 props:
   type: object
   properties:
-    # The URL of the full node page.
     url:
       type: string
       title: 'URL'
       description: 'The canonical URL of the node.'
-    # The title of the node.
     label:
-      type: object # Can be a string or a render array
+      type: [string, object]
       title: 'Label'
-      description: 'The title of the node.'
-    # The main content of the teaser, typically a summary.
+      description: 'The title of the node, passed to the `heading` component.'
     content:
-      type: object # Render array
+      type: object
       title: 'Content'
-      description: 'The main content of the teaser.'
-    # The "Submitted by..." metadata string.
+      description: 'The main content of the teaser, passed to the `text` component.'
     submitted:
-      type: object # Render array
+      type: object
       title: 'Submitted Info'
       description: 'Metadata, like author and date.'
-    # The author's picture.
     author_picture:
-      type: object # Render array
+      type: object
       title: "Author's Picture"
-      description: "The author's profile picture."
-    # A Drupal attributes object for the outer <article> element.
+      description: "The author's profile picture, passed to the `image` component."
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
+      description: 'A Drupal attributes object for the wrapper `<article>` element.'
+  required:
+    - url
+    - label
+    - content

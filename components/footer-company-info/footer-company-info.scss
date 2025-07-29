@@ -2,17 +2,15 @@
 
 // -----------------------------------------------------------------------------
 // Footer Company Info Component Styles
-// The title styles have been moved to the footer-widget component.
 // -----------------------------------------------------------------------------
 
-// Use the component's own class as the primary selector.
+// Use the component's own class as the primary selector, since the
+// data-component-id will be that of the embedded footer-widget.
 .footer-company-info {
-  // Target the description paragraph.
-  // Note: The `.prose` class from the Text component will handle the
-  // base paragraph styling. We add this class for any specific overrides
-  // we might need for this context.
+  // Target the description rendered by the `text` component.
+  // The `.prose` class will handle base paragraph styling. We use this
+  // class for any specific overrides needed in the footer context.
   .footer-company-info__description {
-    // Reset margin in case of user-agent styles.
-    margin: 0;
+    // No specific overrides needed by default.
   }
 }

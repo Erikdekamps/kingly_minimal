@@ -4,7 +4,8 @@
  * Component template for a card.
  *
  * This component is fully prop-driven. It supports layout variants and can
- * render the entire card as a single, accessible link.
+ * render the entire card as a single, accessible link. It now composes the
+ * `heading` component for its title.
  *
  * @see kingly_minimal/components/card/card.component.yml
  *
@@ -23,12 +24,6 @@
   variant ? base_class ~ '--' ~ variant,
 ] %}
 
-{#
-- The root element is an <a> tag if a link is provided, otherwise an <article>.
-- WCAG 2.4.4 Link Purpose (In Context): The combination of the image's alt text,
-  the visible title, body text, and CTA text provides a rich, accessible name
-  for the link, making its purpose clear without needing a separate aria-label.
-#}
 {% set tag = link.url ? 'a' : 'article' %}
 
 <{{ tag }}
@@ -42,16 +37,23 @@
     </div>
   {% endif %}
 
-  {# Create a wrapper for the main content and the call-to-action. #}
   <div class="card__main-and-cta">
     <div class="card__main">
       {% if title %}
-        <h3 class="card__title">{{ title }}</h3>
+        {#
+        Delegate title rendering to the `heading` component.
+        The title is semantically an h3, but styled like an h4.
+        #}
+        {{ include('kingly_minimal:heading', {
+          text: title,
+          level: 'h3',
+          display: 'h4',
+          attributes: create_attribute().addClass('card__title')
+        }, with_context = false) }}
       {% endif %}
 
       {% if body %}
         <div class="card__body">
-          {# Delegate body text rendering to the `text` component. #}
           {{ include('kingly_minimal:text', {
             content: body,
           }, with_context = false) }}
@@ -60,7 +62,6 @@
     </div>
 
     {% if link.text %}
-      {# The CTA is presentational; it's part of the larger link's accessible name. #}
       <div class="card__cta" aria-hidden="true">
         {{- link.text -}}
       </div>

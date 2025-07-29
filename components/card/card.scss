@@ -82,12 +82,10 @@
     align-content: start; // Align title and body to the top.
   }
 
+  // Title styles are now handled by the canonical `heading` component.
+  // The `.card__title` class is kept as a hook for potential overrides if needed.
   .card__title {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-h4);
-    line-height: var(--line-height-heading);
-    font-weight: var(--font-weight-bold);
-    margin: 0;
+    // No styles needed here by default.
   }
 
   // --- Call-to-Action (CTA) Button ---

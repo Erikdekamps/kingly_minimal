@@ -9,14 +9,14 @@
  * @see kingly_minimal/components/field/field.component.yml
  *
  * @props
- * - attributes: HTML attributes for the containing element.
- * - label_hidden: A boolean indicating whether to show the field label or not.
- * - title_attributes: HTML attributes for the title.
- * - label: The label for the field.
- * - multiple: TRUE if a field can contain multiple items.
- * - items: A list of field items. Each item contains:
- *   - attributes: List of HTML attributes for each item.
- *   - content: The field item's content.
+ * - attributes: (Object) HTML attributes for the containing element.
+ * - label_hidden: (Boolean) A flag indicating whether to show the field label.
+ * - title_attributes: (Object) HTML attributes for the title.
+ * - label: (String|Object) The label for the field.
+ * - multiple: (Boolean) TRUE if a field can contain multiple items.
+ * - items: (Array) A list of field items. Each item contains:
+ *   - attributes: (Object) List of HTML attributes for each item.
+ *   - content: (Object) The field item's renderable content.
  */
 #}
 <div{{ attributes }}>

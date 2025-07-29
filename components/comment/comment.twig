@@ -4,28 +4,30 @@
  * Component template for a single comment.
  *
  * This component structures the comment and composes other SDCs for rendering
- * its parts, such as the author's picture (image component) and the main
- * content (text component).
+ * its parts. It uses the `image` component for the author's avatar, the `text`
+ * component for the main comment body, and the `heading` component for the
+ * comment's title. This ensures a consistent and maintainable presentation.
  *
  * @see kingly_minimal/components/comment/comment.component.yml
  *
  * @props
- * - author_picture: A renderable array for the author's picture.
- * - author_name: The comment author's name.
- * - created_date: The formatted date the comment was posted.
- * - permalink: A URL linking directly to the comment.
- * - is_new: A flag indicating if the comment is new.
- * - new_text: The text to display for new comments.
- * - content: The comment's main content.
- * - title: The comment's title.
- * - title_prefix: Render array for output before the title.
- * - title_suffix: Render array for output after the title.
- * - attributes: A Drupal attributes object for the root <article> element.
+ * - author_picture: (Object) A renderable array for the author's picture,
+ *   passed to the `image` component.
+ * - author_name: (String) The comment author's name.
+ * - created_date: (String) The formatted date the comment was posted.
+ * - permalink: (String) The URL linking directly to the comment.
+ * - is_new: (Boolean) A flag indicating if the comment is new.
+ * - new_text: (String) The text to display for new comments (e.g., "new").
+ * - content: (Object) The renderable array for the comment's main content,
+ *   passed to the `text` component.
+ * - title: (String|Object) The comment's title, passed to the `heading` component.
+ * - title_prefix: (Object) A render array for content to be placed before the title.
+ * - title_suffix: (Object) A render array for content to be placed after the title.
+ * - attributes: (Object) A Drupal attributes object for the root `<article>` element.
  */
 #}
 <article{{ attributes.addClass('comment') }}>
   <footer class="comment__meta">
-    {# Delegate rendering of the author's picture to our Image component. #}
     {% if author_picture %}
       {{ include('kingly_minimal:image', {
         render_array: author_picture,
@@ -50,14 +52,15 @@
   <div class="comment__content">
     {{ title_prefix }}
     {% if title %}
-      <h3 class="comment__title">{{ title }}</h3>
+      {# Use the new heading component for the title. #}
+      {{ include('kingly_minimal:heading', {
+        text: title,
+        level: 'h3',
+        attributes: create_attribute().addClass('comment__title')
+      }, with_context = false) }}
     {% endif %}
     {{ title_suffix }}
 
-    {#
-    Delegate rendering of the main content to the Text component.
-    This ensures consistent WYSIWYG styling.
-    #}
     {{ include('kingly_minimal:text', {
       content: content,
       attributes: create_attribute().addClass('comment__body'),

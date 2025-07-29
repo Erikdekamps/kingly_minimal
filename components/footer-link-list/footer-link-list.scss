@@ -2,11 +2,10 @@
 
 // -----------------------------------------------------------------------------
 // Footer Link List Component Styles
-// The title styles have been moved to the footer-widget component.
+// The title styles are handled by the embedded footer-widget component.
 // -----------------------------------------------------------------------------
 
-// Use the component's own class as the primary selector, since the
-// data-component-id is that of the embedded widget.
+// Use the component's own class as the primary selector.
 .footer-link-list {
   // Style the <ul> element.
   .footer-link-list__list {
@@ -14,7 +13,7 @@
     padding: 0;
     margin: 0;
     display: grid;
-    gap: 0; // Remove gap as padding on links will handle spacing.
+    gap: var(--spacing-xs);
   }
 
   // Style the individual links.
@@ -22,14 +21,14 @@
     // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
     display: inline-flex; // Use flex to vertically center text.
     align-items: center;
-    min-height: var(--size-target-min);
-    padding: var(--spacing-xs) 0; // Add small vertical padding.
+    min-height: calc(var(--size-target-min) - (var(--spacing-xs) * 2)); // Adjust for padding
+    padding: var(--spacing-xs) 0;
     color: var(--color-text);
     text-decoration: none;
-    transition: color var(--transition-duration) var(--transition-timing-function);
+    transition: color var(--transition-duration-fast) var(--transition-timing-function);
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       color: var(--color-primary);
       text-decoration: underline;
     }

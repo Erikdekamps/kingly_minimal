@@ -4,34 +4,36 @@
  * Component template for a node teaser.
  *
  * This component structures the content for a node teaser. It now delegates
- * rendering of the author picture and content body to the `image` and `text`
- * components respectively for better consistency and maintainability.
+ * rendering of the title, author picture, and content body to the `heading`,
+ * `image`, and `text` components respectively for better consistency and
+ * maintainability.
  *
  * @see kingly_minimal/components/node-teaser/node-teaser.component.yml
  *
  * @props
- * - url: The canonical URL of the node.
- * - label: The title of the node.
- * - content: The main content of the teaser.
- * - submitted: Metadata, like author and date.
- * - author_picture: The author's profile picture.
- * - attributes: A Drupal attributes object for the wrapper <article> element.
+ * - url: (String) The canonical URL of the node.
+ * - label: (String|Object) The title of the node.
+ * - content: (Object) The main content of the teaser.
+ * - submitted: (Object) Metadata, like author and date.
+ * - author_picture: (Object) The author's profile picture.
+ * - attributes: (Object) A Drupal attributes object for the wrapper <article> element.
  */
 #}
 <article{{ attributes }}>
 
-  {# Render the linked title for the teaser. #}
-  <h2 class="node__title">
-    <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-  </h2>
+  {# Delegate rendering of the linked title to our Heading component. #}
+  {{ include('kingly_minimal:heading', {
+    text: label,
+    level: 'h2',
+    display: 'h3',
+    url: url,
+    attributes: create_attribute().addClass('node__title')
+  }, with_context = false) }}
 
   {# Render the "Submitted by" metadata if it exists. #}
   {% if submitted %}
     <footer class="node__meta">
-      {#
-      Delegate rendering of the author's picture to our Image component.
-      We pass the pre-rendered `author_picture` array directly.
-      #}
+      {# Delegate rendering of the author's picture to our Image component. #}
       {{ include('kingly_minimal:image', {
         render_array: author_picture,
         attributes: create_attribute().addClass('user-picture'),
@@ -43,13 +45,11 @@
     </footer>
   {% endif %}
 
-  {#
-  Render the main teaser content using our Text component.
-  This ensures consistent WYSIWYG styling.
-  #}
+  {# Render the main teaser content using our Text component. #}
   <div class="node__content">
     {{ include('kingly_minimal:text', {
-      content: content
+      content: content,
+      attributes: create_attribute().addClass('node__body')
     }, with_context=false) }}
   </div>
 

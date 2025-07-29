@@ -6,7 +6,7 @@
 
 // Scope all styles to the field-tags component for encapsulation.
 [data-component-id='kingly_minimal:field-tags'] {
-  // The root of the component is the a flex container for the tags.
+  // The root of the component is a flex container for the tags.
   display: flex;
   flex-wrap: wrap; // Allows items to wrap onto new lines.
   gap: var(--spacing-sm);
@@ -15,15 +15,16 @@
   // This assumes the `item.content` passed to the component is the <a> tag.
   .field__item a {
     display: inline-block;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
     background-color: var(--color-light-gray);
     border-radius: var(--border-radius);
     color: var(--color-text);
     text-decoration: none;
     font-size: var(--font-size-sm);
-    transition: background-color 0.15s ease-in-out;
+    transition: background-color var(--transition-duration-fast) var(--transition-timing-function);
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       // Use CSS color-mix for runtime color modification.
       // This is the modern, CSS-variable-friendly way to darken a color.
       background-color: color-mix(in srgb, var(--color-light-gray), #000 5%);

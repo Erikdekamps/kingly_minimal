@@ -14,19 +14,16 @@
   }
 
   // --- Mobile-First: Single Column Layout ---
-  .timeline-item {
+  .timeline__list > li {
     position: relative;
-    // Space for the line and dot.
     padding-left: calc(var(--spacing-lg) + var(--timeline-dot-size));
-    // Space between items.
     padding-bottom: var(--spacing-lg);
 
-    // The dot for each item on mobile.
     &::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 0.25rem; // Align with the first line of text.
+      top: 0.25rem;
       width: var(--timeline-dot-size);
       height: var(--timeline-dot-size);
       border-radius: var(--border-radius-circle);
@@ -35,19 +32,17 @@
       z-index: 1;
     }
 
-    // The vertical line connecting the dots on mobile.
     &:not(:last-child)::after {
       content: '';
       position: absolute;
       left: calc(var(--timeline-dot-size) / 2 + var(--timeline-dot-border-width) - (var(--timeline-line-width) / 2));
       top: calc(var(--timeline-dot-size) + var(--spacing-sm));
-      bottom: calc(-1 * var(--spacing-lg)); // Extend line into the gap.
+      bottom: calc(-1 * var(--spacing-lg));
       width: var(--timeline-line-width);
       background-color: var(--timeline-line-color);
     }
   }
 
-  // Hide the desktop-only connector element on mobile.
   .timeline-item__connector {
     display: none;
   }
@@ -56,18 +51,17 @@
   @include media-query(md) {
     .timeline__list {
       display: grid;
-      // Asymmetric grid: Left column (date), center (line), right (content).
       grid-template-columns: 1fr var(--spacing-lg) 3fr;
     }
 
-    .timeline-item {
+    .timeline__list > li {
       display: grid;
       grid-template-columns: subgrid;
-      grid-column: 1 / -1; // Span all 3 columns of the parent grid.
-      padding-left: 0; // Reset mobile padding.
-      align-items: start; // Align items to the top of the row.
+      grid-column: 1 / -1;
+      padding-left: 0;
+      // REFINEMENT 1: Vertically center the entire row for better balance.
+      align-items: center;
 
-      // Hide the mobile-only pseudo-elements.
       &::before, &::after {
         display: none;
       }
@@ -77,11 +71,12 @@
       display: grid;
       grid-column: 2;
       justify-items: center;
+      // REFINEMENT 2: Vertically center the dot within its connector column.
+      align-items: center;
       position: relative;
       z-index: 1;
-      height: 100%; // Ensure the connector fills the row height.
+      height: 100%;
 
-      // The vertical line.
       &::before {
         content: '';
         position: absolute;
@@ -101,8 +96,8 @@
       border-radius: var(--border-radius-circle);
       background-color: var(--color-background);
       border: var(--timeline-dot-border-width) solid var(--color-primary);
-      // Align dot with the first line of the title.
-      margin-top: 0.25rem;
+      // REFINEMENT 2: Remove fixed margin-top, as centering is now handled by the grid.
+      // margin-top: 0.25rem;
     }
 
     .timeline-item__date {
@@ -119,11 +114,12 @@
       background-color: var(--color-background);
       position: relative;
 
-      // The triangular arrow pointing to the dot.
+      // REFINEMENT 3: The triangular arrow pointing to the dot.
       &::before {
         content: '';
         position: absolute;
-        top: calc(0.25rem + (var(--timeline-dot-size) / 2)); // Align with dot.
+        // Set top to 50% to dynamically align with the center of the content box.
+        top: 50%;
         transform: translateY(-50%);
         left: calc(-1 * var(--timeline-card-arrow-size));
         width: 0;
@@ -136,7 +132,8 @@
       &::after {
         content: '';
         position: absolute;
-        top: calc(0.25rem + (var(--timeline-dot-size) / 2)); // Align with dot.
+        // Set top to 50% to dynamically align with the center of the content box.
+        top: 50%;
         transform: translateY(-50%);
         left: calc(-1 * var(--timeline-card-arrow-size) + 1px);
         width: 0;
@@ -149,9 +146,7 @@
   }
 
   // --- Shared Item Content Styles ---
-  .timeline-item__title {
-    // Styles are handled by the heading component.
-  }
+  .timeline-item__title {}
 
   .timeline-item__description {
     font-size: var(--font-size-sm);

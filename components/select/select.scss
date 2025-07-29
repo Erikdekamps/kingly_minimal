@@ -1,4 +1,12 @@
 [data-component-id='kingly_minimal:select'] {
+  // Tier 3: Component-Specific Variables.
+  // These are defined locally to the component for true encapsulation.
+  --arrow-icon-light: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  --arrow-icon-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+
+  // Default to the light mode icon.
+  --select-arrow-icon: var(--arrow-icon-light);
+
   -webkit-appearance: none;
   appearance: none;
   display: block;
@@ -14,7 +22,7 @@
   transition: border-color var(--transition-duration-fast) var(--transition-timing-function),
   box-shadow var(--transition-duration-fast) var(--transition-timing-function);
 
-  // Custom arrow styling using our CSS variable from _variables.scss.
+  // Custom arrow styling using our locally-scoped CSS variable.
   background-image: var(--select-arrow-icon);
   background-repeat: no-repeat;
   background-position: right var(--spacing-md) center;
@@ -43,4 +51,9 @@
   &:focus-visible {
     border-color: var(--color-primary);
   }
+}
+
+// Override the locally-scoped variable for dark mode.
+html[data-theme="dark"] [data-component-id='kingly_minimal:select'] {
+  --select-arrow-icon: var(--arrow-icon-dark);
 }

@@ -4,6 +4,13 @@
 
 // Scope all styles to the component's root element.
 [data-component-id='kingly_minimal:breadcrumbs'] {
+  // Tier 3: Component-Specific Variables.
+  // These are defined locally to the component for true encapsulation.
+  --separator-icon-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23222222'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  --separator-icon-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e1e1e1'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+
+  // Default to the light mode icon.
+  --breadcrumb-separator-icon: var(--separator-icon-light);
 
   // Styles for the outer wrapper that provides the full-bleed background.
   // This is the root element of the component.
@@ -69,4 +76,9 @@
     color: var(--color-text);
     font-weight: var(--font-weight-medium);
   }
+}
+
+// Override the locally-scoped variable for dark mode.
+html[data-theme="dark"] [data-component-id='kingly_minimal:breadcrumbs'] {
+  --breadcrumb-separator-icon: var(--separator-icon-dark);
 }

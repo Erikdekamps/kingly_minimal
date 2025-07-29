@@ -1,4 +1,7 @@
 [data-component-id='kingly_minimal:field-tags'] {
+  // --- Tier 3: Component-Specific Variables ---
+  --hover-darken-amount: 5%;
+
   // The root of the component is a flex container for the tags.
   display: flex;
   flex-wrap: wrap; // Allows items to wrap onto new lines.
@@ -20,7 +23,7 @@
     &:focus-visible {
       // Use CSS color-mix for runtime color modification.
       // This is the modern, CSS-variable-friendly way to darken a color.
-      background-color: color-mix(in srgb, var(--color-light-gray), #000 5%);
+      background-color: color-mix(in srgb, var(--color-light-gray), #000 var(--hover-darken-amount));
       text-decoration: none;
     }
   }

@@ -1,4 +1,8 @@
 [data-component-id='kingly_minimal:social-links'] {
+  // --- Tier 3: Component-Specific Variables ---
+  --hover-translate-y: -2px;
+  --hover-bg-opacity: 90%;
+
   // Use a flex container for the list of icons.
   .social-links__list {
     list-style: none;
@@ -25,8 +29,8 @@
     &:hover,
     &:focus-visible {
       color: var(--color-primary);
-      transform: translateY(-2px);
-      background-color: color-mix(in srgb, var(--color-text), transparent 90%);
+      transform: translateY(var(--hover-translate-y));
+      background-color: color-mix(in srgb, var(--color-text), transparent var(--hover-bg-opacity));
     }
 
     &:focus-visible {

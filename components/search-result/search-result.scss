@@ -1,33 +1,23 @@
-// components/search-result/search-result.scss
-
-// -----------------------------------------------------------------------------
-// Search Result Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the search-result component.
 [data-component-id='kingly_minimal:search-result'] {
-  // Add a border to separate search results in a list.
   padding-bottom: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
   border-bottom: var(--border-width-thin) solid var(--color-border);
 
-  // The title of the search result.
-  // All styles are now handled by the `heading` component.
-  // The class is kept as a hook for potential future overrides.
-  .search-result__title {
-    margin-bottom: var(--spacing-xs);
-    // The link color is handled by the heading component, so no need to specify it here.
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
   }
 
-  // The metadata info (author, date, etc.).
+  .search-result__title {
+    margin-bottom: var(--spacing-xs);
+  }
+
   .search-result__info {
     font-size: var(--font-size-sm);
     color: var(--color-text);
     margin-bottom: var(--spacing-sm);
   }
 
-  // The text snippet from the result.
-  // Styling is inherited from the base line-height, which is sufficient.
   .search-result__snippet {
     // No specific styles needed.
   }

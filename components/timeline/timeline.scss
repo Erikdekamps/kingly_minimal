@@ -1,17 +1,11 @@
-// themes/custom/kingly_minimal/components/timeline/timeline.scss
-
 @use '../../scss/base/mixins' as *;
 
-// -----------------------------------------------------------------------------
-// Timeline Component Styles
-// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:timeline'] {
-  // --- Design Tokens (Local Scope) ---
   --timeline-line-color: var(--color-border);
   --timeline-line-width: 2px;
-  --timeline-dot-size: 1rem; // 16px
+  --timeline-dot-size: 1rem;
   --timeline-dot-border-width: 3px;
-  --timeline-card-arrow-size: 0.75rem; // 12px
+  --timeline-card-arrow-size: 0.75rem;
 
   .timeline__list {
     list-style: none;
@@ -19,12 +13,12 @@
     margin: 0;
   }
 
-  // --- Vertical Layout ---
-  // The .timeline--vertical class is now added directly by the SDC.
-  // Mobile-first: A simple, single-column layout.
+  // --- Mobile-First: Single Column Layout ---
   .timeline-item {
     position: relative;
+    // Space for the line and dot.
     padding-left: calc(var(--spacing-lg) + var(--timeline-dot-size));
+    // Space between items.
     padding-bottom: var(--spacing-lg);
 
     // The dot for each item on mobile.
@@ -58,11 +52,11 @@
     display: none;
   }
 
-  // On medium screens and up, switch to the two-sided, left-aligned layout.
+  // --- Tablet & Up: Two-Column Layout ---
   @include media-query(md) {
     .timeline__list {
       display: grid;
-      // Asymmetric grid: Left column (date) is 1 part, right (content) is 3 parts.
+      // Asymmetric grid: Left column (date), center (line), right (content).
       grid-template-columns: 1fr var(--spacing-lg) 3fr;
     }
 
@@ -70,11 +64,8 @@
       display: grid;
       grid-template-columns: subgrid;
       grid-column: 1 / -1; // Span all 3 columns of the parent grid.
-      gap: var(--spacing-md);
-      padding-left: 0;
-      padding-bottom: var(--spacing-lg);
-      // Vertically center all grid items in the row.
-      align-items: center;
+      padding-left: 0; // Reset mobile padding.
+      align-items: start; // Align items to the top of the row.
 
       // Hide the mobile-only pseudo-elements.
       &::before, &::after {
@@ -85,12 +76,12 @@
     .timeline-item__connector {
       display: grid;
       grid-column: 2;
-      place-items: center;
+      justify-items: center;
       position: relative;
       z-index: 1;
       height: 100%; // Ensure the connector fills the row height.
 
-      // The vertical line, now attached to the connector for perfect centering.
+      // The vertical line.
       &::before {
         content: '';
         position: absolute;
@@ -100,7 +91,7 @@
         transform: translateX(-50%);
         width: var(--timeline-line-width);
         background-color: var(--timeline-line-color);
-        z-index: -1; // Place it behind the dot.
+        z-index: -1;
       }
     }
 
@@ -110,6 +101,8 @@
       border-radius: var(--border-radius-circle);
       background-color: var(--color-background);
       border: var(--timeline-dot-border-width) solid var(--color-primary);
+      // Align dot with the first line of the title.
+      margin-top: 0.25rem;
     }
 
     .timeline-item__date {
@@ -130,7 +123,7 @@
       &::before {
         content: '';
         position: absolute;
-        top: 50%;
+        top: calc(0.25rem + (var(--timeline-dot-size) / 2)); // Align with dot.
         transform: translateY(-50%);
         left: calc(-1 * var(--timeline-card-arrow-size));
         width: 0;
@@ -139,29 +132,28 @@
         border-bottom: var(--timeline-card-arrow-size) solid transparent;
         border-right: var(--timeline-card-arrow-size) solid var(--color-border);
       }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: calc(0.25rem + (var(--timeline-dot-size) / 2)); // Align with dot.
+        transform: translateY(-50%);
+        left: calc(-1 * var(--timeline-card-arrow-size) + 1px);
+        width: 0;
+        height: 0;
+        border-top: calc(var(--timeline-card-arrow-size) - 1px) solid transparent;
+        border-bottom: calc(var(--timeline-card-arrow-size) - 1px) solid transparent;
+        border-right: calc(var(--timeline-card-arrow-size) - 1px) solid var(--color-background);
+      }
     }
   }
 
-  // --- Item Content (Shared Styles) ---
+  // --- Shared Item Content Styles ---
   .timeline-item__title {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-h4);
-    line-height: var(--line-height-heading);
-    margin: 0 0 var(--spacing-sm) 0;
-  }
-
-  .timeline-item__title-link {
-    text-decoration: none;
-    color: inherit;
-    &:hover .timeline-item__title {
-      text-decoration: underline;
-      color: var(--color-primary);
-    }
+    // Styles are handled by the heading component.
   }
 
   .timeline-item__description {
-    p:last-child {
-      margin-bottom: 0;
-    }
+    font-size: var(--font-size-sm);
   }
 }

@@ -23,3 +23,16 @@
   footer-widget.twig template. Everything inside this block will be
   injected into the widget's content area.
   #}
+  {% block content %}
+    {% if links %}
+      <ul class="footer-link-list__list">
+        {% for link in links %}
+          <li class="footer-link-list__item">
+            {# WCAG 2.4.9: Add aria-label if provided to distinguish ambiguous links. #}
+            <a href="{{ link.url }}" class="footer-link-list__link"{{ link.aria_label ? ' aria-label="' ~ link.aria_label ~ '"' }}>{{ link.text }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endblock %}
+{% endembed %} {# <-- THIS LINE WAS MISSING. #}

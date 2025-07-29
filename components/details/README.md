@@ -26,8 +26,6 @@ options.
   and can be operated with `Enter` and `Space`.
 - **2.4.7 Focus Visible (AA):** A clear, high-contrast focus ring is applied to
   the `<summary>` element on keyboard focus.
-- **3.3.2 Labels or Instructions (A):** The `<summary>` element acts as the
-  label for the collapsible section.
 - **4.1.2 Name, Role, Value (A):** The `<details>` element has an
   implicit `group` role, and the `<summary>` has a `button` role. Its
   expanded/collapsed state is programmatically available via the `open`

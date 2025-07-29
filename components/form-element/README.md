@@ -11,7 +11,6 @@ input (`<input>`, `<select>`, etc.) is placed inside the component's `content`
 slot.
 
 ```twig
-{# From form-element.html.twig #}
 {% embed 'kingly_minimal:form-element' with {
   label: label,
   description: description,
@@ -19,7 +18,7 @@ slot.
   attributes: attributes,
 } %}
   {% block content %}
-    {{ children }} {# The <input>, <select>, etc. goes here #}
+    {{ children }}
   {% endblock %}
 {% endembed %}
 ```
@@ -28,8 +27,8 @@ slot.
 
 This component helps to meet the following success criteria:
 
-- **1.3.1 Info and Relationships (A):** By correctly rendering a <label> with a
-  for attribute that points to the child input's id, it programmatically
+- **1.3.1 Info and Relationships (A):** By correctly rendering a `<label>` with
+  a `for` attribute that points to the child input's `id`, it programmatically
   associates the label with its control.
 - **3.3.2 Labels or Instructions (A):** Ensures that form controls are presented
   with all necessary labels, instructions (via the description prop), and error

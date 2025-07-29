@@ -12,9 +12,8 @@ that shows the user's location in the site hierarchy.
 - **Full Bleed Design:** The component includes a full-width container strip
   with a background color, separating it visually from the header and main
   content.
-- **Data-Driven:** It accepts the array of parent links and the current page
-  title as separate props, ensuring a robust connection to Drupal's render
-  system.
+- **Data-Driven:** It accepts the array of parent links from Drupal and appends
+  the current page title as the final, non-linked item.
 - **CSS-Driven Separators:** Uses CSS pseudo-elements to render the separators
   between links, keeping the HTML clean and semantic.
 

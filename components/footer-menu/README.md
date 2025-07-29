@@ -17,4 +17,5 @@ Renders a menu styled specifically for the footer region.
 - **3.2.3 Consistent Navigation (AA):** Provides a navigation element in a
   consistent location in the site footer.
 - **4.1.2 Name, Role, Value (A):** The `<nav role="navigation">` with its
-  accessible name correctly identifies the component's purpose.
+  accessible name correctly identifies the component's purpose. The
+  included `menu` component handles `aria-current` for the active link.

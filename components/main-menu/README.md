@@ -13,3 +13,11 @@ Renders the main site navigation menu.
   an `aria-labelledby` attribute.
 - **Responsive:** The SCSS handles the layout shift from a vertical (mobile) to
   horizontal (desktop) menu display.
+
+## WCAG Compliance
+
+- **3.2.3 Consistent Navigation (AA):** Provides the main site navigation in a
+  consistent location on all pages.
+- **4.1.2 Name, Role, Value (A):** The `<nav role="navigation">` with its
+  accessible name correctly identifies the component's purpose. The
+  included `menu` component handles `aria-current` for the active link.

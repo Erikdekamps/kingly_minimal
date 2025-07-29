@@ -26,8 +26,8 @@ This component helps to meet the following success criteria:
   prop provides a clear and accessible name.
 - **2.4.7 Focus Visible (AA):** A clear, high-contrast focus ring is applied on
   keyboard focus.
-- **2.5.5 Target Size (Enhanced) (AAA):** The button's padding ensures a minimum
-  target size of at least 44x44 CSS pixels.
+- **2.5.5 Target Size (Enhanced) (AAA):** The button's padding and min-height
+  ensure a target size of at least 44x44 CSS pixels.
 - **4.1.2 Name, Role, Value (A):** The component renders with the correct
   role (`button` or implicitly `link`), its accessible name is provided by
   the `text` prop, and its state (e.g., disabled) is programmatically

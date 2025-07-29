@@ -10,8 +10,8 @@ Renders a structured data table with a responsive wrapper.
 - **Accessible:** The component accepts a `caption` prop to provide a summary of
   the table's content, which is a key accessibility feature.
 - **Drupal Native:** Designed to be a drop-in replacement for Drupal's core
-  table rendering, accepting all the standard
-  variables (`header`, `rows`, `footer`, etc.).
+  table rendering, accepting all the standard variables (`header`, `rows`,
+  etc.).
 
 ## WCAG Compliance
 

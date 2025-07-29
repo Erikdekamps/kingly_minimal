@@ -8,7 +8,8 @@ is a link that navigates to the homepage.
 - **SEO Optimized:** Renders the site name as a `<h1>` tag on the front page and
   a `<div>` on all other pages, ensuring there is only one `<h1>` per page.
 - **Accessible:** The main link has a clear `aria-label` to provide an
-  unambiguous accessible name (e.g., "Kingly Minimal - Home").
+  unambiguous accessible name (e.g., "Kingly Minimal - Home"). The SVG logo is
+  treated as decorative.
 - **Configurable:** Shows or hides the site name and slogan based on props
   passed from Drupal's block configuration.
 

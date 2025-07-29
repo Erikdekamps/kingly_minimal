@@ -6,7 +6,7 @@ widget in the site footer.
 ## Features
 
 - **Composable:** This component is built by embedding
-  the `kingly_minimal:footer-widget` component. This means it inherits the
+  the `kingly_minimal:footer-widget` component. This ensures it inherits the
   standard footer widget title styling and structure, ensuring consistency
   across all footer elements.
 - **Content-Driven:** It accepts the company name and description as props,

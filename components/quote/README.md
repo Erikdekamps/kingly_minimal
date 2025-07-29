@@ -5,7 +5,7 @@ highlighting text.
 
 ## Features
 
-- **Semantic:** Uses the correct `<blockquote`> and `<footer>` elements for
+- **Semantic:** Uses the correct `<blockquote>` and `<footer>` elements for
   quotes and their attribution, which is semantically correct and accessible.
 - **Content-Driven:** Accepts the quote text and attribution as props, making it
   easy to populate from a paragraph or other content entity.

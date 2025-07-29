@@ -6,9 +6,9 @@ collection of categories or keywords.
 
 ## Usage
 
-This component is designed to be used by a specific field bridge
-template, `field--field-tags.html.twig`. It overrides the generic `field`
-component to provide this custom styling.
+This component is designed to be used by a specific field bridge template, such
+as `field--field-tags.html.twig`. It overrides the generic `field` component to
+provide this custom styling.
 
 ## WCAG Compliance
 

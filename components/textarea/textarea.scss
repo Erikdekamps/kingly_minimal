@@ -1,12 +1,8 @@
-// components/textarea/textarea.scss
-
 // -----------------------------------------------------------------------------
 // Textarea Component Styles
-// These styles were migrated from the global scss/forms/forms.scss.
 // -----------------------------------------------------------------------------
 
 // Scope all styles to the textarea component.
-// The data-component-id is applied directly to the <textarea> element.
 [data-component-id='kingly_minimal:textarea'] {
   -webkit-appearance: none;
   appearance: none;
@@ -18,12 +14,13 @@
   line-height: var(--line-height-base);
   color: var(--color-text);
   background-color: var(--color-background);
-  border: var(--border-width) solid var(--color-border);
+  border: var(--border-width-thin) solid var(--color-border);
   border-radius: var(--border-radius);
-  transition: border-color var(--transition-duration) var(--transition-timing-function),
-  box-shadow var(--transition-duration) var(--transition-timing-function);
+  transition: border-color var(--transition-duration-fast) var(--transition-timing-function),
+  box-shadow var(--transition-duration-fast) var(--transition-timing-function);
+  min-height: 120px;
 
-  // WCAG AAA: High-contrast focus indicator.
+  // WCAG 2.4.7: High-contrast focus indicator.
   &:focus-visible {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);
@@ -39,8 +36,10 @@
 }
 
 // Style for the error state.
-// This rule targets a textarea component that is inside a wrapper with the
-// .form-item--error class (provided by our form-element component).
 .form-item--error [data-component-id='kingly_minimal:textarea'] {
-  border-color: var(--color-error-text);
+  border-color: var(--color-error-border);
+
+  &:focus-visible {
+    border-color: var(--color-primary); // Ensure focus color overrides error color
+  }
 }

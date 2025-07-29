@@ -6,15 +6,12 @@
 
 [data-component-id='kingly_minimal:image'] {
   // The root element is a <figure> or <div>.
-  // We use `max-width: 100%` to ensure it doesn't overflow its container.
-  max-width: 100%;
   // `width: fit-content` makes the figure only as wide as the image it contains.
+  max-width: 100%;
   width: fit-content;
   margin: 0; // Reset browser default margins on <figure>.
 
   // The <img> or <picture> element within the component.
-  // It is already responsive due to the `max-width: 100%` in _reset.scss.
-  // We add a border-radius for a consistent look.
   img {
     border-radius: var(--border-radius);
     display: block; // Ensures no extra space is added below the image.

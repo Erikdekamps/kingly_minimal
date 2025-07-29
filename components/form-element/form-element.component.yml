@@ -1,3 +1,6 @@
+
+#### File: `components/form-element/form-element.component.yml`
+  ```yaml
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Form Element'
 status: stable
@@ -22,7 +25,7 @@ props:
     description_display:
       type: string
       title: 'Description Display'
-      description: 'The display setting for the description (e.g., "before", "after", "invisible").'
+      description: 'The display setting for the description (e.g., "before", "after").'
       default: 'after'
     errors:
       type: object # Render array
@@ -39,10 +42,8 @@ props:
     attributes:
       type: object
       title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
+      description: 'A Drupal attributes object for the root `<div>` wrapper.'
 
-# A slot is a placeholder for child content. In this case, it will hold the
-# actual <input>, <select>, or <textarea> element.
 slots:
   content:
     title: 'Content'

@@ -10,21 +10,20 @@
  * @see kingly_minimal/components/form-element/form-element.component.yml
  *
  * @props
- * - label: The renderable array for the label.
- * - label_display: The display setting for the label.
- * - description: A renderable array for the description.
- * - description_display: The display setting for the description.
- * - errors: Any validation errors for this form element.
- * - prefix: The form element prefix.
- * - suffix: The form element suffix.
- * - attributes: A Drupal attributes object for the wrapper.
+ * - label: (Object) The renderable array for the label.
+ * - label_display: (String) The display setting for the label.
+ * - description: (Object) A renderable array for the description.
+ * - description_display: (String) The display setting for the description.
+ * - errors: (Object) Any validation errors for this form element.
+ * - prefix: (Object) The form element prefix.
+ * - suffix: (Object) The form element suffix.
+ * - attributes: (Object) A Drupal attributes object for the wrapper.
  *
  * @slots
  * - content: The form element itself (e.g., input, select).
  */
 #}
-<div{{ attributes.addClass('form-item') }}>
-
+<div{{ attributes }}>
   {% if label and label_display == 'before' %}
     {{ label }}
   {% endif %}
@@ -33,18 +32,20 @@
     {{ description }}
   {% endif %}
 
-  {% if prefix %}
-    <span class="form-item__prefix">{{ prefix }}</span>
-  {% endif %}
+  <div class="form-item__content-wrapper">
+    {% if prefix %}
+      <span class="form-item__prefix">{{ prefix }}</span>
+    {% endif %}
 
-  {# The 'content' block is the placeholder for the actual form input. #}
-  <div class="form-item__content">
-    {% block content %}{% endblock %}
+    {# The 'content' block is the placeholder for the actual form input. #}
+    <div class="form-item__content">
+      {% block content %}{% endblock %}
+    </div>
+
+    {% if suffix %}
+      <span class="form-item__suffix">{{ suffix }}</span>
+    {% endif %}
   </div>
-
-  {% if suffix %}
-    <span class="form-item__suffix">{{ suffix }}</span>
-  {% endif %}
 
   {% if label and label_display == 'after' %}
     {{ label }}
@@ -59,5 +60,4 @@
   {% if description and description_display == 'after' %}
     {{ description }}
   {% endif %}
-
 </div>

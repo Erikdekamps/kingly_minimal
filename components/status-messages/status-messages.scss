@@ -1,34 +1,20 @@
-// components/status-messages/status-messages.scss
-
-// -----------------------------------------------------------------------------
-// Status Messages Component Styles
-// -----------------------------------------------------------------------------
-
-// The root element of the component receives the data-component-id.
-// We apply base styles directly to it and use the `&` selector for variations.
 [data-component-id='kingly_minimal:status-messages'] {
   // Base styles for the message block itself.
   padding: var(--spacing-md);
   margin-bottom: var(--spacing-md);
-  border: var(--border-width) solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--border-radius);
 
-  // Descendant element styles.
   .messages__list {
     margin: 0;
     padding-left: var(--spacing-md);
   }
 
-  .messages__item {
+  .messages__item:not(:last-child) {
     margin-bottom: var(--spacing-xs);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 
-  // Variations: Styles applied when a class exists on the SAME element as the
-  // data-component-id. The `&` refers to the parent selector.
+  // Variations: Styles applied based on the message type.
   &.messages--status {
     color: var(--color-status-text);
     background-color: var(--color-status);
@@ -50,7 +36,8 @@
       color: var(--color-error-text);
       text-decoration: underline;
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         text-decoration: none;
       }
     }

@@ -3,16 +3,13 @@
  * @file
  * Component template for the breadcrumbs.
  *
- * This component renders the breadcrumb trail. It renders the parent links
- * from the `breadcrumb` prop and appends the current page `title` prop as the
- * final, non-linked item. It uses the `|render` filter to safely handle
- * a string or a render array for the title.
+ * This component uses the `list`, `list-item`, and `link` SDCs for maximum
+ * consistency and reusability. It renders an `<ol>`.
  *
  * @see kingly_minimal/components/breadcrumbs/breadcrumbs.component.yml
  *
  * @props
  * - breadcrumb: A list of parent breadcrumb links.
- * - title: The title of the current page (string or render array).
  * - attributes: HTML attributes for the root element.
  */
 #}
@@ -21,18 +18,32 @@
     <div class="breadcrumbs-region">
       <nav class="breadcrumb-nav" role="navigation" aria-labelledby="system-breadcrumb">
         <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-        <ol class="breadcrumb__list">
-          {# First, render all the parent links from the breadcrumb array. #}
-          {% for item in breadcrumb %}
-            <li class="breadcrumb__item">
-              <a href="{{ item.url }}" class="breadcrumb__link">{{ item.text }}</a>
-            </li>
-          {% endfor %}
+        {% embed 'kingly_minimal:list' with {
+          type: 'ol',
+          attributes: create_attribute().addClass('breadcrumb__list'),
+        } %}
+          {% block content %}
+            {# First, render all the parent links from the breadcrumb array. #}
+            {% for item in breadcrumb %}
+              {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('breadcrumb__item') } %}
+                {% block content %}
+                  {{ include('kingly_minimal:link', {
+                    text: item.text,
+                    url: item.url,
+                    attributes: create_attribute().addClass('breadcrumb__link')
+                  }, with_context=false) }}
+                {% endblock %}
+              {% endembed %}
+            {% endfor %}
 
-          <li class="breadcrumb__item">
-            <span class="breadcrumb__text--current" aria-current="page">{{ drupal_title() }}</span>
-          </li>
-        </ol>
+            {# Then, render the current page as a non-linked item. #}
+            {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('breadcrumb__item') } %}
+              {% block content %}
+                <span class="breadcrumb__text--current" aria-current="page">{{ drupal_title() }}</span>
+              {% endblock %}
+            {% endembed %}
+          {% endblock %}
+        {% endembed %}
       </nav>
     </div>
   </div>

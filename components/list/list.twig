@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Component template for a list.
+ *
+ * This component renders a `<ul>` or `<ol>` wrapper. It is designed to be
+ * used with the `list-item` component, which should be placed in the `content` slot.
+ *
+ * @see kingly_minimal/components/list/list.component.yml
+ *
+ * @props
+ * - type: (String) The type of list to render ('ul' or 'ol'). Defaults to 'ul'.
+ * - attributes: (Object) A Drupal attributes object for the list element.
+ *
+ * @slots
+ * - content: The slot for `kingly_minimal:list-item` components.
+ */
+#}
+{% set tag = type|default('ul') %}
+
+<{{ tag }}{{ attributes }}>
+{% block content %}{% endblock %}
+</{{ tag }}>

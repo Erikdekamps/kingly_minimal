@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Component template for a link.
+ *
+ * This component renders a simple `<a>` tag. It is intended to be a low-level
+ * utility component, included by other components that need to render links.
+ *
+ * @see kingly_minimal/components/link/link.component.yml
+ *
+ * @props
+ * - text: (String|Object) The visible text or render array for the link.
+ * - url: (String) The href attribute for the link.
+ * - attributes: (Object) A Drupal attributes object for the `<a>` element.
+ */
+#}
+<a href="{{ url }}"{{ attributes }}>{{ text }}</a>

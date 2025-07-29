@@ -3,6 +3,9 @@
  * @file
  * Component template for status messages.
  *
+ * This component now uses the new `list` and `list-item` SDCs for maximum
+ * consistency and reusability when there is more than one message.
+ *
  * @see kingly_minimal/components/status-messages/status-messages.component.yml
  *
  * @props
@@ -26,11 +29,21 @@
       }) }}
     {% endif %}
     {% if messages|length > 1 %}
-      <ul class="messages__list">
-        {% for message in messages %}
-          <li class="messages__item">{{ message }}</li>
-        {% endfor %}
-      </ul>
+      {% embed 'kingly_minimal:list' with {
+        attributes: create_attribute().addClass('messages__list')
+      } %}
+        {% block content %}
+          {% for message in messages %}
+            {% embed 'kingly_minimal:list-item' with {
+              attributes: create_attribute().addClass('messages__item')
+            } %}
+              {% block content %}
+                {{ message }}
+              {% endblock %}
+            {% endembed %}
+          {% endfor %}
+        {% endblock %}
+      {% endembed %}
     {% else %}
       {{ messages|first }}
     {% endif %}

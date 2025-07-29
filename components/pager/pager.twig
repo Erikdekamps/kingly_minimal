@@ -3,6 +3,9 @@
  * @file
  * Component template for a pager.
  *
+ * This component now uses the `list`, `list-item`, and `link` SDCs for maximum
+ * consistency and reusability.
+ *
  * @see kingly_minimal/components/pager/pager.component.yml
  *
  * @props
@@ -19,72 +22,92 @@
       attributes: create_attribute().addClass('visually-hidden').setAttribute('id', heading_id)
     }, with_context=false) }}
 
-    <ul class="pager__items">
-      {# First item #}
-      {% if items.first %}
-        <li class="pager__item pager__item--first">
-          <a href="{{ items.first.href }}" class="pager__link" title="{{ 'Go to first page'|t }}"{{ items.first.attributes|without('href', 'title', 'class') }}>
-            <span class="visually-hidden">{{ 'First page'|t }}</span>
-            <span aria-hidden="true">{{ items.first.text|default('« First'|t) }}</span>
-          </a>
-        </li>
-      {% endif %}
+    {% embed 'kingly_minimal:list' with { attributes: create_attribute().addClass('pager__items') } %}
+      {% block content %}
+        {# First item #}
+        {% if items.first %}
+          {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--first') } %}
+            {% block content %}
+              {{ include('kingly_minimal:link', {
+                url: items.first.href,
+                text: '<span class="visually-hidden">' ~ 'First page'|t ~ '</span><span aria-hidden="true">' ~ (items.first.text|default('« First'|t)) ~ '</span>',
+                attributes: items.first.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to first page'|t),
+              }) }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
 
-      {# Previous item #}
-      {% if items.previous %}
-        <li class="pager__item pager__item--previous">
-          <a href="{{ items.previous.href }}" class="pager__link" title="{{ 'Go to previous page'|t }}" rel="prev"{{ items.previous.attributes|without('href', 'title', 'rel', 'class') }}>
-            <span class="visually-hidden">{{ 'Previous page'|t }}</span>
-            <span aria-hidden="true">{{ items.previous.text|default('‹ Previous'|t) }}</span>
-          </a>
-        </li>
-      {% endif %}
+        {# Previous item #}
+        {% if items.previous %}
+          {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--previous') } %}
+            {% block content %}
+              {{ include('kingly_minimal:link', {
+                url: items.previous.href,
+                text: '<span class="visually-hidden">' ~ 'Previous page'|t ~ '</span><span aria-hidden="true">' ~ (items.previous.text|default('‹ Previous'|t)) ~ '</span>',
+                attributes: items.previous.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to previous page'|t).setAttribute('rel', 'prev'),
+              }) }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
 
-      {# First ellipsis #}
-      {% if items.pages.first_ellipsis %}
-        <li class="pager__item pager__item--ellipsis" role="presentation">…</li>
-      {% endif %}
+        {# First ellipsis #}
+        {% if items.pages.first_ellipsis %}
+          {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--ellipsis').setAttribute('role', 'presentation') } %}
+            {% block content %}…{% endblock %}
+          {% endembed %}
+        {% endif %}
 
-      {# Page numbers #}
-      {% for key, item in items.pages %}
-        <li class="pager__item pager__item--number {{ items.current == key ? 'is-active' }}">
-          {% set link_attributes = item.attributes|without('href', 'title', 'class') %}
-          {% if items.current == key %}
-            {% set link_attributes = link_attributes.setAttribute('aria-current', 'page') %}
-          {% endif %}
-          <a href="{{ item.href }}" class="pager__link" title="{{ 'Go to page @key'|t({'@key': key}) }}"{{ link_attributes }}>
-            <span class="visually-hidden">
-              {{ items.current == key ? 'Current page'|t : 'Page'|t }}
-            </span>
-            {{- key -}}
-          </a>
-        </li>
-      {% endfor %}
+        {# Page numbers #}
+        {% for key, item in items.pages %}
+          {% set item_classes = ['pager__item', 'pager__item--number', items.current == key ? 'is-active'] %}
+          {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass(item_classes) } %}
+            {% block content %}
+              {% set link_attributes = item.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to page @key'|t({'@key': key})) %}
+              {% if items.current == key %}
+                {% do link_attributes.setAttribute('aria-current', 'page') %}
+              {% endif %}
+              {{ include('kingly_minimal:link', {
+                url: item.href,
+                text: '<span class="visually-hidden">' ~ (items.current == key ? 'Current page'|t : 'Page'|t) ~ '</span>' ~ key,
+                attributes: link_attributes,
+              }) }}
+            {% endblock %}
+          {% endembed %}
+        {% endfor %}
 
-      {# Last ellipsis #}
-      {% if items.pages.last_ellipsis %}
-        <li class="pager__item pager__item--ellipsis" role="presentation">…</li>
-      {% endif %}
+        {# Last ellipsis #}
+        {% if items.pages.last_ellipsis %}
+          {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--ellipsis').setAttribute('role', 'presentation') } %}
+            {% block content %}…{% endblock %}
+          {% endembed %}
+        {% endif %}
 
-      {# Next item #}
-      {% if items.next %}
-        <li class="pager__item pager__item--next">
-          <a href="{{ items.next.href }}" class="pager__link" title="{{ 'Go to next page'|t }}" rel="next"{{ items.next.attributes|without('href', 'title', 'rel', 'class') }}>
-            <span class="visually-hidden">{{ 'Next page'|t }}</span>
-            <span aria-hidden="true">{{ items.next.text|default('Next ›'|t) }}</span>
-          </a>
-        </li>
-      {% endif %}
+        {# Next item #}
+        {% if items.next %}
+          {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--next') } %}
+            {% block content %}
+              {{ include('kingly_minimal:link', {
+                url: items.next.href,
+                text: '<span class="visually-hidden">' ~ 'Next page'|t ~ '</span><span aria-hidden="true">' ~ (items.next.text|default('Next ›'|t)) ~ '</span>',
+                attributes: items.next.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to next page'|t).setAttribute('rel', 'next'),
+              }) }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
 
-      {# Last item #}
-      {% if items.last %}
-        <li class="pager__item pager__item--last">
-          <a href="{{ items.last.href }}" class="pager__link" title="{{ 'Go to last page'|t }}"{{ items.last.attributes|without('href', 'title', 'class') }}>
-            <span class="visually-hidden">{{ 'Last page'|t }}</span>
-            <span aria-hidden="true">{{ items.last.text|default('Last »'|t) }}</span>
-          </a>
-        </li>
-      {% endif %}
-    </ul>
+        {# Last item #}
+        {% if items.last %}
+          {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--last') } %}
+            {% block content %}
+              {{ include('kingly_minimal:link', {
+                url: items.last.href,
+                text: '<span class="visually-hidden">' ~ 'Last page'|t ~ '</span><span aria-hidden="true">' ~ (items.last.text|default('Last »'|t)) ~ '</span>',
+                attributes: items.last.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to last page'|t),
+              }) }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
   </nav>
 {% endif %}

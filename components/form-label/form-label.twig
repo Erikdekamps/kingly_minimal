@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Component template for a form label.
+ *
+ * @see kingly_minimal/components/form-label/form-label.component.yml
+ *
+ * @props
+ * - text: (String|Object) The text or render array for the label.
+ * - for_id: (String) The `id` of the form element this label is for.
+ * - required: (Boolean) If true, a "required" marker is added.
+ * - attributes: (Object) A Drupal attributes object for the `<label>` element.
+ */
+#}
+<label for="{{ for_id }}"{{ attributes }}>
+  {{- text -}}
+  {% if required %}
+    <span class="required-marker" aria-hidden="true">*</span>
+    <span class="visually-hidden"> ({{ 'Required'|t }})</span>
+  {% endif %}
+</label>

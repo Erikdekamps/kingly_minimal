@@ -1,5 +1,3 @@
-// components/node-full/node-full.scss
-
 // -----------------------------------------------------------------------------
 // Node Full View Component Styles
 // -----------------------------------------------------------------------------
@@ -20,7 +18,7 @@
   }
 
   // Style for the author's picture, if displayed.
-  .user-picture {
+  .user-picture img {
     border-radius: var(--border-radius-circle);
     overflow: hidden;
   }
@@ -28,9 +26,8 @@
   // --- Main Content ---
   // The .node__content wrapper receives styles for its children.
   .node__content {
-    // This is a good place to ensure there is vertical rhythm between
-    // top-level fields/paragraphs if needed, though often the components
-    // themselves will handle their own spacing.
+    // This provides consistent vertical rhythm between top-level
+    // fields/paragraphs rendered within the content area.
     > *:not(:last-child) {
       margin-bottom: var(--spacing-lg);
     }

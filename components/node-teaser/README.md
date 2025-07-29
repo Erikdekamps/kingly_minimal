@@ -1,4 +1,4 @@
-# Node Teaser
+# Node: Teaser
 
 Renders a content item in a compact "teaser" format for listings.
 
@@ -14,8 +14,6 @@ Renders a content item in a compact "teaser" format for listings.
 - **Accessible:** The title is a proper, accessible link.
 
 ## WCAG Compliance
-
-This component helps to meet the following success criteria:
 
 - **1.3.1 Info and Relationships (A):** The use of `<article>`, `<footer>`, and
   a semantic `<h2>` provides a clear, programmatically determinable structure.

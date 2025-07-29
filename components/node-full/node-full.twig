@@ -3,22 +3,25 @@
  * @file
  * Component template for the full view of a node.
  *
- * This component's markup is a direct migration from the 'full' view mode
- * logic in the original node.html.twig template.
- *
  * @see kingly_minimal/components/node-full/node-full.component.yml
+ *
+ * @props
+ * - (All props from YML file)
  */
 #}
 <article{{ attributes }}>
 
-  {# The node title is typically hidden in the 'full' view mode because the
-     page_title_block will render it instead. We keep the logic here for other
-     potential view modes that might use this component. #}
+  {# The node title is hidden in the 'full' view mode on a canonical page,
+     because the page_title_block will render it as the H1. This logic prevents
+     duplicate titles. #}
   {{ title_prefix }}
   {% if label and not page %}
-    <h2{{ title_attributes.addClass('node__title') }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
+    {{ include('kingly_minimal:heading', {
+      text: label,
+      level: 'h2',
+      url: url,
+      attributes: title_attributes.addClass('node__title')
+    }, with_context = false) }}
   {% endif %}
   {{ title_suffix }}
 
@@ -44,5 +47,4 @@
     #}
     {{ content }}
   </div>
-
 </article>

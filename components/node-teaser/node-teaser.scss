@@ -1,10 +1,3 @@
-// components/node-teaser/node-teaser.scss
-
-// -----------------------------------------------------------------------------
-// Node Teaser Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the node-teaser component.
 [data-component-id='kingly_minimal:node-teaser'] {
   // Use grid to provide simple structure within the teaser.
   display: grid;
@@ -14,7 +7,7 @@
   border-bottom: var(--border-width-thin) solid var(--color-border);
 
   // --- Teaser Title ---
-  // All styles are now handled by the `heading` component.
+  // All styles are handled by the `heading` component.
   // The class is kept as a hook for potential future overrides.
   .node__title {
     // No styles needed here.
@@ -33,11 +26,9 @@
   }
 
   // Style for the author's picture, if displayed.
-  .user-picture {
-    img {
-      border-radius: var(--border-radius-circle);
-      overflow: hidden;
-    }
+  .user-picture img {
+    border-radius: var(--border-radius-circle);
+    overflow: hidden;
   }
 
   // --- Main Teaser Content ---

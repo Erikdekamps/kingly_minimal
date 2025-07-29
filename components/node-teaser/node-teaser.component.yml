@@ -1,5 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Node Teaser'
+name: 'Node: Teaser'
 status: stable
 description: 'Renders a content item in a compact "teaser" format for listings. Composes the `heading`, `image`, and `text` components.'
 
@@ -11,19 +11,19 @@ props:
       title: 'URL'
       description: 'The canonical URL of the node.'
     label:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Label'
       description: 'The title of the node, passed to the `heading` component.'
     content:
-      type: object
+      type: object # Render array
       title: 'Content'
       description: 'The main content of the teaser, passed to the `text` component.'
     submitted:
-      type: object
+      type: object # Render array
       title: 'Submitted Info'
       description: 'Metadata, like author and date.'
     author_picture:
-      type: object
+      type: object # Render array
       title: "Author's Picture"
       description: "The author's profile picture, passed to the `image` component."
     attributes:

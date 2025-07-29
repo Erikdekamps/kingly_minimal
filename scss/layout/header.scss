@@ -1,14 +1,11 @@
-// kingly_minimal/scss/layout/header.scss
-
 // This file defines the main header structure.
-// Its child components (branding, main-menu) are now self-contained SDCs.
+// Its child components (branding, main-menu) are self-contained SDCs.
 
 @use '../base/mixins' as *;
 
 // -----------------------------------------------------------------------------
 // Header Main Structure
 // -----------------------------------------------------------------------------
-
 .page-header {
   // Use a 12-column grid, mirroring the .main-content grid for alignment.
   display: grid;
@@ -25,8 +22,6 @@
 
 // -----------------------------------------------------------------------------
 // Header Regions (Branding, Menu)
-// The placement of these regions is controlled by the parent .page-header grid.
-// We use classes on the wrappers from page.html.twig.
 // -----------------------------------------------------------------------------
 
 // --- Mobile Layout (Default): Stacked ---
@@ -46,7 +41,5 @@
   .page-header__menu {
     // The menu takes up the remaining 9 columns.
     grid-column: 4 / -1;
-    // The alignment of the menu's content (e.g., justify-content: flex-end)
-    // is now handled within the main-menu SDC itself.
   }
 }

@@ -1,25 +1,22 @@
-// kingly_minimal/scss/layout/page.scss
-
-// This is an entry point file. It will be compiled by Vite.
-// This includes the reset styles in our compiled CSS.
+// This file is compiled by Vite and defines the main page grid structure.
 @use '../base/reset';
 
 // -----------------------------------------------------------------------------
 // Main Page Layout
 // -----------------------------------------------------------------------------
-
 .layout-container {
   display: grid;
-  // Defines a three-row grid: wrapper, main, footer.
-  // The 'main' content area (1fr) takes up all available vertical space.
+  // Defines a three-row grid: header-wrapper, main-content, footer.
+  // The 'main-content' area (1fr) takes up all available vertical space.
   grid-template-rows: auto 1fr auto;
   // Defines three columns: a flexible gutter, a max-width content column,
   // and another flexible gutter. The gutters will not shrink below the
   // --container-padding value.
   grid-template-columns: minmax(var(--container-padding), 1fr) minmax(0, var(--container-max-width)) minmax(var(--container-padding), 1fr);
   // Establish a base min-height to ensure the footer is always at the bottom
-  // of the viewport, even on short pages. This applies to all users.
+  // of the viewport, even on short pages.
   min-height: 100vh;
+  min-height: 100dvh; // Use dynamic viewport height for better mobile browser support.
 }
 
 // --- Grid Placement ---
@@ -37,7 +34,6 @@
   min-width: 0;
 }
 
-
 // --- Subgrid for Header Wrapper ---
 // The wrapper becomes a subgrid, inheriting the parent's column tracks.
 // This allows us to place its children precisely on the main grid lines.
@@ -46,15 +42,15 @@
   grid-template-columns: subgrid;
 }
 
-// Now, place the items *within* the subgrid.
+// Place the items *within* the subgrid.
 .page-header-wrapper > .page-header {
   grid-column: 2; // Constrain the header to the content column.
   min-width: 0;
 }
-.page-header-wrapper > .region-breadcrumbs {
-  grid-column: 1 / -1; // Let the breadcrumbs be full-bleed within the subgrid.
-}
 
+.page-header-wrapper > .region-breadcrumbs {
+  grid-column: 1 / -1; // Let the breadcrumbs be full-bleed.
+}
 
 // --- Styles for Main Content Grid ---
 // This is the inner grid for regions inside the <main> element.
@@ -82,12 +78,12 @@
 // Gin admin toolbar. This rule is more specific and overrides the base min-height.
 body.gin--horizontal-toolbar .layout-container {
   min-height: calc(100vh - var(--gin-toolbar-height, 0px) - var(--gin-toolbar-secondary-height, 0px));
+  min-height: calc(100dvh - var(--gin-toolbar-height, 0px) - var(--gin-toolbar-secondary-height, 0px));
 }
 
 // -----------------------------------------------------------------------------
 // Responsive Adjustments
 // -----------------------------------------------------------------------------
-
 @media (min-width: 768px) { // md breakpoint
   .main-content {
     gap: var(--spacing-lg);

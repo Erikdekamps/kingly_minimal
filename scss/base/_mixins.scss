@@ -1,11 +1,8 @@
-// kingly_minimal/scss/base/_mixins.scss
-
 // This file contains reusable SCSS mixins for the theme.
 
-// Use the modern `sass:map` module.
 @use 'sass:map';
 
-// 1. Breakpoint Map
+// Breakpoint Map
 // This map stores the breakpoints defined in kingly_minimal.breakpoints.yml.
 // Keeping them in a map allows our mixin to be more flexible and maintainable.
 $breakpoints: (
@@ -17,16 +14,11 @@ $breakpoints: (
 
 // -----------------------------------------------------------------------------
 // Media Query Mixin
-// This mixin provides a clean way to write media queries using the named
-// breakpoints from our map.
-//
 // @param {String} $key - The name of the breakpoint (e.g., 'md').
 // @param {String} $direction ['min'] - The type of query ('min' or 'max').
 // -----------------------------------------------------------------------------
 @mixin media-query($key, $direction: 'min') {
-  // Use the namespaced `map.has-key` function.
   @if map.has-key($breakpoints, $key) {
-    // Use the namespaced `map.get` function.
     $width: map.get($breakpoints, $key);
 
     // For max-width queries, we subtract 1px from the breakpoint value to
@@ -35,16 +27,12 @@ $breakpoints: (
       @media (max-width: ($width - 1px)) {
         @content;
       }
-    }
-      // For min-width queries, we use the breakpoint value directly.
-    @else {
+    } @else {
       @media (min-width: $width) {
         @content;
       }
     }
-  }
-    // If the key doesn't exist, throw an error to alert the developer.
-  @else {
+  } @else {
     @error "Unknown breakpoint '#{$key}'. Please use a key defined in the $breakpoints map.";
   }
 }

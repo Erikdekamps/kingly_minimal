@@ -1,8 +1,6 @@
-// kingly_minimal/scss/base/_variables.scss
-
-// This file defines all the core CSS Custom Properties (variables) for the theme.
+// This file defines all the core CSS Custom Properties (design tokens) for the theme.
 // By centralizing them here, we ensure consistency and make global style changes easy.
-// These variables are then consumed by the component-specific SCSS files.
+// This is the single source of truth for all style values.
 
 :root {
   // ---------------------------------------------------------------------------
@@ -35,13 +33,11 @@
   --font-size-sm: 0.875rem;   // ~14px
   --font-size-base: 1rem;     // ~16px
   --font-size-h6: 1rem;       // ~16px
-  --font-size-h5: 1.1rem;     // ~17.6px
+  --font-size-h5: 1.125rem;   // ~18px
   --font-size-h4: 1.25rem;    // ~20px
   --font-size-h3: 1.5rem;     // ~24px
-  --font-size-h2: 1.75rem;    // ~28px
+  --font-size-h2: 1.875rem;   // ~30px
   --font-size-h1: 2.25rem;    // ~36px
-  --font-size-xl: 2rem;       // ~32px (Page Title Mobile)
-  --font-size-xxl: 2.5rem;    // ~40px (Page Title Desktop)
 
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
@@ -76,6 +72,7 @@
   --border-width-thin: 1px;
   --border-width-medium: 2px;
   --border-width-thick: 3px;
+  --border-width: var(--border-width-thin); // Generic default border width.
   --border-radius: 0.25rem;
   --border-radius-circle: 50%;
   --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
@@ -112,15 +109,11 @@
   // Component-Specific Variables
   // ===========================================================================
 
-  // ---------------------------------------------------------------------------
-  // Breadcrumbs Component
-  // ---------------------------------------------------------------------------
-  // Light mode icon with a dark fill color (#222222). Note the URL-encoded '#'.
+  // --- Breadcrumbs ---
+  // Light mode icon with a dark fill color (#222222).
   --breadcrumb-separator-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23222222'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
 
-  // ---------------------------------------------------------------------------
-  // Select Component
-  // ---------------------------------------------------------------------------
+  // --- Select ---
   --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
 

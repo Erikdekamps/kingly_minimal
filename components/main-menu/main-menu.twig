@@ -27,7 +27,16 @@
 <nav {{ attributes.merge(nav_attributes) }} role="navigation">
   {{ title_prefix }}
   {% if label %}
-    <h2{{ title_attributes.addClass('visually-hidden') }} id="{{ heading_id }}">{{ label }}</h2>
+    {#
+    Use the heading component for the visually hidden heading.
+    Pass the title_attributes to it, ensuring Drupal can add classes like 'visually-hidden'.
+    Set its ID so `aria-labelledby` works correctly.
+    #}
+    {{ include('kingly_minimal:heading', {
+      text: label,
+      level: 'h2',
+      attributes: title_attributes.addClass('visually-hidden').setAttribute('id', heading_id)
+    }, with_context = false) }}
   {% endif %}
   {{ title_suffix }}
 

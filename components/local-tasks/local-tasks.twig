@@ -15,8 +15,13 @@
   <div{{ attributes.addClass('local-tasks') }}>
     {% if primary %}
       <nav class="local-tasks__primary" role="navigation" aria-labelledby="primary-tabs-title">
-        <h2 id="primary-tabs-title" class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-        {# The 'primary' variable contains the rendered <li> elements from Drupal. #}
+        {# Use the heading component for the visually hidden heading. #}
+        {{ include('kingly_minimal:heading', {
+          text: 'Primary tabs'|t,
+          level: 'h2',
+          attributes: create_attribute().addClass('visually-hidden').setAttribute('id', 'primary-tabs-title')
+        }, with_context = false) }}
+
         <ul class="tabs tabs--primary">
           {{ primary }}
         </ul>
@@ -25,7 +30,13 @@
 
     {% if secondary %}
       <nav class="local-tasks__secondary" role="navigation" aria-labelledby="secondary-tabs-title">
-        <h2 id="secondary-tabs-title" class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+        {# Use the heading component for the visually hidden heading. #}
+        {{ include('kingly_minimal:heading', {
+          text: 'Secondary tabs'|t,
+          level: 'h2',
+          attributes: create_attribute().addClass('visually-hidden').setAttribute('id', 'secondary-tabs-title')
+        }, with_context = false) }}
+
         <ul class="tabs tabs--secondary">
           {{ secondary }}
         </ul>

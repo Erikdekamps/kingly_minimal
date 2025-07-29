@@ -20,8 +20,3 @@ props:
       type: object
       title: Attributes
       description: 'A Drupal attributes object for the wrapper element.'
-
-library:
-  css:
-    component:
-      local-tasks.css: {}

@@ -23,8 +23,3 @@ props:
       title: 'Is Open by Default'
       description: 'If true, this item will be open when the page loads.'
       default: false
-
-library:
-  css:
-    component:
-      accordion-item.css: {}

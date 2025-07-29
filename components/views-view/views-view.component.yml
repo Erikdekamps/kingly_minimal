@@ -60,8 +60,3 @@ props:
     title_suffix:
       type: object
       title: 'Title Suffix'
-
-library:
-  css:
-    component:
-      views-view.css: {}

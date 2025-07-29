@@ -20,8 +20,3 @@ props:
       description: 'A Drupal attributes object for the root element.'
   required:
     - quote_text
-
-library:
-  css:
-    component:
-      quote.css: {}

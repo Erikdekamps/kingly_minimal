@@ -24,8 +24,3 @@ props:
       description: 'A Drupal attributes object for the root element.'
   required:
     - content
-
-library:
-  css:
-    component:
-      text.css: {}

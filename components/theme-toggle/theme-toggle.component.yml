@@ -11,15 +11,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the button element.'
-
-library:
-  css:
-    component:
-      # The compiled CSS file is placed directly in the component's directory.
-      theme-toggle.css: {}
-  js:
-    # The compiled JS file is also placed directly in the component's directory.
-    theme-toggle.js: { minified: true }
-  dependencies:
-    - core/drupal
-    - core/once

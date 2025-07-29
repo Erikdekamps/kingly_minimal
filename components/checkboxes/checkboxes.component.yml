@@ -15,8 +15,3 @@ slots:
   content:
     title: 'Content'
     description: 'The rendered list of individual checkbox items.'
-
-library:
-  css:
-    component:
-      checkboxes.css: {}

@@ -14,8 +14,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the <textarea> element.'
-
-library:
-  css:
-    component:
-      textarea.css: {}

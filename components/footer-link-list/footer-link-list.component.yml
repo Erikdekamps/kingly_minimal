@@ -33,8 +33,3 @@ props:
       description: 'A Drupal attributes object for the wrapper element.'
   required:
     - title
-
-library:
-  css:
-    component:
-      footer-link-list.css: {}

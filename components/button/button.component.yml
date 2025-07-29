@@ -41,8 +41,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for adding classes, IDs, etc.'
-
-library:
-  css:
-    component:
-      button.css: {}

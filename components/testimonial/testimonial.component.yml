@@ -38,8 +38,3 @@ props:
     - rating
     - quote
     - name
-
-library:
-  css:
-    component:
-      testimonial.css: {}

@@ -27,8 +27,3 @@ slots:
   content:
     title: 'Content'
     description: 'The content to be displayed inside the collapsible element.'
-
-library:
-  css:
-    component:
-      details.css: {}

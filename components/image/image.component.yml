@@ -53,8 +53,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root element.'
-
-library:
-  css:
-    component:
-      image.css: {}

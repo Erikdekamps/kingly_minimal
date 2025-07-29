@@ -24,8 +24,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root <ul> element.'
-
-library:
-  css:
-    component:
-      menu.css: {}

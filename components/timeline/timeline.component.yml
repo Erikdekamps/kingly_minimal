@@ -21,8 +21,3 @@ slots:
   content:
     title: 'Timeline Items'
     description: 'The slot where the individual timeline item <li> elements should be placed.'
-
-library:
-  css:
-    component:
-      timeline.css: {}

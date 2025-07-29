@@ -10,8 +10,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the <input type="radio"> element.'
-
-library:
-  css:
-    component:
-      radio.css: {}

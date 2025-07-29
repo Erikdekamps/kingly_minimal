@@ -20,8 +20,3 @@ slots:
   content:
     title: 'Content'
     description: 'The main content of the widget.'
-
-library:
-  css:
-    component:
-      footer-widget.css: {}

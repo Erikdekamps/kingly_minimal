@@ -40,8 +40,3 @@ props:
   required:
     - background_image
     - title
-
-library:
-  css:
-    component:
-      hero.css: {}

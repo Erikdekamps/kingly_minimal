@@ -16,8 +16,3 @@ slots:
     title: Content
     required: true
     description: The main content of the section.
-
-library:
-  css:
-    component:
-      section.css: {}

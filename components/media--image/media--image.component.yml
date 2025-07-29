@@ -21,8 +21,3 @@ props:
   required:
     - media_entity
     - content
-
-library:
-  css:
-    component:
-      media--image.css: {}

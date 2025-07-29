@@ -22,8 +22,3 @@ props:
           text: 'LinkedIn'
         - url: 'https://www.instagram.com'
           text: 'Instagram'
-
-library:
-  css:
-    component:
-      social-links.css: {}

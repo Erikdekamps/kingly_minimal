@@ -44,8 +44,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'HTML attributes for the component root wrapper element.'
-
-library:
-  css:
-    component:
-      table.css: {}

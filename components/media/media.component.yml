@@ -22,8 +22,3 @@ slots:
     title: Content
     required: true
     description: The rendered media entity (e.g., an <img> or <iframe>) to be passed to the sub-component.
-
-library:
-  css:
-    component:
-      media.css: {}

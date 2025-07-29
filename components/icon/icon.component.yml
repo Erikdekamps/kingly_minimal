@@ -23,8 +23,3 @@ props:
       description: 'A Drupal attributes object for the wrapper element.'
   required:
     - name
-
-library:
-  css:
-    component:
-      icon.css: {}

@@ -49,8 +49,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root <article> element.'
-
-library:
-  css:
-    component:
-      comment.css: {}

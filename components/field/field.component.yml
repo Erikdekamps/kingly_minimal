@@ -33,8 +33,3 @@ props:
       type: object
       title: 'Attributes'
       description: 'HTML attributes for the containing element.'
-
-library:
-  css:
-    component:
-      field.css: {}

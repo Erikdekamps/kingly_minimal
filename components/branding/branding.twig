@@ -5,11 +5,11 @@
  *
  * This component displays the site branding, linking to the front page.
  * It uses a hardcoded SVG logo and renders the site name as an H1 on the
- * front page for SEO purposes.
+ * front page for SEO and accessibility.
  *
  * @see kingly_minimal/components/branding/branding.component.yml
  *
- * Available variables (from props):
+ * @props
  * - is_front: A flag indicating if the current page is the front page.
  * - site_name: The name of the site.
  * - site_slogan: (Optional) The slogan of the site.
@@ -17,19 +17,18 @@
  */
 #}
 {% set wrapper_attributes = attributes.addClass('site-branding') %}
+{# WCAG 2.4.4: Create an unambiguous accessible name for the homepage link. #}
 {% set home_label = site_name ? (site_name ~ ' - ' ~ 'Home'|t) : 'Home'|t %}
 
 {#
-WCAG 2.4.4 & 4.1.2: Ensure the link is always accessible and unambiguous.
-- href="{{ url('<front>') }}" provides a reliable URL to the homepage.
-- aria-label provides a consistent, accessible name. It is made more specific
-  by including the site name to differentiate it from other "Home" links on
-  the page (e.g., in the main menu or breadcrumbs).
+The entire component is a link to the homepage.
+- rel="home" communicates the link's relationship to the document.
+- The aria-label provides a consistent, accessible name.
 #}
 <a href="{{ url('<front>') }}" aria-label="{{ home_label }}" rel="home" {{ wrapper_attributes }}>
 
   <div class="site-branding__logo">
-    {# The SVG logo is hardcoded as per the requirements. #}
+    {# The SVG logo is decorative, so it is hidden from assistive technology. #}
     <svg width="40" height="40" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
       <title>Kingly Minimal Logo</title>
       <path d="M 15,70 H 85 V 85 H 15 Z M 25,35 35,55 25,70 15,55 Z M 50,15 65,50 50,70 35,50 Z M 75,35 85,55 75,70 65,55 Z"/>
@@ -37,6 +36,7 @@ WCAG 2.4.4 & 4.1.2: Ensure the link is always accessible and unambiguous.
   </div>
 
   {% if site_name %}
+    {# WCAG 2.4.6: Use h1 for the site name only on the front page. #}
     {% if is_front %}
       <h1 class="site-branding__name">{{ site_name }}</h1>
     {% else %}

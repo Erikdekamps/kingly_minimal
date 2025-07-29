@@ -10,11 +10,11 @@
   // The root of the component is the <a> tag.
   // We add a class for easier targeting and to avoid styling all links.
   &.site-branding {
-    display: flex;
+    display: inline-flex; // Use inline-flex to contain the component to its content width.
     align-items: center;
     gap: var(--spacing-sm);
     text-decoration: none;
-    color: inherit;
+    color: inherit; // Inherit text color from the parent.
 
     // Underline the site name on hover for clear feedback.
     &:hover .site-branding__name {
@@ -35,6 +35,7 @@
     font-weight: var(--font-weight-bold);
     font-family: var(--font-family-heading);
     margin: 0; // Reset margin for h1.
+    line-height: var(--line-height-heading);
   }
 
   // Style the site slogan, if used.

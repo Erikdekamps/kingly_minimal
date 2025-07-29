@@ -1,5 +1,9 @@
 // Use the component's own class as the primary selector.
 .footer-contact {
+  // --- Tier 3: Component-Specific Variables ---
+  // A slight vertical adjustment for the icon to align it with text.
+  --icon-vertical-offset: calc(var(--spacing-xs) / 2);
+
   // Style the <ul> element.
   .footer-contact__list {
     list-style: none;
@@ -34,7 +38,7 @@
 
   // Style the icon component specifically within this context.
   .icon {
-    margin-top: 0.125em; // Push icon down slightly for better visual alignment with first line of text.
+    margin-top: var(--icon-vertical-offset);
     flex-shrink: 0;
   }
 }

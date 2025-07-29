@@ -1,6 +1,12 @@
 @use '../../scss/base/mixins' as *;
 
 [data-component-id='kingly_minimal:testimonial'] {
+  // --- Tier 3: Component-Specific Variables ---
+  --star-size: 1.25rem;
+  --star-inactive-color: var(--color-border); // Consume global token
+  --star-active-color: var(--color-rating);   // Consume global token
+  --star-letter-spacing: 0.2rem;
+
   display: grid;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
@@ -43,11 +49,6 @@
   }
 
   .testimonial-card__rating {
-    // --- Star Rating ---
-    --star-size: 1.25rem;
-    --star-color: #d1d5db; // A light gray for empty stars
-    --star-background: #f59e0b; // A gold/yellow for filled stars
-
     font-size: var(--star-size);
     font-family: Times; // A font with a good star character
     line-height: 1;
@@ -60,8 +61,8 @@
 
     &::before {
       content: '★★★★★';
-      letter-spacing: 0.2rem;
-      background: linear-gradient(90deg, var(--star-background) calc(var(--rating) / 5 * 100%), var(--star-color) calc(var(--rating) / 5 * 100%));
+      letter-spacing: var(--star-letter-spacing);
+      background: linear-gradient(90deg, var(--star-active-color) calc(var(--rating) / 5 * 100%), var(--star-inactive-color) calc(var(--rating) / 5 * 100%));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }

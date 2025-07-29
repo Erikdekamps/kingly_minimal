@@ -1,28 +1,80 @@
 // This file defines all the core CSS Custom Properties (design tokens) for the theme.
-// By centralizing them here, we ensure consistency and make global style changes easy.
-// This is the single source of truth for all style values.
+// It uses a two-tier system:
+// 1. A private Sass palette for raw, non-contextual values.
+// 2. Public CSS Custom Properties that provide semantic meaning to the palette.
+// This is the single source of truth for all global style values.
+
+// ===========================================================================
+// TIER 1: THE PALETTE (PRIVATE SASS VARIABLES)
+// Raw, non-contextual values. The single source of truth for the design system's "ingredients".
+// ===========================================================================
+
+// --- Brand & Neutral Palette ---
+$kingly-blue-200: #a5d8ff;
+$kingly-blue-300: #74c0fc;
+$kingly-blue-700: #004a94;
+$kingly-blue-800: #003b76;
+$kingly-white: #ffffff;
+$kingly-gray-100: #f4f5f6;
+$kingly-gray-200: #e1e1e1;
+$kingly-gray-700: #333333;
+$kingly-gray-800: #1e1e1e;
+$kingly-gray-900: #222222;
+$kingly-gray-950: #121212;
+
+// --- Accent Palette ---
+$kingly-yellow-500: #f59e0b; // For ratings
+
+// --- Feedback Palette (Light Mode) ---
+$light-status-bg: #e6f4ea;
+$light-status-text: #0d4f21;
+$light-status-border: #d0e8d8;
+$light-warning-bg: #fff8e1;
+$light-warning-text: #614d00;
+$light-warning-border: #f2eacb;
+$light-error-bg: #fdecea;
+$light-error-text: #8c101c;
+$light-error-border: #eecfca;
+
+// --- Feedback Palette (Dark Mode) ---
+$dark-status-bg: #163b1f;
+$dark-status-text: #c4f5cf;
+$dark-status-border: #2a5e37;
+$dark-warning-bg: #4d3f0c;
+$dark-warning-text: #ffeeb1;
+$dark-warning-border: #705b11;
+$dark-error-bg: #5a1e22;
+$dark-error-text: #fdd8db;
+$dark-error-border: #802a31;
+
+
+// ===========================================================================
+// TIER 2: GLOBAL DESIGN LANGUAGE (PUBLIC CSS CUSTOM PROPERTIES)
+// These give semantic meaning to the palette and are the "public API" for components.
+// ===========================================================================
 
 :root {
   // ---------------------------------------------------------------------------
   // Colors
   // ---------------------------------------------------------------------------
-  --color-text: #222222;
-  --color-background: #ffffff;
-  --color-primary: #004a94;
-  --color-primary-hover: #003b76;
-  --color-border: #e1e1e1;
-  --color-light-gray: #f4f5f6;
+  --color-text: #{$kingly-gray-900};
+  --color-background: #{$kingly-white};
+  --color-primary: #{$kingly-blue-700};
+  --color-primary-hover: #{$kingly-blue-800};
+  --color-border: #{$kingly-gray-200};
+  --color-light-gray: #{$kingly-gray-100};
+  --color-rating: #{$kingly-yellow-500};
 
   // --- Feedback Colors (WCAG AAA Compliant) ---
-  --color-status: #e6f4ea;
-  --color-status-text: #0d4f21;
-  --color-status-border: #d0e8d8;
-  --color-warning: #fff8e1;
-  --color-warning-text: #614d00;
-  --color-warning-border: #f2eacb;
-  --color-error: #fdecea;
-  --color-error-text: #8c101c;
-  --color-error-border: #eecfca;
+  --color-status: #{$light-status-bg};
+  --color-status-text: #{$light-status-text};
+  --color-status-border: #{$light-status-border};
+  --color-warning: #{$light-warning-bg};
+  --color-warning-text: #{$light-warning-text};
+  --color-warning-border: #{$light-warning-border};
+  --color-error: #{$light-error-bg};
+  --color-error-text: #{$light-error-text};
+  --color-error-border: #{$light-error-border};
 
   // ---------------------------------------------------------------------------
   // Typography
@@ -104,17 +156,6 @@
   --z-index-modal-backdrop: 900;
   --z-index-modal: 950;
   --z-index-skip-link: 1000;
-
-  // ===========================================================================
-  // Component-Specific Variables
-  // ===========================================================================
-
-  // --- Breadcrumbs ---
-  // Light mode icon with a dark fill color (#222222).
-  --breadcrumb-separator-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23222222'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-
-  // --- Select ---
-  --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
 
 // ---------------------------------------------------------------------------
@@ -122,29 +163,24 @@
 // ---------------------------------------------------------------------------
 html[data-theme="dark"] {
   // --- Colors ---
-  --color-text: #e1e1e1;
-  --color-background: #121212;
-  --color-primary: #74c0fc;
-  --color-primary-hover: #a5d8ff;
-  --color-border: #333333;
-  --color-light-gray: #1e1e1e;
+  --color-text: #{$kingly-gray-200};
+  --color-background: #{$kingly-gray-950};
+  --color-primary: #{$kingly-blue-300};
+  --color-primary-hover: #{$kingly-blue-200};
+  --color-border: #{$kingly-gray-700};
+  --color-light-gray: #{$kingly-gray-800};
 
   // --- Feedback Colors ---
-  --color-status: #163b1f;
-  --color-status-text: #c4f5cf;
-  --color-status-border: #2a5e37;
-  --color-warning: #4d3f0c;
-  --color-warning-text: #ffeeb1;
-  --color-warning-border: #705b11;
-  --color-error: #5a1e22;
-  --color-error-text: #fdd8db;
-  --color-error-border: #802a31;
+  --color-status: #{$dark-status-bg};
+  --color-status-text: #{$dark-status-text};
+  --color-status-border: #{$dark-status-border};
+  --color-warning: #{$dark-warning-bg};
+  --color-warning-text: #{$dark-warning-text};
+  --color-warning-border: #{$dark-warning-border};
+  --color-error: #{$dark-error-bg};
+  --color-error-text: #{$dark-error-text};
+  --color-error-border: #{$dark-error-border};
 
   // --- Focus ---
   --focus-ring-color: var(--color-primary);
-
-  // --- Component Variables ---
-  // Dark mode icon with a light fill color (#e1e1e1).
-  --breadcrumb-separator-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e1e1e1'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-  --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }

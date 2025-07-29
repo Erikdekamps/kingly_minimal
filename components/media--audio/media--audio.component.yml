@@ -10,18 +10,19 @@ props:
       type: object
       title: Media Entity
       description: 'The full audio media entity object.'
-      required: true
     content:
-      type: [string, object]
+      type: [ string, object ]
       title: Content
-      required: true
       description: 'The rendered audio player.'
     attributes:
       type: object
       title: Attributes
       description: HTML attributes for the wrapper element.
+  required:
+    - media_entity
+    - content
 
 library:
   css:
     component:
-      media--audio.css: {}
+      media--audio.css: { }

@@ -1,4 +1,4 @@
-# kingly_minimal/components/breadcrumbs/breadcrumbs.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Breadcrumbs'
 status: stable
 description: 'Renders the breadcrumb trail within a full-bleed container strip.'

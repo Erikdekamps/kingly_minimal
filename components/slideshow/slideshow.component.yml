@@ -10,7 +10,6 @@ props:
       type: string
       title: UUID
       description: 'A unique ID for this slideshow instance, used to initialize the JavaScript.'
-      required: true
     title:
       type: string
       title: Title
@@ -34,6 +33,8 @@ props:
       type: object
       title: Attributes
       description: 'A Drupal attributes object for the root wrapper element.'
+  required:
+    - uuid
 
 slots:
   content:

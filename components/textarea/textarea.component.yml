@@ -1,4 +1,4 @@
-# kingly_minimal/components/textarea/textarea.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Textarea'
 status: stable
 description: 'Renders a standard HTML textarea element.'
@@ -15,7 +15,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the <textarea> element.'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

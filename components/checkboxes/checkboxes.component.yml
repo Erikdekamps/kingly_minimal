@@ -1,4 +1,4 @@
-# kingly_minimal/components/checkboxes/checkboxes.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Checkboxes'
 status: stable
 description: 'A layout container for a group of checkbox items, typically arranging them in a grid.'
@@ -16,7 +16,6 @@ slots:
     title: 'Content'
     description: 'The rendered list of individual checkbox items.'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

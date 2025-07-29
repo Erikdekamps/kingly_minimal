@@ -1,4 +1,4 @@
-# kingly_minimal/components/menu/menu.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Menu'
 status: stable
 description: 'Renders a nested list of menu items recursively.'
@@ -25,7 +25,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the root <ul> element.'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

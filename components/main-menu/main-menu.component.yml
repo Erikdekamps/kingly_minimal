@@ -1,6 +1,7 @@
-name: Main Menu
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Main Menu'
 status: stable
-description: Renders the main navigation menu. It displays horizontally on desktop and stacks vertically on mobile.
+description: 'Renders the main navigation menu. It displays horizontally on desktop and stacks vertically on mobile.'
 props:
   type: object
   properties:

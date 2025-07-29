@@ -1,4 +1,4 @@
-# components/field/field.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Field'
 status: stable
 description: 'Renders a generic field, including its label and items. Provides a consistent wrapper for all fields.'
@@ -34,7 +34,6 @@ props:
       title: 'Attributes'
       description: 'HTML attributes for the containing element.'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

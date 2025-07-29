@@ -10,16 +10,17 @@ props:
       type: object
       title: Media Entity
       description: 'The full document media entity object.'
-      required: true
     content:
       type: [string, object]
       title: Content
-      required: true
       description: 'The rendered document link.'
     attributes:
       type: object
       title: Attributes
       description: HTML attributes for the wrapper element.
+  required:
+    - media_entity
+    - content
 
 library:
   css:

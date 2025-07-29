@@ -1,4 +1,4 @@
-# kingly_minimal/components/form-element/form-element.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Form Element'
 status: stable
 description: 'A wrapper for a form field that provides consistent layout for its label, description, and error messages.'
@@ -48,7 +48,6 @@ slots:
     title: 'Content'
     description: 'The form element itself (e.g., the textfield, select list, etc.).'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

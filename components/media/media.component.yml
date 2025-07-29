@@ -1,5 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Media
+name: 'Media'
 status: stable
 description: 'A dispatcher component that inspects a media entity and renders the appropriate sub-component (e.g., media--image, media--video).'
 
@@ -10,11 +10,12 @@ props:
       type: object
       title: Media Entity
       description: 'The full media entity object. Used to determine the media type for contextual styling and dispatching.'
-      required: true
     attributes:
       type: object
       title: Attributes
       description: HTML attributes for the wrapper element.
+  required:
+    - media_entity
 
 slots:
   content:

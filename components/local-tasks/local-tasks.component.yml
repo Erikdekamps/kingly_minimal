@@ -1,4 +1,4 @@
-# kingly_minimal/components/local-tasks/local-tasks.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Local Tasks'
 status: stable
 description: 'Renders the primary and secondary local task tabs (e.g., View, Edit, Revisions) in a style inspired by the Olivero theme.'
@@ -24,5 +24,4 @@ props:
 library:
   css:
     component:
-      # The SDC module and Vite build process will ensure this file is created and loaded.
       local-tasks.css: {}

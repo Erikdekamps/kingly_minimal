@@ -1,4 +1,4 @@
-# components/icon/icon.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Icon'
 status: stable
 description: 'Renders a reusable inline SVG icon from a predefined library within the component.'
@@ -11,7 +11,6 @@ props:
       type: string
       title: 'Icon Name'
       description: 'The machine name of the icon to display.'
-      required: true
     # An optional label for accessibility. If not provided, the icon name is used.
     label:
       type: string
@@ -22,8 +21,9 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the wrapper element.'
+  required:
+    - name
 
-# Define the component's CSS assets.
 library:
   css:
     component:

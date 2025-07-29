@@ -1,4 +1,4 @@
-# components/node-teaser/node-teaser.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Node Teaser'
 status: stable
 description: 'Renders a content item in a compact "teaser" format for listings.'
@@ -37,7 +37,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the wrapper element.'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

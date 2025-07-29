@@ -1,4 +1,4 @@
-# components/footer-social-prompt/footer-social-prompt.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer Social Prompt'
 status: stable
 description: 'Displays a simple text prompt for social media links in the footer.'

@@ -1,4 +1,4 @@
-# kingly_minimal/components/pager/pager.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Pager'
 status: stable
 description: 'Renders a styled pagination control for navigating through lists of content.'
@@ -25,7 +25,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the root <nav> element.'
 
-# Define the component's CSS assets. The build process will create this file.
 library:
   css:
     component:

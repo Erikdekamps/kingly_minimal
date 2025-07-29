@@ -1,4 +1,4 @@
-# themes/custom/kingly_minimal/components/accordion-item/accordion-item.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Accordion Item'
 status: stable
 description: 'A single collapsible panel within an accordion. Uses the native HTML <details> element for accessibility and core functionality.'
@@ -23,8 +23,6 @@ props:
       title: 'Is Open by Default'
       description: 'If true, this item will be open when the page loads.'
       default: false
-
-# Slots have been removed in favor of props.
 
 library:
   css:

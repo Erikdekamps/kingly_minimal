@@ -1,4 +1,4 @@
-# components/views-view/views-view.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Views View'
 status: stable
 description: 'Renders the generic structure for a view, including its title, header, rows, and pager.'
@@ -61,7 +61,6 @@ props:
       type: object
       title: 'Title Suffix'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

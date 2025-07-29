@@ -34,7 +34,7 @@
       #}
       {{ include('kingly_minimal:image', {
         render_array: author_picture,
-        attributes: { class: ['user-picture'] }
+        attributes: create_attribute().addClass('user-picture'),
       }, with_context=false) }}
 
       <div class="node__submitted">

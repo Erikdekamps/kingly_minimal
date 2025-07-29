@@ -1,4 +1,4 @@
-# kingly_minimal/components/branding/branding.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Branding'
 status: stable
 description: 'Displays the site branding, including a logo and site name, which links to the homepage. Renders the site name as an H1 on the front page for SEO.'

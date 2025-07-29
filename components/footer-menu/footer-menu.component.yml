@@ -1,6 +1,7 @@
-name: Footer Menu
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Footer Menu'
 status: stable
-description: Renders a menu, styled for the footer region, by wrapping the canonical `menu` component and applying contextual style overrides.
+description: 'Renders a menu, styled for the footer region, by wrapping the canonical `menu` component and applying contextual style overrides.'
 props:
   type: object
   properties:
@@ -17,8 +18,6 @@ props:
       title: Attributes
       description: HTML attributes for the wrapper.
 
-# Define the component's CSS assets. This file contains only the overrides
-# for the generic menu component.
 library:
   css:
     component:

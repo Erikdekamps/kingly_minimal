@@ -1,4 +1,4 @@
-# kingly_minimal/components/textfield/textfield.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Textfield'
 status: stable
 description: 'Renders a standard HTML text input element.'
@@ -11,7 +11,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the <input> element.'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

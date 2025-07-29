@@ -42,9 +42,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the root element.'
 
-# This component is fully prop-driven, so it does not define slots.
-slots: {}
-
 library:
   css:
     component:

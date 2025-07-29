@@ -1,4 +1,4 @@
-# components/field-tags/field-tags.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Tags'
 status: stable
 description: 'Renders a list of items (typically taxonomy term links) as styled tags.'
@@ -19,7 +19,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the wrapper element.'
 
-# Define the component's CSS assets.
 library:
   css:
     component:

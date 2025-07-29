@@ -1,4 +1,4 @@
-# themes/custom/kingly_minimal/components/accordion/accordion.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Accordion'
 status: stable
 description: 'A container for a set of vertically stacked, collapsible panels (accordion items).'

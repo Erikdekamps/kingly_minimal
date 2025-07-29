@@ -10,12 +10,10 @@ props:
       type: object
       title: 'Background Image'
       description: 'The rendered background image element (typically a <picture> tag).'
-      required: true
     title:
       type: string
       title: 'Title'
       description: 'The main heading for the hero.'
-      required: true
     subtitle:
       type: string
       title: 'Subtitle'
@@ -39,6 +37,9 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root wrapper element.'
+  required:
+    - background_image
+    - title
 
 library:
   css:

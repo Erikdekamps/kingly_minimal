@@ -10,7 +10,6 @@ props:
       type: [string, object] # Can be a string or a render array
       title: 'Quote Text'
       description: 'The main content of the quote.'
-      required: true
     attribution:
       type: string
       title: 'Attribution'
@@ -19,6 +18,8 @@ props:
       type: object
       title: 'Attributes'
       description: 'A Drupal attributes object for the root element.'
+  required:
+    - quote_text
 
 library:
   css:

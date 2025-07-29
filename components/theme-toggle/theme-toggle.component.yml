@@ -1,4 +1,4 @@
-# components/theme-toggle/theme-toggle.component.yml
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Theme Toggle'
 status: stable
 description: 'A button for toggling between light and dark themes. Requires JavaScript.'
@@ -12,7 +12,6 @@ props:
       title: 'Attributes'
       description: 'A Drupal attributes object for the button element.'
 
-# Defines the component's assets.
 library:
   css:
     component:

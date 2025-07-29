@@ -3,9 +3,9 @@
  * Accordion component behavior.
  *
  * This script initializes all accordion containers, finds all items within them,
- * and attaches click event listeners to the headers. It enforces an "exclusive"
+ * and attaches event listeners to the headers. It enforces an "exclusive"
  * accordion behavior, where opening one item will close all others within the
- * same container.
+ * same container. The state is managed entirely by this script.
  */
 (function (Drupal, once) {
   'use strict';
@@ -34,11 +34,13 @@
      */
     init() {
       this.headers.forEach((header, index) => {
-        if (!header) return;
+        if (!header) {
+          return;
+        }
 
         header.addEventListener('click', (event) => {
-          // CORRECTION: Prevent the browser's default <details> toggle.
-          // Our script will now be the single source of truth for the state.
+          // Prevent the browser's default <details> toggle.
+          // Our script is the single source of truth for the open/closed state.
           event.preventDefault();
           this.toggleItem(index);
         });
@@ -46,7 +48,7 @@
         // Add keyboard support for Enter and Space keys.
         header.addEventListener('keydown', (event) => {
           if (event.key === 'Enter' || event.key === ' ') {
-            // CORRECTION: Also prevent default here to stop scrolling on Space.
+            // Prevent default action to stop scrolling on Space bar.
             event.preventDefault();
             this.toggleItem(index);
           }
@@ -62,14 +64,18 @@
       const targetItem = this.items[index];
       const isOpening = !targetItem.hasAttribute('open');
 
-      // First, close all items. This ensures the "exclusive" behavior.
-      this.items.forEach((item) => {
-        item.removeAttribute('open');
+      // First, close all other items to ensure "exclusive" behavior.
+      this.items.forEach((item, itemIndex) => {
+        if (itemIndex !== index) {
+          item.removeAttribute('open');
+        }
       });
 
-      // Then, if the target item was originally closed, open it.
+      // Then, toggle the target item.
       if (isOpening) {
         targetItem.setAttribute('open', '');
+      } else {
+        targetItem.removeAttribute('open');
       }
     }
   }
@@ -80,7 +86,7 @@
    * @type {Drupal~behavior}
    */
   Drupal.behaviors.accordion = {
-    attach: function (context) {
+    attach(context) {
       const accordionContainers = once(
         'accordion',
         '.accordion-container',

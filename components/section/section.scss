@@ -1,20 +1,6 @@
-// modules/custom/kingly_minimal/components/section/section.scss
-
-// -----------------------------------------------------------------------------
-// Section Component Styles
-// -----------------------------------------------------------------------------
-// The .kingly-section component serves as a simple, unstyled wrapper.
-// Its primary purpose is to contain the output of Layout Paragraphs,
-// allowing for a clean bridge between the paragraph entity and the
-// `kingly_layouts` system.
-//
-// No specific styles are needed here by default, as all visual styling
-// (padding, margins, backgrounds, etc.) is handled by the layout plugin's
-// render array, which is placed inside this component.
-// -----------------------------------------------------------------------------
-
 .kingly-section {
-  // This component intentionally has no styles by default.
-  // It inherits display properties and provides a consistent
-  // semantic hook in the DOM for the paragraph entity.
+  // This component is intentionally unstyled by default. Its primary purpose
+  // is to serve as a consistent semantic hook in the DOM for paragraph entities
+  // that use Layout Paragraphs. All visual styling is handled by the layout
+  // plugin's render array placed inside this component.
 }

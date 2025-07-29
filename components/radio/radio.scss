@@ -1,12 +1,16 @@
+// components/radio/radio.scss
+
 // -----------------------------------------------------------------------------
 // Radio Component Styles
-// These styles were migrated from the global scss/forms/forms.scss.
 // -----------------------------------------------------------------------------
 
 // Scope all styles to the radio component.
-// The data-component-id is applied directly to the <input> element.
 [data-component-id='kingly_minimal:radio'] {
-  // WCAG AAA: Apply a clear focus style for keyboard navigation.
+  // Align the radio button vertically with its label text.
+  vertical-align: middle;
+  margin-right: var(--spacing-sm);
+
+  // WCAG 2.4.7: Apply a clear focus style for keyboard navigation.
   &:focus-visible {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);

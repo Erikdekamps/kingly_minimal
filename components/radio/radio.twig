@@ -6,7 +6,7 @@
  * @see kingly_minimal/components/radio/radio.component.yml
  *
  * @props
- * - attributes: A Drupal attributes object for the <input> element.
+ * - attributes: (Object) A Drupal attributes object for the <input> element.
  */
 #}
-<input{{ attributes }} />
+<input{{ attributes.setAttribute('type', 'radio') }} />

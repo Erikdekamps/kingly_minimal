@@ -12,9 +12,9 @@
  * - attributes: A Drupal attributes object for the root wrapper element.
  *
  * @slots
- * - content: The rendered list of individual checkbox items.
+ * - content: The slot where the rendered list of individual checkbox items should be placed.
  */
 #}
-<div{{ attributes.addClass('checkboxes') }}>
+<div{{ attributes.addClass('checkboxes-wrapper') }}>
   {% block content %}{% endblock %}
 </div>

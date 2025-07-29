@@ -11,22 +11,22 @@
   // This is the root element of the component.
   &.breadcrumb-strip {
     background-color: var(--color-light-gray);
-    border-top: var(--border-width) solid var(--color-border);
-    border-bottom: var(--border-width) solid var(--color-border);
+    border-block: var(--border-width-thin) solid var(--color-border);
     padding-block: var(--spacing-sm);
+
+    // This grid centers the inner container and aligns with the main layout.
     display: grid;
-    // Align with the main layout grid.
     grid-template-columns: minmax(var(--container-padding), 1fr) minmax(0, var(--container-max-width)) minmax(var(--container-padding), 1fr);
   }
 
   // The inner wrapper that constrains the breadcrumbs.
   .breadcrumbs-region {
     grid-column: 2;
-    min-width: 0;
+    min-width: 0; // Prevents overflow on flex children.
   }
 
   // Flexbox container for the breadcrumb items.
-  .breadcrumb {
+  .breadcrumb__list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -42,7 +42,7 @@
     align-items: center;
     gap: inherit; // Inherit gap for the separator alignment.
 
-    // Add a separator icon before each item, except the first.
+    // Add a separator icon before each item, except the first one.
     &:not(:first-child)::before {
       content: '';
       display: block;
@@ -60,14 +60,15 @@
     color: var(--color-text);
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       text-decoration: underline;
     }
   }
 
   // The last item is the current page and not a link.
-  .breadcrumb__item:last-child {
+  .breadcrumb__text--current {
     color: var(--color-text);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 }

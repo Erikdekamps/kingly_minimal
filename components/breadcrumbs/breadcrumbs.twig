@@ -3,42 +3,36 @@
  * @file
  * Component template for the breadcrumbs.
  *
- * This component renders the entire breadcrumb bar, including the full-bleed
- * container and the breadcrumb trail itself.
+ * This component renders the breadcrumb trail. It renders the parent links
+ * from the `breadcrumb` prop and appends the current page `title` prop as the
+ * final, non-linked item. It uses the `|render` filter to safely handle
+ * a string or a render array for the title.
  *
  * @see kingly_minimal/components/breadcrumbs/breadcrumbs.component.yml
  *
- * Available variables (from props):
- * - breadcrumb: A list of breadcrumb items.
- * - attributes: HTML attributes for the root element. SDC injects the crucial
- *   data-component-id attribute here.
+ * @props
+ * - breadcrumb: A list of parent breadcrumb links.
+ * - title: The title of the current page (string or render array).
+ * - attributes: HTML attributes for the root element.
  */
 #}
 {% if breadcrumb %}
-  {#
-  The 'attributes' object is now printed here on the root element.
-  This allows the SDC module to add the data-component-id attribute, which
-  is essential for the component's styles to be applied.
-  #}
   <div{{ attributes.addClass('breadcrumb-strip') }}>
     <div class="breadcrumbs-region">
       <nav class="breadcrumb-nav" role="navigation" aria-labelledby="system-breadcrumb">
         <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-        {#
-        The 'breadcrumb' class is now added manually. The original attributes
-        object from the theme hook is not used to avoid conflicts with SDC.
-        #}
-        <ul class="breadcrumb">
+        <ol class="breadcrumb__list">
+          {# First, render all the parent links from the breadcrumb array. #}
           {% for item in breadcrumb %}
             <li class="breadcrumb__item">
-              {% if item.url %}
-                <a href="{{ item.url }}" class="breadcrumb__link">{{ item.text }}</a>
-              {% else %}
-                {{ item.text }}
-              {% endif %}
+              <a href="{{ item.url }}" class="breadcrumb__link">{{ item.text }}</a>
             </li>
           {% endfor %}
-        </ul>
+
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__text--current" aria-current="page">{{ drupal_title() }}</span>
+          </li>
+        </ol>
       </nav>
     </div>
   </div>

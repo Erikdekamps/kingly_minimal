@@ -1,10 +1,3 @@
-// kingly_minimal/components/social-links/social-links.scss
-
-// -----------------------------------------------------------------------------
-// Social Links Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the social-links component for encapsulation.
 [data-component-id='kingly_minimal:social-links'] {
   // Use a flex container for the list of icons.
   .social-links__list {
@@ -13,28 +6,32 @@
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-sm); // Reduced gap to fit better.
+    gap: var(--spacing-sm);
   }
 
   // Style the link element itself.
   .social-links__link {
     // WCAG 2.5.5 (AAA): Ensure a minimum target size.
-    display: inline-flex; // Use flex to center the icon.
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: var(--size-target-min);
-    min-height: var(--size-target-min);
+    width: var(--size-target-min);
+    height: var(--size-target-min);
     color: var(--color-text);
-    // Add a transition for a smooth hover effect.
     transition: transform var(--transition-duration-medium) var(--transition-timing-function),
     background-color var(--transition-duration-fast) var(--transition-timing-function);
-    border-radius: var(--border-radius-circle); // Make the hover state a circle.
+    border-radius: var(--border-radius-circle);
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       color: var(--color-primary);
       transform: translateY(-2px);
       background-color: color-mix(in srgb, var(--color-text), transparent 90%);
+    }
+
+    &:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
     }
   }
 
@@ -43,6 +40,6 @@
     width: var(--size-icon-md);
     height: var(--size-icon-md);
     display: block;
-    fill: currentColor; // The icon will inherit the link's color.
+    fill: currentColor;
   }
 }

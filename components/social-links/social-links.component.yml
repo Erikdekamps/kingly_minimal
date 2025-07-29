@@ -1,14 +1,14 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Social Links'
 status: stable
-description: 'Renders a list of social media icons. The links are hardcoded within the component.'
+description: 'Renders a list of social media icon links.'
 props:
   type: object
   properties:
     attributes:
       type: object
       title: 'Attributes'
-      description: 'HTML attributes for the component''s root wrapper element.'
+      description: 'HTML attributes for the component''s root `<div>` wrapper element.'
     links:
       type: array
       title: 'Social Links'

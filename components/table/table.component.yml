@@ -7,40 +7,38 @@ props:
   type: object
   properties:
     caption:
-      type: string
+      type: [ string, object ]
       title: 'Caption'
-      description: 'A localized string for the table <caption> tag.'
+      description: 'A title or summary for the table, rendered in a `<caption>` tag.'
     header:
       type: array
       title: 'Header'
       description: 'A list of header cells.'
-      default: []
+      default: [ ]
     footer:
       type: array
       title: 'Footer'
       description: 'A list of footer cells.'
-      default: []
+      default: [ ]
     rows:
       type: array
       title: 'Rows'
       description: 'A list of table rows.'
-      default: []
+      default: [ ]
     colgroups:
       type: array
       title: 'Column Groups'
       description: 'Column group definitions.'
-      default: []
+      default: [ ]
     empty:
-      type: string
+      type: [ string, object ]
       title: 'Empty Message'
       description: 'The message to display if the table has no rows.'
-    # Attributes for the <table> element itself.
     table_attributes:
       type: object
       title: 'Table Attributes'
-      description: 'HTML attributes for the <table> tag.'
-    # Attributes for the responsive <div> wrapper.
+      description: 'HTML attributes for the `<table>` tag.'
     attributes:
       type: object
       title: 'Attributes'
-      description: 'HTML attributes for the component root wrapper element.'
+      description: 'HTML attributes for the root responsive `<div>` wrapper.'

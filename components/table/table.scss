@@ -1,19 +1,10 @@
-// components/table/table.scss
-
-// -----------------------------------------------------------------------------
-// Table Component Styles
-// -----------------------------------------------------------------------------
-
-// Scope all styles to the table component.
 [data-component-id='kingly_minimal:table'] {
   // This wrapper makes the table horizontally scrollable on small screens.
-  .table-responsive-wrapper {
-    overflow-x: auto;
-    width: 100%;
-    // Add a border around the scrollable area for clarity.
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--border-radius);
-  }
+  overflow-x: auto;
+  width: 100%;
+  // Add a border around the scrollable area for clarity.
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--border-radius);
 
   // The <table> element itself.
   .data-table {
@@ -21,21 +12,24 @@
     border-collapse: collapse;
     background-color: var(--color-background);
     text-align: left;
+    // Ensures the table doesn't collapse to less than its content width
+    min-width: 600px;
   }
 
   // Table caption.
   caption {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md);
     font-size: var(--font-size-sm);
     caption-side: bottom;
     color: var(--color-text);
+    text-align: center;
   }
 
   // Header and data cells.
   th,
   td {
     padding: var(--spacing-sm) var(--spacing-md);
-    border-bottom: var(--border-width) solid var(--color-border);
+    border-bottom: var(--border-width-thin) solid var(--color-border);
     vertical-align: top;
   }
 

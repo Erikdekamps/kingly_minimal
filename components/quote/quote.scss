@@ -1,38 +1,42 @@
 [data-component-id='kingly_minimal:quote'] {
-  // The root element is the <blockquote>
-  display: block; // Ensure block-level behavior.
-  margin: 0; // Reset any user-agent margins.
-  padding-left: var(--spacing-lg);
-  border-left: var(--border-width-thick) solid var(--color-primary);
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --quote-padding-left: 2rem;
+  --quote-border-left-width: 3px;
+  --quote-border-left-color: #004a94;
+  --quote-text-font-size: 1.25rem;
+  --quote-text-line-height: 1.2;
+  --quote-attribution-margin-top: 1rem;
+  --quote-attribution-font-weight: 600;
 
-  // The main text of the quote.
+  display: block;
+  margin: 0;
+  padding-left: var(--quote-padding-left);
+  border-left: var(--quote-border-left-width) solid var(--quote-border-left-color);
+
   .quote__text {
-    font-size: var(--font-size-h4);
+    font-size: var(--quote-text-font-size);
     font-style: italic;
-    line-height: var(--line-height-heading);
-    color: var(--color-text);
+    line-height: var(--quote-text-line-height);
+    color: inherit;
 
-    // Remove margins from the <p> tag that might come from a rich text field.
-    > *:first-child {
-      margin-top: 0;
-    }
-
-    > *:last-child {
-      margin-bottom: 0;
-    }
+    > *:first-child { margin-top: 0; }
+    > *:last-child { margin-bottom: 0; }
   }
 
-  // The attribution/source of the quote.
   .quote__attribution {
-    margin-top: var(--spacing-md);
-    font-size: var(--font-size-base);
-    font-style: normal; // Contrast with the italic quote.
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
+    margin-top: var(--quote-attribution-margin-top);
+    font-size: 1rem; // base font size
+    font-style: normal;
+    font-weight: var(--quote-attribution-font-weight);
+    color: inherit;
 
-    // Add a decorative em dash before the attribution text.
     &::before {
       content: '— ';
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:quote'] {
+  --quote-border-left-color: #74c0fc;
 }

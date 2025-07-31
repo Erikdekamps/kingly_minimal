@@ -1,10 +1,11 @@
 [data-component-id='kingly_minimal:media--video'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --video-aspect-ratio: 16 / 9;
+
   // Target the video element rendered by Drupal.
   video {
-    // Ensure the video scales with its container.
     width: 100%;
-    // Use CSS aspect-ratio for a modern, robust solution.
-    aspect-ratio: 16 / 9;
+    aspect-ratio: var(--video-aspect-ratio);
     height: auto;
     border: 0;
   }

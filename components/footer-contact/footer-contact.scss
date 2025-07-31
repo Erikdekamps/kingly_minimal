@@ -1,44 +1,50 @@
 // Use the component's own class as the primary selector.
 .footer-contact {
-  // --- Tier 3: Component-Specific Variables ---
-  // A slight vertical adjustment for the icon to align it with text.
-  --icon-vertical-offset: calc(var(--spacing-xs) / 2);
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --footer-contact-list-gap: 0.5rem;
+  --footer-contact-item-gap: 0.5rem;
+  --footer-contact-item-min-height: 44px;
+  --footer-contact-link-text-color: #222222;
+  --footer-contact-link-text-color-hover: #004a94;
+  --footer-contact-link-transition-duration: 0.15s;
+  --_icon-vertical-offset: 0.125rem; // ~2px
+  --_transition-timing-function: ease-in-out;
 
-  // Style the <ul> element.
   .footer-contact__list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: var(--spacing-sm);
+    gap: var(--footer-contact-list-gap);
   }
 
-  // Style each <li> list item.
   .footer-contact__item {
-    // Use flexbox to align the icon and the text.
     display: flex;
-    align-items: flex-start; // Align to the top for multi-line text.
-    gap: var(--spacing-sm); // Space between icon and text.
-    // WCAG 2.5.5 (AAA): Ensure a minimum target size.
-    min-height: var(--size-target-min);
+    align-items: flex-start;
+    gap: var(--footer-contact-item-gap);
+    min-height: var(--footer-contact-item-min-height);
   }
 
-  // Style the links within the contact info.
   .footer-contact__link {
-    color: var(--color-text);
+    color: var(--footer-contact-link-text-color);
     text-decoration: none;
-    transition: color var(--transition-duration-fast) ease-in-out;
+    transition: color var(--footer-contact-link-transition-duration) var(--_transition-timing-function);
 
     &:hover,
     &:focus-visible {
-      color: var(--color-primary);
+      color: var(--footer-contact-link-text-color-hover);
       text-decoration: underline;
     }
   }
 
-  // Style the icon component specifically within this context.
   .icon {
-    margin-top: var(--icon-vertical-offset);
+    margin-top: var(--_icon-vertical-offset);
     flex-shrink: 0;
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] .footer-contact {
+  --footer-contact-link-text-color: #e1e1e1;
+  --footer-contact-link-text-color-hover: #74c0fc;
 }

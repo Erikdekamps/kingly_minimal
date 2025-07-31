@@ -1,21 +1,22 @@
 [data-component-id='kingly_minimal:image'] {
-  // The root element is a <figure> or <div>.
-  // `width: fit-content` makes the figure only as wide as the image it contains.
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --image-border-radius: 0.25rem;
+  --image-caption-padding-top: 0.5rem;
+  --image-caption-font-size: 0.875rem;
+
   max-width: 100%;
   width: fit-content;
   margin: 0; // Reset browser default margins on <figure>.
 
-  // The <img> or <picture> element within the component.
   img {
-    border-radius: var(--border-radius);
-    display: block; // Ensures no extra space is added below the image.
+    border-radius: var(--image-border-radius);
+    display: block;
   }
 
-  // Styles for the optional caption.
   .image-component__caption {
-    padding-top: var(--spacing-sm);
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
+    padding-top: var(--image-caption-padding-top);
+    font-size: var(--image-caption-font-size);
+    color: inherit;
     text-align: center;
   }
 }

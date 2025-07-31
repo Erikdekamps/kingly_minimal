@@ -1,45 +1,43 @@
 // This file defines the main header structure.
 // Its child components (branding, main-menu) are self-contained SDCs.
 
-@use '../base/mixins' as *;
-
 // -----------------------------------------------------------------------------
 // Header Main Structure
 // -----------------------------------------------------------------------------
 .page-header {
-  // Use a 12-column grid, mirroring the .main-content grid for alignment.
-  display: grid;
-  grid-template-columns: repeat(var(--grid-column-count), 1fr);
-  gap: var(--spacing-md); // Defines gutter between columns and rows.
-  align-items: center; // Vertically align items in the center of the row.
-  padding-block: var(--spacing-md);
+  // --- Local Variables (Not for theming, but for clarity) ---
+  --_header-grid-columns: 12;
+  --_header-gap-sm: 1rem;
+  --_header-gap-lg: 2rem;
+  --_header-padding-y: 1rem;
+  --_branding-span: 3;
+  --_menu-span-start: 4;
 
-  // On larger screens, increase the gap to match the main content area.
-  @include media-query(md) {
-    gap: var(--spacing-lg);
+  display: grid;
+  grid-template-columns: repeat(var(--_header-grid-columns), 1fr);
+  gap: var(--_header-gap-sm);
+  align-items: center;
+  padding-block: var(--_header-padding-y);
+
+  @media (min-width: 768px) { // md breakpoint
+    gap: var(--_header-gap-lg);
   }
 }
 
 // -----------------------------------------------------------------------------
 // Header Regions (Branding, Menu)
 // -----------------------------------------------------------------------------
-
-// --- Mobile Layout (Default): Stacked ---
 .page-header__branding,
 .page-header__menu {
-  // On mobile, all header items span the full 12 columns.
-  grid-column: 1 / -1;
+  grid-column: 1 / -1; // Mobile default
 }
 
-// --- Tablet and Up Layout: Side-by-side ---
-@include media-query(md) {
+@media (min-width: 768px) { // md breakpoint
   .page-header__branding {
-    // On desktop, the branding takes up the first 3 columns.
-    grid-column: 1 / 4;
+    grid-column: 1 / var(--_menu-span-start);
   }
 
   .page-header__menu {
-    // The menu takes up the remaining 9 columns.
-    grid-column: 4 / -1;
+    grid-column: var(--_menu-span-start) / -1;
   }
 }

@@ -1,49 +1,64 @@
 [data-component-id='kingly_minimal:social-links'] {
-  // --- Tier 3: Component-Specific Variables ---
-  --hover-translate-y: -2px;
-  --hover-bg-opacity: 90%;
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --social-links-list-gap: 0.5rem;
+  --social-link-size: 44px;
+  --social-link-icon-size: 24px;
+  --social-link-text-color: #222222;
+  --social-link-text-color-hover: #004a94;
+  --social-link-border-radius: 50%;
+  --social-link-transition-duration-transform: 0.2s;
+  --social-link-transition-duration-bg: 0.15s;
+  --social-link-focus-ring-width: 2px;
+  --social-link-focus-ring-offset: 2px;
+  --social-link-focus-ring-color: #004a94;
+  --_hover-translate-y: -2px;
+  --_hover-bg-opacity: 90%;
+  --_transition-timing-function: ease-in-out;
 
-  // Use a flex container for the list of icons.
   .social-links__list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
+    gap: var(--social-links-list-gap);
   }
 
-  // Style the link element itself.
   .social-links__link {
-    // WCAG 2.5.5 (AAA): Ensure a minimum target size.
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--size-target-min);
-    height: var(--size-target-min);
-    color: var(--color-text);
-    transition: transform var(--transition-duration-medium) var(--transition-timing-function),
-    background-color var(--transition-duration-fast) var(--transition-timing-function);
-    border-radius: var(--border-radius-circle);
+    width: var(--social-link-size);
+    height: var(--social-link-size);
+    color: var(--social-link-text-color);
+    transition: transform var(--social-link-transition-duration-transform) var(--_transition-timing-function),
+    background-color var(--social-link-transition-duration-bg) var(--_transition-timing-function);
+    border-radius: var(--social-link-border-radius);
 
     &:hover,
     &:focus-visible {
-      color: var(--color-primary);
-      transform: translateY(var(--hover-translate-y));
-      background-color: color-mix(in srgb, var(--color-text), transparent var(--hover-bg-opacity));
+      color: var(--social-link-text-color-hover);
+      transform: translateY(var(--_hover-translate-y));
+      background-color: color-mix(in srgb, var(--social-link-text-color), transparent var(--_hover-bg-opacity));
     }
 
     &:focus-visible {
-      outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: var(--focus-ring-offset);
+      outline: var(--social-link-focus-ring-width) solid var(--social-link-focus-ring-color);
+      outline-offset: var(--social-link-focus-ring-offset);
     }
   }
 
-  // Style the SVG icon within the link.
   .social-links__icon {
-    width: var(--size-icon-md);
-    height: var(--size-icon-md);
+    width: var(--social-link-icon-size);
+    height: var(--social-link-icon-size);
     display: block;
     fill: currentColor;
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:social-links'] {
+  --social-link-text-color: #e1e1e1;
+  --social-link-text-color-hover: #74c0fc;
+  --social-link-focus-ring-color: #74c0fc;
 }

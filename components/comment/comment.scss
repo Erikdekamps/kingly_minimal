@@ -1,73 +1,103 @@
 [data-component-id='kingly_minimal:comment'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --comment-border-color: #e1e1e1;
+  --comment-border-width: 1px;
+  --comment-spacing-bottom: 2rem;
+  --comment-meta-gap: 1rem;
+  --comment-meta-margin-bottom: 1rem;
+  --comment-avatar-size: 48px;
+  --comment-avatar-border-radius: 50%;
+  --comment-submitted-font-size: 0.875rem;
+  --comment-submitted-line-height: 1.4;
+  --comment-author-font-weight: 700;
+  --comment-separator-gap: 0.5rem;
+  --comment-title-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --comment-title-font-size: 1.25rem;
+  --comment-title-line-height: 1.2;
+  --comment-title-margin-bottom: 1rem;
+  --comment-new-marker-bg-color: #004a94;
+  --comment-new-marker-text-color: #ffffff;
+  --comment-new-marker-padding-y: 0.1em;
+  --comment-new-marker-padding-x: 0.4em;
+  --comment-new-marker-border-radius: 0.25rem;
+  --comment-new-marker-font-size: 0.8em;
+  --comment-new-marker-font-weight: 700;
+  --comment-new-marker-margin-left: 0.5rem;
+
   // Add a separator for comments in a list.
   &:not(:last-child) {
-    border-bottom: var(--border-width-thin) solid var(--color-border);
-    padding-bottom: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    border-bottom: var(--comment-border-width) solid var(--comment-border-color);
+    padding-bottom: var(--comment-spacing-bottom);
+    margin-bottom: var(--comment-spacing-bottom);
   }
 
   // The footer area containing author picture and metadata.
   .comment__meta {
     display: flex;
     align-items: flex-start;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    gap: var(--comment-meta-gap);
+    margin-bottom: var(--comment-meta-margin-bottom);
   }
 
   // The author's picture, rendered by the image component.
   .comment__author-picture {
-    // Override the default image component border-radius for a circular avatar.
     img {
-      border-radius: var(--border-radius-circle);
-      width: var(--size-avatar); // Fixed size for consistency.
-      height: var(--size-avatar);
+      border-radius: var(--comment-avatar-border-radius);
+      width: var(--comment-avatar-size);
+      height: var(--comment-avatar-size);
       object-fit: cover;
     }
   }
 
   // Container for the author name, date, and permalink.
   .comment__submitted {
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
-    line-height: 1.4;
+    font-size: var(--comment-submitted-font-size);
+    color: inherit; // Inherit from parent
+    line-height: var(--comment-submitted-line-height);
 
-    // Remove default margins from the paragraphs within this container.
     p {
       margin: 0;
     }
   }
 
   .comment__author {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--comment-author-font-weight);
   }
 
   .comment__date {
     // Add a decorative separator between the author and date.
     &::before {
       content: '·';
-      margin-inline: var(--spacing-sm);
+      margin-inline: var(--comment-separator-gap);
       opacity: 0.7;
     }
   }
 
   // The title of the comment, if it exists.
   .comment__title {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-h4);
-    line-height: var(--line-height-heading);
-    margin-bottom: var(--spacing-md);
+    font-family: var(--comment-title-font-family);
+    font-size: var(--comment-title-font-size);
+    line-height: var(--comment-title-line-height);
+    margin-bottom: var(--comment-title-margin-bottom);
   }
 
   // The "new" indicator.
   .new-marker {
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    padding: 0.1em 0.4em;
-    border-radius: var(--border-radius);
-    font-size: 0.8em;
+    background-color: var(--comment-new-marker-bg-color);
+    color: var(--comment-new-marker-text-color);
+    padding: var(--comment-new-marker-padding-y) var(--comment-new-marker-padding-x);
+    border-radius: var(--comment-new-marker-border-radius);
+    font-size: var(--comment-new-marker-font-size);
     text-transform: uppercase;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--comment-new-marker-font-weight);
     vertical-align: middle;
-    margin-left: var(--spacing-sm);
+    margin-left: var(--comment-new-marker-margin-left);
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:comment'] {
+  --comment-border-color: #333333;
+  --comment-new-marker-bg-color: #74c0fc;
+  --comment-new-marker-text-color: #121212;
 }

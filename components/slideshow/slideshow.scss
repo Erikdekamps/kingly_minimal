@@ -1,23 +1,37 @@
-// file: components/slideshow/slideshow.scss
-
 // -----------------------------------------------------------------------------
 // Slideshow Component Styles
 // -----------------------------------------------------------------------------
-
 [data-component-id='kingly_minimal:slideshow'] {
-  // --- Header: Title and Arrows ---
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --slideshow-header-margin-bottom: 1rem;
+  --slideshow-header-gap: 1rem;
+  --slideshow-arrow-gap: 0.5rem;
+  --slideshow-arrow-size: 44px;
+  --slideshow-arrow-bg-color: #f4f5f6;
+  --slideshow-arrow-text-color: #222222;
+  --slideshow-arrow-border-radius: 50%;
+  --slideshow-arrow-border-width: 1px;
+  --slideshow-arrow-transition-duration: 0.15s;
+  --slideshow-arrow-icon-size: 20px;
+  --slideshow-arrow-bg-color-hover: #004a94;
+  --slideshow-arrow-border-color-hover: #004a94;
+  --slideshow-arrow-text-color-hover: #ffffff;
+  --slideshow-focus-ring-width: 2px;
+  --slideshow-focus-ring-offset: 2px;
+  --slideshow-focus-ring-color: #004a94;
+  --slideshow-arrow-disabled-opacity: 0.5;
+  --_transition-timing-function: ease-in-out;
+
   .slideshow__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    gap: var(--slideshow-header-gap);
+    margin-bottom: var(--slideshow-header-margin-bottom);
   }
 
-  // Title styles are now handled by the canonical `heading` component.
-  // The class is kept as a hook for potential future overrides.
   .slideshow__title {
-    // No styles needed here by default.
+    // Styles handled by the `heading` component.
   }
 
   // --- Splide.js Theme Overrides ---
@@ -26,51 +40,51 @@
     transform: none;
     width: auto;
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--slideshow-arrow-gap);
   }
 
   .splide__arrow {
-    background-color: var(--color-light-gray);
+    background-color: var(--slideshow-arrow-bg-color);
     opacity: 1;
     position: static;
     transform: none;
-    width: var(--size-target-min);
-    height: var(--size-target-min);
+    width: var(--slideshow-arrow-size);
+    height: var(--slideshow-arrow-size);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--border-radius-circle);
-    border: var(--border-width-thin) solid transparent;
-    color: var(--color-text);
-    transition: background-color var(--transition-duration-fast) var(--transition-timing-function),
-    border-color var(--transition-duration-fast) var(--transition-timing-function),
-    color var(--transition-duration-fast) var(--transition-timing-function);
+    border-radius: var(--slideshow-arrow-border-radius);
+    border: var(--slideshow-arrow-border-width) solid transparent;
+    color: var(--slideshow-arrow-text-color);
+    transition: background-color var(--slideshow-arrow-transition-duration) var(--_transition-timing-function),
+    border-color var(--slideshow-arrow-transition-duration) var(--_transition-timing-function),
+    color var(--slideshow-arrow-transition-duration) var(--_transition-timing-function);
 
     svg {
-      width: var(--size-icon-sm);
-      height: var(--size-icon-sm);
+      width: var(--slideshow-arrow-icon-size);
+      height: var(--slideshow-arrow-icon-size);
       fill: currentColor;
     }
 
     &:hover {
-      background-color: var(--color-primary);
-      border-color: var(--color-primary);
-      color: var(--color-background);
+      background-color: var(--slideshow-arrow-bg-color-hover);
+      border-color: var(--slideshow-arrow-border-color-hover);
+      color: var(--slideshow-arrow-text-color-hover);
     }
 
     &:focus-visible {
-      outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: var(--focus-ring-offset);
+      outline: var(--slideshow-focus-ring-width) solid var(--slideshow-focus-ring-color);
+      outline-offset: var(--slideshow-focus-ring-offset);
     }
 
     &:disabled {
-      opacity: 0.5;
+      opacity: var(--slideshow-arrow-disabled-opacity);
       cursor: not-allowed;
 
       &:hover {
-        background-color: var(--color-light-gray);
+        background-color: var(--slideshow-arrow-bg-color);
         border-color: transparent;
-        color: var(--color-text);
+        color: var(--slideshow-arrow-text-color);
       }
     }
   }
@@ -80,13 +94,22 @@
   }
 }
 
-// Dark Mode Overrides for disabled arrows.
-[data-theme="dark"] [data-component-id='kingly_minimal:slideshow'] .splide__arrow:disabled {
-  opacity: 1;
-  color: var(--color-text);
-  border-color: transparent;
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:slideshow'] {
+  --slideshow-arrow-bg-color: #1e1e1e;
+  --slideshow-arrow-text-color: #e1e1e1;
+  --slideshow-arrow-bg-color-hover: #74c0fc;
+  --slideshow-arrow-border-color-hover: #74c0fc;
+  --slideshow-arrow-text-color-hover: #121212;
+  --slideshow-focus-ring-color: #74c0fc;
 
-  svg {
-    opacity: 0.4;
+  .splide__arrow:disabled {
+    opacity: 1;
+    color: #e1e1e1; // var(--slideshow-arrow-text-color)
+    border-color: transparent;
+
+    svg {
+      opacity: 0.4;
+    }
   }
 }

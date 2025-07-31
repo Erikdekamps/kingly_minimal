@@ -1,14 +1,22 @@
 // -----------------------------------------------------------------------------
 // Checkbox Component Styles
 // -----------------------------------------------------------------------------
-
-// Scope all styles to the checkbox component.
-// The data-component-id is applied directly to the <input> element.
 [data-component-id='kingly_minimal:checkbox'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --checkbox-focus-ring-width: 2px;
+  --checkbox-focus-ring-offset: 2px;
+  --checkbox-focus-ring-color: #004a94;
+  --checkbox-border-radius: 0.25rem;
+
   // WCAG 2.4.7: Apply a clear focus style for keyboard navigation.
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
-    border-radius: var(--border-radius);
+    outline: var(--checkbox-focus-ring-width) solid var(--checkbox-focus-ring-color);
+    outline-offset: var(--checkbox-focus-ring-offset);
+    border-radius: var(--checkbox-border-radius);
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:checkbox'] {
+  --checkbox-focus-ring-color: #74c0fc;
 }

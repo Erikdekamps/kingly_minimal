@@ -1,92 +1,96 @@
 [data-component-id='kingly_minimal:text'].prose {
-  // --- Vertical Spacing ---
-  // Apply a consistent top margin to every direct child element that follows
-  // another element. This prevents double margins.
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --text-vertical-spacing: 1.25em;
+  --text-line-height-base: 1.6;
+  --text-line-height-heading: 1.2;
+  --text-font-family-heading: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --text-font-weight-heading: 700;
+  --text-h1-font-size: 2.25rem;
+  --text-h2-font-size: 1.875rem;
+  --text-h3-font-size: 1.5rem;
+  --text-h4-font-size: 1.25rem;
+  --text-h5-font-size: 1.125rem;
+  --text-h6-font-size: 1rem;
+  --text-list-padding-left: 1.5rem;
+  --text-blockquote-padding-left: 1rem;
+  --text-blockquote-border-width: 3px;
+  --text-blockquote-border-color: #e1e1e1;
+  --text-blockquote-text-color: rgba(34, 34, 34, 0.8);
+  --text-link-color-hover: #003b76;
+  --text-code-bg-color: #f4f5f6;
+  --text-code-border-radius: 0.25rem;
+  --text-code-padding-y: 0.25rem;
+  --text-code-padding-x: 0.5rem;
+  --text-pre-padding: 1rem;
+  --text-hr-border-width: 1px;
+  --text-hr-border-color: #e1e1e1;
+
   > * + * {
-    margin-block-start: 1.25em;
+    margin-block-start: var(--text-vertical-spacing);
   }
 
-  // --- Typography & Elements ---
-  p,
-  ul,
-  ol,
-  dl,
-  blockquote {
-    line-height: var(--line-height-base);
+  p, ul, ol, dl, blockquote {
+    line-height: var(--text-line-height-base);
   }
 
-  // --- Headings ---
-  // Style all heading levels within the prose block.
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
-    font-family: var(--font-family-heading);
-    line-height: var(--line-height-heading);
-    font-weight: var(--font-weight-bold);
+  > h1, > h2, > h3, > h4, > h5, > h6 {
+    font-family: var(--text-font-family-heading);
+    line-height: var(--text-line-height-heading);
+    font-weight: var(--text-font-weight-heading);
   }
 
-  > h1 { font-size: var(--font-size-h1); }
-  > h2 { font-size: var(--font-size-h2); }
-  > h3 { font-size: var(--font-size-h3); }
-  > h4 { font-size: var(--font-size-h4); }
-  > h5 { font-size: var(--font-size-h5); }
-  > h6 { font-size: var(--font-size-h6); }
+  > h1 { font-size: var(--text-h1-font-size); }
+  > h2 { font-size: var(--text-h2-font-size); }
+  > h3 { font-size: var(--text-h3-font-size); }
+  > h4 { font-size: var(--text-h4-font-size); }
+  > h5 { font-size: var(--text-h5-font-size); }
+  > h6 { font-size: var(--text-h6-font-size); }
 
-  // --- Lists ---
-  // Apply padding only to the main lists, not nested ones, to avoid
-  // excessive indentation.
-  > ul,
-  > ol {
-    padding-inline-start: 1.5rem;
+  > ul, > ol {
+    padding-inline-start: var(--text-list-padding-left);
+    list-style: revert;
   }
 
-  // --- Blockquotes ---
   > blockquote {
-    padding-inline-start: var(--spacing-md);
-    border-inline-start: var(--border-width-thick) solid var(--color-border);
+    padding-inline-start: var(--text-blockquote-padding-left);
+    border-inline-start: var(--text-blockquote-border-width) solid var(--text-blockquote-border-color);
     font-style: italic;
-    color: color-mix(in srgb, var(--color-text), #fff 20%);
+    color: var(--text-blockquote-text-color);
   }
 
-  // --- Links ---
   a {
     text-decoration: underline;
-
-    &:hover,
-    &:focus-visible {
-      color: var(--color-primary-hover);
+    &:hover, &:focus-visible {
+      color: var(--text-link-color-hover);
     }
   }
 
-  // --- Code Blocks & Horizontal Rules ---
-  pre,
-  code {
+  pre, code {
     font-family: monospace;
-    background-color: var(--color-light-gray);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--text-code-bg-color);
+    border-radius: var(--text-code-border-radius);
+    padding: var(--text-code-padding-y) var(--text-code-padding-x);
   }
 
   pre {
-    padding: var(--spacing-md);
+    padding: var(--text-pre-padding);
     overflow-x: auto;
   }
 
   hr {
     border: none;
-    border-top: var(--border-width-thin) solid var(--color-border);
+    border-top: var(--text-hr-border-width) solid var(--text-hr-border-color);
   }
 
-  // --- Remove Spacing on First/Last Child ---
-  // Ensures the component doesn't have extra space at its very top or bottom.
-  > *:first-child {
-    margin-block-start: 0;
-  }
+  > *:first-child { margin-block-start: 0; }
+  > *:last-child { margin-block-end: 0; }
+}
 
-  > *:last-child {
-    margin-block-end: 0;
-  }
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:text'].prose {
+  --text-blockquote-border-color: #333333;
+  --text-blockquote-text-color: rgba(225, 225, 225, 0.8);
+  --text-link-color-hover: #a5d8ff;
+  --text-code-bg-color: #1e1e1e;
+  --text-hr-border-color: #333333;
 }

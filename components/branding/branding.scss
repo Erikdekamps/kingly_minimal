@@ -1,16 +1,25 @@
-@use '../../scss/base/mixins' as *;
-
 // -----------------------------------------------------------------------------
 // Branding Component Styles
 // Scoped to the component to prevent style leakage.
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:branding'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --branding-gap: 0.5rem;
+  --branding-logo-height-sm: 40px;
+  --branding-logo-height-lg: 50px;
+  --branding-name-font-size: 1.25rem;
+  --branding-name-font-weight: 700;
+  --branding-name-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --branding-name-line-height: 1.2;
+  --branding-slogan-font-size: 0.875rem;
+  --branding-slogan-color: #222222;
+
   // The root of the component is the <a> tag.
   // We add a class for easier targeting and to avoid styling all links.
   &.site-branding {
-    display: inline-flex; // Use inline-flex to contain the component to its content width.
+    display: inline-flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--branding-gap);
     text-decoration: none;
     color: inherit; // Inherit text color from the parent.
 
@@ -22,31 +31,36 @@
 
   // Style the hardcoded SVG logo.
   .site-branding__logo svg {
-    height: var(--size-branding-logo-sm);
+    height: var(--branding-logo-height-sm);
     width: auto;
     display: block; // Prevents extra space below the inline SVG.
   }
 
   // Style the site name text (h1 or div).
   .site-branding__name {
-    font-size: var(--font-size-h4);
-    font-weight: var(--font-weight-bold);
-    font-family: var(--font-family-heading);
+    font-size: var(--branding-name-font-size);
+    font-weight: var(--branding-name-font-weight);
+    font-family: var(--branding-name-font-family);
     margin: 0; // Reset margin for h1.
-    line-height: var(--line-height-heading);
+    line-height: var(--branding-name-line-height);
   }
 
   // Style the site slogan, if used.
   .site-branding__slogan {
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
+    font-size: var(--branding-slogan-font-size);
+    color: var(--branding-slogan-color);
     margin: 0;
   }
 
   // Adjust logo size on larger screens for better visual balance.
-  @include media-query(lg) {
+  @media (min-width: 991px) { // lg breakpoint
     .site-branding__logo svg {
-      height: var(--size-branding-logo-lg);
+      height: var(--branding-logo-height-lg);
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:branding'] {
+  --branding-slogan-color: #e1e1e1;
 }

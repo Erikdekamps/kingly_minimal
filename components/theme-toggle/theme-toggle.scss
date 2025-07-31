@@ -1,69 +1,86 @@
 [data-component-id='kingly_minimal:theme-toggle'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --toggle-size: 44px;
+  --toggle-border-radius: 50%;
+  --toggle-text-color: #222222;
+  --toggle-text-color-hover: #004a94;
+  --toggle-bg-color-hover: rgba(34, 34, 34, 0.1);
+  --toggle-transition-duration: 0.15s;
+  --toggle-icon-size: 20px;
+  --toggle-icon-transition-duration: 0.3s;
+  --toggle-focus-ring-width: 2px;
+  --toggle-focus-ring-offset: 2px;
+  --toggle-focus-ring-color: #004a94;
+  --_transition-timing-function: ease-in-out;
+  --_icon-transition-timing-function: ease-in-out;
+
   -webkit-appearance: none;
   appearance: none;
   background-color: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: var(--toggle-border-radius);
   line-height: 1;
-  color: var(--color-text);
-  transition: background-color var(--transition-duration-fast) var(--transition-timing-function),
-  color var(--transition-duration-fast) var(--transition-timing-function);
+  color: var(--toggle-text-color);
+  transition: background-color var(--toggle-transition-duration) var(--_transition-timing-function),
+  color var(--toggle-transition-duration) var(--_transition-timing-function);
 
-  // WCAG 2.5.5 (AAA): Ensure a minimum target size of 44x44px.
   display: grid;
   place-items: center;
   overflow: hidden;
-  width: var(--size-target-min);
-  height: var(--size-target-min);
+  width: var(--toggle-size);
+  height: var(--toggle-size);
 
   &:hover,
   &:focus-visible {
-    background-color: color-mix(in srgb, var(--color-text), transparent 90%);
-    color: var(--color-primary);
+    background-color: var(--toggle-bg-color-hover);
+    color: var(--toggle-text-color-hover);
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
+    outline: var(--toggle-focus-ring-width) solid var(--toggle-focus-ring-color);
+    outline-offset: var(--toggle-focus-ring-offset);
   }
 
   .icon > svg {
-    width: 20px;
-    height: 20px;
+    width: var(--toggle-icon-size);
+    height: var(--toggle-icon-size);
   }
 
-  // --- Icon Animation Logic ---
   .theme-toggle__icon-wrapper {
     grid-area: 1 / 1;
-    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    transition: transform var(--toggle-icon-transition-duration) var(--_icon-transition-timing-function),
+    opacity 0.2s var(--_icon-transition-timing-function);
   }
 
-  // --- Local State-Driven Visibility ---
-  // The component's appearance is driven by its own `aria-pressed` attribute.
-
-  // State when NOT pressed (Light Mode)
   &[aria-pressed="false"] {
-    .theme-toggle__icon-wrapper--dark { // Moon is visible
+    .theme-toggle__icon-wrapper--dark {
       transform: rotate(0deg) scale(1);
       opacity: 1;
     }
-    .theme-toggle__icon-wrapper--light { // Sun is hidden
+    .theme-toggle__icon-wrapper--light {
       transform: rotate(30deg) scale(0.5);
       opacity: 0;
     }
   }
 
-  // State when PRESSED (Dark Mode)
   &[aria-pressed="true"] {
-    .theme-toggle__icon-wrapper--dark { // Moon is hidden
+    .theme-toggle__icon-wrapper--dark {
       transform: rotate(-30deg) scale(0.5);
       opacity: 0;
     }
-    .theme-toggle__icon-wrapper--light { // Sun is visible
+    .theme-toggle__icon-wrapper--light {
       transform: rotate(0deg) scale(1);
       opacity: 1;
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:theme-toggle'] {
+  --toggle-text-color: #e1e1e1;
+  --toggle-text-color-hover: #74c0fc;
+  --toggle-bg-color-hover: rgba(225, 225, 225, 0.1);
+  --toggle-focus-ring-color: #74c0fc;
 }

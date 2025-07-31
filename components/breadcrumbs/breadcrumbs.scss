@@ -1,10 +1,20 @@
 // -----------------------------------------------------------------------------
 // Breadcrumbs Component Styles
 // -----------------------------------------------------------------------------
-
-// Scope all styles to the component's root element.
 [data-component-id='kingly_minimal:breadcrumbs'] {
-  // Tier 3: Component-Specific Variables.
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --breadcrumbs-bg-color: #f4f5f6;
+  --breadcrumbs-border-color: #e1e1e1;
+  --breadcrumbs-border-width: 1px;
+  --breadcrumbs-padding-y: 0.5rem;
+  --breadcrumbs-gap: 0.5rem;
+  --breadcrumbs-font-size: 0.875rem;
+  --breadcrumbs-text-color: #222222;
+  --breadcrumbs-text-font-weight-current: 600;
+  --_container-padding: 1rem; // Internal use
+  --_container-max-width: 1280px; // Internal use
+
+  // --- Separator Icons ---
   // These are defined locally to the component for true encapsulation.
   --separator-icon-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23222222'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
   --separator-icon-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e1e1e1'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
@@ -15,13 +25,13 @@
   // Styles for the outer wrapper that provides the full-bleed background.
   // This is the root element of the component.
   &.breadcrumb-strip {
-    background-color: var(--color-light-gray);
-    border-block: var(--border-width-thin) solid var(--color-border);
-    padding-block: var(--spacing-sm);
+    background-color: var(--breadcrumbs-bg-color);
+    border-block: var(--breadcrumbs-border-width) solid var(--breadcrumbs-border-color);
+    padding-block: var(--breadcrumbs-padding-y);
 
     // This grid centers the inner container and aligns with the main layout.
     display: grid;
-    grid-template-columns: minmax(var(--container-padding), 1fr) minmax(0, var(--container-max-width)) minmax(var(--container-padding), 1fr);
+    grid-template-columns: minmax(var(--_container-padding), 1fr) minmax(0, var(--_container-max-width)) minmax(var(--_container-padding), 1fr);
   }
 
   // The inner wrapper that constrains the breadcrumbs.
@@ -35,11 +45,11 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--breadcrumbs-gap);
     list-style: none;
     margin: 0;
     padding: 0;
-    font-size: var(--font-size-sm);
+    font-size: var(--breadcrumbs-font-size);
   }
 
   .breadcrumb__item {
@@ -62,7 +72,7 @@
   }
 
   .breadcrumb__link {
-    color: var(--color-text);
+    color: var(--breadcrumbs-text-color);
     text-decoration: none;
 
     &:hover,
@@ -73,12 +83,15 @@
 
   // The last item is the current page and not a link.
   .breadcrumb__text--current {
-    color: var(--color-text);
-    font-weight: var(--font-weight-medium);
+    color: var(--breadcrumbs-text-color);
+    font-weight: var(--breadcrumbs-text-font-weight-current);
   }
 }
 
-// Override the locally-scoped variable for dark mode.
+// --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:breadcrumbs'] {
+  --breadcrumbs-bg-color: #1e1e1e;
+  --breadcrumbs-border-color: #333333;
+  --breadcrumbs-text-color: #e1e1e1;
   --breadcrumb-separator-icon: var(--separator-icon-dark);
 }

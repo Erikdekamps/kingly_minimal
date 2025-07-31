@@ -1,65 +1,59 @@
-@use '../../scss/base/mixins' as *;
-
 // -----------------------------------------------------------------------------
 // Gallery Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:gallery'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --gallery-gap: 1rem;
+  --_featured-grid-columns: 2fr 1fr 1fr;
+  --_featured-grid-rows: repeat(2, 1fr);
+
   // --- Base Grid Setup ---
-  // All layout variations start with this base grid configuration.
   display: grid;
-  gap: var(--spacing-md); // Consistent gap from our design tokens.
+  gap: var(--gallery-gap);
   list-style: none;
   padding: 0;
   margin: 0;
 
   // --- Layout Modifiers ---
-
-  // Uniform 2-Column Grid
   &.gallery--grid-2-col {
-    grid-template-columns: repeat(1, 1fr); // Mobile: 1 column
+    grid-template-columns: repeat(1, 1fr);
 
-    @include media-query(sm) {
-      grid-template-columns: repeat(2, 1fr); // Small screens and up: 2 columns
+    @media (min-width: 500px) { // sm breakpoint
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  // Uniform 3-Column Grid
   &.gallery--grid-3-col {
-    grid-template-columns: repeat(1, 1fr); // Mobile: 1 column
+    grid-template-columns: repeat(1, 1fr);
 
-    @include media-query(sm) {
-      grid-template-columns: repeat(2, 1fr); // Small screens: 2 columns
+    @media (min-width: 500px) { // sm breakpoint
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    @include media-query(md) {
-      grid-template-columns: repeat(3, 1fr); // Medium screens and up: 3 columns
+    @media (min-width: 768px) { // md breakpoint
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  // Uniform 4-Column Grid
   &.gallery--grid-4-col {
-    grid-template-columns: repeat(1, 1fr); // Mobile: 1 column
+    grid-template-columns: repeat(1, 1fr);
 
-    @include media-query(sm) {
-      grid-template-columns: repeat(2, 1fr); // Small screens: 2 columns
+    @media (min-width: 500px) { // sm breakpoint
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    @include media-query(md) {
-      grid-template-columns: repeat(3, 1fr); // Medium screens: 3 columns
+    @media (min-width: 768px) { // md breakpoint
+      grid-template-columns: repeat(3, 1fr);
     }
-    @include media-query(lg) {
-      grid-template-columns: repeat(4, 1fr); // Large screens and up: 4 columns
+    @media (min-width: 991px) { // lg breakpoint
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
   // --- Featured Layouts ---
-  // A generic rule for images within our featured layouts to ensure they fill
-  // their grid areas correctly without distortion.
   &.gallery--featured-top,
   &.gallery--featured-left {
-    // Target the direct children (list items) of the grid container.
     > .gallery__item {
-      // Ensure the images inside the grid items fill the space.
       img, picture {
         width: 100%;
         height: 100%;
@@ -68,43 +62,29 @@
     }
   }
 
-  // Featured Top Layout (1 large, 4 small)
   &.gallery--featured-top {
-    // On mobile, this layout stacks vertically (1 column by default).
     grid-template-columns: 1fr;
 
-    // On medium screens and up, we activate the featured layout.
-    @include media-query(md) {
-      // Creates a 4-column grid layout.
+    @media (min-width: 768px) { // md breakpoint
       grid-template-columns: repeat(4, 1fr);
 
-      // Target the first child (the featured item).
       > :first-child {
-        // Make the first item span all 4 columns.
         grid-column: 1 / -1;
       }
-      // The subsequent items will automatically wrap and fill the grid.
     }
   }
 
-  // Featured Left Layout (1 large, 4 small in 2x2 grid)
   &.gallery--featured-left {
-    // On mobile, this layout stacks vertically (1 column by default).
     grid-template-columns: 1fr;
 
-    // On medium screens and up, activate the featured layout.
-    @include media-query(md) {
-      // Create a 3-column grid where the first column is twice as wide as the others.
-      grid-template-columns: 2fr 1fr 1fr;
-      // Create two rows of equal height.
-      grid-template-rows: repeat(2, 1fr);
+    @media (min-width: 768px) { // md breakpoint
+      grid-template-columns: var(--_featured-grid-columns);
+      grid-template-rows: var(--_featured-grid-rows);
 
       > :first-child {
-        // The first item spans both rows of the first column.
         grid-row: 1 / 3;
         grid-column: 1 / 2;
       }
-      // The subsequent items will automatically populate the remaining grid area.
     }
   }
 }

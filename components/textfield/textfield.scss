@@ -1,47 +1,68 @@
 // -----------------------------------------------------------------------------
 // Textfield Component Styles
 // -----------------------------------------------------------------------------
-
-// Scope all styles to the textfield component.
-// The data-component-id is applied directly to the <input> element.
 [data-component-id='kingly_minimal:textfield'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --textfield-padding-y: 0.5rem;
+  --textfield-padding-x: 1rem;
+  --textfield-text-color: #222222;
+  --textfield-bg-color: #ffffff;
+  --textfield-border-width: 1px;
+  --textfield-border-color: #e1e1e1;
+  --textfield-border-color-focus: #004a94;
+  --textfield-border-radius: 0.25rem;
+  --textfield-transition-duration: 0.15s;
+  --textfield-disabled-bg-color: #f4f5f6;
+  --textfield-disabled-opacity: 0.7;
+  --textfield-error-border-color: #eecfca;
+  --textfield-focus-ring-width: 2px;
+  --textfield-focus-ring-offset: 2px;
+  --textfield-focus-ring-color: #004a94;
+  --_transition-timing-function: ease-in-out;
+
   -webkit-appearance: none;
   appearance: none;
   display: block;
   width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--textfield-padding-y) var(--textfield-padding-x);
   font-family: inherit;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--border-radius);
-  transition: border-color var(--transition-duration-fast) var(--transition-timing-function),
-  box-shadow var(--transition-duration-fast) var(--transition-timing-function);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--textfield-text-color);
+  background-color: var(--textfield-bg-color);
+  border: var(--textfield-border-width) solid var(--textfield-border-color);
+  border-radius: var(--textfield-border-radius);
+  transition: border-color var(--textfield-transition-duration) var(--_transition-timing-function),
+  box-shadow var(--textfield-transition-duration) var(--_transition-timing-function);
 
-  // WCAG 2.4.7: High-contrast focus indicator for keyboard navigation.
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
-    border-color: var(--color-primary);
+    outline: var(--textfield-focus-ring-width) solid var(--textfield-focus-ring-color);
+    outline-offset: var(--textfield-focus-ring-offset);
+    border-color: var(--textfield-border-color-focus);
   }
 
-  // Style for disabled state.
   &:disabled {
-    background-color: var(--color-light-gray);
-    opacity: 0.7;
+    background-color: var(--textfield-disabled-bg-color);
+    opacity: var(--textfield-disabled-opacity);
     cursor: not-allowed;
   }
 }
 
-// Style for the error state.
-// This rule targets a textfield component that is inside a wrapper with the
-// .form-item--error class (which is provided by our form-element component).
 .form-item--error [data-component-id='kingly_minimal:textfield'] {
-  border-color: var(--color-error-border);
+  border-color: var(--textfield-error-border-color);
 
   &:focus-visible {
-    border-color: var(--color-primary); // Ensure focus color overrides error color
+    border-color: var(--textfield-border-color-focus);
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:textfield'] {
+  --textfield-text-color: #e1e1e1;
+  --textfield-bg-color: #121212;
+  --textfield-border-color: #333333;
+  --textfield-border-color-focus: #74c0fc;
+  --textfield-disabled-bg-color: #1e1e1e;
+  --textfield-error-border-color: #802a31;
+  --textfield-focus-ring-color: #74c0fc;
 }

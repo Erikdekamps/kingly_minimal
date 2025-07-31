@@ -1,27 +1,26 @@
 // -----------------------------------------------------------------------------
 // Generic Field Component Styles
 // -----------------------------------------------------------------------------
-
 [data-component-id='kingly_minimal:field'] {
-  // Styles for the field label.
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --field-label-font-weight: 700;
+  --field-label-margin-bottom: 0.5rem;
+  --field-items-gap: 0.5rem;
+  --field-item-prose-margin-bottom: 1em;
+
   .field__label {
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-sm);
+    font-weight: var(--field-label-font-weight);
+    margin-bottom: var(--field-label-margin-bottom);
   }
 
-  // Styles for the wrapper around multiple items.
   .field__items {
     display: grid;
-    gap: var(--spacing-sm);
+    gap: var(--field-items-gap);
   }
 
-  // Styles for a single field item.
-  // By default, there are no specific styles, but this provides a hook.
   .field__item {
-    // This is a good place for default styles if needed,
-    // e.g., for spacing between rich text paragraphs within a single item.
     > *:not(:last-child) {
-      margin-bottom: 1em;
+      margin-bottom: var(--field-item-prose-margin-bottom);
     }
   }
 }

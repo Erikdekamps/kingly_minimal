@@ -1,17 +1,27 @@
 // This file defines the layout for the page footer.
 // Component-specific styles are handled by their respective SDCs.
 
-@use '../base/mixins' as *;
-
 // -----------------------------------------------------------------------------
 // Footer Main Structure (Full Bleed Wrapper)
 // -----------------------------------------------------------------------------
 .page-footer {
-  background-color: var(--color-light-gray);
-  padding-block: var(--spacing-lg);
-  font-size: var(--font-size-sm);
+  // --- Local Variables (Not for theming, but for clarity) ---
+  --_footer-bg-color: #f4f5f6;
+  --_footer-padding-y: 2rem;
+  --_footer-font-size: 0.875rem;
+  --_footer-inner-max-width: 1280px;
+  --_footer-inner-padding-x: 1rem;
+  --_footer-inner-gap: 2rem;
+  --_footer-top-bottom-gap: 1rem;
+  --_footer-top-bottom-padding-y: 2rem;
+  --_footer-border-width: 1px;
+  --_footer-border-color: #e1e1e1;
+  --_footer-grid-columns: 12;
 
-  // Use grid to center the inner container.
+  background-color: var(--_footer-bg-color);
+  padding-block: var(--_footer-padding-y);
+  font-size: var(--_footer-font-size);
+
   display: grid;
   justify-items: center;
 }
@@ -21,26 +31,37 @@
 // -----------------------------------------------------------------------------
 .page-footer__inner {
   width: 100%;
-  max-width: var(--container-max-width);
-  padding-inline: var(--container-padding);
-  // Use grid to manage the vertical spacing of the footer sections.
+  max-width: var(--_footer-inner-max-width);
+  padding-inline: var(--_footer-inner-padding-x);
   display: grid;
-  gap: var(--spacing-lg);
+  gap: var(--_footer-inner-gap);
 }
 
 // -----------------------------------------------------------------------------
-// Footer Top Bar (For social prompt, etc.)
+// Footer Top & Bottom Bars
 // -----------------------------------------------------------------------------
-.page-footer__top {
+.page-footer__top,
+.page-footer__bottom {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; // Center items on mobile when they stack.
   align-items: center;
-  gap: var(--spacing-md);
-  padding-bottom: var(--spacing-lg);
-  border-bottom: var(--border-width-thin) solid var(--color-border);
+  gap: var(--_footer-top-bottom-gap);
+}
 
-  @include media-query(md) {
+.page-footer__top {
+  padding-bottom: var(--_footer-top-bottom-padding-y);
+  border-bottom: var(--_footer-border-width) solid var(--_footer-border-color);
+}
+
+.page-footer__bottom {
+  padding-top: var(--_footer-top-bottom-padding-y);
+  border-top: var(--_footer-border-width) solid var(--_footer-border-color);
+}
+
+@media (min-width: 768px) { // md breakpoint
+  .page-footer__top,
+  .page-footer__bottom {
     justify-content: space-between;
   }
 }
@@ -50,8 +71,8 @@
 // -----------------------------------------------------------------------------
 .page-footer__columns {
   display: grid;
-  grid-template-columns: repeat(var(--grid-column-count), 1fr);
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(var(--_footer-grid-columns), 1fr);
+  gap: var(--_footer-inner-gap);
 }
 
 .page-footer__column {
@@ -59,29 +80,18 @@
   grid-column: 1 / -1;
 
   // Tablet (md): Each column spans 6 of the 12 tracks, creating a 2-column grid.
-  @include media-query(md) {
+  @media (min-width: 768px) {
     grid-column: span 6;
   }
 
   // Desktop (lg): Each column spans 3 of the 12 tracks, creating a 4-column layout.
-  @include media-query(lg) {
+  @media (min-width: 991px) {
     grid-column: span 3;
   }
 }
 
-// -----------------------------------------------------------------------------
-// Footer Bottom Bar (For copyright, inline menu, etc.)
-// -----------------------------------------------------------------------------
-.page-footer__bottom {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; // Center items on mobile when they stack.
-  align-items: center;
-  gap: var(--spacing-md);
-  padding-top: var(--spacing-lg);
-  border-top: var(--border-width-thin) solid var(--color-border);
-
-  @include media-query(md) {
-    justify-content: space-between;
-  }
+// --- Dark Mode Overrides for Layout File ---
+html[data-theme="dark"] .page-footer {
+  --_footer-bg-color: #1e1e1e;
+  --_footer-border-color: #333333;
 }

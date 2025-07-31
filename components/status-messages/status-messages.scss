@@ -1,39 +1,60 @@
 [data-component-id='kingly_minimal:status-messages'] {
-  // Base styles for the message block itself.
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-  border: var(--border-width-thin) solid transparent;
-  border-radius: var(--border-radius);
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --message-padding: 1rem;
+  --message-margin-bottom: 1rem;
+  --message-border-width: 1px;
+  --message-border-radius: 0.25rem;
+  --message-list-padding-left: 1rem;
+  --message-item-margin-bottom: 0.25rem;
+
+  // --- Status Theme ---
+  --status-text-color: #0d4f21;
+  --status-bg-color: #e6f4ea;
+  --status-border-color: #d0e8d8;
+
+  // --- Warning Theme ---
+  --warning-text-color: #614d00;
+  --warning-bg-color: #fff8e1;
+  --warning-border-color: #f2eacb;
+
+  // --- Error Theme ---
+  --error-text-color: #8c101c;
+  --error-bg-color: #fdecea;
+  --error-border-color: #eecfca;
+
+  padding: var(--message-padding);
+  margin-bottom: var(--message-margin-bottom);
+  border: var(--message-border-width) solid transparent;
+  border-radius: var(--message-border-radius);
 
   .messages__list {
     margin: 0;
-    padding-left: var(--spacing-md);
+    padding-left: var(--message-list-padding-left);
   }
 
   .messages__item:not(:last-child) {
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--message-item-margin-bottom);
   }
 
-  // Variations: Styles applied based on the message type.
   &.messages--status {
-    color: var(--color-status-text);
-    background-color: var(--color-status);
-    border-color: var(--color-status-border);
+    color: var(--status-text-color);
+    background-color: var(--status-bg-color);
+    border-color: var(--status-border-color);
   }
 
   &.messages--warning {
-    color: var(--color-warning-text);
-    background-color: var(--color-warning);
-    border-color: var(--color-warning-border);
+    color: var(--warning-text-color);
+    background-color: var(--warning-bg-color);
+    border-color: var(--warning-border-color);
   }
 
   &.messages--error {
-    color: var(--color-error-text);
-    background-color: var(--color-error);
-    border-color: var(--color-error-border);
+    color: var(--error-text-color);
+    background-color: var(--error-bg-color);
+    border-color: var(--error-border-color);
 
     a {
-      color: var(--color-error-text);
+      color: var(--error-text-color);
       text-decoration: underline;
 
       &:hover,
@@ -42,4 +63,19 @@
       }
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:status-messages'] {
+  --status-text-color: #c4f5cf;
+  --status-bg-color: #163b1f;
+  --status-border-color: #2a5e37;
+
+  --warning-text-color: #ffeeb1;
+  --warning-bg-color: #4d3f0c;
+  --warning-border-color: #705b11;
+
+  --error-text-color: #fdd8db;
+  --error-bg-color: #5a1e22;
+  --error-border-color: #802a31;
 }

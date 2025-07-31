@@ -23,6 +23,7 @@ function kingly_minimal_form_system_theme_settings_alter(&$form, FormStateInterf
     '#default_value' => theme_get_setting('theme_variation'),
     '#options' => [
       'theme-default' => t('Default Minimal'),
+      'theme-ocean' => t('Ocean'),
       // Add future themes here, e.g.:.
       // 'theme-forest' => t('Forest'),.
     ],

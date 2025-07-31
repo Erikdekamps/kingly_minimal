@@ -8,5 +8,3 @@ theme_variation:
   options:
     'theme-default': 'Default Minimal'
     'theme-ocean': 'Ocean'
-    # Add future themes here, e.g.:
-    # 'theme-forest': 'Forest'

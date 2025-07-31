@@ -1,8 +1,4 @@
-# file: themes/custom/kingly_minimal/kingly_minimal.libraries.yml
 # Defines the primary global styles for the theme.
-# This library includes the foundational CSS (variables, resets), main page
-# layout, and generic content styles that apply globally.
-# Component-specific styles are loaded automatically by the SDC module.
 global-styles:
   version: 1.x
   css:
@@ -16,6 +12,14 @@ global-styles:
   dependencies:
     - core/drupal
     - core/once
+
+# New library for all theme variations.
+# This will be attached globally via the .info.yml file.
+theme-variations:
+  version: 1.x
+  css:
+    theme:
+      dist/css/theme.css: { minified: true, weight: 10 } # Load after main styles
 
 splide:
   css:

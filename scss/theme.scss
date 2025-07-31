@@ -1,0 +1,14 @@
+// ===========================================================================
+// Theme Variations Entry Point
+// ===========================================================================
+// This file is a dedicated entry point for Vite. Its sole purpose is to
+// import and compile all available theme variation partials into a single
+// CSS file.
+//
+// Each partial should contain styles scoped under a unique theme class
+// (e.g., `.theme-ocean`).
+// ===========================================================================
+
+// To add another theme, create a new partial (e.g., `_forest-theme.scss`)
+// and import it here:
+// @use 'themes/forest-theme';

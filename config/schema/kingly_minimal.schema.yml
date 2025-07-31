@@ -1,0 +1,9 @@
+# Schema for the configuration files of the Kingly Minimal theme.
+
+kingly_minimal.settings:
+  type: theme_settings
+  label: 'Kingly Minimal settings'
+  mapping:
+    theme_variation:
+      type: string
+      label: 'The machine name of the selected theme variation.'

@@ -6,10 +6,29 @@
  */
 
 /**
+ * Implements hook_preprocess_html().
+ *
+ * This hook is used to add the theme variation class to the body attribute.
+ *
+ * @param array $variables
+ *   An associative array of variables passed to the theme hook.
+ */
+function kingly_minimal_preprocess_html(array &$variables): void {
+  // Get the theme setting for the chosen variation.
+  $theme_variation = theme_get_setting('theme_variation');
+
+  // If a theme has been selected (and it's not the default), add its class
+  // to the body attributes. The 'theme-default' option results in no class,
+  // allowing the standard component styles to apply.
+  if ($theme_variation && $theme_variation !== 'theme-default') {
+    $variables['attributes']['class'][] = $theme_variation;
+  }
+}
+
+/**
  * Implements hook_preprocess_page().
  *
  * This hook allows you to add or modify variables for all page templates.
- * For example, you could add a dynamic copyright year variable here.
  *
  * @param array $variables
  *   An associative array of variables passed to the theme hook.
@@ -21,35 +40,14 @@ function kingly_minimal_preprocess_page(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_node().
- *
- * This is an excellent place to attach node-related component libraries.
- * For instance, if you had a specific style for "article" nodes, you
- * could create an 'article' library and attach it here only when an
- *  article is being viewed.
- *
- * @param array $variables
- *   An associative array of variables passed to the theme hook.
- */
-// function kingly_minimal_preprocess_node(array &$variables): void {
-//   $node = $variables['node'];
-//   if ($node->bundle() === 'article') {
-//     $variables['#attached']['library'][] = 'kingly_minimal/article-component';
-//   }
-// }
-
-/**
  * Implements hook_preprocess_block().
  *
  * Use this preprocess function to attach component-specific libraries to blocks.
- * For example, if you had a special "call_to_action" block and a corresponding
- * library, you could attach it here.
  *
  * @param array $variables
  *   An associative array of variables passed to the theme hook.
  */
 function kingly_minimal_preprocess_block(array &$variables): void {
-
   // Example: Attach a library to the main menu block.
   // if ($variables['plugin_id'] === 'system_menu_block:main') {
   //   $variables['#attached']['library'][] = 'kingly_minimal/main-menu-component';

@@ -4,15 +4,15 @@ description: 'A minimal, modern base theme with a Vite-powered SDC architecture.
 core_version_requirement: ^10 || ^11
 base theme: stable9
 
-# Declare theme dependencies. This theme requires the Twig Tweak module to
-# provide the `drupal_image` function used in the `image` component.
+# Declare theme dependencies.
 dependencies:
   - twig_tweak:twig_tweak
 
-# Load the single global-styles library on all pages.
+# Load global libraries on all pages.
 # Component-specific assets are attached automatically by the SDC module.
 libraries:
   - kingly_minimal/global-styles
+  - kingly_minimal/theme-variations # Attach the new theme variations library
 
 # Define the regions for block placement.
 regions:

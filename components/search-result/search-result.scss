@@ -1,7 +1,16 @@
 [data-component-id='kingly_minimal:search-result'] {
-  padding-bottom: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
-  border-bottom: var(--border-width-thin) solid var(--color-border);
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --search-result-padding-bottom: 2rem;
+  --search-result-margin-bottom: 2rem;
+  --search-result-border-width: 1px;
+  --search-result-border-color: #e1e1e1;
+  --search-result-title-margin-bottom: 0.25rem;
+  --search-result-info-font-size: 0.875rem;
+  --search-result-info-margin-bottom: 0.5rem;
+
+  padding-bottom: var(--search-result-padding-bottom);
+  margin-bottom: var(--search-result-margin-bottom);
+  border-bottom: var(--search-result-border-width) solid var(--search-result-border-color);
 
   &:last-child {
     border-bottom: 0;
@@ -9,16 +18,21 @@
   }
 
   .search-result__title {
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--search-result-title-margin-bottom);
   }
 
   .search-result__info {
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
+    font-size: var(--search-result-info-font-size);
+    color: inherit;
+    margin-bottom: var(--search-result-info-margin-bottom);
   }
 
   .search-result__snippet {
     // No specific styles needed.
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:search-result'] {
+  --search-result-border-color: #333333;
 }

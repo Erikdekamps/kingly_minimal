@@ -1,41 +1,51 @@
 [data-component-id='kingly_minimal:node-teaser'] {
-  // Use grid to provide simple structure within the teaser.
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --node-teaser-gap: 0.5rem;
+  --node-teaser-padding-bottom: 1rem;
+  --node-teaser-border-width: 1px;
+  --node-teaser-border-color: #e1e1e1;
+  --node-teaser-meta-gap: 0.5rem;
+  --node-teaser-meta-font-size: 0.875rem;
+  --node-teaser-avatar-border-radius: 50%;
+  --node-teaser-content-spacing: 1rem;
+
   display: grid;
-  gap: var(--spacing-sm);
-  // Add a border to separate teasers in a list.
-  padding-bottom: var(--spacing-md);
-  border-bottom: var(--border-width-thin) solid var(--color-border);
+  gap: var(--node-teaser-gap);
+  padding-bottom: var(--node-teaser-padding-bottom);
+  border-bottom: var(--node-teaser-border-width) solid var(--node-teaser-border-color);
 
   // --- Teaser Title ---
-  // All styles are handled by the `heading` component.
-  // The class is kept as a hook for potential future overrides.
   .node__title {
-    // No styles needed here.
+    // Styles are handled by the `heading` component.
   }
 
   // --- Metadata (Submitted by...) ---
   .node__meta {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--node-teaser-meta-gap);
   }
 
   .node__submitted {
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
+    font-size: var(--node-teaser-meta-font-size);
+    color: inherit;
   }
 
   // Style for the author's picture, if displayed.
   .user-picture img {
-    border-radius: var(--border-radius-circle);
+    border-radius: var(--node-teaser-avatar-border-radius);
     overflow: hidden;
   }
 
   // --- Main Teaser Content ---
   .node__content {
-    // Add some breathing room between content elements.
     > *:not(:last-child) {
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--node-teaser-content-spacing);
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:node-teaser'] {
+  --node-teaser-border-color: #333333;
 }

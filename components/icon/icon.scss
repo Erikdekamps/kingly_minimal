@@ -1,20 +1,15 @@
 [data-component-id='kingly_minimal:icon'] {
-  // Use 'display: inline-flex' to ensure the icon aligns well with adjacent
-  // text and other inline elements.
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --icon-default-size: 24px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  // The direct child is the SVG element.
   > svg {
-    // Default size for the icon, using a design token. This can be
-    // overridden by more specific selectors in components that consume this icon.
-    width: var(--size-icon-md);
-    height: var(--size-icon-md);
+    width: var(--icon-default-size);
+    height: var(--icon-default-size);
     display: block;
-
-    // Use 'currentColor' to make the icon's color inherit from the parent's
-    // CSS 'color' property. This makes it easy to change icon color.
     fill: currentColor;
   }
 }

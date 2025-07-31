@@ -1,45 +1,70 @@
 // -----------------------------------------------------------------------------
 // Textarea Component Styles
 // -----------------------------------------------------------------------------
-
-// Scope all styles to the textarea component.
 [data-component-id='kingly_minimal:textarea'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --textarea-padding-y: 0.5rem;
+  --textarea-padding-x: 1rem;
+  --textarea-text-color: #222222;
+  --textarea-bg-color: #ffffff;
+  --textarea-border-width: 1px;
+  --textarea-border-color: #e1e1e1;
+  --textarea-border-color-focus: #004a94;
+  --textarea-border-radius: 0.25rem;
+  --textarea-transition-duration: 0.15s;
+  --textarea-min-height: 120px;
+  --textarea-disabled-bg-color: #f4f5f6;
+  --textarea-disabled-opacity: 0.7;
+  --textarea-error-border-color: #eecfca;
+  --textarea-focus-ring-width: 2px;
+  --textarea-focus-ring-offset: 2px;
+  --textarea-focus-ring-color: #004a94;
+  --_transition-timing-function: ease-in-out;
+
   -webkit-appearance: none;
   appearance: none;
   display: block;
   width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--textarea-padding-y) var(--textarea-padding-x);
   font-family: inherit;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--border-radius);
-  transition: border-color var(--transition-duration-fast) var(--transition-timing-function),
-  box-shadow var(--transition-duration-fast) var(--transition-timing-function);
-  min-height: 120px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--textarea-text-color);
+  background-color: var(--textarea-bg-color);
+  border: var(--textarea-border-width) solid var(--textarea-border-color);
+  border-radius: var(--textarea-border-radius);
+  transition: border-color var(--textarea-transition-duration) var(--_transition-timing-function),
+  box-shadow var(--textarea-transition-duration) var(--_transition-timing-function);
+  min-height: var(--textarea-min-height);
 
-  // WCAG 2.4.7: High-contrast focus indicator.
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
-    border-color: var(--color-primary);
+    outline: var(--textarea-focus-ring-width) solid var(--textarea-focus-ring-color);
+    outline-offset: var(--textarea-focus-ring-offset);
+    border-color: var(--textarea-border-color-focus);
   }
 
-  // Style for disabled state.
   &:disabled {
-    background-color: var(--color-light-gray);
-    opacity: 0.7;
+    background-color: var(--textarea-disabled-bg-color);
+    opacity: var(--textarea-disabled-opacity);
     cursor: not-allowed;
   }
 }
 
-// Style for the error state.
 .form-item--error [data-component-id='kingly_minimal:textarea'] {
-  border-color: var(--color-error-border);
+  border-color: var(--textarea-error-border-color);
 
   &:focus-visible {
-    border-color: var(--color-primary); // Ensure focus color overrides error color
+    border-color: var(--textarea-border-color-focus);
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:textarea'] {
+  --textarea-text-color: #e1e1e1;
+  --textarea-bg-color: #121212;
+  --textarea-border-color: #333333;
+  --textarea-border-color-focus: #74c0fc;
+  --textarea-disabled-bg-color: #1e1e1e;
+  --textarea-error-border-color: #802a31;
+  --textarea-focus-ring-color: #74c0fc;
 }

@@ -1,67 +1,93 @@
-// kingly_minimal/components/local-tasks/local-tasks.scss
-
 // -----------------------------------------------------------------------------
 // Local Tasks (Tabs) Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:local-tasks'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --local-tasks-group-gap: 0.5rem;
+  --local-tasks-track-border-width: 1px;
+  --local-tasks-track-border-color: #e1e1e1;
+  --local-tasks-link-padding-y: 0.5rem;
+  --local-tasks-link-padding-x: 1rem;
+  --local-tasks-link-active-border-width: 2px;
+  --local-tasks-link-text-color: #222222;
+  --local-tasks-link-text-color-hover: #004a94;
+  --local-tasks-link-text-color-active: #004a94;
+  --local-tasks-link-border-color-active: #004a94;
+  --local-tasks-link-font-weight: 500;
+  --local-tasks-link-font-weight-active: 600;
+  --local-tasks-link-transition-duration: 0.15s;
+  --local-tasks-focus-ring-width: 2px;
+  --local-tasks-focus-ring-offset: 2px;
+  --local-tasks-focus-ring-color: #004a94;
+  --local-tasks-focus-ring-border-radius: 0.25rem;
+  --_transition-timing-function: ease-in-out;
+
+  // --- Secondary Tab Overrides ---
+  --local-tasks-secondary-font-size: 0.875rem;
+  --local-tasks-secondary-padding-y: 0.25rem;
+  --local-tasks-secondary-padding-x: 0.5rem;
+
   // Add space between primary and secondary tab groups if both are present.
   > *:not(:last-child) {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--local-tasks-group-gap);
   }
 
   // --- List Styling ---
-  // Targets both primary and secondary <ul> elements.
   .tabs {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     margin: 0;
     padding: 0;
-    // The bottom border on the container creates the "track" that the tabs sit on.
-    border-bottom: var(--border-width-thin) solid var(--color-border);
+    border-bottom: var(--local-tasks-track-border-width) solid var(--local-tasks-track-border-color);
   }
 
   // --- Link (Tab) Styling ---
-  // The `tabs__link` class is added by our menu-local-task.html.twig override.
   .tabs__link {
     display: block;
-    padding: var(--spacing-sm) var(--spacing-md);
-    // The negative margin aligns the tab's active border over the container's border.
-    margin-bottom: calc(-1 * var(--border-width-thin));
-    // Reserve space for the active/hover border to prevent layout shifts.
-    border-bottom: var(--border-width-medium) solid transparent;
+    padding: var(--local-tasks-link-padding-y) var(--local-tasks-link-padding-x);
+    margin-bottom: calc(-1 * var(--local-tasks-track-border-width));
+    border-bottom: var(--local-tasks-link-active-border-width) solid transparent;
     text-decoration: none;
-    color: var(--color-text);
-    font-weight: var(--font-weight-medium);
-    transition: border-color var(--transition-duration-fast) var(--transition-timing-function),
-    color var(--transition-duration-fast) var(--transition-timing-function);
+    color: var(--local-tasks-link-text-color);
+    font-weight: var(--local-tasks-link-font-weight);
+    transition: border-color var(--local-tasks-link-transition-duration) var(--_transition-timing-function),
+    color var(--local-tasks-link-transition-duration) var(--_transition-timing-function);
 
     &:hover {
-      color: var(--color-primary);
+      color: var(--local-tasks-link-text-color-hover);
     }
 
     &:focus-visible {
-      outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: var(--focus-ring-offset);
-      border-radius: var(--border-radius);
-      z-index: 1; // Ensure the outline is not clipped by other tabs.
+      outline: var(--local-tasks-focus-ring-width) solid var(--local-tasks-focus-ring-color);
+      outline-offset: var(--local-tasks-focus-ring-offset);
+      border-radius: var(--local-tasks-focus-ring-border-radius);
+      z-index: 1;
     }
   }
 
   // --- Active Tab Styling ---
-  // The .is-active class is on the <a> tag itself.
   .tabs__link.is-active {
-    color: var(--color-primary);
-    font-weight: var(--font-weight-semibold);
-    border-bottom-color: var(--color-primary);
+    color: var(--local-tasks-link-text-color-active);
+    font-weight: var(--local-tasks-link-font-weight-active);
+    border-bottom-color: var(--local-tasks-link-border-color-active);
   }
 
   // --- Secondary Tabs ---
-  // De-emphasize the secondary tabs.
   .tabs--secondary {
     .tabs__link {
-      font-size: var(--font-size-sm);
-      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: var(--local-tasks-secondary-font-size);
+      padding: var(--local-tasks-secondary-padding-y) var(--local-tasks-secondary-padding-x);
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:local-tasks'] {
+  --local-tasks-track-border-color: #333333;
+  --local-tasks-link-text-color: #e1e1e1;
+  --local-tasks-link-text-color-hover: #74c0fc;
+  --local-tasks-link-text-color-active: #74c0fc;
+  --local-tasks-link-border-color-active: #74c0fc;
+  --local-tasks-focus-ring-color: #74c0fc;
 }

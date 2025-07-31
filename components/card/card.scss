@@ -1,35 +1,56 @@
-@use '../../scss/base/mixins' as *;
-
 // -----------------------------------------------------------------------------
 // Card Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:card'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --card-bg-color: #ffffff;
+  --card-border-width: 1px;
+  --card-border-color: #e1e1e1;
+  --card-border-radius: 0.25rem;
+  --card-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --card-content-padding: 1rem;
+  --card-content-gap: 1rem;
+  --card-main-gap: 0.5rem;
+  --card-focus-ring-width: 2px;
+  --card-focus-ring-offset: 2px;
+  --card-focus-ring-color: #004a94;
+  --card-horizontal-image-ratio: 1fr;
+  --card-horizontal-content-ratio: 1.5fr;
+
+  // --- CTA (Button) Variables ---
+  --card-cta-padding-y: 0.5rem;
+  --card-cta-padding-x: 1rem;
+  --card-cta-bg-color: #004a94;
+  --card-cta-bg-color-hover: #003b76;
+  --card-cta-text-color: #ffffff;
+  --card-cta-border-radius: 0.25rem;
+  --card-cta-font-weight: 600;
+  --card-cta-transition-duration: 0.2s;
+  --_transition-timing-function: ease-in-out; // Internal use
+
   // --- Base Card Styles ---
-  display: block; // Ensures the link or article takes up block-level space.
+  display: block;
   text-decoration: none;
   color: inherit;
-  background-color: var(--color-background);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  overflow: hidden; // Keeps child elements (like images) contained within the rounded corners.
-  height: 100%; // Allows the card to fill the height of its grid container.
+  background-color: var(--card-bg-color);
+  border: var(--card-border-width) solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-box-shadow);
+  overflow: hidden;
+  height: 100%;
 
-  // Transition the CTA button for a smooth hover effect.
   .card__cta {
-    transition: background-color var(--transition-duration-medium) var(--transition-timing-function);
+    transition: background-color var(--card-cta-transition-duration) var(--_transition-timing-function);
   }
 
   // --- Hover & Focus States ---
-  // The primary hover effect is on the CTA button.
   &:hover .card__cta {
-    background-color: var(--color-primary-hover);
+    background-color: var(--card-cta-bg-color-hover);
   }
 
-  // WCAG 2.4.7: A clear focus state is crucial for accessibility.
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
+    outline: var(--card-focus-ring-width) solid var(--card-focus-ring-color);
+    outline-offset: var(--card-focus-ring-offset);
   }
 
   // --- Layout ---
@@ -38,21 +59,18 @@
     height: 100%;
   }
 
-  // Vertical variant: Image is stacked on top of the content.
   &.card--vertical .card__wrapper {
     grid-template-rows: auto 1fr; // Image | Main-and-CTA wrapper
   }
 
-  // Horizontal variant: Stacks on mobile.
   &.card--horizontal .card__wrapper {
-    grid-template-rows: auto 1fr; // Image | Main-and-CTA wrapper
+    grid-template-rows: auto 1fr; // Stacks on mobile
   }
 
-  // On medium screens, the horizontal variant switches to a 2-column layout.
-  @include media-query(md) {
+  @media (min-width: 768px) { // md breakpoint
     &.card--horizontal .card__wrapper {
-      grid-template-rows: 1fr; // Reset rows.
-      grid-template-columns: 1fr 1.5fr; // Image | Main-and-CTA wrapper
+      grid-template-rows: 1fr;
+      grid-template-columns: var(--card-horizontal-image-ratio) var(--card-horizontal-content-ratio);
 
       .card__image {
         height: 100%;
@@ -67,36 +85,41 @@
     }
   }
 
-  // This container holds all text content and the CTA button.
-  // Using grid here robustly pushes the CTA to the bottom.
   .card__main-and-cta {
     display: grid;
-    grid-template-rows: 1fr auto; // Main content (fills space) | CTA (takes its own space)
-    padding: var(--spacing-md);
-    gap: var(--spacing-md);
+    grid-template-rows: 1fr auto;
+    padding: var(--card-content-padding);
+    gap: var(--card-content-gap);
   }
 
   .card__main {
     display: grid;
-    gap: var(--spacing-sm);
-    align-content: start; // Align title and body to the top.
+    gap: var(--card-main-gap);
+    align-content: start;
   }
 
-  // Title styles are now handled by the canonical `heading` component.
-  // The `.card__title` class is kept as a hook for potential overrides if needed.
   .card__title {
-    // No styles needed here by default.
+    // Styles handled by the `heading` component.
   }
 
-  // --- Call-to-Action (CTA) Button ---
   .card__cta {
     display: block;
-    padding: var(--spacing-sm) var(--spacing-md);
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    border-radius: var(--border-radius);
+    padding: var(--card-cta-padding-y) var(--card-cta-padding-x);
+    background-color: var(--card-cta-bg-color);
+    color: var(--card-cta-text-color);
+    border-radius: var(--card-cta-border-radius);
     text-align: center;
-    font-weight: var(--font-weight-semibold);
-    text-decoration: none; // Remove underline, as it's now a button.
+    font-weight: var(--card-cta-font-weight);
+    text-decoration: none;
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:card'] {
+  --card-bg-color: #121212;
+  --card-border-color: #333333;
+  --card-focus-ring-color: #74c0fc;
+  --card-cta-bg-color: #74c0fc;
+  --card-cta-bg-color-hover: #a5d8ff;
+  --card-cta-text-color: #121212;
 }

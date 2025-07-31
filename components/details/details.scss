@@ -1,91 +1,109 @@
 // -----------------------------------------------------------------------------
 // Details Component Styles
 // -----------------------------------------------------------------------------
-
-// Scope all styles to the details component.
 [data-component-id='kingly_minimal:details'] {
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--border-radius);
-  // Add margin for spacing when details elements are stacked in a form.
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --details-border-width: 1px;
+  --details-border-color: #e1e1e1;
+  --details-border-radius: 0.25rem;
+  --details-margin-bottom: 1rem;
+  --details-summary-padding-y: 0.5rem;
+  --details-summary-padding-x: 1rem;
+  --details-summary-gap: 0.5rem;
+  --details-summary-font-weight: 600;
+  --details-summary-bg-color: #f4f5f6;
+  --details-focus-ring-width: 2px;
+  --details-focus-ring-offset: 2px;
+  --details-focus-ring-color: #004a94;
+  --details-marker-transition-duration: 0.2s;
+  --details-marker-icon-size: 20px;
+  --details-content-padding: 1rem;
+  --details-error-bg-color: #fdecea;
+  --details-error-border-color: #eecfca;
+  --details-error-text-color: #8c101c;
+  --details-required-marker-color: #8c101c;
+  --_transition-timing-function: ease-in-out; // Internal use
+
+  border: var(--details-border-width) solid var(--details-border-color);
+  border-radius: var(--details-border-radius);
+
   &:not(:last-child) {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--details-margin-bottom);
   }
 
   // The <summary> element that acts as the controller.
   .details__summary {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-weight: var(--font-weight-semibold);
+    gap: var(--details-summary-gap);
+    padding: var(--details-summary-padding-y) var(--details-summary-padding-x);
+    font-weight: var(--details-summary-font-weight);
     cursor: pointer;
-    list-style: none; // Remove the default browser marker.
-    background-color: var(--color-light-gray);
+    list-style: none;
+    background-color: var(--details-summary-bg-color);
 
-    // Remove the default outline on WebKit browsers.
     &::-webkit-details-marker {
       display: none;
     }
 
-    // Give the summary a clear focus state.
     &:focus-visible {
-      outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: var(--focus-ring-offset);
+      outline: var(--details-focus-ring-width) solid var(--details-focus-ring-color);
+      outline-offset: var(--details-focus-ring-offset);
       z-index: 1;
     }
   }
 
-  // The text of the summary.
   .details__summary-text {
-    flex-grow: 1; // Allow the text to take up available space.
+    flex-grow: 1;
   }
 
-  // The custom marker (our SVG icon).
   .details__marker {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: transform var(--transition-duration-medium) var(--transition-timing-function);
+    transition: transform var(--details-marker-transition-duration) var(--_transition-timing-function);
     transform-origin: center;
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: var(--details-marker-icon-size);
+      height: var(--details-marker-icon-size);
     }
   }
 
-  // The content area inside the details element.
   .details__content {
-    padding: var(--spacing-md);
-    border-top: var(--border-width-thin) solid var(--color-border);
+    padding: var(--details-content-padding);
+    border-top: var(--details-border-width) solid var(--details-border-color);
   }
 
-  // State changes when the <details> element is open.
-  &[open] {
-    > .details__summary {
-      .details__marker {
-        transform: rotate(180deg);
-      }
-    }
+  &[open] > .details__summary .details__marker {
+    transform: rotate(180deg);
   }
 
-  // Error state for forms (class added by form-element bridge).
   &.form-item--error > .details__summary {
-    background-color: var(--color-error);
-    border-color: var(--color-error-border);
-    color: var(--color-error-text);
+    background-color: var(--details-error-bg-color);
+    border-color: var(--details-error-border-color);
+    color: var(--details-error-text-color);
   }
 
-  // Required marker for forms.
   .required-marker {
-    color: var(--color-error-text);
-    font-weight: var(--font-weight-bold);
+    color: var(--details-required-marker-color);
+    font-weight: 700; // Bold
   }
 
-  // Respect user preference for reduced motion.
   @media (prefers-reduced-motion: reduce) {
     .details__marker {
       transition: none;
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:details'] {
+  --details-border-color: #333333;
+  --details-summary-bg-color: #1e1e1e;
+  --details-focus-ring-color: #74c0fc;
+  --details-error-bg-color: #5a1e22;
+  --details-error-border-color: #802a31;
+  --details-error-text-color: #fdd8db;
+  --details-required-marker-color: #fdd8db;
 }

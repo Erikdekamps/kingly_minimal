@@ -1,30 +1,40 @@
 [data-component-id='kingly_minimal:field-tags'] {
-  // --- Tier 3: Component-Specific Variables ---
-  --hover-darken-amount: 5%;
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --field-tags-gap: 0.5rem;
+  --field-tag-padding-y: 0.25rem;
+  --field-tag-padding-x: 1rem;
+  --field-tag-bg-color: #f4f5f6;
+  --field-tag-text-color: #222222;
+  --field-tag-border-radius: 0.25rem;
+  --field-tag-font-size: 0.875rem;
+  --field-tag-transition-duration: 0.15s;
+  --_hover-darken-amount: 5%;
+  --_transition-timing-function: ease-in-out;
 
-  // The root of the component is a flex container for the tags.
   display: flex;
-  flex-wrap: wrap; // Allows items to wrap onto new lines.
-  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  gap: var(--field-tags-gap);
 
-  // The content of a tag field item is usually a link. We target it directly.
-  // This assumes the `item.content` passed to the component is the <a> tag.
   .field__item a {
     display: inline-block;
-    padding: var(--spacing-xs) var(--spacing-md);
-    background-color: var(--color-light-gray);
-    border-radius: var(--border-radius);
-    color: var(--color-text);
+    padding: var(--field-tag-padding-y) var(--field-tag-padding-x);
+    background-color: var(--field-tag-bg-color);
+    border-radius: var(--field-tag-border-radius);
+    color: var(--field-tag-text-color);
     text-decoration: none;
-    font-size: var(--font-size-sm);
-    transition: background-color var(--transition-duration-fast) var(--transition-timing-function);
+    font-size: var(--field-tag-font-size);
+    transition: background-color var(--field-tag-transition-duration) var(--_transition-timing-function);
 
     &:hover,
     &:focus-visible {
-      // Use CSS color-mix for runtime color modification.
-      // This is the modern, CSS-variable-friendly way to darken a color.
-      background-color: color-mix(in srgb, var(--color-light-gray), #000 var(--hover-darken-amount));
+      background-color: color-mix(in srgb, var(--field-tag-bg-color), #000 var(--_hover-darken-amount));
       text-decoration: none;
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:field-tags'] {
+  --field-tag-bg-color: #1e1e1e;
+  --field-tag-text-color: #e1e1e1;
 }

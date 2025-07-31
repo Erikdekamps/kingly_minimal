@@ -2,19 +2,38 @@
 // Accordion Item Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:accordion-item'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  // These variables are self-contained with raw CSS values, making the
+  // component independent of global theme variables.
+  --accordion-item-border-width: 1px;
+  --accordion-item-border-color: #e1e1e1;
+  --accordion-item-border-radius: 0.25rem;
+  --accordion-item-header-padding-y: 0.5rem;
+  --accordion-item-header-padding-x: 1rem;
+  --accordion-item-header-gap: 1rem;
+  --accordion-item-header-font-weight: 600;
+  --accordion-item-header-bg-hover: #f4f5f6;
+  --accordion-item-focus-ring-width: 2px;
+  --accordion-item-focus-ring-color: #004a94;
+  --accordion-item-focus-ring-offset: 2px;
+  --accordion-item-content-animation-duration: 0.3s;
+  --accordion-item-content-padding: 1rem;
+  --accordion-item-icon-animation-duration: 0.3s;
+  --_transition-timing-function: ease-in-out; // Internal use
+
   // The root <details> element.
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--border-radius);
-  transition: background-color var(--transition-duration-fast) var(--transition-timing-function);
+  border: var(--accordion-item-border-width) solid var(--accordion-item-border-color);
+  border-radius: var(--accordion-item-border-radius);
+  transition: background-color var(--accordion-item-content-animation-duration) var(--_transition-timing-function);
 
   // The <summary> element that acts as the controller.
   .accordion-item__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-md);
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-weight: var(--font-weight-semibold);
+    gap: var(--accordion-item-header-gap);
+    padding: var(--accordion-item-header-padding-y) var(--accordion-item-header-padding-x);
+    font-weight: var(--accordion-item-header-font-weight);
     cursor: pointer;
     list-style: none; // Remove the default browser marker.
 
@@ -24,13 +43,13 @@
     }
 
     &:hover {
-      background-color: var(--color-light-gray);
+      background-color: var(--accordion-item-header-bg-hover);
     }
 
     // WCAG 2.4.7: Ensure a clear focus state.
     &:focus-visible {
-      outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: var(--focus-ring-offset);
+      outline: var(--accordion-item-focus-ring-width) solid var(--accordion-item-focus-ring-color);
+      outline-offset: var(--accordion-item-focus-ring-offset);
       z-index: 1; // Ensure outline is not clipped by adjacent items.
     }
   }
@@ -41,13 +60,13 @@
     // Set the initial (closed) state.
     grid-template-rows: 0fr;
     // Define the transition for the grid rows.
-    transition: grid-template-rows var(--transition-duration-slow) var(--transition-timing-function);
+    transition: grid-template-rows var(--accordion-item-content-animation-duration) var(--_transition-timing-function);
   }
 
   // The inner wrapper is required for the animation to work correctly.
   .accordion-item__content-inner {
     // The padding is moved here so it animates with the content.
-    padding: var(--spacing-md);
+    padding: var(--accordion-item-content-padding);
     // This allows the element's height to shrink to zero.
     overflow: hidden;
     min-height: 0;
@@ -56,14 +75,14 @@
   // The custom icon wrapper.
   .accordion-item__icon {
     display: inline-flex;
-    transition: transform var(--transition-duration-slow) var(--transition-timing-function);
+    transition: transform var(--accordion-item-icon-animation-duration) var(--_transition-timing-function);
   }
 
   // State change when the <details> element is open.
   &[open] {
     > .accordion-item__header {
       // Add a border between the header and content when open.
-      border-bottom: var(--border-width-thin) solid var(--color-border);
+      border-bottom: var(--accordion-item-border-width) solid var(--accordion-item-border-color);
 
       .accordion-item__icon {
         transform: rotate(180deg);
@@ -83,4 +102,12 @@
       transition: none;
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+// Re-define component variables for the dark theme.
+html[data-theme="dark"] [data-component-id='kingly_minimal:accordion-item'] {
+  --accordion-item-border-color: #333333;
+  --accordion-item-header-bg-hover: #1e1e1e;
+  --accordion-item-focus-ring-color: #74c0fc;
 }

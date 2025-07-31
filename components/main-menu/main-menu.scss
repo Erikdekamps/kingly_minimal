@@ -1,16 +1,16 @@
-// kingly_minimal/components/main-menu/main-menu.scss
-
-@use '../../scss/base/mixins' as *;
-
 // -----------------------------------------------------------------------------
 // Main Navigation Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:main-menu'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --main-menu-gap: 0.5rem;
+  --main-menu-mobile-link-border-radius: 0;
+
   // On mobile, the nav container takes up the available width.
   width: 100%;
 
   // On desktop, align the menu to the right.
-  @include media-query(md) {
+  @media (min-width: 768px) { // md breakpoint
     width: auto;
     display: flex;
     justify-content: flex-end;
@@ -19,19 +19,19 @@
   // --- Contextual Overrides for the `menu` component ---
   .menu {
     // On desktop, the main menu is horizontal.
-    @include media-query(md) {
+    @media (min-width: 768px) { // md breakpoint
       flex-direction: row;
       flex-wrap: wrap;
-      gap: var(--spacing-sm);
+      gap: var(--main-menu-gap);
     }
   }
 
   .menu__link {
     // On mobile, the main menu links are full-width and have no side padding.
-    @include media-query(md, 'max') {
+    @media (max-width: 767px) { // max-md breakpoint
       width: 100%;
       padding-inline: 0;
-      border-radius: 0;
+      border-radius: var(--main-menu-mobile-link-border-radius);
     }
   }
 }

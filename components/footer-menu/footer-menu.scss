@@ -1,31 +1,30 @@
 // -----------------------------------------------------------------------------
 // Footer Menu Component Styles
-//
-// This file provides context-specific overrides for the generic `menu` component
-// when it is used inside the `footer-menu` wrapper.
 // -----------------------------------------------------------------------------
-
-// The data-component-id is on the <nav> wrapper. We target the .menu
-// class of the `menu` component within it.
 [data-component-id='kingly_minimal:footer-menu'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --footer-menu-gap-y: 0.5rem;
+  --footer-menu-gap-x: 1rem;
+  --footer-menu-link-font-size: 0.875rem;
+  --footer-menu-link-font-weight: 400;
+  --footer-menu-link-active-text-color: #222222;
 
   // Override the layout of the generic menu for the footer context.
   .menu {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--spacing-sm) var(--spacing-md);
-    justify-content: center; // Center items on mobile.
+    gap: var(--footer-menu-gap-y) var(--footer-menu-gap-x);
+    justify-content: center;
   }
 
   // Override the link styles for the footer context.
   .menu__link {
-    padding: 0; // Reset padding.
-    min-height: auto; // Reset min-height.
+    padding: 0;
+    min-height: auto;
     border-radius: 0;
-    font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-sm);
+    font-weight: var(--footer-menu-link-font-weight);
+    font-size: var(--footer-menu-link-font-size);
 
-    // Provide footer-specific interaction styles.
     &:hover,
     &:focus-visible {
       background-color: transparent;
@@ -33,9 +32,14 @@
     }
 
     &.is-active {
-      font-weight: var(--font-weight-normal);
+      font-weight: var(--footer-menu-link-font-weight);
       text-decoration: underline;
-      color: var(--color-text); // Reset active color from primary.
+      color: var(--footer-menu-link-active-text-color);
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:footer-menu'] {
+  --footer-menu-link-active-text-color: #e1e1e1;
 }

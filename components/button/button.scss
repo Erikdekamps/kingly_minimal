@@ -1,97 +1,138 @@
 // -----------------------------------------------------------------------------
 // Button Component Styles
 // -----------------------------------------------------------------------------
-
-// We target the `.button` class added by the Twig template for styling.
 .button {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --button-padding-y: 0.5rem;
+  --button-padding-x: 1rem;
+  --button-border-width: 2px;
+  --button-border-radius: 0.25rem;
+  --button-min-target-size: 44px;
+  --button-font-weight: 600;
+  --button-line-height: 1.2;
+  --button-transition-duration: 0.15s;
+  --button-icon-gap: 0.5rem;
+  --button-icon-size: 20px;
+  --button-disabled-opacity: 0.65;
+  --_transition-timing-function: ease-in-out; // Internal use
+
+  // --- Primary Style Variables ---
+  --button-primary-bg-color: #004a94;
+  --button-primary-text-color: #ffffff;
+  --button-primary-border-color: #004a94;
+  --button-primary-bg-color-hover: #003b76;
+  --button-primary-border-color-hover: #003b76;
+
+  // --- Secondary Style Variables ---
+  --button-secondary-bg-color: transparent;
+  --button-secondary-text-color: #004a94;
+  --button-secondary-border-color: #004a94;
+  --button-secondary-bg-color-hover: #004a94;
+  --button-secondary-text-color-hover: #ffffff;
+
+  // --- Focus Ring Variables ---
+  --button-focus-ring-width: 2px;
+  --button-focus-ring-offset: 2px;
+  --button-focus-ring-color: #004a94;
+
   // Reset default browser appearance for consistency.
   -webkit-appearance: none;
   appearance: none;
 
   // Layout & Box Model
-  display: inline-flex; // Allows for easy alignment of text/icons.
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm); // Space between icon and text.
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: var(--border-width-medium) solid transparent;
-  border-radius: var(--border-radius);
-  // WCAG 2.5.5 (AAA): Ensure minimum height. Combined with padding, this meets the 44px target.
-  min-height: var(--size-target-min);
+  gap: var(--button-icon-gap);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border: var(--button-border-width) solid transparent;
+  border-radius: var(--button-border-radius);
+  min-height: var(--button-min-target-size);
 
   // Typography
   font-family: inherit;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.2;
+  font-size: 1rem; // Base font size
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
   text-align: center;
   text-decoration: none;
-  white-space: nowrap; // Keep button text on a single line.
+  white-space: nowrap;
 
   // Interaction
   cursor: pointer;
-  transition: background-color var(--transition-duration-fast) var(--transition-timing-function),
-  border-color var(--transition-duration-fast) var(--transition-timing-function),
-  color var(--transition-duration-fast) var(--transition-timing-function);
+  transition: background-color var(--button-transition-duration) var(--_transition-timing-function),
+  border-color var(--button-transition-duration) var(--_transition-timing-function),
+  color var(--button-transition-duration) var(--_transition-timing-function);
 
   // States: Hover, Focus, Disabled
   &:focus {
-    outline: none; // Remove default focus outline in favor of our custom one.
+    outline: none;
   }
 
-  // WCAG 2.4.7: Provide a clear focus indicator for keyboard users.
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
+    outline: var(--button-focus-ring-width) solid var(--button-focus-ring-color);
+    outline-offset: var(--button-focus-ring-offset);
   }
 
   &:disabled,
   &.is-disabled,
   &[aria-disabled="true"] {
-    opacity: 0.65;
+    opacity: var(--button-disabled-opacity);
     cursor: not-allowed;
-    pointer-events: none; // Prevent clicks on disabled elements.
+    pointer-events: none;
   }
 
   // --- Style Variants ---
-
-  // Primary Style (Default)
-  &, // Apply to .button without a modifier class
+  &,
   &--primary {
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    border-color: var(--color-primary);
+    background-color: var(--button-primary-bg-color);
+    color: var(--button-primary-text-color);
+    border-color: var(--button-primary-border-color);
 
     &:hover,
     &:focus-visible {
-      background-color: var(--color-primary-hover);
-      border-color: var(--color-primary-hover);
-      color: var(--color-background);
+      background-color: var(--button-primary-bg-color-hover);
+      border-color: var(--button-primary-border-color-hover);
+      color: var(--button-primary-text-color);
       text-decoration: none;
     }
   }
 
-  // Secondary Style (Outline)
   &--secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border-color: var(--color-primary);
+    background-color: var(--button-secondary-bg-color);
+    color: var(--button-secondary-text-color);
+    border-color: var(--button-secondary-border-color);
 
     &:hover,
     &:focus-visible {
-      background-color: var(--color-primary);
-      color: var(--color-background);
+      background-color: var(--button-secondary-bg-color-hover);
+      color: var(--button-secondary-text-color-hover);
       text-decoration: none;
     }
   }
 
   // --- Icon Styles ---
   .button__icon {
-    // The icon SDC will handle the fill color via `currentColor`.
     .icon > svg {
-      width: var(--size-icon-sm);
-      height: var(--size-icon-sm);
-      display: block; // Ensures proper alignment.
+      width: var(--button-icon-size);
+      height: var(--button-icon-size);
+      display: block;
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] .button {
+  --button-primary-bg-color: #74c0fc;
+  --button-primary-text-color: #121212; // Use a very dark gray for text on light blue bg
+  --button-primary-border-color: #74c0fc;
+  --button-primary-bg-color-hover: #a5d8ff;
+  --button-primary-border-color-hover: #a5d8ff;
+
+  --button-secondary-text-color: #74c0fc;
+  --button-secondary-border-color: #74c0fc;
+  --button-secondary-bg-color-hover: #74c0fc;
+  --button-secondary-text-color-hover: #121212;
+
+  --button-focus-ring-color: #74c0fc;
 }

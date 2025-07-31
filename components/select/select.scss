@@ -1,59 +1,78 @@
 [data-component-id='kingly_minimal:select'] {
-  // Tier 3: Component-Specific Variables.
-  // These are defined locally to the component for true encapsulation.
-  --arrow-icon-light: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  --arrow-icon-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --select-padding-y: 0.5rem;
+  --select-padding-x: 1rem;
+  --select-text-color: #222222;
+  --select-bg-color: #ffffff;
+  --select-border-width: 1px;
+  --select-border-color: #e1e1e1;
+  --select-border-color-focus: #004a94;
+  --select-border-radius: 0.25rem;
+  --select-transition-duration: 0.15s;
+  --select-arrow-padding-right: 4rem;
+  --select-disabled-bg-color: #f4f5f6;
+  --select-disabled-opacity: 0.7;
+  --select-error-border-color: #eecfca;
+  --select-focus-ring-width: 2px;
+  --select-focus-ring-offset: 2px;
+  --select-focus-ring-color: #004a94;
+  --_transition-timing-function: ease-in-out;
 
-  // Default to the light mode icon.
-  --select-arrow-icon: var(--arrow-icon-light);
+  // --- SVG Arrow Icons ---
+  --_arrow-icon-light: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  --_arrow-icon-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  --select-arrow-icon: var(--_arrow-icon-light);
 
   -webkit-appearance: none;
   appearance: none;
   display: block;
   width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--select-padding-y) var(--select-padding-x);
   font-family: inherit;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--border-radius);
-  transition: border-color var(--transition-duration-fast) var(--transition-timing-function),
-  box-shadow var(--transition-duration-fast) var(--transition-timing-function);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--select-text-color);
+  background-color: var(--select-bg-color);
+  border: var(--select-border-width) solid var(--select-border-color);
+  border-radius: var(--select-border-radius);
+  transition: border-color var(--select-transition-duration) var(--_transition-timing-function),
+  box-shadow var(--select-transition-duration) var(--_transition-timing-function);
 
-  // Custom arrow styling using our locally-scoped CSS variable.
   background-image: var(--select-arrow-icon);
   background-repeat: no-repeat;
-  background-position: right var(--spacing-md) center;
+  background-position: right var(--select-padding-x) center;
   background-size: 16px 12px;
-  padding-right: var(--spacing-xl);
+  padding-right: var(--select-arrow-padding-right);
 
-  // WCAG 2.4.7: High-contrast focus indicator.
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
-    border-color: var(--color-primary);
+    outline: var(--select-focus-ring-width) solid var(--select-focus-ring-color);
+    outline-offset: var(--select-focus-ring-offset);
+    border-color: var(--select-border-color-focus);
   }
 
-  // Style for disabled state.
   &:disabled {
-    background-color: var(--color-light-gray);
-    opacity: 0.7;
+    background-color: var(--select-disabled-bg-color);
+    opacity: var(--select-disabled-opacity);
     cursor: not-allowed;
   }
 }
 
-// Style for the error state.
 .form-item--error [data-component-id='kingly_minimal:select'] {
-  border-color: var(--color-error-border);
+  border-color: var(--select-error-border-color);
 
   &:focus-visible {
-    border-color: var(--color-primary);
+    border-color: var(--select-border-color-focus);
   }
 }
 
-// Override the locally-scoped variable for dark mode.
+// --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:select'] {
-  --select-arrow-icon: var(--arrow-icon-dark);
+  --select-text-color: #e1e1e1;
+  --select-bg-color: #121212;
+  --select-border-color: #333333;
+  --select-border-color-focus: #74c0fc;
+  --select-disabled-bg-color: #1e1e1e;
+  --select-error-border-color: #802a31;
+  --select-focus-ring-color: #74c0fc;
+  --select-arrow-icon: var(--_arrow-icon-dark);
 }

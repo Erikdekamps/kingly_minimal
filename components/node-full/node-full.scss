@@ -1,35 +1,37 @@
 // -----------------------------------------------------------------------------
 // Node Full View Component Styles
 // -----------------------------------------------------------------------------
-
-// Scope all styles to the node-full component.
 [data-component-id='kingly_minimal:node-full'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --node-full-meta-gap: 0.5rem;
+  --node-full-meta-margin-bottom: 2rem;
+  --node-full-meta-font-size: 0.875rem;
+  --node-full-avatar-border-radius: 50%;
+  --node-full-content-spacing: 2rem;
+
   // --- Metadata (Submitted by...) ---
   .node__meta {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg); // Add space between meta and content.
+    gap: var(--node-full-meta-gap);
+    margin-bottom: var(--node-full-meta-margin-bottom);
   }
 
   .node__submitted {
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
+    font-size: var(--node-full-meta-font-size);
+    color: inherit;
   }
 
   // Style for the author's picture, if displayed.
   .user-picture img {
-    border-radius: var(--border-radius-circle);
+    border-radius: var(--node-full-avatar-border-radius);
     overflow: hidden;
   }
 
   // --- Main Content ---
-  // The .node__content wrapper receives styles for its children.
   .node__content {
-    // This provides consistent vertical rhythm between top-level
-    // fields/paragraphs rendered within the content area.
     > *:not(:last-child) {
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--node-full-content-spacing);
     }
   }
 }

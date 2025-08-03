@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------
+// Icon Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:icon'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --icon-default-size: 24px;
@@ -13,3 +16,7 @@
     fill: currentColor;
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component. Its color is determined
+// by the `currentColor` of its parent element, making it context-aware.

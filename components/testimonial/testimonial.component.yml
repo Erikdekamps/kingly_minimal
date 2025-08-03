@@ -15,7 +15,7 @@ props:
       title: 'Rating'
       description: 'A numerical rating (e.g., 4.5) to be displayed as stars.'
     quote:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Quote'
       description: 'The main text of the testimonial.'
     name:

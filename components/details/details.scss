@@ -3,29 +3,31 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:details'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --details-border-width: 1px;
   --details-border-color: #e1e1e1;
+  --details-summary-bg-color: #f4f5f6;
+  --details-focus-ring-color: #004a94;
+  --details-error-bg-color: #fdecea;
+  --details-error-border-color: #eecfca;
+  --details-error-text-color: #8c101c;
+  --details-required-marker-color: #8c101c;
+  --details-text-color: #222222;
+  --details-border-width: 1px;
   --details-border-radius: 0.25rem;
   --details-margin-bottom: 1rem;
   --details-summary-padding-y: 0.5rem;
   --details-summary-padding-x: 1rem;
   --details-summary-gap: 0.5rem;
   --details-summary-font-weight: 600;
-  --details-summary-bg-color: #f4f5f6;
   --details-focus-ring-width: 2px;
   --details-focus-ring-offset: 2px;
-  --details-focus-ring-color: #004a94;
   --details-marker-transition-duration: 0.2s;
   --details-marker-icon-size: 20px;
   --details-content-padding: 1rem;
-  --details-error-bg-color: #fdecea;
-  --details-error-border-color: #eecfca;
-  --details-error-text-color: #8c101c;
-  --details-required-marker-color: #8c101c;
   --_transition-timing-function: ease-in-out; // Internal use
 
   border: var(--details-border-width) solid var(--details-border-color);
   border-radius: var(--details-border-radius);
+  color: var(--details-text-color);
 
   &:not(:last-child) {
     margin-bottom: var(--details-margin-bottom);
@@ -79,10 +81,13 @@
     transform: rotate(180deg);
   }
 
-  &.form-item--error > .details__summary {
-    background-color: var(--details-error-bg-color);
+  &.form-item--error {
     border-color: var(--details-error-border-color);
-    color: var(--details-error-text-color);
+
+    > .details__summary {
+      background-color: var(--details-error-bg-color);
+      color: var(--details-error-text-color);
+    }
   }
 
   .required-marker {
@@ -100,6 +105,7 @@
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:details'] {
   --details-border-color: #333333;
+  --details-text-color: #e1e1e1;
   --details-summary-bg-color: #1e1e1e;
   --details-focus-ring-color: #74c0fc;
   --details-error-bg-color: #5a1e22;

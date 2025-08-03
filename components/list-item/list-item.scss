@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+// List Item Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:list-item'] {
+  // This is a structural component and is intentionally unstyled by default.
+  // Contextual styles (e.g., in `pager.scss` or `menu.scss`) will target
+  // the `<li>` element or classes applied to it.
+}
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed as this is a structural, unstyled component.

@@ -15,17 +15,17 @@ props:
       title: Title
       description: 'The main heading for the slideshow, passed to the `heading` component.'
     columns_mobile:
-      type: [string, number]
+      type: [ string, number ]
       title: 'Columns (Mobile)'
       description: 'The number of slides to show per page on mobile.'
       default: 1
     columns_tablet:
-      type: [string, number]
+      type: [ string, number ]
       title: 'Columns (Tablet)'
       description: 'The number of slides to show per page on tablet.'
       default: 2
     columns_desktop:
-      type: [string, number]
+      type: [ string, number ]
       title: 'Columns (Desktop)'
       description: 'The number of slides to show per page on desktop.'
       default: 3

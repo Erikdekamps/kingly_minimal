@@ -3,23 +3,23 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:slideshow'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --slideshow-arrow-bg-color: #f4f5f6;
+  --slideshow-arrow-text-color: #222222;
+  --slideshow-arrow-bg-color-hover: #004a94;
+  --slideshow-arrow-border-color-hover: #004a94;
+  --slideshow-arrow-text-color-hover: #ffffff;
+  --slideshow-focus-ring-color: #004a94;
   --slideshow-header-margin-bottom: 1rem;
   --slideshow-header-gap: 1rem;
   --slideshow-arrow-gap: 0.5rem;
   --slideshow-arrow-size: 44px;
-  --slideshow-arrow-bg-color: #f4f5f6;
-  --slideshow-arrow-text-color: #222222;
   --slideshow-arrow-border-radius: 50%;
   --slideshow-arrow-border-width: 1px;
   --slideshow-arrow-transition-duration: 0.15s;
   --slideshow-arrow-icon-size: 20px;
-  --slideshow-arrow-bg-color-hover: #004a94;
-  --slideshow-arrow-border-color-hover: #004a94;
-  --slideshow-arrow-text-color-hover: #ffffff;
+  --slideshow-arrow-disabled-opacity: 0.5;
   --slideshow-focus-ring-width: 2px;
   --slideshow-focus-ring-offset: 2px;
-  --slideshow-focus-ring-color: #004a94;
-  --slideshow-arrow-disabled-opacity: 0.5;
   --_transition-timing-function: ease-in-out;
 
   .slideshow__header {
@@ -105,7 +105,7 @@ html[data-theme="dark"] [data-component-id='kingly_minimal:slideshow'] {
 
   .splide__arrow:disabled {
     opacity: 1;
-    color: #e1e1e1; // var(--slideshow-arrow-text-color)
+    color: var(--slideshow-arrow-text-color);
     border-color: transparent;
 
     svg {

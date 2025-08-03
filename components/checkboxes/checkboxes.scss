@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------
+// Checkboxes Wrapper Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:checkboxes'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --checkboxes-gap-y: 0.5rem;
@@ -12,3 +15,7 @@
   // with a minimum width defined by our local variable.
   grid-template-columns: repeat(auto-fit, minmax(var(--checkboxes-column-min-width), 1fr));
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component, as it is a
+// layout container with no inherent color properties.

@@ -1,13 +1,16 @@
+// -----------------------------------------------------------------------------
+// Hero Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:hero'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --hero-text-color: #ffffff;
+  --hero-overlay-bg-color: rgb(0 0 0 / 0.5);
   --hero-height-sm: 40vh;
   --hero-height-md: 50vh;
   --hero-height-lg: 65vh;
   --hero-height-xl: 80vh;
-  --hero-text-color: #ffffff;
   --hero-padding-y: 2rem;
   --hero-padding-x: 1rem;
-  --hero-overlay-bg-color: rgb(0 0 0 / 0.5);
   --hero-content-gap: 2rem;
   --hero-content-max-width: 80ch;
   --hero-subtitle-font-size: 1.25rem;
@@ -23,10 +26,21 @@
   min-height: var(--hero-height-sm); // Default height
 
   // Height variants
-  &.hero--height-sm { min-height: var(--hero-height-sm); }
-  &.hero--height-md { min-height: var(--hero-height-md); }
-  &.hero--height-lg { min-height: var(--hero-height-lg); }
-  &.hero--height-xl { min-height: var(--hero-height-xl); }
+  &.hero--height-sm {
+    min-height: var(--hero-height-sm);
+  }
+
+  &.hero--height-md {
+    min-height: var(--hero-height-md);
+  }
+
+  &.hero--height-lg {
+    min-height: var(--hero-height-lg);
+  }
+
+  &.hero--height-xl {
+    min-height: var(--hero-height-xl);
+  }
 
   .hero__background {
     position: absolute;
@@ -64,4 +78,11 @@
     line-height: var(--hero-subtitle-line-height);
     margin: 0;
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:hero'] {
+  // In dark mode, we can use a slightly lighter overlay to maintain contrast
+  // without crushing the detail in the background image. The text color can stay white.
+  --hero-overlay-bg-color: rgb(0 0 0 / 0.6);
 }

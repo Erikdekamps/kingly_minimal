@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:field'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --field-label-text-color: #222222;
   --field-label-font-weight: 700;
   --field-label-margin-bottom: 0.5rem;
   --field-items-gap: 0.5rem;
@@ -11,6 +12,7 @@
   .field__label {
     font-weight: var(--field-label-font-weight);
     margin-bottom: var(--field-label-margin-bottom);
+    color: var(--field-label-text-color);
   }
 
   .field__items {
@@ -18,9 +20,15 @@
     gap: var(--field-items-gap);
   }
 
+  // This applies to content within a field item, like a paragraph from a text field.
   .field__item {
     > *:not(:last-child) {
       margin-bottom: var(--field-item-prose-margin-bottom);
     }
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:field'] {
+  --field-label-text-color: #e1e1e1;
 }

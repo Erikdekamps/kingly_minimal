@@ -1,11 +1,14 @@
-// Use the component's own class as the primary selector.
+// -----------------------------------------------------------------------------
+// Footer Contact Component Styles
+// -----------------------------------------------------------------------------
+// Since this component embeds footer-widget, we use a class for the root selector.
 .footer-contact {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --footer-contact-link-text-color: #222222;
+  --footer-contact-link-text-color-hover: #004a94;
   --footer-contact-list-gap: 0.5rem;
   --footer-contact-item-gap: 0.5rem;
   --footer-contact-item-min-height: 44px;
-  --footer-contact-link-text-color: #222222;
-  --footer-contact-link-text-color-hover: #004a94;
   --footer-contact-link-transition-duration: 0.15s;
   --_icon-vertical-offset: 0.125rem; // ~2px
   --_transition-timing-function: ease-in-out;

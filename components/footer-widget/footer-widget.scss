@@ -1,13 +1,23 @@
+// -----------------------------------------------------------------------------
+// Footer Widget Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:footer-widget'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --footer-widget-title-font-size: 1rem;
   --footer-widget-title-margin-bottom: 1rem;
+  --footer-widget-title-text-transform: uppercase;
 
   // The base font styles are handled by the `heading` component.
   // We only apply context-specific overrides here.
   .footer-widget__title {
-    text-transform: uppercase;
+    // The `heading` component inherits color from its parent, which is set
+    // in `footer.scss`. Font weight and family are also handled by `heading`.
+    text-transform: var(--footer-widget-title-text-transform);
     font-size: var(--footer-widget-title-font-size);
     margin-bottom: var(--footer-widget-title-margin-bottom);
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component itself, as its
+// text color is inherited from the parent `.page-footer` element.

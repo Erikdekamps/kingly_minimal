@@ -1,3 +1,4 @@
+// file: scss/layout/footer.scss
 // This file defines the layout for the page footer.
 // Component-specific styles are handled by their respective SDCs.
 
@@ -5,22 +6,26 @@
 // Footer Main Structure (Full Bleed Wrapper)
 // -----------------------------------------------------------------------------
 .page-footer {
-  // --- Local Variables (Not for theming, but for clarity) ---
-  --_footer-bg-color: #f4f5f6;
-  --_footer-padding-y: 2rem;
-  --_footer-font-size: 0.875rem;
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --footer-bg-color: #f4f5f6;
+  --footer-text-color: #222222;
+  --footer-border-color: #e1e1e1;
+  --footer-padding-y: 2rem;
+  --footer-font-size: 0.875rem;
+  --footer-border-width: 1px;
+  --footer-top-bottom-padding-y: 2rem;
+  --footer-inner-gap: 2rem;
+  --footer-top-bottom-gap: 1rem;
+
+  // --- Local Layout Variables (Not for theming) ---
   --_footer-inner-max-width: 1280px;
   --_footer-inner-padding-x: 1rem;
-  --_footer-inner-gap: 2rem;
-  --_footer-top-bottom-gap: 1rem;
-  --_footer-top-bottom-padding-y: 2rem;
-  --_footer-border-width: 1px;
-  --_footer-border-color: #e1e1e1;
   --_footer-grid-columns: 12;
 
-  background-color: var(--_footer-bg-color);
-  padding-block: var(--_footer-padding-y);
-  font-size: var(--_footer-font-size);
+  background-color: var(--footer-bg-color);
+  padding-block: var(--footer-padding-y);
+  font-size: var(--footer-font-size);
+  color: var(--footer-text-color);
 
   display: grid;
   justify-items: center;
@@ -34,7 +39,7 @@
   max-width: var(--_footer-inner-max-width);
   padding-inline: var(--_footer-inner-padding-x);
   display: grid;
-  gap: var(--_footer-inner-gap);
+  gap: var(--footer-inner-gap);
 }
 
 // -----------------------------------------------------------------------------
@@ -46,17 +51,17 @@
   flex-wrap: wrap;
   justify-content: center; // Center items on mobile when they stack.
   align-items: center;
-  gap: var(--_footer-top-bottom-gap);
+  gap: var(--footer-top-bottom-gap);
 }
 
 .page-footer__top {
-  padding-bottom: var(--_footer-top-bottom-padding-y);
-  border-bottom: var(--_footer-border-width) solid var(--_footer-border-color);
+  padding-bottom: var(--footer-top-bottom-padding-y);
+  border-bottom: var(--footer-border-width) solid var(--footer-border-color);
 }
 
 .page-footer__bottom {
-  padding-top: var(--_footer-top-bottom-padding-y);
-  border-top: var(--_footer-border-width) solid var(--_footer-border-color);
+  padding-top: var(--footer-top-bottom-padding-y);
+  border-top: var(--footer-border-width) solid var(--footer-border-color);
 }
 
 @media (min-width: 768px) { // md breakpoint
@@ -72,7 +77,7 @@
 .page-footer__columns {
   display: grid;
   grid-template-columns: repeat(var(--_footer-grid-columns), 1fr);
-  gap: var(--_footer-inner-gap);
+  gap: var(--footer-inner-gap);
 }
 
 .page-footer__column {
@@ -92,6 +97,7 @@
 
 // --- Dark Mode Overrides for Layout File ---
 html[data-theme="dark"] .page-footer {
-  --_footer-bg-color: #1e1e1e;
-  --_footer-border-color: #333333;
+  --footer-bg-color: #1e1e1e;
+  --footer-text-color: #e1e1e1;
+  --footer-border-color: #333333;
 }

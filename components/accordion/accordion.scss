@@ -2,8 +2,15 @@
 // Accordion Container Component Styles
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:accordion'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --accordion-gap: 0.5rem;
+
   // Use a grid layout with a gap to ensure consistent spacing between
   // the accordion-item children.
   display: grid;
-  gap: var(--spacing-sm);
+  gap: var(--accordion-gap);
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component, as it is a
+// layout container. Color is handled by the `accordion-item` child components.

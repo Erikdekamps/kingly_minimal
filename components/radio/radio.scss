@@ -1,11 +1,25 @@
+// -----------------------------------------------------------------------------
+// Radio Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:radio'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --radio-focus-ring-width: 2px;
+  --radio-focus-ring-offset: 2px;
+  --radio-focus-ring-color: #004a94;
+  --radio-margin-right: 0.5rem;
+
   // Align the radio button vertically with its label text.
   vertical-align: middle;
-  margin-right: var(--spacing-sm);
+  margin-right: var(--radio-margin-right);
 
   // WCAG 2.4.7: Apply a clear focus style for keyboard navigation.
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
+    outline: var(--radio-focus-ring-width) solid var(--radio-focus-ring-color);
+    outline-offset: var(--radio-focus-ring-offset);
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:radio'] {
+  --radio-focus-ring-color: #74c0fc;
 }

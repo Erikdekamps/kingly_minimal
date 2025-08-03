@@ -1,10 +1,30 @@
+// -----------------------------------------------------------------------------
+// Form Label Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:form-label'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --form-label-text-color: #222222;
+  --form-label-required-marker-color: #8c101c;
+  --form-label-font-weight: 500;
+  --form-label-margin-bottom: 0.5rem;
+  --form-label-required-marker-padding-left: 0.25rem;
+
   display: block;
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--spacing-sm);
+  font-weight: var(--form-label-font-weight);
+  margin-bottom: var(--form-label-margin-bottom);
+  color: var(--form-label-text-color);
 
   .required-marker {
-    color: var(--color-error-text);
-    padding-left: var(--spacing-xs);
+    color: var(--form-label-required-marker-color);
+    padding-left: var(--form-label-required-marker-padding-left);
   }
 }
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:form-label'] {
+  --form-label-text-color: #e1e1e1;
+  --form-label-required-marker-color: #fdd8db;
+}
+
+// Note: The color of the label in an error state is handled by the
+// form-element.scss file, which has the necessary context (.form-item--error).

@@ -10,7 +10,7 @@ props:
       type: array
       title: 'Menu Items'
       description: 'A nested list of menu items from Drupal.'
-      default: []
+      default: [ ]
     menu_level:
       type: number
       title: 'Menu Level'

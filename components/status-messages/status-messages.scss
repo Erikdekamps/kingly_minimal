@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------
+// Status Messages Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:status-messages'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --message-padding: 1rem;
@@ -54,6 +57,7 @@
     border-color: var(--error-border-color);
 
     a {
+      // Use the error text color for links within error messages for high contrast.
       color: var(--error-text-color);
       text-decoration: underline;
 

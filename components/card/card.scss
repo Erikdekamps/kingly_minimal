@@ -4,6 +4,7 @@
 [data-component-id='kingly_minimal:card'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --card-bg-color: #ffffff;
+  --card-text-color: #222222;
   --card-border-width: 1px;
   --card-border-color: #e1e1e1;
   --card-border-radius: 0.25rem;
@@ -14,8 +15,6 @@
   --card-focus-ring-width: 2px;
   --card-focus-ring-offset: 2px;
   --card-focus-ring-color: #004a94;
-  --card-horizontal-image-ratio: 1fr;
-  --card-horizontal-content-ratio: 1.5fr;
 
   // --- CTA (Button) Variables ---
   --card-cta-padding-y: 0.5rem;
@@ -28,10 +27,15 @@
   --card-cta-transition-duration: 0.2s;
   --_transition-timing-function: ease-in-out; // Internal use
 
+  // --- Local Layout Variables (Not for theming) ---
+  --_card-horizontal-image-ratio: 1fr;
+  --_card-horizontal-content-ratio: 1.5fr;
+
+
   // --- Base Card Styles ---
   display: block;
   text-decoration: none;
-  color: inherit;
+  color: var(--card-text-color);
   background-color: var(--card-bg-color);
   border: var(--card-border-width) solid var(--card-border-color);
   border-radius: var(--card-border-radius);
@@ -44,6 +48,12 @@
   }
 
   // --- Hover & Focus States ---
+  // Override the default link hover state to prevent underlining all card text.
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+  }
+
   &:hover .card__cta {
     background-color: var(--card-cta-bg-color-hover);
   }
@@ -70,7 +80,7 @@
   @media (min-width: 768px) { // md breakpoint
     &.card--horizontal .card__wrapper {
       grid-template-rows: 1fr;
-      grid-template-columns: var(--card-horizontal-image-ratio) var(--card-horizontal-content-ratio);
+      grid-template-columns: var(--_card-horizontal-image-ratio) var(--_card-horizontal-content-ratio);
 
       .card__image {
         height: 100%;
@@ -116,7 +126,8 @@
 
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:card'] {
-  --card-bg-color: #121212;
+  --card-bg-color: #1e1e1e;
+  --card-text-color: #e1e1e1;
   --card-border-color: #333333;
   --card-focus-ring-color: #74c0fc;
   --card-cta-bg-color: #74c0fc;

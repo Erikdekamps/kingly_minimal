@@ -7,11 +7,11 @@ props:
   type: object
   properties:
     heading:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Heading'
       description: 'The content for the clickable <summary> element, which is the title of the item. Can be a string or a render array.'
     content:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Content'
       description: 'The collapsible content within the item. Can be a string or a render array.'
     attributes:

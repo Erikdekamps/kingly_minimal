@@ -1,6 +1,12 @@
+// -----------------------------------------------------------------------------
+// Comment Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:comment'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --comment-border-color: #e1e1e1;
+  --comment-new-marker-bg-color: #004a94;
+  --comment-new-marker-text-color: #ffffff;
+  --comment-text-color: #222222;
   --comment-border-width: 1px;
   --comment-spacing-bottom: 2rem;
   --comment-meta-gap: 1rem;
@@ -15,14 +21,14 @@
   --comment-title-font-size: 1.25rem;
   --comment-title-line-height: 1.2;
   --comment-title-margin-bottom: 1rem;
-  --comment-new-marker-bg-color: #004a94;
-  --comment-new-marker-text-color: #ffffff;
   --comment-new-marker-padding-y: 0.1em;
   --comment-new-marker-padding-x: 0.4em;
   --comment-new-marker-border-radius: 0.25rem;
   --comment-new-marker-font-size: 0.8em;
   --comment-new-marker-font-weight: 700;
   --comment-new-marker-margin-left: 0.5rem;
+
+  color: var(--comment-text-color);
 
   // Add a separator for comments in a list.
   &:not(:last-child) {
@@ -75,9 +81,7 @@
 
   // The title of the comment, if it exists.
   .comment__title {
-    font-family: var(--comment-title-font-family);
-    font-size: var(--comment-title-font-size);
-    line-height: var(--comment-title-line-height);
+    // Styles are handled by the heading component.
     margin-bottom: var(--comment-title-margin-bottom);
   }
 
@@ -98,6 +102,7 @@
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:comment'] {
   --comment-border-color: #333333;
+  --comment-text-color: #e1e1e1;
   --comment-new-marker-bg-color: #74c0fc;
   --comment-new-marker-text-color: #121212;
 }

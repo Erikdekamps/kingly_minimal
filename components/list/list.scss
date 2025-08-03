@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------
+// List Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:list'] {
   // Reset default browser styles for lists.
   // The `text` (prose) component will re-add list styles for rich text content.
@@ -5,3 +8,6 @@
   margin: 0;
   padding: 0;
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed as this is a structural, unstyled component.

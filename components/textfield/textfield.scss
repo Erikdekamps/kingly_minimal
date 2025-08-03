@@ -3,21 +3,20 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:textfield'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --textfield-padding-y: 0.5rem;
-  --textfield-padding-x: 1rem;
   --textfield-text-color: #222222;
   --textfield-bg-color: #ffffff;
-  --textfield-border-width: 1px;
   --textfield-border-color: #e1e1e1;
   --textfield-border-color-focus: #004a94;
+  --textfield-disabled-bg-color: #f4f5f6;
+  --textfield-focus-ring-color: #004a94;
+  --textfield-padding-y: 0.5rem;
+  --textfield-padding-x: 1rem;
+  --textfield-border-width: 1px;
   --textfield-border-radius: 0.25rem;
   --textfield-transition-duration: 0.15s;
-  --textfield-disabled-bg-color: #f4f5f6;
   --textfield-disabled-opacity: 0.7;
-  --textfield-error-border-color: #eecfca;
   --textfield-focus-ring-width: 2px;
   --textfield-focus-ring-offset: 2px;
-  --textfield-focus-ring-color: #004a94;
   --_transition-timing-function: ease-in-out;
 
   -webkit-appearance: none;
@@ -48,7 +47,9 @@
   }
 }
 
+// Target the textfield when inside an errored form-element.
 .form-item--error [data-component-id='kingly_minimal:textfield'] {
+  --textfield-error-border-color: #eecfca;
   border-color: var(--textfield-error-border-color);
 
   &:focus-visible {
@@ -63,6 +64,9 @@ html[data-theme="dark"] [data-component-id='kingly_minimal:textfield'] {
   --textfield-border-color: #333333;
   --textfield-border-color-focus: #74c0fc;
   --textfield-disabled-bg-color: #1e1e1e;
-  --textfield-error-border-color: #802a31;
   --textfield-focus-ring-color: #74c0fc;
+}
+
+html[data-theme="dark"] .form-item--error [data-component-id='kingly_minimal:textfield'] {
+  --textfield-error-border-color: #802a31;
 }

@@ -1,9 +1,12 @@
+// -----------------------------------------------------------------------------
+// Node Teaser Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:node-teaser'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --node-teaser-border-color: #e1e1e1;
   --node-teaser-gap: 0.5rem;
   --node-teaser-padding-bottom: 1rem;
   --node-teaser-border-width: 1px;
-  --node-teaser-border-color: #e1e1e1;
   --node-teaser-meta-gap: 0.5rem;
   --node-teaser-meta-font-size: 0.875rem;
   --node-teaser-avatar-border-radius: 50%;

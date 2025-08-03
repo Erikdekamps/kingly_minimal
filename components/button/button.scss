@@ -1,13 +1,15 @@
 // -----------------------------------------------------------------------------
 // Button Component Styles
 // -----------------------------------------------------------------------------
+
+// Define all styles on the .button class as the single source of truth.
 .button {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --button-min-target-size: 44px;
   --button-padding-y: 0.5rem;
   --button-padding-x: 1rem;
   --button-border-width: 2px;
   --button-border-radius: 0.25rem;
-  --button-min-target-size: 44px;
   --button-font-weight: 600;
   --button-line-height: 1.2;
   --button-transition-duration: 0.15s;
@@ -121,10 +123,17 @@
   }
 }
 
+// Use @extend to apply all .button styles to the SDC selector.
+// This avoids duplicating code and resolves the Sass compilation error.
+[data-component-id='kingly_minimal:button'] {
+  @extend .button;
+}
+
 // --- Dark Mode Overrides ---
+// We only need to target the .button class; the @extend will handle the SDC.
 html[data-theme="dark"] .button {
   --button-primary-bg-color: #74c0fc;
-  --button-primary-text-color: #121212; // Use a very dark gray for text on light blue bg
+  --button-primary-text-color: #121212;
   --button-primary-border-color: #74c0fc;
   --button-primary-bg-color-hover: #a5d8ff;
   --button-primary-border-color-hover: #a5d8ff;

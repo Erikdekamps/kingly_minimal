@@ -3,22 +3,22 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:local-tasks'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --local-tasks-group-gap: 0.5rem;
-  --local-tasks-track-border-width: 1px;
   --local-tasks-track-border-color: #e1e1e1;
-  --local-tasks-link-padding-y: 0.5rem;
-  --local-tasks-link-padding-x: 1rem;
-  --local-tasks-link-active-border-width: 2px;
   --local-tasks-link-text-color: #222222;
   --local-tasks-link-text-color-hover: #004a94;
   --local-tasks-link-text-color-active: #004a94;
   --local-tasks-link-border-color-active: #004a94;
+  --local-tasks-focus-ring-color: #004a94;
+  --local-tasks-group-gap: 0.5rem;
+  --local-tasks-track-border-width: 1px;
+  --local-tasks-link-padding-y: 0.5rem;
+  --local-tasks-link-padding-x: 1rem;
+  --local-tasks-link-active-border-width: 2px;
   --local-tasks-link-font-weight: 500;
   --local-tasks-link-font-weight-active: 600;
   --local-tasks-link-transition-duration: 0.15s;
   --local-tasks-focus-ring-width: 2px;
   --local-tasks-focus-ring-offset: 2px;
-  --local-tasks-focus-ring-color: #004a94;
   --local-tasks-focus-ring-border-radius: 0.25rem;
   --_transition-timing-function: ease-in-out;
 

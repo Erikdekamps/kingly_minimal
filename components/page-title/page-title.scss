@@ -1,9 +1,13 @@
+// -----------------------------------------------------------------------------
+// Page Title Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:page-title'] {
-
-  // The .page-title class is now on the element rendered by the `heading`
-  // component. All visual styles are provided by that component. This class
-  // is kept as a hook for any potential future overrides.
-  .page-title {
-    // No styles needed here by default.
-  }
+  // The .page-title class is on the element rendered by the `heading`
+  // component. All visual styles are provided by that component. This
+  // component wrapper itself requires no styles.
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component. Color is handled by the
+// canonical `heading` component it includes, which inherits its color from the
+// global `body` styles.

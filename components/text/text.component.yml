@@ -7,7 +7,7 @@ props:
   type: object
   properties:
     content:
-      type: [string, object] # Can be a string or a render array.
+      type: [ string, object ] # Can be a string or a render array.
       title: 'Content'
       description: 'The rich text or HTML content to be styled.'
     element:

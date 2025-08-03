@@ -4,6 +4,8 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:branding'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --branding-text-color: #222222;
+  --branding-slogan-color: #333333;
   --branding-gap: 0.5rem;
   --branding-logo-height-sm: 40px;
   --branding-logo-height-lg: 50px;
@@ -12,7 +14,6 @@
   --branding-name-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --branding-name-line-height: 1.2;
   --branding-slogan-font-size: 0.875rem;
-  --branding-slogan-color: #222222;
 
   // The root of the component is the <a> tag.
   // We add a class for easier targeting and to avoid styling all links.
@@ -21,7 +22,7 @@
     align-items: center;
     gap: var(--branding-gap);
     text-decoration: none;
-    color: inherit; // Inherit text color from the parent.
+    color: var(--branding-text-color);
 
     // Underline the site name on hover for clear feedback.
     &:hover .site-branding__name {
@@ -62,5 +63,6 @@
 
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:branding'] {
-  --branding-slogan-color: #e1e1e1;
+  --branding-text-color: #e1e1e1;
+  --branding-slogan-color: #cae9ff;
 }

@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+// Footer Copyright Component Styles
+// -----------------------------------------------------------------------------
+.footer-copyright {
+  // This component is intentionally unstyled. It renders a simple <div> tag
+  // and inherits all its typographic styles (font size, color) directly
+  // from the parent .page-footer element in footer.scss.
+}
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed as this component inherits its color
+// from the `.page-footer` wrapper, which has its own dark mode styles.

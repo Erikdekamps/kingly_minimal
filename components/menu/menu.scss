@@ -1,14 +1,17 @@
+// -----------------------------------------------------------------------------
+// Canonical Menu Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:menu'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --menu-link-text-color: #222222;
+  --menu-link-text-color-active: #004a94;
+  --menu-link-bg-color-hover: #f4f5f6;
   --menu-link-min-height: 44px;
   --menu-link-padding-y: 0.5rem;
   --menu-link-padding-x: 1rem;
   --menu-link-border-radius: 0.25rem;
   --menu-link-font-weight: 500;
   --menu-link-font-weight-active: 700;
-  --menu-link-text-color: #222222;
-  --menu-link-text-color-active: #004a94;
-  --menu-link-bg-color-hover: #f4f5f6;
   --menu-link-transition-duration: 0.15s;
   --_transition-timing-function: ease-in-out;
 
@@ -45,6 +48,8 @@
 
   // --- Sub-menu ---
   .menu__sub-menu {
+    // Sub-menus are typically hidden by default and would be revealed by JS
+    // in a more complex implementation. For now, they are not displayed.
     display: none;
   }
 }

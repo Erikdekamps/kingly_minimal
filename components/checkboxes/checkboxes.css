@@ -1,0 +1,1 @@
+[data-component-id="kingly_minimal:checkboxes"]{--checkboxes-gap-y: .5rem;--checkboxes-gap-x: 1rem;--checkboxes-column-min-width: 200px;display:grid;gap:var(--checkboxes-gap-y) var(--checkboxes-gap-x);grid-template-columns:repeat(auto-fit,minmax(var(--checkboxes-column-min-width),1fr))}

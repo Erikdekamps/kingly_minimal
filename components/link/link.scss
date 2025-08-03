@@ -1,11 +1,15 @@
-// This component is intentionally unstyled.
-// It is a low-level utility component that should inherit its visual
-// appearance from the context in which it is placed.
-//
-// For example, if placed inside `.prose`, it will inherit the link styles
-// from the `text` component. If placed inside a `footer-link-list`, it will
-// adopt the styles defined in that component's SCSS file.
-
+// -----------------------------------------------------------------------------
+// Link Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:link'] {
-  // No styles by default.
+  // This component is intentionally unstyled.
+  // It is a low-level utility component that should inherit its visual
+  // appearance from the context in which it is placed.
+  //
+  // For example, if placed inside `.prose`, it will inherit the link styles
+  // from the `text` component. If placed inside a `footer-link-list`, it will
+  // adopt the styles defined in that component's SCSS file.
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed as this is a structural, unstyled component.

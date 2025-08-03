@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------
+// Media Image Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:media--image'] {
   // Target the img or picture element rendered by Drupal.
   // :where keeps specificity low, making it easy to override these
@@ -11,3 +14,7 @@
     display: block;
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component as it is a
+// structural container with no inherent color properties.

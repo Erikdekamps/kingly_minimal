@@ -1,12 +1,17 @@
 // -----------------------------------------------------------------------------
 // Heading Component Styles
 // -----------------------------------------------------------------------------
-
-// Use a class as the main selector for styling.
 .heading {
-  font-family: var(--font-family-heading);
-  line-height: var(--line-height-heading);
-  font-weight: var(--font-weight-bold);
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  // These map to the global typography variables for consistency.
+  --heading-font-family: var(--font-family-heading);
+  --heading-line-height: var(--line-height-heading);
+  --heading-font-weight: var(--font-weight-bold);
+  --heading-link-hover-text-decoration: underline;
+
+  font-family: var(--heading-font-family);
+  line-height: var(--heading-line-height);
+  font-weight: var(--heading-font-weight);
   margin: 0; // Reset browser default margins.
   color: inherit; // Inherit color from parent by default.
 
@@ -41,7 +46,11 @@
 
     &:hover,
     &:focus {
-      text-decoration: underline;
+      text-decoration: var(--heading-link-hover-text-decoration);
     }
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component. Its text color is
+// inherited from its parent container, making it automatically theme-aware.

@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------
+// Footer Company Info Component Styles
+// -----------------------------------------------------------------------------
 // Use the component's own class as the primary selector, since the
 // data-component-id will be that of the embedded footer-widget.
 .footer-company-info {
@@ -8,3 +11,7 @@
     // No specific overrides needed by default.
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed as this component inherits its color
+// from the `.page-footer` wrapper, which has its own dark mode styles.

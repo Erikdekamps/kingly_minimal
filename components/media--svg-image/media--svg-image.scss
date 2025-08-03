@@ -1,3 +1,6 @@
+// -----------------------------------------------------------------------------
+// Media SVG Image Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:media--svg-image'] {
   // Target the img element that Drupal uses to render the SVG.
   img {
@@ -5,6 +8,11 @@
     max-width: 100%;
     // Maintain the image's aspect ratio.
     height: auto;
+    // Remove the space that browsers sometimes add below inline images.
     display: block;
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component as it is a
+// structural container with no inherent color properties.

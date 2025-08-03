@@ -1,11 +1,14 @@
-// Use the component's own class as the primary selector.
+// -----------------------------------------------------------------------------
+// Footer Link List Component Styles
+// -----------------------------------------------------------------------------
+// Since this component embeds footer-widget, we use a class for the root selector.
 .footer-link-list {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --footer-link-text-color: #222222;
+  --footer-link-text-color-hover: #004a94;
   --footer-links-list-gap: 0.25rem;
   --footer-link-min-height: 44px;
   --footer-link-padding-y: 0.25rem;
-  --footer-link-text-color: #222222;
-  --footer-link-text-color-hover: #004a94;
   --footer-link-transition-duration: 0.15s;
   --_transition-timing-function: ease-in-out;
 

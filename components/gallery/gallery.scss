@@ -4,6 +4,8 @@
 [data-component-id='kingly_minimal:gallery'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --gallery-gap: 1rem;
+
+  // --- Local Layout Variables (Not for theming) ---
   --_featured-grid-columns: 2fr 1fr 1fr;
   --_featured-grid-rows: repeat(2, 1fr);
 
@@ -88,3 +90,7 @@
     }
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component, as it is a
+// layout container with no inherent color properties.

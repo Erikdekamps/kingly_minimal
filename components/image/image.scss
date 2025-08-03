@@ -1,5 +1,9 @@
+// -----------------------------------------------------------------------------
+// Image Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:image'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --image-caption-text-color: #222222;
   --image-border-radius: 0.25rem;
   --image-caption-padding-top: 0.5rem;
   --image-caption-font-size: 0.875rem;
@@ -16,7 +20,12 @@
   .image-component__caption {
     padding-top: var(--image-caption-padding-top);
     font-size: var(--image-caption-font-size);
-    color: inherit;
+    color: var(--image-caption-text-color);
     text-align: center;
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:image'] {
+  --image-caption-text-color: #e1e1e1;
 }

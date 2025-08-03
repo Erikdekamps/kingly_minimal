@@ -3,18 +3,16 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:accordion-item'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  // These variables are self-contained with raw CSS values, making the
-  // component independent of global theme variables.
-  --accordion-item-border-width: 1px;
   --accordion-item-border-color: #e1e1e1;
+  --accordion-item-header-bg-hover: #f4f5f6;
+  --accordion-item-focus-ring-color: #004a94;
+  --accordion-item-border-width: 1px;
   --accordion-item-border-radius: 0.25rem;
   --accordion-item-header-padding-y: 0.5rem;
   --accordion-item-header-padding-x: 1rem;
   --accordion-item-header-gap: 1rem;
   --accordion-item-header-font-weight: 600;
-  --accordion-item-header-bg-hover: #f4f5f6;
   --accordion-item-focus-ring-width: 2px;
-  --accordion-item-focus-ring-color: #004a94;
   --accordion-item-focus-ring-offset: 2px;
   --accordion-item-content-animation-duration: 0.3s;
   --accordion-item-content-padding: 1rem;
@@ -105,7 +103,6 @@
 }
 
 // --- Dark Mode Overrides ---
-// Re-define component variables for the dark theme.
 html[data-theme="dark"] [data-component-id='kingly_minimal:accordion-item'] {
   --accordion-item-border-color: #333333;
   --accordion-item-header-bg-hover: #1e1e1e;

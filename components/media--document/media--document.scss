@@ -1,13 +1,16 @@
+// -----------------------------------------------------------------------------
+// Media Document Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:media--document'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --document-link-bg-color: #f4f5f6;
+  --document-link-border-color: #e1e1e1;
+  --document-link-text-color: #222222;
   --document-link-gap: 0.5rem;
   --document-link-padding-y: 0.5rem;
   --document-link-padding-x: 1rem;
-  --document-link-bg-color: #f4f5f6;
   --document-link-border-width: 1px;
-  --document-link-border-color: #e1e1e1;
   --document-link-border-radius: 0.25rem;
-  --document-link-text-color: #222222;
   --document-link-transition-duration: 0.15s;
   --document-link-icon-size: 20px;
   --_hover-darken-amount: 5%;

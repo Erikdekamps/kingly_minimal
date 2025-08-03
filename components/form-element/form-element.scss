@@ -3,18 +3,19 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:form-element'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --form-element-error-text-color: #8c101c;
+  --form-element-error-label-color: #8c101c;
+  --form-element-prefix-suffix-bg-color: #f4f5f6;
+  --form-element-prefix-suffix-border-color: #e1e1e1;
+  --form-element-prefix-suffix-text-color: #222222;
   --form-element-gap: 0.25rem;
   --form-element-description-font-size: 0.875rem;
-  --form-element-error-text-color: #8c101c;
   --form-element-error-font-weight: 600;
   --form-element-error-font-size: 0.875rem;
   --form-element-error-margin-top: 0.25rem;
-  --form-element-error-label-color: #8c101c;
   --form-element-prefix-suffix-padding-y: 0.5rem;
   --form-element-prefix-suffix-padding-x: 1rem;
-  --form-element-prefix-suffix-bg-color: #f4f5f6;
   --form-element-prefix-suffix-border-width: 1px;
-  --form-element-prefix-suffix-border-color: #e1e1e1;
   --form-element-prefix-suffix-border-radius: 0.25rem;
 
   display: grid;
@@ -34,7 +35,8 @@
     margin-top: var(--form-element-error-margin-top);
   }
 
-  &.form-item--error .form-label {
+  // Target the form-label component when it's inside an errored form-element.
+  &.form-item--error [data-component-id='kingly_minimal:form-label'] {
     color: var(--form-element-error-label-color);
   }
 
@@ -48,38 +50,40 @@
     border: var(--form-element-prefix-suffix-border-width) solid var(--form-element-prefix-suffix-border-color);
     border-radius: var(--form-element-prefix-suffix-border-radius);
     white-space: nowrap;
+    color: var(--form-element-prefix-suffix-text-color);
   }
 
   // --- Attached Prefix/Suffix Pattern ---
-  &.form-item--prefix-attached .form-item__content,
-  &.form-item--suffix-attached .form-item__content {
+  &.form-item--prefix-attached .form-item__content-wrapper,
+  &.form-item--suffix-attached .form-item__content-wrapper {
     display: flex;
 
-    > .form-text {
+    > .form-item__content {
       flex-grow: 1;
     }
+  }
 
+  // When attached, the prefix/suffix and the input should look like a single unit.
+  &.form-item--prefix-attached {
     .form-item__prefix {
       border-right: 0;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
+    .form-item__content > *:first-child { // Target the textfield, textarea, etc.
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  &.form-item--suffix-attached {
     .form-item__suffix {
       border-left: 0;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-    .form-text {
-      border-radius: 0;
-
-      &:first-child {
-        border-top-left-radius: var(--form-element-prefix-suffix-border-radius);
-        border-bottom-left-radius: var(--form-element-prefix-suffix-border-radius);
-      }
-      &:last-child {
-        border-top-right-radius: var(--form-element-prefix-suffix-border-radius);
-        border-bottom-right-radius: var(--form-element-prefix-suffix-border-radius);
-      }
+    .form-item__content > *:first-child { // Target the textfield, textarea, etc.
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 }
@@ -90,4 +94,5 @@ html[data-theme="dark"] [data-component-id='kingly_minimal:form-element'] {
   --form-element-error-label-color: #fdd8db;
   --form-element-prefix-suffix-bg-color: #1e1e1e;
   --form-element-prefix-suffix-border-color: #333333;
+  --form-element-prefix-suffix-text-color: #e1e1e1;
 }

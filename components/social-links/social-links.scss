@@ -1,16 +1,19 @@
+// -----------------------------------------------------------------------------
+// Social Links Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:social-links'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --social-link-text-color: #222222;
+  --social-link-text-color-hover: #004a94;
+  --social-link-focus-ring-color: #004a94;
   --social-links-list-gap: 0.5rem;
   --social-link-size: 44px;
   --social-link-icon-size: 24px;
-  --social-link-text-color: #222222;
-  --social-link-text-color-hover: #004a94;
   --social-link-border-radius: 50%;
   --social-link-transition-duration-transform: 0.2s;
   --social-link-transition-duration-bg: 0.15s;
   --social-link-focus-ring-width: 2px;
   --social-link-focus-ring-offset: 2px;
-  --social-link-focus-ring-color: #004a94;
   --_hover-translate-y: -2px;
   --_hover-bg-opacity: 90%;
   --_transition-timing-function: ease-in-out;

@@ -1,42 +1,60 @@
+// -----------------------------------------------------------------------------
+// Table Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:table'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --table-border-color: #e1e1e1;
+  --table-bg-color: #ffffff;
+  --table-text-color: #222222;
+  --table-header-bg-color: #f4f5f6;
+  --table-border-width: 1px;
+  --table-border-radius: 0.25rem;
+  --table-cell-padding-y: 0.5rem;
+  --table-cell-padding-x: 1rem;
+  --table-caption-padding: 1rem;
+  --table-caption-font-size: 0.875rem;
+  --table-header-font-weight: 700;
+  --table-empty-message-padding: 2rem;
+  --_table-min-width: 600px; // Internal use
+
   // This wrapper makes the table horizontally scrollable on small screens.
   overflow-x: auto;
   width: 100%;
   // Add a border around the scrollable area for clarity.
-  border: var(--border-width-thin) solid var(--color-border);
-  border-radius: var(--border-radius);
+  border: var(--table-border-width) solid var(--table-border-color);
+  border-radius: var(--table-border-radius);
 
   // The <table> element itself.
   .data-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--color-background);
+    background-color: var(--table-bg-color);
+    color: var(--table-text-color);
     text-align: left;
     // Ensures the table doesn't collapse to less than its content width
-    min-width: 600px;
+    min-width: var(--_table-min-width);
   }
 
   // Table caption.
   caption {
-    padding: var(--spacing-md);
-    font-size: var(--font-size-sm);
+    padding: var(--table-caption-padding);
+    font-size: var(--table-caption-font-size);
     caption-side: bottom;
-    color: var(--color-text);
     text-align: center;
   }
 
   // Header and data cells.
   th,
   td {
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-bottom: var(--border-width-thin) solid var(--color-border);
+    padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+    border-bottom: var(--table-border-width) solid var(--table-border-color);
     vertical-align: top;
   }
 
   // Header cells.
   th {
-    font-weight: var(--font-weight-bold);
-    background-color: var(--color-light-gray);
+    font-weight: var(--table-header-font-weight);
+    background-color: var(--table-header-bg-color);
   }
 
   // Remove the bottom border from the last row for a cleaner look.
@@ -50,6 +68,14 @@
   // Message for an empty table.
   .empty-message {
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: var(--table-empty-message-padding);
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:table'] {
+  --table-border-color: #333333;
+  --table-bg-color: #1e1e1e;
+  --table-text-color: #e1e1e1;
+  --table-header-bg-color: #222222;
 }

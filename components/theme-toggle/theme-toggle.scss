@@ -1,16 +1,19 @@
+// -----------------------------------------------------------------------------
+// Theme Toggle Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:theme-toggle'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --toggle-size: 44px;
-  --toggle-border-radius: 50%;
   --toggle-text-color: #222222;
   --toggle-text-color-hover: #004a94;
   --toggle-bg-color-hover: rgba(34, 34, 34, 0.1);
+  --toggle-focus-ring-color: #004a94;
+  --toggle-size: 44px;
+  --toggle-border-radius: 50%;
   --toggle-transition-duration: 0.15s;
   --toggle-icon-size: 20px;
   --toggle-icon-transition-duration: 0.3s;
   --toggle-focus-ring-width: 2px;
   --toggle-focus-ring-offset: 2px;
-  --toggle-focus-ring-color: #004a94;
   --_transition-timing-function: ease-in-out;
   --_icon-transition-timing-function: ease-in-out;
 

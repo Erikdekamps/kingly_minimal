@@ -1,5 +1,13 @@
+// -----------------------------------------------------------------------------
+// Text (Prose) Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:text'].prose {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --text-blockquote-border-color: #e1e1e1;
+  --text-blockquote-text-color: rgba(34, 34, 34, 0.8);
+  --text-link-color-hover: #003b76;
+  --text-code-bg-color: #f4f5f6;
+  --text-hr-border-color: #e1e1e1;
   --text-vertical-spacing: 1.25em;
   --text-line-height-base: 1.6;
   --text-line-height-heading: 1.2;
@@ -14,16 +22,11 @@
   --text-list-padding-left: 1.5rem;
   --text-blockquote-padding-left: 1rem;
   --text-blockquote-border-width: 3px;
-  --text-blockquote-border-color: #e1e1e1;
-  --text-blockquote-text-color: rgba(34, 34, 34, 0.8);
-  --text-link-color-hover: #003b76;
-  --text-code-bg-color: #f4f5f6;
   --text-code-border-radius: 0.25rem;
   --text-code-padding-y: 0.25rem;
   --text-code-padding-x: 0.5rem;
   --text-pre-padding: 1rem;
   --text-hr-border-width: 1px;
-  --text-hr-border-color: #e1e1e1;
 
   > * + * {
     margin-block-start: var(--text-vertical-spacing);
@@ -59,6 +62,7 @@
   }
 
   a {
+    // Inherits color from the global reset.
     text-decoration: underline;
     &:hover, &:focus-visible {
       color: var(--text-link-color-hover);

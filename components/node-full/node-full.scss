@@ -35,3 +35,8 @@
     }
   }
 }
+
+// --- Dark Mode Overrides ---
+// No dark mode overrides are needed for this component. Its text color is
+// inherited from the `body`, and the child components it renders (like `text`
+// or `image`) have their own dark mode styles.

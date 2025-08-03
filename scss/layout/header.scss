@@ -1,3 +1,4 @@
+// file: scss/layout/header.scss
 // This file defines the main header structure.
 // Its child components (branding, main-menu) are self-contained SDCs.
 
@@ -5,22 +6,27 @@
 // Header Main Structure
 // -----------------------------------------------------------------------------
 .page-header {
-  // --- Local Variables (Not for theming, but for clarity) ---
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --header-padding-y: 1rem;
+  --header-gap-sm: 1rem;
+  --header-gap-lg: 2rem;
+
+  // --- Local Layout Variables (Not for theming) ---
   --_header-grid-columns: 12;
-  --_header-gap-sm: 1rem;
-  --_header-gap-lg: 2rem;
-  --_header-padding-y: 1rem;
-  --_branding-span: 3;
+  --_branding-span-start: 1;
+  --_branding-span-end: 4;
   --_menu-span-start: 4;
+  --_menu-span-end: -1;
+
 
   display: grid;
   grid-template-columns: repeat(var(--_header-grid-columns), 1fr);
-  gap: var(--_header-gap-sm);
+  gap: var(--header-gap-sm);
   align-items: center;
-  padding-block: var(--_header-padding-y);
+  padding-block: var(--header-padding-y);
 
   @media (min-width: 768px) { // md breakpoint
-    gap: var(--_header-gap-lg);
+    gap: var(--header-gap-lg);
   }
 }
 
@@ -34,10 +40,14 @@
 
 @media (min-width: 768px) { // md breakpoint
   .page-header__branding {
-    grid-column: 1 / var(--_menu-span-start);
+    grid-column: var(--_branding-span-start) / var(--_branding-span-end);
   }
 
   .page-header__menu {
-    grid-column: var(--_menu-span-start) / -1;
+    grid-column: var(--_menu-span-start) / var(--_menu-span-end);
   }
 }
+
+// --- Dark Mode Overrides for Layout File ---
+// No dark mode variables are needed for the header layout itself,
+// as color is handled by the branding and menu components.

@@ -1,10 +1,13 @@
+// -----------------------------------------------------------------------------
+// Field Tags Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:field-tags'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --field-tag-bg-color: #f4f5f6;
+  --field-tag-text-color: #222222;
   --field-tags-gap: 0.5rem;
   --field-tag-padding-y: 0.25rem;
   --field-tag-padding-x: 1rem;
-  --field-tag-bg-color: #f4f5f6;
-  --field-tag-text-color: #222222;
   --field-tag-border-radius: 0.25rem;
   --field-tag-font-size: 0.875rem;
   --field-tag-transition-duration: 0.15s;

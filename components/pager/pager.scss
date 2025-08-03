@@ -1,20 +1,23 @@
+// -----------------------------------------------------------------------------
+// Pager Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:pager'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --pager-items-gap: 0.25rem;
-  --pager-link-min-size: 44px;
-  --pager-link-padding-x: 0.5rem;
   --pager-link-text-color: #004a94;
-  --pager-link-font-weight: 500;
-  --pager-link-border-radius: 0.25rem;
-  --pager-link-transition-duration: 0.15s;
   --pager-link-bg-color-hover: #f4f5f6;
-  --pager-focus-ring-width: 2px;
-  --pager-focus-ring-offset: 2px;
   --pager-focus-ring-color: #004a94;
   --pager-active-bg-color: #004a94;
   --pager-active-text-color: #ffffff;
-  --pager-active-font-weight: 700;
   --pager-ellipsis-text-color: #222222;
+  --pager-items-gap: 0.25rem;
+  --pager-link-min-size: 44px;
+  --pager-link-padding-x: 0.5rem;
+  --pager-link-font-weight: 500;
+  --pager-link-border-radius: 0.25rem;
+  --pager-link-transition-duration: 0.15s;
+  --pager-focus-ring-width: 2px;
+  --pager-focus-ring-offset: 2px;
+  --pager-active-font-weight: 700;
   --_transition-timing-function: ease-in-out;
 
   .pager__items {
@@ -54,15 +57,17 @@
   }
 
   .pager__item.is-active {
-    .pager__link {
-      background-color: var(--pager-active-bg-color);
-      color: var(--pager-active-text-color);
-      font-weight: var(--pager-active-font-weight);
-
-      &:hover {
-        background-color: var(--pager-active-bg-color);
-      }
-    }
+    // The link is not rendered for the active item, so we style the item itself.
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--pager-link-min-size);
+    min-height: var(--pager-link-min-size);
+    padding-inline: var(--pager-link-padding-x);
+    border-radius: var(--pager-link-border-radius);
+    background-color: var(--pager-active-bg-color);
+    color: var(--pager-active-text-color);
+    font-weight: var(--pager-active-font-weight);
   }
 
   .pager__item--ellipsis {

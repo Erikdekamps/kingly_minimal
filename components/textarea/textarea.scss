@@ -3,22 +3,21 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:textarea'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --textarea-padding-y: 0.5rem;
-  --textarea-padding-x: 1rem;
   --textarea-text-color: #222222;
   --textarea-bg-color: #ffffff;
-  --textarea-border-width: 1px;
   --textarea-border-color: #e1e1e1;
   --textarea-border-color-focus: #004a94;
+  --textarea-disabled-bg-color: #f4f5f6;
+  --textarea-focus-ring-color: #004a94;
+  --textarea-padding-y: 0.5rem;
+  --textarea-padding-x: 1rem;
+  --textarea-border-width: 1px;
   --textarea-border-radius: 0.25rem;
   --textarea-transition-duration: 0.15s;
   --textarea-min-height: 120px;
-  --textarea-disabled-bg-color: #f4f5f6;
   --textarea-disabled-opacity: 0.7;
-  --textarea-error-border-color: #eecfca;
   --textarea-focus-ring-width: 2px;
   --textarea-focus-ring-offset: 2px;
-  --textarea-focus-ring-color: #004a94;
   --_transition-timing-function: ease-in-out;
 
   -webkit-appearance: none;
@@ -50,7 +49,9 @@
   }
 }
 
+// Target the textarea when inside an errored form-element.
 .form-item--error [data-component-id='kingly_minimal:textarea'] {
+  --textarea-error-border-color: #eecfca;
   border-color: var(--textarea-error-border-color);
 
   &:focus-visible {
@@ -65,6 +66,8 @@ html[data-theme="dark"] [data-component-id='kingly_minimal:textarea'] {
   --textarea-border-color: #333333;
   --textarea-border-color-focus: #74c0fc;
   --textarea-disabled-bg-color: #1e1e1e;
-  --textarea-error-border-color: #802a31;
   --textarea-focus-ring-color: #74c0fc;
+}
+html[data-theme="dark"] .form-item--error [data-component-id='kingly_minimal:textarea'] {
+  --textarea-error-border-color: #802a31;
 }

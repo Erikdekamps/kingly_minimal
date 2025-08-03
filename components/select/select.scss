@@ -1,27 +1,27 @@
+// -----------------------------------------------------------------------------
+// Select Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:select'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --select-padding-y: 0.5rem;
-  --select-padding-x: 1rem;
   --select-text-color: #222222;
   --select-bg-color: #ffffff;
-  --select-border-width: 1px;
   --select-border-color: #e1e1e1;
   --select-border-color-focus: #004a94;
+  --select-disabled-bg-color: #f4f5f6;
+  --select-focus-ring-color: #004a94;
+  --select-padding-y: 0.5rem;
+  --select-padding-x: 1rem;
+  --select-border-width: 1px;
   --select-border-radius: 0.25rem;
   --select-transition-duration: 0.15s;
   --select-arrow-padding-right: 4rem;
-  --select-disabled-bg-color: #f4f5f6;
   --select-disabled-opacity: 0.7;
-  --select-error-border-color: #eecfca;
   --select-focus-ring-width: 2px;
   --select-focus-ring-offset: 2px;
-  --select-focus-ring-color: #004a94;
   --_transition-timing-function: ease-in-out;
 
-  // --- SVG Arrow Icons ---
-  --_arrow-icon-light: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  --_arrow-icon-dark: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  --select-arrow-icon: var(--_arrow-icon-light);
+  // --- SVG Arrow Icon ---
+  --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 
   -webkit-appearance: none;
   appearance: none;
@@ -57,7 +57,9 @@
   }
 }
 
+// Target the select when inside an errored form-element.
 .form-item--error [data-component-id='kingly_minimal:select'] {
+  --select-error-border-color: #eecfca;
   border-color: var(--select-error-border-color);
 
   &:focus-visible {
@@ -72,7 +74,9 @@ html[data-theme="dark"] [data-component-id='kingly_minimal:select'] {
   --select-border-color: #333333;
   --select-border-color-focus: #74c0fc;
   --select-disabled-bg-color: #1e1e1e;
-  --select-error-border-color: #802a31;
   --select-focus-ring-color: #74c0fc;
-  --select-arrow-icon: var(--_arrow-icon-dark);
+  --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+html[data-theme="dark"] .form-item--error [data-component-id='kingly_minimal:select'] {
+  --select-error-border-color: #802a31;
 }

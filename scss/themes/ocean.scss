@@ -98,7 +98,7 @@
   }
 
   // --- Button ---
-  .button {
+  .button, [data-component-id='kingly_minimal:button'] {
     --button-primary-bg-color: var(--ocean-primary);
     --button-primary-text-color: var(--ocean-background);
     --button-primary-border-color: var(--ocean-primary);
@@ -138,6 +138,10 @@
     --details-border-color: var(--ocean-border);
     --details-summary-bg-color: var(--ocean-surface-raised);
     --details-focus-ring-color: var(--ocean-focus);
+    --details-error-bg-color: var(--ocean-error-bg);
+    --details-error-border-color: var(--ocean-error-border);
+    --details-error-text-color: var(--ocean-error-text);
+    --details-required-marker-color: var(--ocean-error-text);
   }
 
   // --- Field Tags ---
@@ -146,19 +150,44 @@
     --field-tag-text-color: var(--ocean-text);
   }
 
-  // --- Footer Links ---
-  .footer-link-list { --footer-link-text-color-hover: var(--ocean-primary); }
-  .footer-contact { --footer-contact-link-text-color-hover: var(--ocean-primary); }
-  [data-component-id='kingly_minimal:footer-menu'] { --footer-menu-link-active-text-color: var(--ocean-primary); }
-  [data-component-id='kingly_minimal:footer-utility-links'] { --utility-link-text-color-hover: var(--ocean-primary); }
+  // --- Footer Contact ---
+  [data-component-id='kingly_minimal:footer-contact'] {
+    --footer-contact-link-text-color: var(--ocean-text);
+    --footer-contact-link-text-color-hover: var(--ocean-primary);
+  }
+
+  // --- Footer Link List ---
+  [data-component-id='kingly_minimal:footer-link-list'] {
+    --footer-link-text-color: var(--ocean-text);
+    --footer-link-text-color-hover: var(--ocean-primary);
+  }
+
+  // --- Footer Menu ---
+  [data-component-id='kingly_minimal:footer-menu'] {
+    --footer-menu-link-active-text-color: var(--ocean-primary);
+  }
+
+  // --- Footer Utility Links ---
+  [data-component-id='kingly_minimal:footer-utility-links'] {
+    --utility-link-text-color: var(--ocean-text);
+    --utility-link-text-color-hover: var(--ocean-primary);
+  }
 
   // --- Form Element & Label ---
-  [data-component-id='kingly_minimal:form-element'],
-  [data-component-id='kingly_minimal:form-label'] {
+  [data-component-id='kingly_minimal:form-element'] {
     --form-element-error-text-color: var(--ocean-error-text);
     --form-element-error-label-color: var(--ocean-error-text);
     --form-element-prefix-suffix-bg-color: var(--ocean-background-subtle);
     --form-element-prefix-suffix-border-color: var(--ocean-border-subtle);
+  }
+  [data-component-id='kingly_minimal:form-label'] {
+    --form-label-required-marker-color: var(--ocean-error-text);
+  }
+
+  // --- Hero ---
+  [data-component-id='kingly_minimal:hero'] {
+    --hero-text-color: var(--ocean-background); // White text on overlay
+    --hero-overlay-bg-color: rgb(0 18 25 / 0.6); // Dark blue overlay
   }
 
   // --- Local Tasks ---
@@ -172,20 +201,23 @@
 
   // --- Menu ---
   [data-component-id='kingly_minimal:menu'] {
+    --menu-link-text-color: var(--ocean-text);
     --menu-link-text-color-active: var(--ocean-primary);
     --menu-link-bg-color-hover: var(--ocean-surface-raised);
   }
 
   // --- Media Document ---
   [data-component-id='kingly_minimal:media--document'] {
+    --document-link-text-color: var(--ocean-text);
     --document-link-bg-color: rgb(148 210 189 / 0.3); // --ocean-accent with alpha
     --document-link-border-color: rgb(148 210 189 / 0.5); // --ocean-accent with alpha
   }
 
   // --- Node Teaser & Search Result ---
-  [data-component-id='kingly_minimal:node-teaser'],
-  [data-component-id='kingly_minimal:search-result'] {
+  [data-component-id='kingly_minimal:node-teaser'] {
     --node-teaser-border-color: var(--ocean-border-subtle);
+  }
+  [data-component-id='kingly_minimal:search-result'] {
     --search-result-border-color: var(--ocean-border-subtle);
   }
 
@@ -196,6 +228,7 @@
     --pager-focus-ring-color: var(--ocean-focus);
     --pager-active-bg-color: var(--ocean-primary);
     --pager-active-text-color: var(--ocean-background);
+    --pager-ellipsis-text-color: var(--ocean-text);
   }
 
   // --- Quote ---
@@ -205,6 +238,7 @@
 
   // --- Select ---
   [data-component-id='kingly_minimal:select'] {
+    --select-text-color: var(--ocean-text);
     --select-bg-color: var(--ocean-background);
     --select-border-color: var(--ocean-border);
     --select-border-color-focus: var(--ocean-primary);
@@ -216,6 +250,7 @@
   // --- Slideshow ---
   [data-component-id='kingly_minimal:slideshow'] {
     --slideshow-arrow-bg-color: var(--ocean-surface-raised);
+    --slideshow-arrow-text-color: var(--ocean-text);
     --slideshow-arrow-bg-color-hover: var(--ocean-primary);
     --slideshow-arrow-border-color-hover: var(--ocean-primary);
     --slideshow-arrow-text-color-hover: var(--ocean-background);
@@ -224,14 +259,27 @@
 
   // --- Social Links ---
   [data-component-id='kingly_minimal:social-links'] {
+    --social-link-text-color: var(--ocean-text);
     --social-link-text-color-hover: var(--ocean-primary);
     --social-link-focus-ring-color: var(--ocean-focus);
   }
 
-  // --- Table ---
-  [data-component-id='kingly_minimal:table'] .data-table th {
-    background-color: var(--ocean-background-subtle);
+  // --- Status Messages ---
+  [data-component-id='kingly_minimal:status-messages'] {
+    --status-text-color: var(--ocean-status-text);
+    --status-bg-color: var(--ocean-status-bg);
+    --status-border-color: var(--ocean-status-border);
+    --warning-text-color: var(--ocean-warning-text);
+    --warning-bg-color: var(--ocean-warning-bg);
+    --warning-border-color: var(--ocean-warning-border);
+    --error-text-color: var(--ocean-error-text);
+    --error-bg-color: var(--ocean-error-bg);
+    --error-border-color: var(--ocean-error-border);
   }
+
+  // --- Table ---
+  // The table component uses global variables which are already mapped.
+  // No specific overrides needed here for the Ocean theme.
 
   // --- Testimonial ---
   [data-component-id='kingly_minimal:testimonial'] {
@@ -253,8 +301,17 @@
   }
 
   // --- Textarea & Textfield ---
-  [data-component-id='kingly_minimal:textarea'],
+  [data-component-id='kingly_minimal:textarea'] {
+    --textarea-text-color: var(--ocean-text);
+    --textarea-bg-color: var(--ocean-background);
+    --textarea-border-color: var(--ocean-border);
+    --textarea-border-color-focus: var(--ocean-primary);
+    --textarea-disabled-bg-color: var(--ocean-background-subtle);
+    --textarea-error-border-color: var(--ocean-error-border);
+    --textarea-focus-ring-color: var(--ocean-focus);
+  }
   [data-component-id='kingly_minimal:textfield'] {
+    --textfield-text-color: var(--ocean-text);
     --textfield-bg-color: var(--ocean-background);
     --textfield-border-color: var(--ocean-border);
     --textfield-border-color-focus: var(--ocean-primary);
@@ -265,6 +322,7 @@
 
   // --- Theme Toggle ---
   [data-component-id='kingly_minimal:theme-toggle'] {
+    --toggle-text-color: var(--ocean-text);
     --toggle-text-color-hover: var(--ocean-primary);
     --toggle-bg-color-hover: var(--ocean-surface-raised);
     --toggle-focus-ring-color: var(--ocean-focus);
@@ -281,8 +339,9 @@
 
   // --- Layout: Footer ---
   .page-footer {
-    --_footer-bg-color: var(--ocean-background-subtle);
-    --_footer-border-color: var(--ocean-border-subtle);
+    --footer-bg-color: var(--ocean-background-subtle);
+    --footer-text-color: var(--ocean-text);
+    --footer-border-color: var(--ocean-border-subtle);
   }
 
   // =========================================================================
@@ -328,10 +387,19 @@
       --testimonial-bg-color: var(--ocean-background-subtle);
       --timeline-card-bg-color: var(--ocean-background-subtle);
     }
+
+    // Override button text color for better contrast on the light blue primary color.
+    .button, [data-component-id='kingly_minimal:button'] {
+      --button-primary-text-color: var(--ocean-text);
+      --button-secondary-text-color-hover: var(--ocean-text);
+    }
+
+    // Make form inputs slightly lighter than the pure black background
     [data-component-id='kingly_minimal:textarea'],
     [data-component-id='kingly_minimal:textfield'],
     [data-component-id='kingly_minimal:select'] {
       --textfield-bg-color: var(--ocean-background-subtle);
+      --textarea-bg-color: var(--ocean-background-subtle);
       --select-bg-color: var(--ocean-background-subtle);
     }
   }

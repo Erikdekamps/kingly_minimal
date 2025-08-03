@@ -1,22 +1,26 @@
+// -----------------------------------------------------------------------------
+// Timeline Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:timeline'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --timeline-line-color: #e1e1e1;
+  --timeline-dot-border-color: #004a94;
+  --timeline-dot-bg-color: #ffffff;
+  --timeline-card-bg-color: #ffffff;
+  --timeline-card-border-color: #e1e1e1;
+  --timeline-card-text-color: #222222;
   --timeline-line-width: 2px;
   --timeline-dot-size: 1rem;
   --timeline-dot-border-width: 3px;
-  --timeline-dot-border-color: #004a94;
-  --timeline-dot-bg-color: #ffffff;
   --timeline-card-arrow-size: 0.75rem;
-  --timeline-card-bg-color: #ffffff;
-  --timeline-card-border-color: #e1e1e1;
   --timeline-card-border-width: 1px;
   --timeline-card-border-radius: 0.25rem;
   --timeline-card-padding: 1rem;
-  --timeline-mobile-padding-left: calc(2rem + 1rem); // lg + dot-size
   --timeline-mobile-spacing-bottom: 2rem;
   --timeline-desktop-gap: 2rem;
   --timeline-date-font-weight: 600;
   --timeline-description-font-size: 0.875rem;
+  --_timeline-mobile-padding-left: calc(var(--timeline-dot-size) + 1rem); // dot-size + gap
 
   .timeline__list {
     list-style: none;
@@ -27,7 +31,7 @@
   // --- Mobile-First: Single Column Layout ---
   .timeline__list > li {
     position: relative;
-    padding-left: var(--timeline-mobile-padding-left);
+    padding-left: var(--_timeline-mobile-padding-left);
     padding-bottom: var(--timeline-mobile-spacing-bottom);
 
     &::before {
@@ -150,6 +154,12 @@
   }
 
   // --- Shared Item Content Styles ---
+  .timeline-item__content {
+    color: var(--timeline-card-text-color);
+  }
+  .timeline-item__date {
+    color: var(--timeline-card-text-color);
+  }
   .timeline-item__description {
     font-size: var(--timeline-description-font-size);
   }
@@ -160,6 +170,7 @@ html[data-theme="dark"] [data-component-id='kingly_minimal:timeline'] {
   --timeline-line-color: #333333;
   --timeline-dot-border-color: #74c0fc;
   --timeline-dot-bg-color: #121212;
-  --timeline-card-bg-color: #121212;
+  --timeline-card-bg-color: #1e1e1e;
   --timeline-card-border-color: #333333;
+  --timeline-card-text-color: #e1e1e1;
 }

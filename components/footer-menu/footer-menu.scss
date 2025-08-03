@@ -3,11 +3,11 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:footer-menu'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --footer-menu-link-active-text-color: #222222;
   --footer-menu-gap-y: 0.5rem;
   --footer-menu-gap-x: 1rem;
   --footer-menu-link-font-size: 0.875rem;
   --footer-menu-link-font-weight: 400;
-  --footer-menu-link-active-text-color: #222222;
 
   // Override the layout of the generic menu for the footer context.
   .menu {

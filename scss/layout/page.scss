@@ -1,3 +1,4 @@
+// file: scss/layout/page.scss
 // This file is compiled by Vite and defines the main page grid structure.
 @use '../base/reset';
 
@@ -5,17 +6,19 @@
 // Main Page Layout
 // -----------------------------------------------------------------------------
 .layout-container {
-  // --- Local Variables (Not for theming, but for clarity) ---
-  --_container-padding: 1rem;
-  --_container-max-width: 1280px;
-  --_main-content-gap: 1rem;
-  --_main-content-gap-md: 2rem;
-  --_main-content-padding-y: 2rem;
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --page-container-padding: 1rem;
+  --page-container-max-width: 1280px;
+  --page-main-content-gap: 1rem;
+  --page-main-content-gap-md: 2rem;
+  --page-main-content-padding-y: 2rem;
+
+  // --- Local Layout Variables (Not for theming) ---
   --_grid-column-count: 12;
 
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(var(--_container-padding), 1fr) minmax(0, var(--_container-max-width)) minmax(var(--_container-padding), 1fr);
+  grid-template-columns: minmax(var(--page-container-padding), 1fr) minmax(0, var(--page-container-max-width)) minmax(var(--page-container-padding), 1fr);
   min-height: 100vh;
   min-height: 100dvh;
 }
@@ -50,8 +53,8 @@
 .main-content {
   display: grid;
   grid-template-columns: repeat(var(--_grid-column-count), 1fr);
-  gap: var(--_main-content-gap);
-  padding-block: var(--_main-content-padding-y);
+  gap: var(--page-main-content-gap);
+  padding-block: var(--page-main-content-padding-y);
   align-content: start;
 
   > * {
@@ -72,6 +75,9 @@ body.gin--horizontal-toolbar .layout-container {
 // -----------------------------------------------------------------------------
 @media (min-width: 768px) { // md breakpoint
   .main-content {
-    gap: var(--_main-content-gap-md);
+    gap: var(--page-main-content-gap-md);
   }
 }
+
+// --- Dark Mode Overrides for Layout File ---
+// No dark mode variables are needed for the page layout itself.

@@ -1,9 +1,13 @@
+// -----------------------------------------------------------------------------
+// Search Result Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:search-result'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
+  --search-result-border-color: #e1e1e1;
+  --search-result-info-text-color: #333333;
   --search-result-padding-bottom: 2rem;
   --search-result-margin-bottom: 2rem;
   --search-result-border-width: 1px;
-  --search-result-border-color: #e1e1e1;
   --search-result-title-margin-bottom: 0.25rem;
   --search-result-info-font-size: 0.875rem;
   --search-result-info-margin-bottom: 0.5rem;
@@ -23,7 +27,7 @@
 
   .search-result__info {
     font-size: var(--search-result-info-font-size);
-    color: inherit;
+    color: var(--search-result-info-text-color);
     margin-bottom: var(--search-result-info-margin-bottom);
   }
 
@@ -35,4 +39,5 @@
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:search-result'] {
   --search-result-border-color: #333333;
+  --search-result-info-text-color: #cae9ff;
 }

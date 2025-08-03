@@ -1,21 +1,42 @@
+// -----------------------------------------------------------------------------
+// Views View Component Styles
+// -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:views-view'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --views-view-gap: 2rem;
+  --views-filters-bg-color: #f4f5f6;
+  --views-filters-border-color: #e1e1e1;
+  --views-filters-padding: 1rem;
+  --views-filters-border-width: 1px;
+  --views-filters-border-radius: 0.25rem;
+  --views-empty-bg-color: #f4f5f6;
+  --views-empty-padding: 2rem;
+  --views-empty-border-radius: 0.25rem;
+
   // Use grid to provide a basic layout for the view's sections.
   display: grid;
-  gap: var(--spacing-lg);
+  gap: var(--views-view-gap);
 
   // Style for the view's exposed filter form.
   .view-filters {
-    background-color: var(--color-light-gray);
-    padding: var(--spacing-md);
-    border: var(--border-width-thin) solid var(--color-border);
-    border-radius: var(--border-radius);
+    background-color: var(--views-filters-bg-color);
+    padding: var(--views-filters-padding);
+    border: var(--views-filters-border-width) solid var(--views-filters-border-color);
+    border-radius: var(--views-filters-border-radius);
   }
 
   // Style for the "no results" message.
   .view-empty {
-    padding: var(--spacing-lg);
-    background-color: var(--color-light-gray);
+    padding: var(--views-empty-padding);
+    background-color: var(--views-empty-bg-color);
     text-align: center;
-    border-radius: var(--border-radius);
+    border-radius: var(--views-empty-border-radius);
   }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:views-view'] {
+  --views-filters-bg-color: #1e1e1e;
+  --views-filters-border-color: #333333;
+  --views-empty-bg-color: #1e1e1e;
 }

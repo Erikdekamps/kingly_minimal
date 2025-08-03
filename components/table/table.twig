@@ -3,6 +3,9 @@
  * @file
  * Component template for a data table.
  *
+ * This version safely handles attribute arrays for rows and cells by
+ * converting them to Attribute objects before rendering.
+ *
  * @see kingly_minimal/components/table/table.component.yml
  *
  * @props
@@ -17,13 +20,13 @@
 
     {% for colgroup in colgroups %}
       {% if colgroup.cols %}
-        <colgroup{{ colgroup.attributes }}>
+        <colgroup{{ create_attribute(colgroup.attributes) }}>
           {% for col in colgroup.cols %}
-            <col{{ col.attributes }}>
+            <col{{ create_attribute(col.attributes) }}>
           {% endfor %}
         </colgroup>
       {% else %}
-        <colgroup{{ colgroup.attributes }}></colgroup>
+        <colgroup{{ create_attribute(colgroup.attributes) }}></colgroup>
       {% endif %}
     {% endfor %}
 
@@ -31,7 +34,7 @@
       <thead>
       <tr>
         {% for cell in header %}
-        <{{ cell.tag|default('th') }}{{ cell.attributes }}>
+        <{{ cell.tag|default('th') }}{{ create_attribute(cell.attributes) }}>
         {{- cell.content -}}
       </{{ cell.tag|default('th') }}>
       {% endfor %}
@@ -41,9 +44,9 @@
 
     <tbody>
     {% for row in rows %}
-    <tr{{ row.attributes }}>
+    <tr{{ create_attribute(row.attributes) }}>
       {% for cell in row.data %}
-        <{{ cell.tag|default('td') }}{{ cell.attributes }}>
+        <{{ cell.tag|default('td') }}{{ create_attribute(cell.attributes) }}>
         {{- cell.content -}}
         </{{ cell.tag|default('td') }}>
       {% endfor %}
@@ -59,9 +62,9 @@
     {% if footer %}
       <tfoot>
       {% for row in footer %}
-      <tr{{ row.attributes }}>
+      <tr{{ create_attribute(row.attributes) }}>
         {% for cell in row.data %}
-          <{{ cell.tag|default('td') }}{{ cell.attributes }}>
+          <{{ cell.tag|default('td') }}{{ create_attribute(cell.attributes) }}>
           {{- cell.content -}}
           </{{ cell.tag|default('td') }}>
         {% endfor %}

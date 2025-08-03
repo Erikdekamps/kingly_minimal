@@ -18,14 +18,27 @@ props:
       type: object # Render array
       title: 'Content'
       description: 'The main content of the teaser, passed to the `text` component.'
-    submitted:
-      type: object # Render array
-      title: 'Submitted Info'
-      description: 'Metadata, like author and date.'
+    display_submitted:
+      type: boolean
+      title: 'Display Submitted Info'
+      description: 'A flag to control the visibility of the author and date metadata.'
+      default: true
     author_picture:
       type: object # Render array
       title: "Author's Picture"
       description: "The author's profile picture, passed to the `image` component."
+    author_name:
+      type: [string, object] # Can be a string or render array (link)
+      title: 'Author Name'
+      description: "The name of the node's author."
+    date:
+      type: string
+      title: 'Date'
+      description: 'The formatted creation or update date of the node.'
+    metadata:
+      type: object # Render array
+      title: 'Metadata'
+      description: 'Additional metadata render array from Drupal (e.g., comment link).'
     attributes:
       type: object
       title: 'Attributes'

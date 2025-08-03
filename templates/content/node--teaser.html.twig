@@ -1,30 +1,34 @@
+{# file: templates/node/node--teaser.html.twig #}
 {#
 /**
  * @file
  * Theme override for a node in the 'teaser' view mode.
  *
  * This template acts as a bridge to the 'node-teaser' Single Directory Component.
- * It maps the variables available in this context to the props expected by the component.
+ * It maps the variables available in this context to the props expected by the
+ * component. This version passes raw data to avoid "Array to string" conversion
+ * errors.
  *
  * @see template_preprocess_node()
  * @see kingly_minimal/components/node-teaser/node-teaser.twig
  */
 #}
-{%
-  set classes = [
+{% set classes = [
   'node',
   'node--type-' ~ node.bundle|clean_class,
   node.isPromoted() ? 'node--promoted',
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-]
-%}
+] %}
 {{ include('kingly_minimal:node-teaser', {
   url: url,
   label: label,
   content: content,
-  submitted: display_submitted ? metadata|merge({'#prefix': author_name ~ ' on ' ~ date}) : null,
-  author_picture: display_submitted ? author_picture : null,
+  display_submitted: display_submitted,
+  author_picture: author_picture,
+  author_name: author_name,
+  date: date,
+  metadata: metadata,
   attributes: attributes.addClass(classes),
 }, with_context = false) }}

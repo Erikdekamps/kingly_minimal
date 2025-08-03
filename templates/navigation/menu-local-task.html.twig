@@ -3,9 +3,9 @@
  * @file
  * Theme override for a single local task link.
  *
- * This override adds the `tabs__link` class to the link element, which is
- * required for the local-tasks SDC styling to apply correctly. It also adds
- * `aria-current="page"` to the active tab for accessibility.
+ * This override adds BEM-style classes to the list item and the link, allowing
+ * the `local-tasks` SDC to style them correctly. It safely modifies the render
+ * arrays to prevent "Array to string" conversion errors.
  *
  * Available variables:
  * - link: A renderable array for the link element.
@@ -14,13 +14,24 @@
  * @see template_preprocess_menu_local_task()
  */
 #}
-{%
-  set link_attributes = {
-  'class': ['tabs__link'],
-}
-%}
-{# WCAG AAA (2.4.8 Location): Add 'aria-current="page"' to the active tab. #}
+{% set item_classes = [
+  'tabs__item',
+  active ? 'is-active',
+] %}
+{#
+This is the key to the fix. We are not replacing the attributes array,
+but safely adding our class to the existing ones.
+#}
+{% set link = link|merge({
+  '#attributes': {
+    'class': link['#attributes']['class']|default([])|merge(['tabs__link'])
+  }
+}) %}
+
+{# WCAG AAA (2.4.8 Location): Add 'aria-current="page"' to the active tab's link. #}
 {% if active %}
-  {% set link_attributes = link_attributes|merge({'aria-current': 'page'}) %}
+  {% set link = link|merge({
+    '#attributes': link['#attributes']|merge({'aria-current': 'page'})
+  }) %}
 {% endif %}
-<li{{ attributes }}>{{ link|merge({ '#attributes': link_attributes }) }}</li>
+<li{{ attributes.addClass(item_classes) }}>{{ link }}</li>

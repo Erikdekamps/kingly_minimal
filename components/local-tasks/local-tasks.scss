@@ -67,7 +67,8 @@
   }
 
   // --- Active Tab Styling ---
-  .tabs__link.is-active {
+  // CORRECTED: Target the link inside the active list item.
+  .tabs__item.is-active .tabs__link {
     color: var(--local-tasks-link-text-color-active);
     font-weight: var(--local-tasks-link-font-weight-active);
     border-bottom-color: var(--local-tasks-link-border-color-active);

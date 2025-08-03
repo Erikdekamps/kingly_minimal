@@ -4,7 +4,8 @@
  * Component template for a menu.
  *
  * This component's macro now uses the `kingly_minimal:link` SDC to render the
- * actual link, centralizing link creation logic.
+ * actual link, centralizing link creation logic. It also safely handles
+ * attribute objects from menu items.
  *
  * @see kingly_minimal/components/menu/menu.component.yml
  *
@@ -23,24 +24,35 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-<ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level) }}>
-  {% else %}
-  <ul class="menu__sub-menu menu--level-{{ menu_level }}">
+      <ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level) }}>
+    {% else %}
+      <ul class="menu__sub-menu menu--level-{{ menu_level }}">
     {% endif %}
     {% for item in items %}
-      {% set item_classes = [
+      {%
+        set item_classes = [
         'menu__item',
         'menu__item--level-' ~ menu_level,
         item.is_expanded ? 'menu__item--expanded',
         item.is_collapsed ? 'menu__item--collapsed',
         item.in_active_trail ? 'menu__item--active-trail',
-      ] %}
-      <li{{ item.attributes.addClass(item_classes) }}>
-        {% set link_classes = [
+      ]
+      %}
+      {#
+      FIX: Convert item.attributes (a plain array) into a proper Attribute
+      object before attempting to add classes to it.
+      #}
+      {% set item_attributes = create_attribute(item.attributes) %}
+      {% do item_attributes.addClass(item_classes) %}
+
+      <li{{ item_attributes }}>
+        {%
+          set link_classes = [
           'menu__link',
           'menu__link--level-' ~ menu_level,
           item.in_active_trail ? 'is-active',
-        ] %}
+        ]
+        %}
         {# WCAG 2.4.8 (AAA): Add 'aria-current="page"' to the active link. #}
         {% set link_attributes = create_attribute().addClass(link_classes) %}
         {% if item.in_active_trail %}
@@ -58,6 +70,6 @@
         {% endif %}
       </li>
     {% endfor %}
-  </ul>
+    </ul>
   {% endif %}
-  {% endmacro %}
+{% endmacro %}

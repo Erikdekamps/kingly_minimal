@@ -4,7 +4,8 @@
  * Component template for a pager.
  *
  * This component now uses the `list`, `list-item`, and `link` SDCs for maximum
- * consistency and reusability.
+ * consistency and reusability. It correctly converts plain attribute arrays
+ * from the pager service into Drupal Attribute objects before modification.
  *
  * @see kingly_minimal/components/pager/pager.component.yml
  *
@@ -24,14 +25,17 @@
 
     {% embed 'kingly_minimal:list' with { attributes: create_attribute().addClass('pager__items') } %}
       {% block content %}
+
         {# First item #}
         {% if items.first %}
+          {% set link_attributes = create_attribute(items.first.attributes) %}
+          {% do link_attributes.addClass('pager__link').setAttribute('title', 'Go to first page'|t) %}
           {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--first') } %}
             {% block content %}
               {{ include('kingly_minimal:link', {
                 url: items.first.href,
                 text: '<span class="visually-hidden">' ~ 'First page'|t ~ '</span><span aria-hidden="true">' ~ (items.first.text|default('« First'|t)) ~ '</span>',
-                attributes: items.first.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to first page'|t),
+                attributes: link_attributes,
               }) }}
             {% endblock %}
           {% endembed %}
@@ -39,12 +43,14 @@
 
         {# Previous item #}
         {% if items.previous %}
+          {% set link_attributes = create_attribute(items.previous.attributes) %}
+          {% do link_attributes.addClass('pager__link').setAttribute('title', 'Go to previous page'|t).setAttribute('rel', 'prev') %}
           {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--previous') } %}
             {% block content %}
               {{ include('kingly_minimal:link', {
                 url: items.previous.href,
                 text: '<span class="visually-hidden">' ~ 'Previous page'|t ~ '</span><span aria-hidden="true">' ~ (items.previous.text|default('‹ Previous'|t)) ~ '</span>',
-                attributes: items.previous.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to previous page'|t).setAttribute('rel', 'prev'),
+                attributes: link_attributes,
               }) }}
             {% endblock %}
           {% endembed %}
@@ -59,18 +65,26 @@
 
         {# Page numbers #}
         {% for key, item in items.pages %}
-          {% set item_classes = ['pager__item', 'pager__item--number', items.current == key ? 'is-active'] %}
+          {% set item_classes = ['pager__item', 'pager__item--number'] %}
+          {% set link_attributes = create_attribute(item.attributes) %}
+          {% do link_attributes.addClass('pager__link').setAttribute('title', 'Go to page @key'|t({'@key': key})) %}
+          {% if items.current == key %}
+            {% set item_classes = item_classes|merge(['is-active']) %}
+            {# The active page is not a link, so we render it differently #}
+          {% endif %}
           {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass(item_classes) } %}
             {% block content %}
-              {% set link_attributes = item.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to page @key'|t({'@key': key})) %}
               {% if items.current == key %}
-                {% do link_attributes.setAttribute('aria-current', 'page') %}
+                <span class="pager__link is-active" aria-current="page" aria-label="{{ 'Current page'|t }}">
+                  <span class="visually-hidden">{{ 'Current page'|t }}, </span>{{ key }}
+                </span>
+              {% else %}
+                {{ include('kingly_minimal:link', {
+                  url: item.href,
+                  text: '<span class="visually-hidden">' ~ 'Page'|t ~ ' </span>' ~ key,
+                  attributes: link_attributes,
+                }) }}
               {% endif %}
-              {{ include('kingly_minimal:link', {
-                url: item.href,
-                text: '<span class="visually-hidden">' ~ (items.current == key ? 'Current page'|t : 'Page'|t) ~ '</span>' ~ key,
-                attributes: link_attributes,
-              }) }}
             {% endblock %}
           {% endembed %}
         {% endfor %}
@@ -84,12 +98,14 @@
 
         {# Next item #}
         {% if items.next %}
+          {% set link_attributes = create_attribute(items.next.attributes) %}
+          {% do link_attributes.addClass('pager__link').setAttribute('title', 'Go to next page'|t).setAttribute('rel', 'next') %}
           {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--next') } %}
             {% block content %}
               {{ include('kingly_minimal:link', {
                 url: items.next.href,
                 text: '<span class="visually-hidden">' ~ 'Next page'|t ~ '</span><span aria-hidden="true">' ~ (items.next.text|default('Next ›'|t)) ~ '</span>',
-                attributes: items.next.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to next page'|t).setAttribute('rel', 'next'),
+                attributes: link_attributes,
               }) }}
             {% endblock %}
           {% endembed %}
@@ -97,12 +113,14 @@
 
         {# Last item #}
         {% if items.last %}
+          {% set link_attributes = create_attribute(items.last.attributes) %}
+          {% do link_attributes.addClass('pager__link').setAttribute('title', 'Go to last page'|t) %}
           {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass('pager__item', 'pager__item--last') } %}
             {% block content %}
               {{ include('kingly_minimal:link', {
                 url: items.last.href,
                 text: '<span class="visually-hidden">' ~ 'Last page'|t ~ '</span><span aria-hidden="true">' ~ (items.last.text|default('Last »'|t)) ~ '</span>',
-                attributes: items.last.attributes|without('href', 'class').addClass('pager__link').setAttribute('title', 'Go to last page'|t),
+                attributes: link_attributes,
               }) }}
             {% endblock %}
           {% endembed %}

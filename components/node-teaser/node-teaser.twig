@@ -5,7 +5,8 @@
  *
  * This component structures the content for a node teaser. It delegates
  * rendering of the title, author picture, and content body to the `heading`,
- * `image`, and `text` components respectively.
+ * `image`, and `text` components respectively. It safely assembles the
+ * submission metadata using a `trans` block to prevent render array errors.
  *
  * @see kingly_minimal/components/node-teaser/node-teaser.component.yml
  *
@@ -23,7 +24,7 @@
     attributes: create_attribute().addClass('node__title')
   }, with_context = false) }}
 
-  {% if submitted %}
+  {% if display_submitted %}
     <footer class="node__meta">
       {{ include('kingly_minimal:image', {
         render_array: author_picture,
@@ -31,7 +32,13 @@
       }, with_context=false) }}
 
       <div class="node__submitted">
-        {{ submitted }}
+        {#
+        Use the `trans` block to safely combine the author, date, and
+        metadata. This correctly handles cases where `author_name` is a
+        render array (a link) and avoids the "Array to string" error.
+        #}
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
       </div>
     </footer>
   {% endif %}

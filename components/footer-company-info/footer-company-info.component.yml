@@ -12,7 +12,7 @@ props:
       description: 'The name of the company, passed as the `title` prop to the embedded `footer-widget`.'
       default: 'Company Name'
     description:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Description'
       description: 'A short description or mission statement for the company. Passed to the `text` component.'
       default: 'Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'

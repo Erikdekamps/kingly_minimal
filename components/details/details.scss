@@ -83,6 +83,7 @@
 
   &.form-item--error {
     border-color: var(--details-error-border-color);
+
     > .details__summary {
       background-color: var(--details-error-bg-color);
       color: var(--details-error-text-color);

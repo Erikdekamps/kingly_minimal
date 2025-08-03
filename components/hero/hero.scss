@@ -26,10 +26,21 @@
   min-height: var(--hero-height-sm); // Default height
 
   // Height variants
-  &.hero--height-sm { min-height: var(--hero-height-sm); }
-  &.hero--height-md { min-height: var(--hero-height-md); }
-  &.hero--height-lg { min-height: var(--hero-height-lg); }
-  &.hero--height-xl { min-height: var(--hero-height-xl); }
+  &.hero--height-sm {
+    min-height: var(--hero-height-sm);
+  }
+
+  &.hero--height-md {
+    min-height: var(--hero-height-md);
+  }
+
+  &.hero--height-lg {
+    min-height: var(--hero-height-lg);
+  }
+
+  &.hero--height-xl {
+    min-height: var(--hero-height-xl);
+  }
 
   .hero__background {
     position: absolute;

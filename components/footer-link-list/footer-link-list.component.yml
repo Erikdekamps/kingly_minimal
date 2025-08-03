@@ -14,7 +14,7 @@ props:
       type: array
       title: 'Links'
       description: 'An array of link objects. Each object should have a "text", "url", and optional "aria_label" key.'
-      default: []
+      default: [ ]
       item:
         type: object
         properties:

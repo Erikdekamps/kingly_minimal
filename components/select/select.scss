@@ -77,6 +77,7 @@ html[data-theme="dark"] [data-component-id='kingly_minimal:select'] {
   --select-focus-ring-color: #74c0fc;
   --select-arrow-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e1e1e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
+
 html[data-theme="dark"] .form-item--error [data-component-id='kingly_minimal:select'] {
   --select-error-border-color: #802a31;
 }

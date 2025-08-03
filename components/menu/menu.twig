@@ -23,9 +23,9 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level) }}>
-    {% else %}
-      <ul class="menu__sub-menu menu--level-{{ menu_level }}">
+<ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level) }}>
+  {% else %}
+  <ul class="menu__sub-menu menu--level-{{ menu_level }}">
     {% endif %}
     {% for item in items %}
       {% set item_classes = [
@@ -58,6 +58,6 @@
         {% endif %}
       </li>
     {% endfor %}
-    </ul>
+  </ul>
   {% endif %}
-{% endmacro %}
+  {% endmacro %}

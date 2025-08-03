@@ -6,7 +6,7 @@ props:
   type: object
   properties:
     title:
-      type: [string, object]
+      type: [ string, object ]
       title: Title
       description: 'The main page title text or render array, passed to the `heading` component.'
     attributes:

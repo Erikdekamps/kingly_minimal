@@ -23,7 +23,7 @@ props:
       title: 'Title'
       description: 'The main heading for the card.'
     body:
-      type: [string, object] # Can be a string or render array
+      type: [ string, object ] # Can be a string or render array
       title: 'Body'
       description: 'The main content for the card, passed to the `text` component for consistent prose styling.'
     link:

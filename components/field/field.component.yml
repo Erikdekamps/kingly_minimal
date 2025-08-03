@@ -12,7 +12,7 @@ props:
       description: 'A flag indicating whether to show the field label or not.'
       default: false
     label:
-      type: [string, object]
+      type: [ string, object ]
       title: 'Label'
       description: 'The label for the field.'
     title_attributes:
@@ -23,7 +23,7 @@ props:
       type: array
       title: 'Field Items'
       description: "A list of field items. Each item's 'content' property will be rendered."
-      default: []
+      default: [ ]
     multiple:
       type: boolean
       title: 'Multiple'

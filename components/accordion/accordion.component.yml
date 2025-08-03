@@ -22,4 +22,4 @@ libraryOverrides:
     - core/drupal
     - core/once
   js:
-    accordion.js: {}
+    accordion.js: { }

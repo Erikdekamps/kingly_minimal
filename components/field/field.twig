@@ -4,19 +4,13 @@
  * Component template for a generic field.
  *
  * This component provides the structure for a field, its label, and its items,
- * replicating the logic of Drupal's default field.html.twig.
+ * replicating the logic of Drupal's default field.html.twig. This version
+ * safely handles item attributes.
  *
  * @see kingly_minimal/components/field/field.component.yml
  *
  * @props
- * - attributes: (Object) HTML attributes for the containing element.
- * - label_hidden: (Boolean) A flag indicating whether to show the field label.
- * - title_attributes: (Object) HTML attributes for the title.
- * - label: (String|Object) The label for the field.
- * - multiple: (Boolean) TRUE if a field can contain multiple items.
- * - items: (Array) A list of field items. Each item contains:
- *   - attributes: (Object) List of HTML attributes for each item.
- *   - content: (Object) The field item's renderable content.
+ * - (All props from YML file)
  */
 #}
 <div{{ attributes }}>
@@ -29,7 +23,13 @@
     {% endif %}
 
     {% for item in items %}
-      <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+      {#
+      FIX: Convert item.attributes (a plain array) into a proper Attribute
+      object before attempting to add classes to it.
+      #}
+      {% set item_attributes = create_attribute(item.attributes) %}
+      {% do item_attributes.addClass('field__item') %}
+      <div{{ item_attributes }}>{{ item.content }}</div>
     {% endfor %}
 
     {% if multiple %}

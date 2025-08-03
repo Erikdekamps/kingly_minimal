@@ -1,74 +1,64 @@
 {#
 /**
  * @file
- * Component template for a form element wrapper.
+ * Theme override for a form element.
  *
- * This component now includes the `form-label` component to render its label,
- * delegating that specific logic.
+ * This bridge template safely handles the description attributes by converting
+ * them to a proper Attribute object before modification.
  *
- * @see kingly_minimal/components/form-element/form-element.component.yml
- *
- * @props
- * - label: (Object) The renderable array for the label.
- * - label_display: (String) The display setting for the label.
- * - description: (Object) A renderable array for the description.
- * - description_display: (String) The display setting for the description.
- * - errors: (Object) Any validation errors for this form element.
- * - prefix: (Object) The form element prefix.
- * - suffix: (Object) The form element suffix.
- * - required: (Boolean) Whether the element is required.
- * - id: (String) The ID of the form element, passed to the label's `for` attribute.
- * - attributes: (Object) A Drupal attributes object for the wrapper.
- *
- * @slots
- * - content: The form element itself (e.g., input, select).
+ * @see kingly_minimal/components/form-element/form-element.twig
  */
 #}
-<div{{ attributes }}>
-  {% if label and label_display == 'before' %}
-    {{ include('kingly_minimal:form-label', {
-      text: label.text,
-      for_id: id,
-      required: required,
-      attributes: label.attributes
-    }, with_context=false) }}
-  {% endif %}
+{% set classes = [
+  'js-form-item',
+  'form-item-' ~ name|clean_class,
+  'js-form-type-' ~ type|clean_class,
+  'js-form-item-' ~ name|clean_class,
+  title_attributes.id ? 'form-item--id-' ~ title_attributes.id,
+  label_display == 'invisible' ? 'form-item--label-invisible',
+  disabled ? 'form-item--disabled',
+  errors ? 'form-item--error',
+  prefix ? 'form-item--prefix-attached',
+  suffix ? 'form-item--suffix-attached',
+] %}
+{% set description_classes = [
+  'form-item__description',
+  description_display == 'invisible' ? 'visually-hidden',
+] %}
 
-  {% if description and description_display == 'before' %}
-    {{ description }}
-  {% endif %}
+{#
+FIX: Convert description.attributes (a plain array) into a proper
+Attribute object before attempting to add classes to it.
+#}
+{% set description_attributes = create_attribute(description.attributes|default({})) %}
+{% do description_attributes.addClass(description_classes) %}
 
-  <div class="form-item__content-wrapper">
-    {% if prefix %}
-      <span class="form-item__prefix">{{ prefix }}</span>
-    {% endif %}
+{% set label_props = {
+  'text': label.text,
+  'attributes': label.attributes,
+} %}
 
-    {# The 'content' block is the placeholder for the actual form input. #}
-    <div class="form-item__content">
-      {% block content %}{% endblock %}
-    </div>
+{% embed 'kingly_minimal:form-element' with {
+  label: label_props,
+  label_display: label_display,
+  description: description ? {
+    '#type': 'html_tag',
+    '#tag': 'div',
+    '#value': description.content,
+    '#attributes': description_attributes,
+  },
+  description_display: description_display,
+  errors: errors,
+  prefix: prefix,
+  suffix: suffix,
+  attributes: attributes.addClass(classes),
+  id: id,
+  required: required,
+} %}
 
-    {% if suffix %}
-      <span class="form-item__suffix">{{ suffix }}</span>
-    {% endif %}
-  </div>
+  {% block content %}
+    {# The 'children' variable contains the actual <input>, <select>, etc. #}
+    {{ children }}
+  {% endblock %}
 
-  {% if label and label_display == 'after' %}
-    {{ include('kingly_minimal:form-label', {
-      text: label.text,
-      for_id: id,
-      required: required,
-      attributes: label.attributes
-    }, with_context=false) }}
-  {% endif %}
-
-  {% if errors %}
-    <div class="form-item__error-message">
-      {{ errors }}
-    </div>
-  {% endif %}
-
-  {% if description and description_display == 'after' %}
-    {{ description }}
-  {% endif %}
-</div>
+{% endembed %}

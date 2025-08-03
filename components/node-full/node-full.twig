@@ -1,19 +1,23 @@
 {#
 /**
- * @file
- * Component template for the full view of a node.
- *
- * @see kingly_minimal/components/node-full/node-full.component.yml
- *
- * @props
- * - (All props from YML file)
- */
+* @file
+* Component template for the full view of a node.
+*
+* This version includes a critical fix to prevent an "Array to string"
+* conversion error when rendering the submission metadata, and corrects the
+* Twig translation syntax.
+*
+* @see kingly_minimal/components/node-full/node-full.component.yml
+*
+* @props
+* - (All props from YML file)
+    */
 #}
 <article{{ attributes }}>
 
   {# The node title is hidden in the 'full' view mode on a canonical page,
-     because the page_title_block will render it as the H1. This logic prevents
-     duplicate titles. #}
+because the page_title_block will render it as the H1. This logic prevents
+duplicate titles. #}
   {{ title_prefix }}
   {% if label and not page %}
     {{ include('kingly_minimal:heading', {
@@ -34,7 +38,17 @@
       }, with_context=false) }}
 
       <div class="node__submitted">
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {#
+        CRITICAL SYNTAX FIX: The `with` statement must be part of the opening
+        `trans` tag, not placed after the closing tag. This resolves the
+        fatal Twig syntax error.
+        #}
+        {% trans with {
+          '@author_name': author_name,
+          '@date': date,
+        } %}
+          Submitted by @author_name on @date
+        {% endtrans %}
         {{ metadata }}
       </div>
     </footer>

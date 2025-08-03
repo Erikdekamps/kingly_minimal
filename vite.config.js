@@ -21,7 +21,13 @@ function viteCssOnlyPlugin() {
     generateBundle(options, bundle) {
       for (const fileName in bundle) {
         const file = bundle[fileName];
-        if (file.type === 'chunk' && file.facadeModuleId?.endsWith('.scss')) {
+        // FIX: This now correctly targets only SCSS entry points and avoids
+        // deleting JS chunks that might be generated from JS entry files.
+        if (
+          file.type === 'chunk' &&
+          Object.keys(file.modules).some((module) => module.endsWith('.scss')) &&
+          Object.values(file.modules).every((module) => module.code === null)
+        ) {
           delete bundle[fileName];
         }
       }
@@ -35,8 +41,9 @@ export default defineConfig({
     liveReload([
       path.resolve(themePath, '**/*.twig'),
       path.resolve(themePath, '**/*.theme'),
+      path.resolve(themePath, '**/*.php'), // Watch for theme-settings.php
       path.resolve(themePath, '*.info.yml'),
-      path.resolve(themePath, '*.settings.yml'), // Watch for theme settings changes
+      path.resolve(themePath, '*.settings.yml'),
     ]),
     viteCssOnlyPlugin(),
     ViteImageOptimizer({}),
@@ -48,11 +55,12 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       // Define all SCSS files that are not partials as entry points.
-      // The glob pattern now includes 'scss', 'scss/themes', and 'components'.
       input: Object.fromEntries(
         globSync('{scss,components}/**/*.scss', {
-          ignore: '**/_*', // Exclude all partials.
+          // Exclude all partials (files starting with _).
+          ignore: '**/_*',
         }).map(file => [
+          // This creates a clean name for the entry point, e.g., 'scss/layout/page'.
           file.slice(0, file.length - path.extname(file).length),
           fileURLToPath(new URL(file, import.meta.url)),
         ])
@@ -63,18 +71,23 @@ export default defineConfig({
           const entryPath = assetInfo.name;
 
           if (entryPath.startsWith('components/')) {
+            // Place component CSS directly in its own directory, e.g., components/card/card.css
             return '[name].css';
           }
 
+          // FIX: Correctly handle the theme variations entry point.
+          // The file is `theme.scss`, so the output asset name will be `scss/theme.css`.
+          if (entryPath === 'scss/theme.css') {
+            return 'dist/css/theme.css';
+          }
+
           if (entryPath.startsWith('scss/')) {
+            // For other global SCSS files, place them in dist/css following their sub-path.
             const relativePath = path.relative('scss', entryPath);
-            // Handle the new themes.scss entry point
-            if (relativePath === 'themes.scss') {
-              return 'dist/css/themes.css';
-            }
             return `dist/css/${relativePath}`;
           }
 
+          // Default for other assets like images.
           return 'dist/assets/[name].[hash][extname]';
         },
         entryFileNames: 'dist/js/[name].js',

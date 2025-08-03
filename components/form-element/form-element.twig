@@ -3,8 +3,12 @@
  * @file
  * Theme override for a form element.
  *
- * This bridge template safely handles the description attributes by converting
- * them to a proper Attribute object before modification.
+ * REFACTORED: This bridge template now passes additional props (`id` and `required`)
+ * to the `form-element` component, which are needed by the new `form-label`
+ * component it now includes.
+ *
+ * This version also includes a critical fix to prevent a fatal "Array to string"
+ * error when handling description attributes.
  *
  * @see kingly_minimal/components/form-element/form-element.twig
  */
@@ -27,8 +31,11 @@
 ] %}
 
 {#
-FIX: Convert description.attributes (a plain array) into a proper
-Attribute object before attempting to add classes to it.
+CRITICAL FIX: Safely handle the description attributes.
+1. Use `create_attribute()` to ensure `description_attributes` is a valid
+   Attribute object, converting the raw array from Drupal if it exists.
+2. Use `do` to add the necessary classes to the new object.
+This prevents a fatal error.
 #}
 {% set description_attributes = create_attribute(description.attributes|default({})) %}
 {% do description_attributes.addClass(description_classes) %}

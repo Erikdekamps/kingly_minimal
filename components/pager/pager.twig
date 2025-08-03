@@ -17,6 +17,7 @@
 #}
 {% if items %}
   <nav{{ attributes.addClass('pager').setAttribute('role', 'navigation').setAttribute('aria-labelledby', heading_id) }}>
+    {# A visually hidden heading provides the accessible name for the <nav> landmark. #}
     {{ include('kingly_minimal:heading', {
       text: 'Pagination'|t,
       level: 'h4',
@@ -66,19 +67,21 @@
         {# Page numbers #}
         {% for key, item in items.pages %}
           {% set item_classes = ['pager__item', 'pager__item--number'] %}
-          {% set link_attributes = create_attribute(item.attributes) %}
-          {% do link_attributes.addClass('pager__link').setAttribute('title', 'Go to page @key'|t({'@key': key})) %}
           {% if items.current == key %}
             {% set item_classes = item_classes|merge(['is-active']) %}
-            {# The active page is not a link, so we render it differently #}
           {% endif %}
+
           {% embed 'kingly_minimal:list-item' with { attributes: create_attribute().addClass(item_classes) } %}
             {% block content %}
               {% if items.current == key %}
-                <span class="pager__link is-active" aria-current="page" aria-label="{{ 'Current page'|t }}">
-                  <span class="visually-hidden">{{ 'Current page'|t }}, </span>{{ key }}
-                </span>
+                {# A11Y FIX: Removed redundant aria-label. The visually-hidden text is sufficient. #}
+                {# WCAG 2.4.8 (AAA): `aria-current="page"` identifies the current page. #}
+                <span class="pager__link is-active" aria-current="page">
+            <span class="visually-hidden">{{ 'Current page'|t }}, </span>{{ key }}
+          </span>
               {% else %}
+                {% set link_attributes = create_attribute(item.attributes) %}
+                {% do link_attributes.addClass('pager__link').setAttribute('title', 'Go to page @key'|t({'@key': key})) %}
                 {{ include('kingly_minimal:link', {
                   url: item.href,
                   text: '<span class="visually-hidden">' ~ 'Page'|t ~ ' </span>' ~ key,

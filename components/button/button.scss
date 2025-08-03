@@ -3,6 +3,8 @@
 // -----------------------------------------------------------------------------
 
 // Define all styles on the .button class as the single source of truth.
+// This class is applied to our SDC via its Twig template, and is also used by
+// Drupal core for generic buttons, ensuring all buttons are styled consistently.
 .button {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --button-min-target-size: 44px;
@@ -123,14 +125,12 @@
   }
 }
 
-// Use @extend to apply all .button styles to the SDC selector.
-// This avoids duplicating code and resolves the Sass compilation error.
-[data-component-id='kingly_minimal:button'] {
-  @extend .button;
-}
+// FIX: The [data-component-id] selector and @extend are removed. The SDC's
+// Twig template already adds the `.button` class, making this rule redundant.
+// All styles are now applied directly and more simply via the `.button` class.
 
 // --- Dark Mode Overrides ---
-// We only need to target the .button class; the @extend will handle the SDC.
+// This rule correctly targets the `.button` class, which is present on our SDC.
 html[data-theme="dark"] .button {
   --button-primary-bg-color: #74c0fc;
   --button-primary-text-color: #121212;

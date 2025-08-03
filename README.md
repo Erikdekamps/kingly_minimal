@@ -335,12 +335,12 @@ The following theme hook templates have been identified as candidates for
 conversion to Single Directory Components. This roadmap outlines the path to
 achieving 100% component-based rendering.
 
-- [x] **`field.html.twig`**: A generic `field` SDC could be created to handle
-  the wrapper and label logic. This would standardize the display of all
+- [x] **`field.html.twig`**: A generic `field` SDC has been created to handle
+  the wrapper and label logic. This standardizes the display of all
   fields that don't have a specific override.
-- [x] **`views-view.html.twig`**: A `views-view` SDC can be created to
+- [x] **`views-view.html.twig`**: A `views-view` SDC has been created to
   abstract the complex structure of a view (header, footer, rows, pager). This
-  would make styling different view displays more consistent.
+  makes styling different view displays more consistent.
 - [ ] **`region.html.twig`**: While simple, creating a `region` SDC could be
   useful if regions ever required more complex logic or specific styling hooks
   beyond what a class provides.
@@ -352,6 +352,7 @@ achieving 100% component-based rendering.
   styling self-contained.
 - [ ] **`block.html.twig`**: The default block template could be converted
   into a `block` SDC. This would be a low-priority conversion, as many blocks
-  already have specific SDC bridges (e.g., 
+  already have specific SDC bridges (e.g.,
   `block--system-menu-block--main.html.twig`), but it would complete the
   component coverage.
+```

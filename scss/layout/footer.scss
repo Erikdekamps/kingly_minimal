@@ -1,4 +1,3 @@
-// file: scss/layout/footer.scss
 // This file defines the layout for the page footer.
 // Component-specific styles are handled by their respective SDCs.
 
@@ -13,7 +12,6 @@
   --footer-padding-y: 2rem;
   --footer-font-size: 0.875rem;
   --footer-border-width: 1px;
-  --footer-top-bottom-padding-y: 2rem;
   --footer-inner-gap: 2rem;
   --footer-top-bottom-gap: 1rem;
 
@@ -55,13 +53,16 @@
 }
 
 .page-footer__top {
-  padding-bottom: var(--footer-top-bottom-padding-y);
+  // The top section provides the padding and a single border below it,
+  // creating the separator between the top and column sections.
+  padding-bottom: var(--footer-inner-gap); // Use the main gap for consistency
   border-bottom: var(--footer-border-width) solid var(--footer-border-color);
 }
 
 .page-footer__bottom {
-  padding-top: var(--footer-top-bottom-padding-y);
-  border-top: var(--footer-border-width) solid var(--footer-border-color);
+  // FIX: Removed the redundant `border-top` and its associated `padding-top`.
+  // The `gap` property on `.page-footer__inner` now correctly handles the
+  // spacing between the columns and the bottom bar.
 }
 
 @media (min-width: 768px) { // md breakpoint

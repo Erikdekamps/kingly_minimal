@@ -4,7 +4,8 @@
  * Theme override for a node in the 'full' view mode.
  *
  * This template acts as a bridge to the 'node-full' Single Directory Component.
- * It maps the variables available in this context to the props expected by the component.
+ * It maps the variables available in this context to the props expected by the
+ * component. The SDC now safely handles renderable variables.
  *
  * @see template_preprocess_node()
  * @see kingly_minimal/components/node-full/node-full.twig
@@ -20,6 +21,11 @@
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ]
 %}
+{#
+This bridge passes the raw `author_name` variable to the SDC.
+The SDC is now responsible for handling it safely within a {% trans %} block,
+preventing any fatal errors.
+#}
 {{ include('kingly_minimal:node-full', {
   label: label,
   page: page,

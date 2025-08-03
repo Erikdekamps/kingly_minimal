@@ -1,18 +1,19 @@
 {#
 /**
- * @file
- * Component template for a node teaser.
- *
- * This component structures the content for a node teaser. It delegates
- * rendering of the title, author picture, and content body to the `heading`,
- * `image`, and `text` components respectively. It safely assembles the
- * submission metadata using a `trans` block to prevent render array errors.
- *
- * @see kingly_minimal/components/node-teaser/node-teaser.component.yml
- *
- * @props
- * - (All props from YML file)
- */
+* @file
+* Component template for a node teaser.
+*
+* This component structures the content for a node teaser. It delegates
+* rendering of the title, author picture, and content body to the `heading`,
+* `image`, and `text` components respectively. It safely assembles the
+* submission metadata using a `trans` block to prevent render array errors,
+* and uses the correct Twig translation syntax.
+*
+* @see kingly_minimal/components/node-teaser/node-teaser.component.yml
+*
+* @props
+* - (All props from YML file)
+    */
 #}
 <article{{ attributes }}>
   {# Delegate rendering of the linked title to our Heading component. #}
@@ -33,11 +34,16 @@
 
       <div class="node__submitted">
         {#
-        Use the `trans` block to safely combine the author, date, and
-        metadata. This correctly handles cases where `author_name` is a
-        render array (a link) and avoids the "Array to string" error.
+        CRITICAL SYNTAX FIX: The `with` statement must be part of the opening
+        `trans` tag, not placed after the closing tag. This resolves the
+        fatal Twig syntax error.
         #}
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {% trans with {
+          '@author_name': author_name,
+          '@date': date,
+        } %}
+          Submitted by @author_name on @date
+        {% endtrans %}
         {{ metadata }}
       </div>
     </footer>

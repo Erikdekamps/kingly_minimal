@@ -14,15 +14,14 @@
  *   An associative array of variables passed to the theme hook.
  */
 function kingly_minimal_preprocess_html(array &$variables): void {
-  // Get the theme setting for the chosen variation.
-  $theme_variation = theme_get_setting('theme_variation');
-
   // If a theme has been selected (and it's not the default), add its class
   // to the body attributes. The 'theme-default' option results in no class,
   // allowing the standard component styles to apply.
-  if ($theme_variation && $theme_variation !== 'theme-default') {
-    $variables['attributes']['class'][] = $theme_variation;
+  $theme_variation = theme_get_setting('theme_variation');
+  if (!isset($theme_variation) || $theme_variation !== 'theme-default') {
+    return;
   }
+  $variables['attributes']['class'][] = $theme_variation;
 }
 
 /**
@@ -42,7 +41,8 @@ function kingly_minimal_preprocess_page(array &$variables): void {
 /**
  * Implements hook_preprocess_block().
  *
- * Use this preprocess function to attach component-specific libraries to blocks.
+ * Use this preprocess function to attach component-specific libraries to
+ * blocks.
  *
  * @param array $variables
  *   An associative array of variables passed to the theme hook.

@@ -36,10 +36,6 @@ props:
       type: object # Render array
       title: 'Suffix'
       description: 'The form element suffix.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<div>` wrapper.'
 
 slots:
   content:

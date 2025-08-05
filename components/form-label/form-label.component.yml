@@ -19,10 +19,7 @@ props:
       title: 'Is Required'
       description: 'If true, a "required" marker is added to the label.'
       default: false
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the `<label>` element.'
+
   required:
     - text
     - for_id

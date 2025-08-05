@@ -15,9 +15,6 @@ props:
       title: 'Wrapper Element'
       description: 'The HTML tag for the root element.'
       default: 'div'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root element.'
+
   required:
     - content

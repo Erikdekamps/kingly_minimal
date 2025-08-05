@@ -23,7 +23,3 @@ props:
       type: string
       title: 'Phone'
       description: '(Optional) The contact phone number.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'

@@ -29,10 +29,7 @@ props:
       title: 'Columns (Desktop)'
       description: 'The number of slides to show per page on desktop.'
       default: 3
-    attributes:
-      type: object
-      title: Attributes
-      description: 'A Drupal attributes object for the root wrapper element.'
+
   required:
     - uuid
 

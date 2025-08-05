@@ -16,7 +16,3 @@ props:
       title: 'Description'
       description: 'A short description or mission statement for the company. Passed to the `text` component.'
       default: 'Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'

@@ -25,9 +25,6 @@ props:
       type: string
       title: 'URL'
       description: '(Optional) If provided, the heading will be wrapped in a link.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'HTML attributes for the heading element.'
+
   required:
     - text

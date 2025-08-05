@@ -11,7 +11,3 @@ props:
       title: 'Prompt Text'
       description: 'The text to be displayed.'
       default: 'Get connected with us on social networks:'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the `<p>` wrapper element.'

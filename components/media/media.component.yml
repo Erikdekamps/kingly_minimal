@@ -10,10 +10,7 @@ props:
       type: object
       title: Media Entity
       description: 'The full media entity object. Used to determine the media type for dispatching.'
-    attributes:
-      type: object
-      title: Attributes
-      description: 'HTML attributes for the wrapper element, passed down to the sub-component.'
+
   required:
     - media_entity
 

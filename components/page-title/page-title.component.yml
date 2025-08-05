@@ -9,7 +9,3 @@ props:
       type: [ string, object ]
       title: Title
       description: 'The main page title text or render array, passed to the `heading` component.'
-    attributes:
-      type: object
-      title: Attributes
-      description: "HTML attributes for the component's root `<div>` wrapper element."

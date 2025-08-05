@@ -39,9 +39,6 @@ props:
     attachment_after:
       type: [ string, object ]
       title: 'Attachment After'
-    attributes:
-      type: object
-      title: 'Attributes'
     title_prefix:
       type: object
       title: 'Title Prefix'

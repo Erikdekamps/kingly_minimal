@@ -39,10 +39,7 @@ props:
       type: object # Render array
       title: 'Metadata'
       description: 'Additional metadata render array from Drupal (e.g., comment link).'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper `<article>` element.'
+
   required:
     - url
     - label

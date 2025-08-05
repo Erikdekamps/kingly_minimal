@@ -17,10 +17,6 @@ props:
         - 'grid-4-col'
         - 'featured-top'
         - 'featured-left'
-    attributes:
-      type: object
-      title: Attributes
-      description: 'A Drupal attributes object for the root `<ul>` wrapper element.'
 
 slots:
   content:

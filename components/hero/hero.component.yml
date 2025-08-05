@@ -33,10 +33,7 @@ props:
       description: 'The height variant of the hero section.'
       default: 'md'
       enum: [ 'sm', 'md', 'lg', 'xl' ]
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<section>` wrapper element.'
+
   required:
     - background_image
     - title

@@ -38,7 +38,3 @@ props:
       type: string
       title: 'URL'
       description: 'An optional URL to wrap the image in a link.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root element (`<figure>` or `<div>`).'

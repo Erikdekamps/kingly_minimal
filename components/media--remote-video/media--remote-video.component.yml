@@ -14,10 +14,7 @@ props:
       type: [ string, object ]
       title: Content
       description: 'The rendered video iframe.'
-    attributes:
-      type: object
-      title: Attributes
-      description: 'HTML attributes for the wrapper `<div>` element.'
+
   required:
     - media_entity
     - content

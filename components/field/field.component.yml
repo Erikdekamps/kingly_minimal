@@ -29,7 +29,3 @@ props:
       title: 'Multiple'
       description: 'TRUE if the field can contain multiple items. Affects wrapper markup.'
       default: false
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'HTML attributes for the root containing element.'

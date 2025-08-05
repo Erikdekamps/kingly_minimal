@@ -3,14 +3,6 @@ name: 'Checkboxes'
 status: stable
 description: 'A layout container for a group of checkbox items, typically arranging them in a responsive grid.'
 
-props:
-  type: object
-  properties:
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<div>` wrapper element.'
-
 slots:
   content:
     title: 'Content'

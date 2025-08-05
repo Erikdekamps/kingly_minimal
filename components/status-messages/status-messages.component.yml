@@ -14,7 +14,3 @@ props:
       type: object
       title: Status Headings
       description: 'An array of accessible headings for each message type.'
-    attributes:
-      type: object
-      title: Attributes
-      description: 'HTML attributes for the wrapper element.'

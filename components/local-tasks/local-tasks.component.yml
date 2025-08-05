@@ -16,7 +16,3 @@ props:
       title: 'Secondary Tasks'
       description: 'The renderable array of secondary task links.'
       default: { }
-    attributes:
-      type: object
-      title: Attributes
-      description: 'A Drupal attributes object for the root `<div>` wrapper.'

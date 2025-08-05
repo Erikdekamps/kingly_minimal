@@ -19,7 +19,3 @@ props:
       type: string
       title: 'Site Slogan'
       description: '(Optional) The slogan of the site. Display is controlled by block settings.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'HTML attributes for the root `<a>` wrapper element.'

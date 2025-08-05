@@ -19,10 +19,6 @@ props:
       title: 'Required'
       description: 'If true, a "required" marker is added to the title.'
       default: false
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root <details> element.'
 
 slots:
   content:

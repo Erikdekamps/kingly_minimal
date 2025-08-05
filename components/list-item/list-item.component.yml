@@ -3,14 +3,6 @@ name: 'List Item'
 status: stable
 description: 'Renders a list item (`<li>`) tag. Designed to be used inside the `kingly_minimal:list` component.'
 
-props:
-  type: object
-  properties:
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the `<li>` element.'
-
 slots:
   content:
     title: Content

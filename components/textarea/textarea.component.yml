@@ -10,7 +10,3 @@ props:
       type: string
       title: 'Value'
       description: 'The initial content of the textarea.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the <textarea> element.'

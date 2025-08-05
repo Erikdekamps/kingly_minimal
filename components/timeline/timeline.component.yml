@@ -3,14 +3,6 @@ name: 'Timeline'
 status: stable
 description: 'Renders a responsive, accessible timeline. Acts as a container for timeline-item content.'
 
-props:
-  type: object
-  properties:
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<div>` wrapper element.'
-
 slots:
   content:
     title: 'Timeline Items'

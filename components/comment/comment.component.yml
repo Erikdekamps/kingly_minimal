@@ -47,10 +47,7 @@ props:
       type: object
       title: 'Title Suffix'
       description: 'Render array for content after the title (e.g., from Drupal hooks).'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<article>` element.'
+
   required:
     - author_name
     - created_date

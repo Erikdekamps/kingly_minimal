@@ -29,9 +29,6 @@ props:
             type: string
             title: 'ARIA Label'
             description: '(Optional) Provides a distinct accessible name for the link, crucial if the link text is ambiguous (e.g., "Learn More").'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
+
   required:
     - title

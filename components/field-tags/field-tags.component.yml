@@ -11,7 +11,3 @@ props:
       title: 'Field Items'
       description: "An array of Drupal field items. The component will render each item's 'content', which is expected to be a link."
       default: [ ]
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<div>` wrapper element.'

@@ -16,7 +16,3 @@ props:
       title: 'Menu Level'
       description: 'The current depth of the menu, used for styling and semantics.'
       default: 0
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<ul>` element.'

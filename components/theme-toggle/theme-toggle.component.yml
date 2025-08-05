@@ -3,14 +3,6 @@ name: 'Theme Toggle'
 status: stable
 description: 'A button for toggling between light and dark themes. Requires JavaScript.'
 
-props:
-  type: object
-  properties:
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the `<button>` element.'
-
 libraryOverrides:
   dependencies:
     - core/drupal

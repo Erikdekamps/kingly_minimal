@@ -10,10 +10,6 @@ props:
       type: string
       title: 'Widget Title'
       description: 'The heading for the widget.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the wrapper element.'
 
 slots:
   content:

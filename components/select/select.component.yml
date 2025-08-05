@@ -10,7 +10,3 @@ props:
       type: string # The options are passed as a pre-rendered string of HTML.
       title: 'Options'
       description: 'The <option> tags to be rendered inside the select element.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the <select> element.'

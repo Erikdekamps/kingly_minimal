@@ -54,7 +54,3 @@ props:
     title_suffix:
       type: object
       title: 'Title Suffix'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<article>` element.'

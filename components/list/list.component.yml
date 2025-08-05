@@ -12,10 +12,6 @@ props:
       description: 'The type of list to render.'
       default: 'ul'
       enum: [ 'ul', 'ol' ]
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the list element.'
 
 slots:
   content:

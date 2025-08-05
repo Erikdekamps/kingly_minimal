@@ -3,14 +3,6 @@ name: 'Section'
 status: stable
 description: 'A generic container component, used to wrap content from Layout Paragraphs to ensure consistent containment.'
 
-props:
-  type: object
-  properties:
-    attributes:
-      type: object
-      title: Attributes
-      description: 'HTML attributes for the root `<div>` wrapper element.'
-
 slots:
   content:
     title: Content

@@ -14,10 +14,6 @@ props:
       type: [ string, object ]
       title: 'Content'
       description: 'The collapsible content within the item. Can be a string or a render array.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'HTML attributes for the root <details> element.'
     is_open:
       type: boolean
       title: 'Is Open by Default'

@@ -14,9 +14,6 @@ props:
       type: string
       title: 'Attribution'
       description: '(Optional) The source of the quote, such as a person or publication.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<blockquote>` element.'
+
   required:
     - quote_text

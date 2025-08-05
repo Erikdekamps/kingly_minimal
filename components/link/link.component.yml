@@ -14,10 +14,7 @@ props:
       type: string
       title: 'URL'
       description: 'The href attribute for the link.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the `<a>` element.'
+
   required:
     - text
     - url

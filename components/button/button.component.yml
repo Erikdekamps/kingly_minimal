@@ -37,7 +37,3 @@ props:
       type: string
       title: 'Icon After'
       description: 'The machine name of an icon (from `kingly_minimal:icon`) to display after the text.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for adding custom attributes like `type`, `aria-label`, etc.'

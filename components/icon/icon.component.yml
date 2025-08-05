@@ -14,9 +14,6 @@ props:
       type: string
       title: 'Accessible Label'
       description: 'The accessible text for the icon. If not provided, it defaults to a capitalized version of the name. Can be overridden by passing `aria-hidden` in attributes.'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<span>` wrapper.'
+
   required:
     - name

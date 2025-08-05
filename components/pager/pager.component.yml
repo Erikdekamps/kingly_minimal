@@ -16,7 +16,3 @@ props:
       title: 'Heading ID'
       description: 'The HTML ID for the visually hidden h4 heading, used for `aria-labelledby`.'
       default: 'pagination-heading'
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'A Drupal attributes object for the root `<nav>` element.'

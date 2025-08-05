@@ -5,10 +5,6 @@ description: 'Renders a list of social media icon links.'
 props:
   type: object
   properties:
-    attributes:
-      type: object
-      title: 'Attributes'
-      description: 'HTML attributes for the component''s root `<div>` wrapper element.'
     links:
       type: array
       title: 'Social Links'

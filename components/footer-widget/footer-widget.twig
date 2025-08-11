@@ -22,7 +22,7 @@
     {# Delegate rendering to the canonical `heading` component. #}
     {{ include('kingly_minimal:heading', {
       text: title,
-      level: 'h3',
+      level: 'h2',
       attributes: create_attribute().addClass('footer-widget__title')
     }, with_context = false) }}
   {% endif %}

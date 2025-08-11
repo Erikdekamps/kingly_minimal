@@ -21,12 +21,9 @@
   }
 
   .footer-link-list__link {
-    // WCAG 2.5.5 (AAA): Adjust min-height for padding to meet 44px target.
-    --_calculated-min-height: calc(var(--footer-link-min-height) - (var(--footer-link-padding-y) * 2));
-
     display: inline-flex;
     align-items: center;
-    min-height: var(--_calculated-min-height);
+    min-height: var(--footer-link-min-height);
     padding: var(--footer-link-padding-y) 0;
     color: var(--footer-link-text-color);
     text-decoration: none;

@@ -32,7 +32,7 @@
           {# WCAG 3.2.5: Warn users that the link opens in a new window. #}
           {% set warning_text = '(opens in a new window)'|t %}
           {% set accessible_name = link.text ~ ' ' ~ warning_text %}
-          <a href="{{ link.url }}" class="social-links__link" target="_blank" rel="noopener noreferrer" title="{{ accessible_name }}">
+          <a href="{{ link.url }}" class="social-links__link" target="_blank" rel="noopener noreferrer">
             <span class="visually-hidden">{{ accessible_name }}</span>
             {{ icon_svg|raw }}
           </a>

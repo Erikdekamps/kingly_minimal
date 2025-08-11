@@ -1,10 +1,13 @@
-import { defineConfig } from 'vite';
-import liveReload from 'vite-plugin-live-reload';
-import { globSync } from 'glob';
-import path from 'node:path';
-import { fileURLToPath, URL } from 'node:url';
-import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import autoprefixer from 'autoprefixer';
+import liveReload from 'vite-plugin-live-reload';
+import path from 'node:path';
+import react from '@vitejs/plugin-react'
+import twig from 'vite-plugin-twig-drupal';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import { defineConfig } from 'vite';
+import { fileURLToPath, URL } from 'node:url';
+import { globSync } from 'glob';
+import { join } from "node:path"
 
 // Get the absolute path to the theme directory in an ES Module context.
 const themePath = path.dirname(fileURLToPath(import.meta.url));
@@ -38,6 +41,28 @@ function viteCssOnlyPlugin() {
 // Export the main configuration object using defineConfig for type-safety.
 export default defineConfig({
   plugins: [
+    twig({
+      namespaces: {
+        components: join(__dirname, "components"),
+        // Other namespaces as required.
+      },
+      // Optional if you are using React storybook renderer. The default is 'html' and works with storybook's html
+      // renderer.
+      // framework: 'react'
+      functions: {
+        // You can add custom functions - each is a function that is passed the active Twig instance and should call
+        // e.g. extendFunction to register a function
+        reverse: (twigInstance) => twigInstance.extendFunction("reverse", () => (text) => text.split(' ').reverse().join(' ')),
+        // e.g. extendFilter to register a filter
+        clean_unique_id: (twigInstance) => twigInstance.extendFilter("clean_unique_id", () => (text) => text.split(' ').reverse().join(' ')),
+      },
+      globalContext: {
+        // Global variables that should be present in all templates.
+        active_theme: 'my_super_theme',
+        is_front_page: false,
+      },
+    }),
+    react(),
     liveReload([
       path.resolve(themePath, '**/*.twig'),
       path.resolve(themePath, '**/*.theme'),

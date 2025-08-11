@@ -13,3 +13,8 @@ node_modules/
 *.css.map
 *.js.map
 css/map
+
+# Ignore Storybook build output.
+storybook-static/
+
+*storybook.log

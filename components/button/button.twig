@@ -35,7 +35,7 @@
   {{ include('kingly_minimal:icon', {
     name: icon_before,
     attributes: create_attribute().addClass(base_class ~ '__icon', base_class ~ '__icon--before'),
-  }, with_context = false) }}
+  }) }}
 {% endif %}
 
   {% if text %}
@@ -46,6 +46,6 @@
     {{ include('kingly_minimal:icon', {
       name: icon_after,
       attributes: create_attribute().addClass(base_class ~ '__icon', base_class ~ '__icon--after'),
-    }, with_context = false) }}
+    }) }}
   {% endif %}
 </{{ tag }}>

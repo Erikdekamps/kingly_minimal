@@ -8,7 +8,6 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "@splidejs/splide": "^4.1.4",
     "autoprefixer": "^10.4.19",
     "glob": "^10.4.1",
     "postcss": "^8.4.38",

@@ -13,8 +13,6 @@ global-styles:
     - core/drupal
     - core/once
 
-# New library for all theme variations.
-# This will be attached globally via the .info.yml file.
 theme-variations:
   version: 1.x
   css:
@@ -24,9 +22,9 @@ theme-variations:
 splide:
   css:
     theme:
-      node_modules/@splidejs/splide/dist/css/splide.min.css: { }
+      https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css: { type: external, minified: true }
   js:
-    node_modules/@splidejs/splide/dist/js/splide.min.js: { }
+    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js: { type: external, minified: true }
 
 # Note: All other components like buttons, breadcrumbs, menus, etc., are now
 # Single Directory Components. The SDC module automatically discovers and

@@ -75,12 +75,6 @@ export default defineConfig({
             return '[name].css';
           }
 
-          // FIX: Correctly handle the theme variations entry point.
-          // The file is `theme.scss`, so the output asset name will be `scss/theme.css`.
-          if (entryPath === 'scss/theme.css') {
-            return 'dist/css/theme.css';
-          }
-
           if (entryPath.startsWith('scss/')) {
             // For other global SCSS files, place them in dist/css following their sub-path.
             const relativePath = path.relative('scss', entryPath);

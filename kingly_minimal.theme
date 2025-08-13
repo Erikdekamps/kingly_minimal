@@ -12,11 +12,6 @@
  * CSS overrides for the color settings configured in the theme UI.
  */
 function kingly_minimal_preprocess_html(array &$variables): void {
-  // Add the theme variation class to the body attributes.
-  $theme_variation = theme_get_setting('theme_variation');
-  if ($theme_variation && $theme_variation !== 'theme-default') {
-    $variables['attributes']['class'][] = $theme_variation;
-  }
 
   // Generate the dynamic CSS for all color overrides.
   $color_css = _kingly_minimal_generate_color_css();

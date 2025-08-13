@@ -7,6 +7,7 @@
   --breadcrumbs-border-color: #e1e1e1;
   --breadcrumbs-text-color: #222222;
   --breadcrumbs-link-hover-text-color: #004a94;
+  --breadcrumbs-link-min-height: 44px;
   --breadcrumbs-border-width: 1px;
   --breadcrumbs-padding-y: 0.5rem;
   --breadcrumbs-gap: 0.5rem;
@@ -72,6 +73,7 @@
   .breadcrumb__link {
     color: var(--breadcrumbs-text-color);
     text-decoration: none;
+    padding: 0.7rem 0.5rem;
 
     &:hover,
     &:focus-visible {

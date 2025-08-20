@@ -15,18 +15,6 @@ use Drupal\Core\Form\FormStateInterface;
  * for a manageable user experience.
  */
 function kingly_minimal_form_system_theme_settings_alter(&$form, FormStateInterface $form_state): void {
-  // Add a select element to choose the theme variation.
-  $form['theme_variation'] = [
-    '#type' => 'select',
-    '#title' => t('Theme Variation'),
-    '#description' => t('Select a visual theme for the site. This will apply a corresponding CSS class to the body tag, activating the chosen theme styles.'),
-    '#default_value' => theme_get_setting('theme_variation'),
-    '#options' => [
-      'theme-default' => t('Default Minimal'),
-      'theme-ocean' => t('Ocean'),
-    ],
-    '#weight' => -10,
-  ];
 
   // Main container for all color settings.
   $form['color_settings'] = [

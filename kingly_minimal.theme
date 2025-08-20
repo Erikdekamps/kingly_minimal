@@ -219,17 +219,17 @@ function _kingly_minimal_get_color_definitions(): array {
     'footer_bg_color' => [
       'property' => '--footer-bg-color',
       'default' => '#f4f5f6',
-      'selector' => '.page-footer',
+      'selector' => 'html .page-footer',
     ],
     'footer_text_color' => [
       'property' => '--footer-text-color',
       'default' => '#222222',
-      'selector' => '.page-footer',
+      'selector' => 'html .page-footer',
     ],
     'footer_border_color' => [
       'property' => '--footer-border-color',
       'default' => '#e1e1e1',
-      'selector' => '.page-footer',
+      'selector' => 'html .page-footer',
     ],
     'dark_footer_bg_color' => [
       'property' => '--footer-bg-color',
@@ -361,57 +361,57 @@ function _kingly_minimal_get_color_definitions(): array {
     'button_primary_bg_color' => [
       'property' => '--button-primary-bg-color',
       'default' => '#004a94',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_primary_text_color' => [
       'property' => '--button-primary-text-color',
       'default' => '#ffffff',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_primary_border_color' => [
       'property' => '--button-primary-border-color',
       'default' => '#004a94',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_primary_bg_color_hover' => [
       'property' => '--button-primary-bg-color-hover',
       'default' => '#003b76',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_primary_border_color_hover' => [
       'property' => '--button-primary-border-color-hover',
       'default' => '#003b76',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_secondary_bg_color' => [
       'property' => '--button-secondary-bg-color',
       'default' => 'transparent',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_secondary_text_color' => [
       'property' => '--button-secondary-text-color',
       'default' => '#004a94',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_secondary_border_color' => [
       'property' => '--button-secondary-border-color',
       'default' => '#004a94',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_secondary_bg_color_hover' => [
       'property' => '--button-secondary-bg-color-hover',
       'default' => '#004a94',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_secondary_text_color_hover' => [
       'property' => '--button-secondary-text-color-hover',
       'default' => '#ffffff',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'button_focus_ring_color' => [
       'property' => '--button-focus-ring-color',
       'default' => '#004a94',
-      'selector' => '.button',
+      'selector' => 'html .button',
     ],
     'dark_button_primary_bg_color' => [
       'property' => '--button-primary-bg-color',
@@ -703,12 +703,12 @@ function _kingly_minimal_get_color_definitions(): array {
     'footer_contact_link_text_color' => [
       'property' => '--footer-contact-link-text-color',
       'default' => '#222222',
-      'selector' => '.footer-contact',
+      'selector' => 'html .footer-contact',
     ],
     'footer_contact_link_text_color_hover' => [
       'property' => '--footer-contact-link-text-color-hover',
       'default' => '#004a94',
-      'selector' => '.footer-contact',
+      'selector' => 'html .footer-contact',
     ],
     'dark_footer_contact_link_text_color' => [
       'property' => '--footer-contact-link-text-color',
@@ -724,12 +724,12 @@ function _kingly_minimal_get_color_definitions(): array {
     'footer_link_text_color' => [
       'property' => '--footer-link-text-color',
       'default' => '#222222',
-      'selector' => '.footer-link-list',
+      'selector' => 'html .footer-link-list',
     ],
     'footer_link_text_color_hover' => [
       'property' => '--footer-link-text-color-hover',
       'default' => '#004a94',
-      'selector' => '.footer-link-list',
+      'selector' => 'html .footer-link-list',
     ],
     'dark_footer_link_text_color' => [
       'property' => '--footer-link-text-color',

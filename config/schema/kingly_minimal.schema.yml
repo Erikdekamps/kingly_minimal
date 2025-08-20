@@ -1,11 +1,9 @@
+# Defines the schema for the theme settings configuration.
+# This ensures that all color settings are correctly saved to the database.
 kingly_minimal.settings:
   type: theme_settings
   label: 'Kingly Minimal settings'
   mapping:
-    theme_variation:
-      type: string
-      label: 'The machine name of the selected theme variation.'
-
     # --------------------------------------------------------------------------
     # Global Colors (from _variables.scss)
     # --------------------------------------------------------------------------

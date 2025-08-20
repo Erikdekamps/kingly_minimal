@@ -13,12 +13,6 @@ global-styles:
     - core/drupal
     - core/once
 
-theme-variations:
-  version: 1.x
-  css:
-    theme:
-      dist/css/theme.css: { minified: true, weight: 10 } # Load after main styles
-
 splide:
   css:
     theme:

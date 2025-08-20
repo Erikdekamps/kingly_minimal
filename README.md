@@ -13,8 +13,9 @@ maintainability, and accessibility.
 * **Single Directory Components (SDC):** A fully component-based architecture
   for maximum encapsulation, reusability, and maintainability. Component
   assets (`.twig`, `.yml`, `.scss`, `.js`) are co-located.
-* **Theme Variations:** A robust system for creating and selecting alternative
-  color schemes for the entire site, configurable through the theme settings UI.
+* **Dynamic Color Overrides:** A comprehensive set of color settings are
+  available in the theme's admin UI, allowing site builders to override
+  nearly every color used in the theme without writing any code.
 * **WCAG AAA-Ready:** Enhanced with a high-contrast color palette, proper focus
   management, and semantic markup to meet or exceed accessibility standards.
 * **Responsive and Mobile-First:** Designed to work beautifully on all devices
@@ -24,159 +25,22 @@ maintainability, and accessibility.
 * **Clean Twig Templates:** Core and module template overrides are minimal,
   acting as bridges to pass data to SDCs.
 
-## Theme Variations
+## Color Customization
 
-This theme includes a powerful system that allows for multiple, selectable
-visual themes, called "variations." Each variation can provide a completely
-different color palette and feel for the site while sharing the same underlying
-layout and components.
-
-### For Site Builders: Selecting a Theme
-
-You can switch between available theme variations easily through the Drupal
-admin UI.
+This theme provides an extensive set of color override options directly in the
+Drupal admin UI, making it easy to customize the look and feel of your site.
 
 1. Navigate to the theme settings page at **Appearance > Settings > Kingly
    Minimal** (or go directly to `/admin/appearance/settings/kingly_minimal`).
-2. Find the **Theme Variation** select list.
-3. Choose your desired theme (e.g., "Default Minimal", "Ocean").
-4. Click **Save configuration**.
+2. Open the **Theme Color Overrides** fieldset.
+3. Inside, you will find collapsible sections for **Global Colors**, **Layout
+   Colors**, and **Component Colors**. Each section contains color pickers for
+   both light and dark modes.
+4. Change any color you wish to override.
+5. Click **Save configuration**.
 
-The selected theme will be applied globally across the site.
-
-### For Developers: Creating a New Theme Variation
-
-The theme variation system is designed to be easily extensible. All variations
-are powered by CSS Custom Properties, making new themes a matter of defining a
-new color palette, not rewriting component styles.
-
-Here’s a step-by-step guide to creating a new "Forest" theme.
-
-**Step 1: Create the SCSS Partial**
-
-Create a new SCSS partial file inside the `scss/themes/` directory. The file
-name should be prefixed with an underscore.
-
-* **File:** `scss/themes/_forest.scss`
-
-In this file, all styles must be wrapped in a class that matches the machine
-name you will register in Step 3 (e.g., `.theme-forest`).
-
-```scss
-// scss/themes/_forest.scss
-.theme-forest {
-  // All theme variables will go here.
-}
-```
-
-**Step 2: Define the Theme Palette and Mappings**
-
-Our architecture uses a tiered system for CSS variables. This ensures
-maintainability and makes it easy to create new themes and dark mode variants.
-
-* **Tier 1: The Palette:** Define a set of CSS variables for your theme's unique
-  color palette. This is the single source of truth for all colors in the "
-  Forest" theme. Define palettes for both light and dark modes.
-* **Tier 2: Global Mapping:** Map the theme's global semantic variables (
-  e.g., `--color-text`, `--color-primary`) to your new palette.
-* **Tier 3: Component Mapping:** Override specific component variables. This
-  allows for fine-grained control over individual components if the global
-  mapping isn't sufficient.
-
-Here is an example for `_forest.scss`:
-
-```scss
-// scss/themes/_forest.scss
-.theme-forest {
-
-  // --- TIER 1: FOREST THEME PALETTE ---
-  // Light Mode
-  --forest-primary: #2a6f2a;
-  --forest-primary-hover: #1e511e;
-  --forest-background: #fdfdfa;
-  --forest-text: #2c2921;
-  --forest-border: rgb(42 111 42 / 0.3);
-  // ...and so on for all required colors.
-
-  // --- TIER 2: GLOBAL VARIABLE MAPPING ---
-  --color-text: var(--forest-text);
-  --color-background: var(--forest-background);
-  --color-primary: var(--forest-primary);
-  --color-primary-hover: var(--forest-primary-hover);
-  --color-border: var(--forest-border);
-  // ...etc.
-
-  // --- TIER 3: COMPONENT VARIABLE MAPPING ---
-  [data-component-id='kingly_minimal:card'] {
-    --card-bg-color: var(--forest-background);
-    --card-border-color: var(--forest-border);
-  }
-
-  // ...etc.
-
-  // --- DARK MODE OVERRIDES ---
-  // We only need to redefine the Tier 1 palette; all mappings will inherit the new values.
-  html[data-theme="dark"] & {
-    --forest-primary: #6ab06a;
-    --forest-primary-hover: #83c183;
-    --forest-background: #2a2823;
-    --forest-text: #f0f0e8;
-    // ...etc.
-  }
-}
-```
-
-**Step 3: Import the New Theme**
-
-Open the main theme entry point and import your new partial.
-
-* **File:** `scss/theme.scss`
-
-```scss
-// ... existing theme imports
-@use 'themes/ocean';
-
-// Add your new theme
-@use 'themes/forest';
-```
-
-**Step 4: Register the Theme in the UI**
-
-To make your new theme selectable in the UI, you need to add it to the theme
-settings form.
-
-* **File:** `theme-settings.php`
-
-In the `kingly_minimal_form_system_theme_settings_alter` function, add your new
-theme to the `#options` array. The key should match the class name you created
-in Step 1.
-
-```php
-// ...
-'#options' => [
-  'theme-default' => t('Default Minimal'),
-  'theme-ocean' => t('Ocean'),
-  // Add your new theme here:
-  'theme-forest' => t('Forest'),
-],
-// ...
-```
-
-**Step 5: Compile and Test**
-
-Run the Vite build process to compile your new SCSS file into the
-global `theme.css` stylesheet.
-
-```bash
-# For development
-npm run dev
-
-# For production
-npm run build
-```
-
-Now, clear the Drupal cache (`drush cr`) and navigate to the theme settings
-page. Your "Forest" theme should be available in the dropdown.
+The changes will be applied instantly as inline CSS, overriding the theme's
+default values.
 
 ## Frontend Development Guidelines
 
@@ -260,8 +124,6 @@ correctly propagate throughout the entire component library.
   component directories.
 * **/scss:** Contains global SCSS files, including variables, mixins, resets,
   and base layout styles. These are compiled to the `/dist` directory.
-  * **/scss/themes:** Contains the SCSS partials for each available theme
-    variation.
 * **/dist:** The output directory for compiled global CSS assets. **This
   directory is automatically generated.**
 * **/templates:** Contains Drupal theme hook template overrides (
@@ -355,4 +217,3 @@ achieving 100% component-based rendering.
   already have specific SDC bridges (e.g.,
   `block--system-menu-block--main.html.twig`), but it would complete the
   component coverage.
-```

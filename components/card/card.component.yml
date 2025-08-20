@@ -34,8 +34,6 @@ props:
         url:
           type: string
           title: URL
-          required: true
         text:
           type: string
           title: Text
-          required: true

@@ -7,7 +7,6 @@ slots:
   content:
     title: 'Content'
     description: 'The slot where the individual `kingly_minimal:accordion-item` components should be placed.'
-    required: true
 
 libraryOverrides:
   dependencies:

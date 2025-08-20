@@ -7,4 +7,3 @@ slots:
   content:
     title: Content
     description: 'The content of the list item.'
-    required: true

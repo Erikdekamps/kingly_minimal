@@ -20,10 +20,8 @@ props:
         properties:
           text:
             type: string
-            required: true
           url:
             type: string
-            required: true
           # WCAG 2.4.9: Add an optional aria_label to disambiguate links with the same text.
           aria_label:
             type: string

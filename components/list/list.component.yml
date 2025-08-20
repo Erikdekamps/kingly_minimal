@@ -17,4 +17,3 @@ slots:
   content:
     title: Content
     description: 'The slot where `kingly_minimal:list-item` components should be placed.'
-    required: true

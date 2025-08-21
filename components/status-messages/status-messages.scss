@@ -11,19 +11,19 @@
   --message-item-margin-bottom: 0.25rem;
 
   // --- Status Theme ---
-  --status-text-color: #0d4f21;
-  --status-bg-color: #e6f4ea;
-  --status-border-color: #d0e8d8;
+  --color-status-text: #0d4f21;
+  --color-status-background: #e6f4ea;
+  --color-status-border: #d0e8d8;
 
   // --- Warning Theme ---
-  --warning-text-color: #614d00;
-  --warning-bg-color: #fff8e1;
-  --warning-border-color: #f2eacb;
+  --color-warning-text: #614d00;
+  --color-warning-background: #fff8e1;
+  --color-warning-border: #f2eacb;
 
   // --- Error Theme ---
-  --error-text-color: #8c101c;
-  --error-bg-color: #fdecea;
-  --error-border-color: #eecfca;
+  --color-error-text: #8c101c;
+  --color-error-background: #fdecea;
+  --color-error-border: #eecfca;
 
   padding: var(--message-padding);
   margin-bottom: var(--message-margin-bottom);
@@ -40,25 +40,25 @@
   }
 
   &.messages--status {
-    color: var(--status-text-color);
-    background-color: var(--status-bg-color);
-    border-color: var(--status-border-color);
+    color: var(--color-status-text);
+    background-color: var(--color-status-background);
+    border-color: var(--color-status-border);
   }
 
   &.messages--warning {
-    color: var(--warning-text-color);
-    background-color: var(--warning-bg-color);
-    border-color: var(--warning-border-color);
+    color: var(--color-warning-text);
+    background-color: var(--color-warning-background);
+    border-color: var(--color-warning-border);
   }
 
   &.messages--error {
-    color: var(--error-text-color);
-    background-color: var(--error-bg-color);
-    border-color: var(--error-border-color);
+    color: var(--color-error-text);
+    background-color: var(--color-error-background);
+    border-color: var(--color-error-border);
 
     a {
       // Use the error text color for links within error messages for high contrast.
-      color: var(--error-text-color);
+      color: var(--color-error-text);
       text-decoration: underline;
 
       &:hover,
@@ -71,15 +71,15 @@
 
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:status-messages'] {
-  --status-text-color: #c4f5cf;
-  --status-bg-color: #163b1f;
-  --status-border-color: #2a5e37;
+  --color-status-text: #c4f5cf;
+  --color-status-background: #163b1f;
+  --color-status-border: #2a5e37;
 
-  --warning-text-color: #ffeeb1;
-  --warning-bg-color: #4d3f0c;
-  --warning-border-color: #705b11;
+  --color-warning-text: #ffeeb1;
+  --color-warning-background: #4d3f0c;
+  --color-warning-border: #705b11;
 
-  --error-text-color: #fdd8db;
-  --error-bg-color: #5a1e22;
-  --error-border-color: #802a31;
+  --color-error-text: #fdd8db;
+  --color-error-background: #5a1e22;
+  --color-error-border: #802a31;
 }

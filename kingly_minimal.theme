@@ -91,8 +91,8 @@ function _kingly_minimal_get_color_definitions(): array {
       'default' => '#004a94',
       'selector' => 'body',
     ],
-    'color_status' => [
-      'property' => '--color-status',
+    'color_status_background' => [
+      'property' => '--color-status-background',
       'default' => '#e6f4ea',
       'selector' => 'body',
     ],
@@ -106,8 +106,8 @@ function _kingly_minimal_get_color_definitions(): array {
       'default' => '#d0e8d8',
       'selector' => 'body',
     ],
-    'color_warning' => [
-      'property' => '--color-warning',
+    'color_warning_background' => [
+      'property' => '--color-warning-background',
       'default' => '#fff8e1',
       'selector' => 'body',
     ],
@@ -121,8 +121,8 @@ function _kingly_minimal_get_color_definitions(): array {
       'default' => '#f2eacb',
       'selector' => 'body',
     ],
-    'color_error' => [
-      'property' => '--color-error',
+    'color_error_background' => [
+      'property' => '--color-error-background',
       'default' => '#fdecea',
       'selector' => 'body',
     ],

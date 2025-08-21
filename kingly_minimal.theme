@@ -47,10 +47,7 @@ function kingly_minimal_preprocess_html(array &$variables): void {
  *   An associative array defining all color settings.
  */
 function _kingly_minimal_get_color_definitions(): array {
-  $colors = [
-    // -------------------------------------------------------------------------
-    // Global Colors
-    // -------------------------------------------------------------------------
+  $base_colors = [
     'color_text' => [
       'property' => '--color-text',
       'default' => '#222222',
@@ -61,100 +58,82 @@ function _kingly_minimal_get_color_definitions(): array {
       'default' => '#ffffff',
       'selector' => 'body',
     ],
-    'color_primary' => [
-      'property' => '--color-primary',
-      'default' => '#004a94',
-      'selector' => 'body',
-    ],
-    'color_primary_hover' => [
-      'property' => '--color-primary-hover',
-      'default' => '#003b76',
-      'selector' => 'body',
-    ],
-    'color_border' => [
-      'property' => '--color-border',
-      'default' => '#e1e1e1',
-      'selector' => 'body',
-    ],
-    'color_light_gray' => [
-      'property' => '--color-light-gray',
-      'default' => '#f4f5f6',
-      'selector' => 'body',
-    ],
-    'color_rating' => [
-      'property' => '--color-rating',
-      'default' => '#f59e0b',
-      'selector' => 'body',
-    ],
-    'focus_ring_color' => [
-      'property' => '--focus-ring-color',
-      'default' => '#004a94',
-      'selector' => 'body',
-    ],
+  ];
+
+  $status_colors = [
     'color_status_background' => [
       'property' => '--color-status-background',
       'default' => '#e6f4ea',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
     'color_status_text' => [
       'property' => '--color-status-text',
       'default' => '#0d4f21',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
     'color_status_border' => [
       'property' => '--color-status-border',
       'default' => '#d0e8d8',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
+  ];
+
+  $warning_colors = [
     'color_warning_background' => [
       'property' => '--color-warning-background',
       'default' => '#fff8e1',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
     'color_warning_text' => [
       'property' => '--color-warning-text',
       'default' => '#614d00',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
     'color_warning_border' => [
       'property' => '--color-warning-border',
       'default' => '#f2eacb',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
+  ];
+
+  $error_colors = [
     'color_error_background' => [
       'property' => '--color-error-background',
       'default' => '#fdecea',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
     'color_error_text' => [
       'property' => '--color-error-text',
       'default' => '#8c101c',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
     'color_error_border' => [
       'property' => '--color-error-border',
       'default' => '#eecfca',
-      'selector' => 'body',
+      'selector' => '[data-component-id="kingly_minimal:status-messages"]',
     ],
-    // -------------------------------------------------------------------------
-    // Layout Colors
-    // -------------------------------------------------------------------------
-    'footer_background_color' => [
-      'property' => '--footer-bg-color',
+  ];
+
+  $footer_colors = [
+    'color_footer_background' => [
+      'property' => '--color-footer-background',
       'default' => '#f4f5f6',
       'selector' => 'body .page-footer',
     ],
-    'footer_text_color' => [
-      'property' => '--footer-text-color',
+    'color_footer_text' => [
+      'property' => '--color-footer-text',
       'default' => '#222222',
       'selector' => 'body .page-footer',
     ],
-    'footer_border_color' => [
-      'property' => '--footer-border-color',
+    'color_footer_border' => [
+      'property' => '--color-footer-border',
       'default' => '#e1e1e1',
       'selector' => 'body .page-footer',
     ],
   ];
+
+  // Combine all color definitions into a single array.
+  $colors = array_merge($base_colors, $status_colors, $warning_colors, $error_colors, $footer_colors);
 
   // Add a dark variant for each color setting.
   foreach ($colors as $key => $color) {

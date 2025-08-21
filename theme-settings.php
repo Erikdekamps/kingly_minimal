@@ -36,8 +36,9 @@ function kingly_minimal_form_system_theme_settings_alter(&$form, FormStateInterf
   $form['#attached']['drupalSettings']['olivero']['colorSchemes'] = $color_config['schemes'];
 
   $form['kingly_theme_settings']['kingly_theme_utilities'] = [
-    '#type' => 'fieldset',
+    '#type' => 'details',
     '#title' => t('Kingly theme Utilities'),
+    '#open' => FALSE,
   ];
   $form['kingly_theme_settings']['kingly_theme_utilities']['kingly_theme_color_scheme'] = [
     '#type' => 'fieldset',

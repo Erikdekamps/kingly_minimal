@@ -4,7 +4,7 @@ import { globSync } from 'glob';
 import path from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-import autoprefixer from 'autoprefixer';
+import postcssConfig from './postcss.config.js';
 
 // Get the absolute path to the theme directory in an ES Module context.
 const themePath = path.dirname(fileURLToPath(import.meta.url));
@@ -55,6 +55,7 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       // Define all SCSS files that are not partials as entry points.
+      // The glob pattern will automatically find our new scss/tailwind.scss.
       input: Object.fromEntries(
         globSync('{scss,components}/**/*.scss', {
           // Exclude all partials (files starting with _).
@@ -90,11 +91,8 @@ export default defineConfig({
   },
 
   css: {
-    postcss: {
-      plugins: [
-        autoprefixer({ grid: 'autoplace' }),
-      ],
-    },
+    // Point to the dedicated PostCSS config file.
+    postcss: postcssConfig,
     preprocessorOptions: {
       scss: {
         silenceDeprecations: [

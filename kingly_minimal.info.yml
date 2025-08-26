@@ -12,7 +12,7 @@ dependencies:
 # Component-specific assets are attached automatically by the SDC module.
 libraries:
   - kingly_minimal/global-styles
-  - kingly_minimal/theme-variations # Attach the new theme variations library
+  - kingly_minimal/tailwind-styles # Attach the new Tailwind CSS library globally
 
 # Define the regions for block placement.
 regions:

@@ -1,27 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './templates/**/*.twig',
-    './components/**/*.twig',
-  ],
+  content: ['./templates/**/*.twig', './components/**/*.twig'],
   theme: {
     extend: {
-      // By extending the theme's screens, we ensure that Tailwind's responsive
-      // utilities (like `md:text-center`) align perfectly with the breakpoints
-      // defined in kingly_minimal.breakpoints.yml. This creates a single
-      // source of truth for responsive design across CSS, JS, and Drupal's
-      // responsive image styles.
       screens: {
         sm: '500px',
         md: '768px',
         lg: '991px',
-        xl: '1280px',
+        xl: '1280px'
       },
-      // Map our existing CSS Custom Properties (Design Tokens) to Tailwind keys.
-      // This allows us to use utility classes like `bg-primary` or `p-md`,
-      // which will compile to `background-color: var(--color-primary);` or
-      // `padding: var(--spacing-md);`. This preserves our single source of truth
-      // in `_variables.scss` while leveraging Tailwind's class-based syntax.
       colors: {
         text: 'var(--color-text)',
         background: 'var(--color-background)',
@@ -38,18 +25,14 @@ export default {
         'warning-border': 'var(--color-warning-border)',
         error: 'var(--color-error)',
         'error-text': 'var(--color-error-text)',
-        'error-border': 'var(--color-error-border)',
-        // Component-specific color tokens
-        'footer-bg': 'var(--footer-bg-color)',
-        'footer-text': 'var(--footer-text-color)',
-        'footer-border': 'var(--footer-border-color)',
+        'error-border': 'var(--color-error-border)'
       },
       spacing: {
         xs: 'var(--spacing-xs)',
         sm: 'var(--spacing-sm)',
         md: 'var(--spacing-md)',
         lg: 'var(--spacing-lg)',
-        xl: 'var(--spacing-xl)',
+        xl: 'var(--spacing-xl)'
       },
       fontSize: {
         sm: 'var(--font-size-sm)',
@@ -59,21 +42,71 @@ export default {
         h4: 'var(--font-size-h4)',
         h3: 'var(--font-size-h3)',
         h2: 'var(--font-size-h2)',
-        h1: 'var(--font-size-h1)',
+        h1: 'var(--font-size-h1)'
       },
       fontFamily: {
         base: 'var(--font-family-base)',
-        heading: 'var(--font-family-heading)',
+        heading: 'var(--font-family-heading)'
       },
-      borderRadius: {
-        DEFAULT: 'var(--border-radius)',
-        circle: 'var(--border-radius-circle)',
+      fontWeight: {
+        normal: 'var(--font-weight-normal)',
+        medium: 'var(--font-weight-medium)',
+        semibold: 'var(--font-weight-semibold)',
+        bold: 'var(--font-weight-bold)'
       },
       lineHeight: {
         base: 'var(--line-height-base)',
-        heading: 'var(--line-height-heading)',
+        heading: 'var(--line-height-heading)'
       },
-    },
+      borderRadius: {
+        DEFAULT: 'var(--border-radius)',
+        circle: 'var(--border-radius-circle)'
+      },
+      borderWidth: {
+        thin: 'var(--border-width-thin)',
+        medium: 'var(--border-width-medium)',
+        thick: 'var(--border-width-thick)',
+        DEFAULT: 'var(--border-width)'
+      },
+      boxShadow: {
+        DEFAULT: 'var(--box-shadow)'
+      },
+      // Note: `sizing` is a custom theme key. This will generate utilities like
+      // `tw-sizing-target-min`, `tw-w-avatar`, `tw-h-avatar` etc.
+      width: {
+        avatar: 'var(--sizing-avatar)',
+        'branding-logo-sm': 'var(--sizing-branding-logo-sm)',
+        'branding-logo-lg': 'var(--sizing-branding-logo-lg)',
+        'icon-sm': 'var(--sizing-icon-sm)',
+        'icon-md': 'var(--sizing-icon-md)'
+      },
+      height: {
+        avatar: 'var(--sizing-avatar)',
+        'branding-logo-sm': 'var(--sizing-branding-logo-sm)',
+        'branding-logo-lg': 'var(--sizing-branding-logo-lg)',
+        'icon-sm': 'var(--sizing-icon-sm)',
+        'icon-md': 'var(--sizing-icon-md)'
+      },
+      minHeight: {
+        'target': 'var(--sizing-target-min)'
+      },
+      transitionDuration: {
+        fast: 'var(--transition-duration-fast)',
+        medium: 'var(--transition-duration-medium)',
+        slow: 'var(--transition-duration-slow)'
+      },
+      transitionTimingFunction: {
+        DEFAULT: 'var(--transition-timing-function)'
+      },
+      zIndex: {
+        default: 'var(--z-index-default)',
+        sticky: 'var(--z-index-sticky)',
+        'modal-backdrop': 'var(--z-index-modal-backdrop)',
+        modal: 'var(--z-index-modal)',
+        'skip-link': 'var(--z-index-skip-link)'
+      }
+    }
   },
-  plugins: [],
+  prefix: 'tw-',
+  plugins: []
 };

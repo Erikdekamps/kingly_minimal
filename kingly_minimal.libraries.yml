@@ -13,6 +13,17 @@ global-styles:
     - core/drupal
     - core/once
 
+# New library for Tailwind CSS.
+tailwind-styles:
+  version: 1.x
+  css:
+    theme:
+      # This points to the compiled tailwind.css file that Vite will generate.
+      dist/css/tailwind.css: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/once
+
 splide:
   css:
     theme:

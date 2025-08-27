@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "build:dev": "vite build --mode staging"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "glob": "^10.4.1",
     "postcss": "^8.4.38",
     "sass": "^1.77.4",
+    "tailwindcss": "^3.4.4",
     "vite": "^5.2.12",
     "vite-plugin-image-optimizer": "^1.1.7",
     "vite-plugin-live-reload": "^3.0.2"

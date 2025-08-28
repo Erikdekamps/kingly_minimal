@@ -3,8 +3,6 @@ global-styles:
   version: 1.x
   css:
     theme:
-      # Base styles (variables) needed on every page.
-      dist/css/base.css: { minified: true, weight: -20 }
       # Core layout structure for the page, header, and footer.
       dist/css/layout/page.css: { minified: true, weight: -10 }
       dist/css/layout/header.css: { minified: true, weight: -10 }

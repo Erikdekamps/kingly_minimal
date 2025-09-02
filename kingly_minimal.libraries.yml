@@ -5,7 +5,6 @@ global-styles:
     theme:
       # Core layout structure for the page, header, and footer.
       dist/css/layout/page.css: { minified: true, weight: -10 }
-      dist/css/layout/header.css: { minified: true, weight: -10 }
       dist/css/layout/footer.css: { minified: true, weight: -10 }
   dependencies:
     - core/drupal

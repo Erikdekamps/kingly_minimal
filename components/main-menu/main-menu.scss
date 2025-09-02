@@ -5,9 +5,17 @@
   // --- Tier 3: Component-Scoped Design Tokens ---
   --main-menu-gap: 0.5rem;
   --main-menu-mobile-link-border-radius: 0;
+  --main-menu-mobile-padding-y: var(--spacing-sm);
+  --main-menu-mobile-padding-x: var(--spacing-md);
 
   // On mobile, the nav container takes up the available width.
   width: 100%;
+
+  // Apply padding inside the animated container for the mobile slide-down menu.
+  @media (max-width: 767px) {
+    // Only apply vertical padding to the container itself.
+    padding-block: var(--main-menu-mobile-padding-y);
+  }
 
   // On desktop, align the menu to the right.
   @media (min-width: 768px) { // md breakpoint
@@ -23,14 +31,20 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: var(--main-menu-gap);
+
+      // Remove left padding on the first item's link for clean alignment.
+      .menu__item:first-child .menu__link {
+        padding-left: 0;
+      }
     }
   }
 
   .menu__link {
-    // On mobile, the main menu links are full-width and have no side padding.
+    // On mobile, the main menu links are full-width.
     @media (max-width: 767px) { // max-md breakpoint
       width: 100%;
-      padding-inline: 0;
+      // Apply horizontal padding directly to the link for a full-width hover state.
+      padding-inline: var(--main-menu-mobile-padding-x);
       border-radius: var(--main-menu-mobile-link-border-radius);
     }
   }

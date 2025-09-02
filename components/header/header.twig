@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Component template for the site header.
+ *
+ * This component provides the structure for the site header, including slots for
+ * branding and navigation, and the hamburger menu toggle for mobile view. The
+ * toggle button is essential for accessibility and is controlled by header.js.
+ *
+ * CORRECTION: Removed the incorrect `{% if branding %}` and `{% if navigation %}`
+ * checks. The component should simply render its slots; the decision to populate
+ * them is made by the parent template (page.html.twig).
+ *
+ * @see kingly_minimal/components/header/header.component.yml
+ *
+ * @props
+ * - logo_position_class: (String) An optional CSS modifier class for layout.
+ * - attributes: (Object) A Drupal attributes object for the root element.
+ *
+ * @slots
+ * - branding: The slot for the site branding component.
+ * - navigation: The slot for the main navigation menu component.
+ */
+#}
+{% set base_class = 'header' %}
+{% set classes = [
+  base_class,
+  logo_position_class,
+] %}
+
+<header{{ attributes.addClass(classes) }} data-component-id="kingly_minimal:header">
+  <div class="{{ base_class }}__branding">
+    {% block branding %}{% endblock %}
+  </div>
+
+  <div class="{{ base_class }}__nav-container">
+    {#
+    This button controls the visibility of the navigation on mobile.
+    - `aria-controls`: Links the button to the navigation wrapper.
+    - `aria-expanded`: Announces the state (expanded/collapsed) to screen readers.
+    - `aria-label`: Provides a clear, accessible name.
+    #}
+    <button
+      class="{{ base_class }}__toggle"
+      aria-controls="main-menu-wrapper"
+      aria-expanded="false"
+      aria-label="{{ 'Toggle main navigation'|t }}"
+    >
+      <span class="{{ base_class }}__toggle-icon">
+        {# These three spans create the hamburger icon and will be animated into a close 'X'. #}
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    {# This wrapper is targeted by the toggle button for show/hide functionality. #}
+    <div class="{{ base_class }}__nav-wrapper" id="main-menu-wrapper">
+      {% block navigation %}{% endblock %}
+    </div>
+  </div>
+</header>

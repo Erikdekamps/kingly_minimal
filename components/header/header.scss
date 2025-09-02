@@ -1,0 +1,175 @@
+// -----------------------------------------------------------------------------
+// Header Component Styles
+// -----------------------------------------------------------------------------
+[data-component-id='kingly_minimal:header'] {
+  // --- Tier 3: Component-Scoped Design Tokens ---
+  --header-padding-y: var(--spacing-sm);
+  --header-padding-x: 0;
+  --header-gap: var(--spacing-lg);
+  --header-nav-wrapper-transition-duration: var(--transition-duration-slow);
+  --header-toggle-size: var(--sizing-target-min);
+  --header-toggle-padding: var(--spacing-sm);
+  --header-toggle-border-radius: var(--border-radius);
+  --header-toggle-focus-ring-color: var(--color-primary);
+  --header-toggle-icon-bar-height: 2px;
+  --header-toggle-icon-gap: 6px; // This now controls the space between bars
+  --header-toggle-icon-transition-duration: var(--transition-duration-medium);
+  --_transition-timing: var(--transition-timing-function);
+
+  // --- Base Layout (Flexbox) ---
+  // Add position: relative to act as an anchor for the absolute positioned nav wrapper.
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--header-gap);
+  padding: var(--header-padding-y) var(--header-padding-x);
+
+  // --- Branding & Navigation Containers ---
+  .header__branding {
+    flex: 0 1 auto;
+    // Ensure the branding is always visible above the mobile menu
+    z-index: calc(var(--z-index-sticky) + 1);
+  }
+
+  .header__nav-container {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  // --- Mobile Navigation Toggle (Hamburger Button) ---
+  .header__toggle {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: var(--header-toggle-padding);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--header-toggle-size);
+    height: var(--header-toggle-size);
+    border-radius: var(--header-toggle-border-radius);
+    color: var(--color-text);
+    // Ensure the toggle is always visible above the mobile menu
+    z-index: calc(var(--z-index-sticky) + 1);
+
+    &:focus-visible {
+      outline: var(--border-width-medium) solid var(--header-toggle-focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    // --- REFACTORED ICON ANIMATION ---
+    .header__toggle-icon {
+      position: relative;
+      width: 24px; // Fixed width for stability
+      height: 24px;
+
+      span {
+        position: absolute;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: var(--header-toggle-icon-bar-height);
+        background-color: currentColor;
+        border-radius: 99px;
+        transition: transform var(--header-toggle-icon-transition-duration) var(--_transition-timing),
+        top var(--header-toggle-icon-transition-duration) var(--_transition-timing),
+        opacity var(--header-toggle-icon-transition-duration) var(--_transition-timing);
+      }
+
+      // Position the three bars using `top`
+      span:nth-child(1) {
+        top: calc(50% - var(--header-toggle-icon-gap) - var(--header-toggle-icon-bar-height));
+      }
+
+      span:nth-child(2) {
+        top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
+      }
+
+      span:nth-child(3) {
+        top: calc(50% + var(--header-toggle-icon-gap));
+      }
+    }
+  }
+
+  // --- Hamburger to 'X' Animation (Now using absolute positioning) ---
+  .header__toggle[aria-expanded='true'] .header__toggle-icon {
+    span:nth-child(1) {
+      top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
+      transform: rotate(45deg);
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
+      transform: rotate(-45deg);
+    }
+  }
+
+  // --- Collapsible Navigation Wrapper ---
+  .header__nav-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--header-nav-wrapper-transition-duration) var(--_transition-timing);
+    position: absolute;
+    // Use the header's bottom edge as the reference point
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-background);
+    z-index: var(--z-index-sticky);
+    border-bottom: var(--border-width) solid var(--color-border);
+    // CRITICAL FIX: Remove padding from the animated container.
+    // padding: 0 var(--header-padding-x) var(--spacing-md);
+
+    &.is-open {
+      max-height: 50vh;
+    }
+  }
+
+  // --- Logo Position Modifier ---
+  &.header--logo-right {
+    .header__branding {
+      order: 2;
+    }
+
+    .header__nav-container {
+      order: 1;
+      justify-content: flex-start;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Desktop Styles (`md` breakpoint and up)
+  // ---------------------------------------------------------------------------
+  @media (min-width: 768px) {
+    .header__toggle {
+      display: none;
+    }
+
+    .header__nav-wrapper {
+      position: static;
+      max-height: none;
+      overflow: visible;
+      background-color: transparent;
+      border-bottom: none;
+      padding: 0;
+    }
+  }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] [data-component-id='kingly_minimal:header'] {
+  --header-toggle-focus-ring-color: var(--color-primary-hover);
+
+  .header__nav-wrapper {
+    background-color: var(--color-background);
+    border-bottom-color: var(--color-border);
+  }
+}

@@ -16,3 +16,11 @@ props:
       title: 'Menu Level'
       description: 'The current depth of the menu, used for styling and semantics.'
       default: 0
+
+# Add the library override to attach our new JavaScript file.
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+  js:
+    menu.js: {}

@@ -1,21 +1,22 @@
 {#
 /**
- * @file
- * Component template for a menu.
- *
- * This component's macro now uses the `kingly_minimal:link` SDC to render the
- * actual link, centralizing link creation logic. It also safely handles
- * attribute objects from menu items.
- *
- * @see kingly_minimal/components/menu/menu.component.yml
- *
- * @props
- * - items: (Array) A nested list of menu items.
- * - menu_level: (Number) The current depth of the menu.
- * - attributes: (Object) A Drupal attributes object for the root <ul> element.
- */
+* @file
+* Component template for a menu.
+*
+* DEFINITIVE CORRECTION: This version fixes a critical bug in the aria-label
+* by using the correct '@' placeholder in the translation filter. This prevents
+* Drupal from injecting an <em> tag into the HTML attribute, ensuring the
+* component is fully accessible and error-free.
+*
+* @see kingly_minimal/components/menu/menu.component.yml
+*
+* @props
+* - items: (Array) A nested list of menu items.
+* - menu_level: (Number) The current depth of the menu.
+* - attributes: (Object) A Drupal attributes object for the root <ul> element.
+    */
 #}
-{% import _self as menus %}
+    {% import _self as menus %}
 
 {# Call the macro which calls itself to render the full tree. #}
 {{ menus.menu_links(items, attributes, menu_level|default(0)) }}
@@ -23,11 +24,13 @@
 {% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
   {% if items %}
+    {% set menu_id = 'menu-level-' ~ menu_level ~ '-' ~ random() %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level) }}>
+      <ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level).setAttribute('id', menu_id) }}>
     {% else %}
-      <ul class="menu__sub-menu menu--level-{{ menu_level }}">
+      <ul class="menu__sub-menu menu--level-{{ menu_level }}" id="{{ attributes.id }}">
     {% endif %}
+
     {% for item in items %}
       {%
         set item_classes = [
@@ -38,35 +41,60 @@
         item.in_active_trail ? 'menu__item--active-trail',
       ]
       %}
-      {#
-      FIX: Convert item.attributes (a plain array) into a proper Attribute
-      object before attempting to add classes to it.
-      #}
       {% set item_attributes = create_attribute(item.attributes) %}
       {% do item_attributes.addClass(item_classes) %}
 
       <li{{ item_attributes }}>
-        {%
-          set link_classes = [
-          'menu__link',
-          'menu__link--level-' ~ menu_level,
-          item.in_active_trail ? 'is-active',
-        ]
-        %}
-        {# WCAG 2.4.8 (AAA): Add 'aria-current="page"' to the active link. #}
-        {% set link_attributes = create_attribute().addClass(link_classes) %}
-        {% if item.in_active_trail %}
-          {% do link_attributes.setAttribute('aria-current', 'page') %}
+        {% set link_wrapper_classes = ['menu__link-wrapper'] %}
+        {% if item.below %}
+          {% do link_wrapper_classes.push('menu__link-wrapper--has-children') %}
         {% endif %}
 
-        {{ include('kingly_minimal:link', {
-          text: item.title,
-          url: item.url,
-          attributes: link_attributes,
-        }, with_context = false) }}
+        <div class="{{ link_wrapper_classes|join(' ') }}">
+          {%
+            set link_classes = [
+            'menu__link',
+            'menu__link--level-' ~ menu_level,
+            item.in_active_trail ? 'is-active',
+          ]
+          %}
+          {% set link_attributes = create_attribute().addClass(link_classes) %}
+          {% if item.in_active_trail %}
+            {% do link_attributes.setAttribute('aria-current', 'page') %}
+          {% endif %}
+
+          {{ include('kingly_minimal:link', {
+            text: item.title,
+            url: item.url,
+            attributes: link_attributes,
+          }, with_context = false) }}
+
+          {% if item.below %}
+            {% set title_text = item.title|render|striptags|trim %}
+            {% set sub_menu_id = 'sub-menu-' ~ random() %}
+            <button
+              class="menu__sub-menu-toggle"
+              aria-expanded="false"
+              aria-controls="{{ sub_menu_id }}"
+              {#
+              DEFINITIVE FIX: Use the '@' placeholder to prevent Drupal's
+              translation system from wrapping the title in an <em> tag.
+              #}
+              aria-label="{{ 'Show @title sub-menu'|t({'@title': title_text}) }}"
+            >
+              {#
+              The icon is purely decorative here, so we pass aria-hidden=true
+              to the icon component to prevent it from outputting a redundant
+              accessible name. The button's aria-label handles accessibility.
+              #}
+              {{ include('kingly_minimal:icon', { name: 'chevron-down', 'attributes': create_attribute({'aria-hidden': 'true'}) }, with_context = false) }}
+            </button>
+          {% endif %}
+        </div>
 
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          {% set sub_menu_attributes = create_attribute().setAttribute('id', sub_menu_id) %}
+          {{ menus.menu_links(item.below, sub_menu_attributes, menu_level + 1) }}
         {% endif %}
       </li>
     {% endfor %}

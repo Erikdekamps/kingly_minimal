@@ -1,11 +1,11 @@
 /*
- * =============================================================================
- * DESIGN TOKENS (CSS CUSTOM PROPERTIES)
- * =============================================================================
- * This is the single source of truth for all design system values. These
- * variables are used by Tailwind's configuration (`tailwind.config.js`) and
- * can also be used directly in any other SCSS or component files.
- */
+* =============================================================================
+* DESIGN TOKENS (CSS CUSTOM PROPERTIES)
+* =============================================================================
+* This is the single source of truth for all design system values. These
+* variables are used by Tailwind's configuration (`tailwind.config.js`) and
+* can also be used directly in any other SCSS or component files.
+  */
 :root {
   // --- Brand & Neutral Palette ---
   --color-blue-200: #a5d8ff;
@@ -79,6 +79,7 @@
   /* ----------------------------------------------------------------------- */
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
+  --font-size-lg: 1.125rem; /* New: For larger interface text like navigation */
   --font-size-h6: 1rem;
   --font-size-h5: 1.125rem;
   --font-size-h4: 1.25rem;
@@ -140,17 +141,17 @@
 }
 
 /*
- * =============================================================================
- * DARK MODE OVERRIDES
- * =============================================================================
- * All dark mode variable overrides are defined here.
- */
+* =============================================================================
+* DARK MODE OVERRIDES
+* =============================================================================
+* All dark mode variable overrides are defined here.
+  */
 [data-theme="dark"] {
   /* Add dark mode variables here when needed.
-   * Example:
-   * --color-text: #e1e1e1;
-   * --color-background: #121212;
-   */
+  * Example:
+  * --color-text: #e1e1e1;
+  * --color-background: #121212;
+    */
 
   --color-text: var(--color-gray-200);
   --color-background: var(--color-gray-950);
@@ -175,12 +176,12 @@
 }
 
 /*
- * =============================================================================
- * TAILWIND IMPORTS
- * =============================================================================
- * This is the primary SCSS entry point for Vite. It imports Tailwind's base
- * styles, components, and utilities after defining our global design tokens.
- */
+* =============================================================================
+* TAILWIND IMPORTS
+* =============================================================================
+* This is the primary SCSS entry point for Vite. It imports Tailwind's base
+* styles, components, and utilities after defining our global design tokens.
+  */
 //@tailwind base;
 @tailwind components;
 @tailwind utilities;

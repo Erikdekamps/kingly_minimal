@@ -2,9 +2,9 @@
 // Footer Social Prompt Component Styles
 // -----------------------------------------------------------------------------
 .footer-social-prompt {
-  // This component is intentionally unstyled. It renders a simple <p> tag
-  // and inherits all its typographic styles (font size, color) directly
-  // from the parent .page-footer element in footer.scss.
+  // This component is intentionally minimally styled
+  // It renders a simple <p> tag with just enough styling to ensure proper spacing
+  margin: 0;
 }
 
 // --- Dark Mode Overrides ---

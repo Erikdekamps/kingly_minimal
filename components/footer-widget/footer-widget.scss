@@ -13,8 +13,9 @@
     // The `heading` component inherits color from its parent, which is set
     // in `footer.scss`. Font weight and family are also handled by `heading`.
     text-transform: var(--footer-widget-title-text-transform);
-    font-size: var(--footer-widget-title-font-size);
-    margin-bottom: var(--footer-widget-title-margin-bottom);
+    font-size: var(--font-size-h5, 1.125rem);
+    margin-bottom: var(--spacing-sm, 0.5rem);
+    margin-top: 0;
   }
 }
 

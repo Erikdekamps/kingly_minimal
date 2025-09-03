@@ -15,7 +15,7 @@
   .footer-link-list__list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: var(--spacing-sm, 0.5rem) 0;
     display: grid;
     gap: var(--footer-links-list-gap);
   }

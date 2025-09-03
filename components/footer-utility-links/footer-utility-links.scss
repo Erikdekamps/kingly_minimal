@@ -19,6 +19,11 @@
   flex-wrap: wrap;
   justify-content: center; // Center on mobile.
   gap: var(--utility-links-gap-y) var(--utility-links-gap-x);
+  
+  // Ensure the toggle container aligns properly
+  .footer-utility-links__toggle {
+    display: inline-flex;
+  }
 
   .footer-utility-links__list {
     list-style: none;

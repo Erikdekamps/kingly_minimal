@@ -17,6 +17,9 @@
   --_hover-translate-y: -2px;
   --_hover-bg-opacity: 90%;
   --_transition-timing-function: ease-in-out;
+  
+  // Ensure component displays as flex when used in containers like the footer
+  display: flex;
 
   .social-links__list {
     list-style: none;

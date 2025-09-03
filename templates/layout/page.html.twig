@@ -82,86 +82,80 @@
   </main>
 
   {# Begin Footer Section #}
-  <footer class="page-footer" role="contentinfo">
-    <div class="page-footer__inner">
+  {% embed 'kingly_minimal:footer' with {
+    attributes: create_attribute().addClass('page-footer').setAttribute('role', 'contentinfo')
+  } %}
+    {% block top_left %}
+      {{ page.footer_top_left ? page.footer_top_left : include('kingly_minimal:footer-social-prompt', {
+        text: 'Get connected with us on social networks:'
+      }) }}
+    {% endblock %}
 
-      <div class="page-footer__top">
-        <div class="footer-top-left">
-          {{ page.footer_top_left ? page.footer_top_left : include('kingly_minimal:footer-social-prompt', {
-            text: 'Get connected with us on social networks:'
-          }) }}
-        </div>
-        <div class="footer-top-right">
-          {{ page.footer_top_right ? page.footer_top_right : include('kingly_minimal:social-links', {
-            links: [
-              { url: 'https://www.facebook.com', text: 'Facebook' },
-              { url: 'https://www.twitter.com', text: 'Twitter' },
-              { url: 'https://www.linkedin.com', text: 'LinkedIn' },
-              { url: 'https://www.instagram.com', text: 'Instagram' }
-            ]
-          }) }}
-        </div>
-      </div>
+    {% block top_right %}
+      {{ page.footer_top_right ? page.footer_top_right : include('kingly_minimal:social-links', {
+        links: [
+          { url: 'https://www.facebook.com', text: 'Facebook' },
+          { url: 'https://www.twitter.com', text: 'Twitter' },
+          { url: 'https://www.linkedin.com', text: 'LinkedIn' },
+          { url: 'https://www.instagram.com', text: 'Instagram' }
+        ]
+      }) }}
+    {% endblock %}
 
-      <div class="page-footer__columns">
-        <div class="page-footer__column footer-first">
-          {{ page.footer_first ? page.footer_first : include('kingly_minimal:footer-company-info', {
-            company_name: 'Company Name',
-            description: 'Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-          }) }}
-        </div>
+    {% block first_column %}
+      {{ page.footer_first ? page.footer_first : include('kingly_minimal:footer-company-info', {
+        company_name: 'Company Name',
+        description: 'Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+      }) }}
+    {% endblock %}
 
-        <div class="page-footer__column footer-second">
-          {{ page.footer_second ? page.footer_second : include('kingly_minimal:footer-link-list', {
-            title: 'Products',
-            links: [
-              { text: 'Product 1', url: '#' },
-              { text: 'Product 2', url: '#' },
-              { text: 'Product 3', url: '#' }
-            ]
-          }) }}
-        </div>
+    {% block second_column %}
+      {{ page.footer_second ? page.footer_second : include('kingly_minimal:footer-link-list', {
+        title: 'Products',
+        links: [
+          { text: 'Product 1', url: '#' },
+          { text: 'Product 2', url: '#' },
+          { text: 'Product 3', url: '#' }
+        ]
+      }) }}
+    {% endblock %}
 
-        <div class="page-footer__column footer-third">
-          {{ page.footer_third ? page.footer_third : include('kingly_minimal:footer-link-list', {
-            title: 'Useful links',
-            links: [
-              { text: 'Pricing', url: '#' },
-              { text: 'Settings', url: '#' },
-              { text: 'Orders', url: '#' },
-              { text: 'Learn More', url: '/about-us', aria_label: 'Learn more about our company' }
-            ]
-          }) }}
-        </div>
+    {% block third_column %}
+      {{ page.footer_third ? page.footer_third : include('kingly_minimal:footer-link-list', {
+        title: 'Useful links',
+        links: [
+          { text: 'Pricing', url: '#' },
+          { text: 'Settings', url: '#' },
+          { text: 'Orders', url: '#' },
+          { text: 'Learn More', url: '/about-us', aria_label: 'Learn more about our company' }
+        ]
+      }) }}
+    {% endblock %}
 
-        <div class="page-footer__column footer-fourth">
-          {{ page.footer_fourth ? page.footer_fourth : include('kingly_minimal:footer-contact', {
-            title: 'Contact',
-            address: 'Dummy address',
-            email: 'info@example.com',
-            phone: '+ 01 234 567 89'
-          }) }}
-        </div>
-      </div>
+    {% block fourth_column %}
+      {{ page.footer_fourth ? page.footer_fourth : include('kingly_minimal:footer-contact', {
+        title: 'Contact',
+        address: 'Dummy address',
+        email: 'info@example.com',
+        phone: '+ 01 234 567 89'
+      }) }}
+    {% endblock %}
 
-      <div class="page-footer__bottom">
-        <div class="footer-bottom-left">
-          {{ page.footer_bottom_left ? page.footer_bottom_left : include('kingly_minimal:footer-copyright', {
-            text: '© [year] Copyright: example.com'
-          }) }}
-        </div>
-        <div class="footer-bottom-right">
-          {{ page.footer_bottom_right ? page.footer_bottom_right : include('kingly_minimal:footer-utility-links', {
-            links: [
-              { text: 'Contact', url: '/contact' }
-            ],
-            show_theme_toggle: true
-          }) }}
-        </div>
-      </div>
+    {% block bottom_left %}
+      {{ page.footer_bottom_left ? page.footer_bottom_left : include('kingly_minimal:footer-copyright', {
+        text: '© [year] Copyright: example.com'
+      }) }}
+    {% endblock %}
 
-    </div>
-  </footer>
+    {% block bottom_right %}
+      {{ page.footer_bottom_right ? page.footer_bottom_right : include('kingly_minimal:footer-utility-links', {
+        links: [
+          { text: 'Contact', url: '/contact' }
+        ],
+        show_theme_toggle: true
+      }) }}
+    {% endblock %}
+  {% endembed %}
   {# End Footer Section #}
 
 </div>{# /.layout-container #}

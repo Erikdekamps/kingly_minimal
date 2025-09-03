@@ -116,10 +116,6 @@
     }
 
     .menu__item--level-0 {
-      &:not(:last-child) {
-        border-right: var(--border-width) solid var(--main-menu-divider-color);
-      }
-
       &:first-child .menu__link {
         padding-left: 0;
       }

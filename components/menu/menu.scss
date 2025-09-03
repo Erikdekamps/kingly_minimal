@@ -45,13 +45,6 @@
       color: var(--menu-link-text-color-active);
     }
   }
-
-  // --- Sub-menu ---
-  .menu__sub-menu {
-    // Sub-menus are typically hidden by default and would be revealed by JS
-    // in a more complex implementation. For now, they are not displayed.
-    display: none;
-  }
 }
 
 // --- Dark Mode Overrides ---

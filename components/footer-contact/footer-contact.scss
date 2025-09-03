@@ -13,6 +13,11 @@
   --_icon-vertical-offset: 0.125rem; // ~2px
   --_transition-timing-function: ease-in-out;
 
+  address {
+    margin: var(--spacing-sm, 0.5rem) 0;
+    font-style: normal;
+  }
+
   .footer-contact__list {
     list-style: none;
     margin: 0;

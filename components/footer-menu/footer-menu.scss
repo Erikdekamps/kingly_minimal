@@ -1,13 +1,16 @@
-// -----------------------------------------------------------------------------
-// Footer Menu Component Styles
-// -----------------------------------------------------------------------------
+/*
+ * Styles for a menu placed in the footer region.
+ */
 [data-component-id='kingly_minimal:footer-menu'] {
-  // --- Tier 3: Component-Scoped Design Tokens ---
-  --footer-menu-link-active-text-color: #222222;
-  --footer-menu-gap-y: 0.5rem;
-  --footer-menu-gap-x: 1rem;
-  --footer-menu-link-font-size: 0.875rem;
+  // --- Component-Scoped Design Tokens ---
+  --footer-menu-link-active-text-color: var(--color-text);
+  --footer-menu-gap-y: var(--spacing-sm);
+  --footer-menu-gap-x: var(--spacing-md);
+  --footer-menu-link-font-size: var(--font-size-sm);
   --footer-menu-link-font-weight: 400;
+
+  // Ensure the component does not inherit unwanted background colors.
+  background-color: transparent;
 
   // Override the layout of the generic menu for the footer context.
   .menu {
@@ -41,5 +44,5 @@
 
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:footer-menu'] {
-  --footer-menu-link-active-text-color: #e1e1e1;
+  --footer-menu-link-active-text-color: var(--color-text);
 }

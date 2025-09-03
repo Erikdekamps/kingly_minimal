@@ -1,0 +1,101 @@
+/*
+ * file: components/footer/footer.scss
+ * Provides the complete styling for the site footer component.
+ *
+ * This component uses a three-part structure with full-bleed top and bottom
+ * bars framing a central, constrained columns area.
+ */
+.footer {
+  // --- Component-Scoped Design Tokens ---
+  --footer-bg-color: var(--color-light-gray);
+  --footer-text-color: var(--color-text);
+  --footer-border-color: var(--color-border);
+  --footer-font-size: var(--font-size-sm);
+
+  // --- Layout Variables ---
+  --_footer-inner-max-width: var(--page-container-max-width, 1280px);
+  --_footer-inner-padding-x: var(--spacing-md);
+  --_footer-main-gap: var(--spacing-md);
+  --_footer-top-bottom-gap: var(--spacing-md);
+  --_footer-grid-columns: 12;
+
+  // --- Main Structure (Root element) ---
+  background-color: var(--footer-bg-color);
+  font-size: var(--footer-font-size);
+  color: var(--footer-text-color);
+}
+
+// --- Top Bar (Full-Width Wrapper) ---
+.footer__top {
+  border-bottom: var(--border-width) solid var(--footer-border-color);
+}
+
+// --- Top & Bottom Bar Inner Content ---
+.footer__top-inner,
+.footer__bottom-inner {
+  max-width: var(--_footer-inner-max-width);
+  margin-inline: auto;
+  padding: var(--spacing-md) var(--_footer-inner-padding-x);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--_footer-top-bottom-gap);
+  justify-content: center; // Default for mobile.
+}
+
+// --- Main Columns Area (Constrained Width) ---
+.footer__inner {
+  max-width: var(--_footer-inner-max-width);
+  margin-inline: auto;
+  padding: var(--spacing-lg) var(--_footer-inner-padding-x); // Generous padding for content.
+}
+
+// --- Bottom Bar (Full-Width Wrapper) ---
+.footer__bottom {
+  background-color: var(--color-background);
+  border-top: var(--border-width) solid var(--footer-border-color);
+  // Definitive Fix: Explicitly set the color to the main page text color.
+  // This will be correctly inherited by all child elements and components.
+  color: var(--color-text);
+}
+
+// --- Responsive alignment for top and bottom bars ---
+@media (min-width: 768px) { // md breakpoint
+  .footer__top-inner,
+  .footer__bottom-inner {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) { // max-md breakpoint
+  .footer__bottom-left,
+  .footer__bottom-right {
+    flex-basis: 100%;
+    text-align: center;
+  }
+}
+
+// --- Footer Columns Grid ---
+.footer__columns {
+  display: grid;
+  grid-template-columns: repeat(var(--_footer-grid-columns), 1fr);
+  gap: var(--_footer-main-gap);
+}
+
+.footer__column {
+  grid-column: 1 / -1; // Mobile default
+  @media (min-width: 768px) {
+    grid-column: span 6;
+  }
+  // Tablet
+  @media (min-width: 991px) {
+    grid-column: span 3;
+  }
+  // Desktop
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] .footer {
+  --footer-bg-color: var(--color-gray-900);
+  --footer-border-color: var(--color-border);
+}

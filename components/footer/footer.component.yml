@@ -1,0 +1,34 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Footer'
+status: stable
+description: 'Renders the main site footer with customizable sections and columns.'
+
+props:
+  type: object
+  properties: { }
+
+slots:
+  top_left:
+    title: 'Top Left'
+    description: 'Slot for the top left footer content (e.g., social prompt).'
+  top_right:
+    title: 'Top Right'
+    description: 'Slot for the top right footer content (e.g., social links).'
+  first_column:
+    title: 'First Column'
+    description: 'Slot for the first footer column (e.g., company info).'
+  second_column:
+    title: 'Second Column'
+    description: 'Slot for the second footer column (e.g., products links).'
+  third_column:
+    title: 'Third Column'
+    description: 'Slot for the third footer column (e.g., useful links).'
+  fourth_column:
+    title: 'Fourth Column'
+    description: 'Slot for the fourth footer column (e.g., contact info).'
+  bottom_left:
+    title: 'Bottom Left'
+    description: 'Slot for the bottom left footer content (e.g., copyright).'
+  bottom_right:
+    title: 'Bottom Right'
+    description: 'Slot for the bottom right footer content (e.g., utility links).'

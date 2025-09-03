@@ -1,0 +1,72 @@
+{#
+/**
+* @file
+* Component template for the site footer.
+*
+* This component uses a three-part structure to create a full-bleed design for
+* the top and bottom bars, while constraining all content to the site's max-width.
+*
+* @see kingly_minimal/components/footer/footer.component.yml
+*
+* @props
+* - attributes: (Object) A Drupal attributes object for the root element.
+*
+* @slots
+* - top_left: Slot for the top left footer content.
+* - top_right: Slot for the top right footer content.
+* - first_column: Slot for the first footer column.
+* - second_column: Slot for the second footer column.
+* - third_column: Slot for the third footer column.
+* - fourth_column: Slot for the fourth footer column.
+* - bottom_left: Slot for the bottom left footer content.
+* - bottom_right: Slot for the bottom right footer content.
+    */
+#}
+{% set base_class = 'footer' %}
+
+<footer{{ attributes.addClass(base_class) }} data-component-id="kingly_minimal:footer">
+  {# Part 1: Full-width top bar. #}
+  <div class="{{ base_class }}__top">
+    <div class="{{ base_class }}__top-inner">
+      <div class="{{ base_class }}__top-left">
+        {% block top_left %}{% endblock %}
+      </div>
+      <div class="{{ base_class }}__top-right">
+        {% block top_right %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {# Part 2: Constrained-width columns area. #}
+  <div class="{{ base_class }}__inner">
+    <div class="{{ base_class }}__columns">
+      <div class="{{ base_class }}__column {{ base_class }}__column--first">
+        {% block first_column %}{% endblock %}
+      </div>
+
+      <div class="{{ base_class }}__column {{ base_class }}__column--second">
+        {% block second_column %}{% endblock %}
+      </div>
+
+      <div class="{{ base_class }}__column {{ base_class }}__column--third">
+        {% block third_column %}{% endblock %}
+      </div>
+
+      <div class="{{ base_class }}__column {{ base_class }}__column--fourth">
+        {% block fourth_column %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {# Part 3: Full-width bottom bar. #}
+  <div class="{{ base_class }}__bottom">
+    <div class="{{ base_class }}__bottom-inner">
+      <div class="{{ base_class }}__bottom-left">
+        {% block bottom_left %}{% endblock %}
+      </div>
+      <div class="{{ base_class }}__bottom-right">
+        {% block bottom_right %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</footer>

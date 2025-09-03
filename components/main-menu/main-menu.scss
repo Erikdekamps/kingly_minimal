@@ -11,6 +11,7 @@
   --main-menu-desktop-sub-menu-min-width: 200px;
   --main-menu-mobile-sub-menu-bg: color-mix(in srgb, var(--color-text), transparent 95%);
   --main-menu-toggle-size: var(--sizing-target-min);
+  --main-menu-toggle-focus-ring-color: var(--color-primary);
 
   .menu__item {
     position: relative; // Anchor for the sub-menu.
@@ -40,10 +41,19 @@
     height: var(--main-menu-toggle-size);
     flex-shrink: 0;
     transition: transform 0.2s ease-in-out;
+    border-radius: var(--border-radius);
 
     .icon > svg {
       width: 20px;
       height: 20px;
+    }
+
+    // Add a specific focus-visible style for the toggle button.
+    // This has higher specificity than the global reset and ensures the
+    // focus outline is always visible for keyboard users.
+    &:focus-visible {
+      outline: var(--border-width-medium) solid var(--main-menu-toggle-focus-ring-color);
+      outline-offset: 2px;
     }
   }
 
@@ -57,7 +67,7 @@
   // Mobile Accordion Styles (md breakpoint and down)
   // ===========================================================================
   @media (max-width: 767px) {
-    // NEW: Add a border between each top-level menu item for vertical spacing.
+    // Add a border between each top-level menu item for vertical spacing.
     .menu--level-0 > .menu__item {
       border-bottom: var(--border-width) solid var(--main-menu-divider-color);
 
@@ -179,6 +189,7 @@
     --main-menu-divider-color: var(--color-border);
     --main-menu-desktop-sub-menu-bg: var(--color-gray-800);
     --main-menu-mobile-sub-menu-bg: color-mix(in srgb, var(--color-text), transparent 90%);
+    --main-menu-toggle-focus-ring-color: var(--color-primary-hover);
 
     .menu__sub-menu-toggle {
       color: var(--color-text);

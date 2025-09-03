@@ -1,0 +1,80 @@
+// file: scss/components/node.scss
+//
+// Provides consolidated styles for Node view modes after removing the
+// corresponding Single Directory Components.
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Node Teaser Styles
+// -----------------------------------------------------------------------------
+.node--view-mode-teaser {
+  --node-teaser-border-color: var(--color-border);
+
+  display: grid;
+  gap: var(--spacing-sm);
+  padding-bottom: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--node-teaser-border-color);
+
+  // --- Metadata (Submitted by...) ---
+  .node__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .node__submitted {
+    font-size: var(--font-size-sm);
+    color: inherit;
+  }
+
+  .user-picture img {
+    border-radius: var(--border-radius-circle);
+    overflow: hidden;
+  }
+
+  // --- Main Teaser Content ---
+  .node__content {
+    > *:not(:last-child) {
+      margin-bottom: var(--spacing-md);
+    }
+  }
+}
+
+// --- Dark Mode Overrides for Teaser ---
+html[data-theme="dark"] .node--view-mode-teaser {
+  // In dark mode, this variable will correctly point to the dark theme's
+  // border color, so no new value is needed here. This just ensures the
+  // rule is present.
+  --node-teaser-border-color: var(--color-border);
+}
+
+
+// -----------------------------------------------------------------------------
+// Node Full View Styles
+// -----------------------------------------------------------------------------
+.node--view-mode-full {
+  // --- Metadata (Submitted by...) ---
+  .node__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .node__submitted {
+    font-size: var(--font-size-sm);
+    color: inherit;
+  }
+
+  .user-picture img {
+    border-radius: var(--border-radius-circle);
+    overflow: hidden;
+  }
+
+  // --- Main Content ---
+  .node__content {
+    > *:not(:last-child) {
+      margin-bottom: var(--spacing-lg);
+    }
+  }
+}

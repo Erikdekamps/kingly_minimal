@@ -49,13 +49,12 @@
       max-height: 50vh; // A reasonable max height for the menu to expand to.
     }
 
-    // Apply the border and spacing to the content *inside* the wrapper.
-    // This ensures these properties are part of the animated reveal/hide,
-    // which prevents the "glitchy" closing effect where the border disappears instantly.
+    // Apply vertical spacing to the content *inside* the wrapper.
+    // This creates a gap between the header and the menu when it opens, and
+    // ensures the space animates smoothly, fixing the "glitch".
+    // The visual border separators are now handled in main-menu.scss.
     > * {
-      padding-top: var(--spacing-sm);
       margin-top: var(--spacing-sm);
-      border-top: var(--border-width) solid var(--color-border);
     }
   }
 
@@ -167,7 +166,6 @@
       > * {
         padding-top: 0;
         margin-top: 0;
-        border-top: none;
       }
     }
   }
@@ -176,14 +174,4 @@
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:header'] {
   --header-toggle-focus-ring-color: var(--color-primary-hover);
-
-  .header__nav-wrapper > * {
-    border-top-color: var(--color-border);
-  }
-
-  @media (min-width: 768px) {
-    .header__nav-wrapper > * {
-      border-top-color: transparent;
-    }
-  }
 }

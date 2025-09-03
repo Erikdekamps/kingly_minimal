@@ -57,6 +57,16 @@
   // Mobile Accordion Styles (md breakpoint and down)
   // ===========================================================================
   @media (max-width: 767px) {
+    // NEW: Add a border between each top-level menu item for vertical spacing.
+    .menu--level-0 > .menu__item {
+      border-bottom: var(--border-width) solid var(--main-menu-divider-color);
+
+      // Add a top border to the first item to match.
+      &:first-child {
+        border-top: var(--border-width) solid var(--main-menu-divider-color);
+      }
+    }
+
     .menu__sub-menu {
       overflow: hidden;
       max-height: 0;

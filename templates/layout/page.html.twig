@@ -4,20 +4,19 @@
  * Theme override to display a single page.
  *
  * This template has been updated to use the new `header` SDC, simplifying the
- * header structure.
+ * header structure and encapsulating all of its logic.
  */
 #}
 <div class="layout-container">
 
-  {# This wrapper groups the header and breadcrumbs. It will be styled as a
+  {# This wrapper groups the header and breadcrumbs. It is styled as a
      full-width subgrid in page.scss to ensure correct alignment. #}
   <div class="page-header-wrapper">
     {#
-    Embed the new header component.
+    Embed our new header component.
     - The `branding` and `main_navigation` regions are passed into the
-      component's slots.
-    - We can add the `header--logo-right` class here to test the logo
-      position modifier.
+      component's `branding` and `navigation` slots respectively.
+    - This single embed replaces the previous, more complex header markup.
     #}
     {% embed 'kingly_minimal:header' with {
       logo_position_class: 'header--logo-right',

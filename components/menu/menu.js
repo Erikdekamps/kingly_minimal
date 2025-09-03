@@ -25,7 +25,7 @@
           const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
 
           // Toggle ARIA attribute for accessibility.
-          toggleButton.setAttribute('aria-expanded', !isExpanded);
+          toggleButton.setAttribute('aria-expanded', String(!isExpanded));
 
           // Toggle the class on the parent list item to trigger the animation.
           item.classList.toggle('is-open');
@@ -44,4 +44,5 @@
       menus.forEach(initMenu);
     },
   };
+
 })(Drupal, once);

@@ -34,23 +34,22 @@
     transition: background-color var(--menu-link-transition-duration) var(--_transition-timing-function);
     color: var(--menu-link-text-color);
 
-    &:hover,
-    &:focus-visible {
+    &:hover {
       background-color: var(--menu-link-bg-color-hover);
       text-decoration: none;
+    }
+
+    // Decouple focus from hover. Add a distinct, high-contrast
+    // outline using our global focus variables for consistency.
+    &:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
     }
 
     &.is-active {
       font-weight: var(--menu-link-font-weight-active);
       color: var(--menu-link-text-color-active);
     }
-  }
-
-  // --- Sub-menu ---
-  .menu__sub-menu {
-    // Sub-menus are typically hidden by default and would be revealed by JS
-    // in a more complex implementation. For now, they are not displayed.
-    display: none;
   }
 }
 

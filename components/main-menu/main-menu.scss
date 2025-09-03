@@ -11,6 +11,7 @@
   --main-menu-desktop-sub-menu-min-width: 200px;
   --main-menu-mobile-sub-menu-bg: color-mix(in srgb, var(--color-text), transparent 95%);
   --main-menu-toggle-size: var(--sizing-target-min);
+  --main-menu-toggle-focus-ring-color: var(--color-primary);
 
   .menu__item {
     position: relative; // Anchor for the sub-menu.
@@ -40,10 +41,19 @@
     height: var(--main-menu-toggle-size);
     flex-shrink: 0;
     transition: transform 0.2s ease-in-out;
+    border-radius: var(--border-radius);
 
     .icon > svg {
       width: 20px;
       height: 20px;
+    }
+
+    // Add a specific focus-visible style for the toggle button.
+    // This has higher specificity than the global reset and ensures the
+    // focus outline is always visible for keyboard users.
+    &:focus-visible {
+      outline: var(--focus-ring-width) solid var(--main-menu-toggle-focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
     }
   }
 
@@ -57,6 +67,16 @@
   // Mobile Accordion Styles (md breakpoint and down)
   // ===========================================================================
   @media (max-width: 767px) {
+    // Add a border between each top-level menu item for vertical spacing.
+    .menu--level-0 > .menu__item {
+      border-bottom: var(--border-width) solid var(--main-menu-divider-color);
+
+      // Add a top border to the first item to match.
+      &:first-child {
+        border-top: var(--border-width) solid var(--main-menu-divider-color);
+      }
+    }
+
     .menu__sub-menu {
       overflow: hidden;
       max-height: 0;
@@ -96,11 +116,6 @@
     }
 
     .menu__item--level-0 {
-      &:not(:last-child) {
-        border-right: var(--border-width) solid var(--main-menu-divider-color);
-      }
-
-      // REGRESSION FIX: Restore left padding removal for the first item for clean alignment.
       &:first-child .menu__link {
         padding-left: 0;
       }
@@ -110,7 +125,6 @@
       padding-inline: var(--main-menu-desktop-link-padding-x);
     }
 
-    // NEW: Add a chevron icon for desktop dropdowns using a pseudo-element.
     .menu__item--expanded > .menu__link-wrapper > .menu__link {
       &::after {
         content: '';
@@ -125,14 +139,17 @@
       }
     }
 
-    // NEW: Rotate the chevron when the menu is open.
     .menu__item--expanded:hover > .menu__link-wrapper > .menu__link::after,
     .menu__item--expanded:focus-within > .menu__link-wrapper > .menu__link::after {
       transform: rotate(180deg);
     }
 
     .menu__sub-menu {
-      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(var(--spacing-xs));
+      transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s ease-in-out;
+
       position: absolute;
       top: 100%;
       left: 0;
@@ -149,9 +166,18 @@
     }
 
     .menu__item.menu__item--expanded {
-      &:hover > .menu__sub-menu,
-      &:focus-within > .menu__sub-menu {
-        display: block;
+      &:hover,
+      &:focus-within {
+        // STACKING CONTEXT FIX:
+        // Elevate the parent `li` to ensure its sub-menu (and the focus
+        // outlines within it) are rendered on top of sibling menu items.
+        z-index: 10;
+
+        > .menu__sub-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
       }
     }
   }
@@ -161,6 +187,7 @@
     --main-menu-divider-color: var(--color-border);
     --main-menu-desktop-sub-menu-bg: var(--color-gray-800);
     --main-menu-mobile-sub-menu-bg: color-mix(in srgb, var(--color-text), transparent 90%);
+    --main-menu-toggle-focus-ring-color: var(--color-primary-hover);
 
     .menu__sub-menu-toggle {
       color: var(--color-text);

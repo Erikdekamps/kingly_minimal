@@ -3,23 +3,22 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:header'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --header-padding-y: var(--spacing-sm);
+  --header-padding-y: var(--spacing-md);
   --header-padding-x: 0;
-  --header-gap: var(--spacing-lg);
+  --header-gap: var(--spacing-md);
   --header-nav-wrapper-transition-duration: var(--transition-duration-slow);
   --header-toggle-size: var(--sizing-target-min);
   --header-toggle-padding: var(--spacing-sm);
   --header-toggle-border-radius: var(--border-radius);
   --header-toggle-focus-ring-color: var(--color-primary);
   --header-toggle-icon-bar-height: 2px;
-  --header-toggle-icon-gap: 6px; // This now controls the space between bars
+  --header-toggle-icon-gap: 6px;
   --header-toggle-icon-transition-duration: var(--transition-duration-medium);
   --_transition-timing: var(--transition-timing-function);
 
   // --- Base Layout (Flexbox) ---
-  // Add position: relative to act as an anchor for the absolute positioned nav wrapper.
-  position: relative;
   display: flex;
+  flex-wrap: wrap; // Allow nav wrapper to break to a new line on mobile.
   align-items: center;
   justify-content: space-between;
   gap: var(--header-gap);
@@ -28,14 +27,35 @@
   // --- Branding & Navigation Containers ---
   .header__branding {
     flex: 0 1 auto;
-    // Ensure the branding is always visible above the mobile menu
-    z-index: calc(var(--z-index-sticky) + 1);
+    z-index: 2;
   }
 
   .header__nav-container {
     flex: 1 1 auto;
     display: flex;
     justify-content: flex-end;
+  }
+
+  // --- Collapsible Navigation Wrapper ---
+  // On mobile, this wrapper takes full width and sits below the other items.
+  .header__nav-wrapper {
+    flex-basis: 100%;
+    order: 3; // Ensure it appears after branding and nav-container in flow.
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--header-nav-wrapper-transition-duration) var(--_transition-timing);
+
+    &.is-open {
+      max-height: 50vh; // A reasonable max height for the menu to expand to.
+    }
+
+    // Apply vertical spacing to the content *inside* the wrapper.
+    // This creates a gap between the header and the menu when it opens, and
+    // ensures the space animates smoothly, fixing the "glitch".
+    // The visual border separators are now handled in main-menu.scss.
+    > * {
+      margin-top: var(--spacing-sm);
+    }
   }
 
   // --- Mobile Navigation Toggle (Hamburger Button) ---
@@ -53,18 +73,16 @@
     height: var(--header-toggle-size);
     border-radius: var(--header-toggle-border-radius);
     color: var(--color-text);
-    // Ensure the toggle is always visible above the mobile menu
-    z-index: calc(var(--z-index-sticky) + 1);
+    z-index: 2;
 
     &:focus-visible {
       outline: var(--border-width-medium) solid var(--header-toggle-focus-ring-color);
       outline-offset: 2px;
     }
 
-    // --- REFACTORED ICON ANIMATION ---
     .header__toggle-icon {
       position: relative;
-      width: 24px; // Fixed width for stability
+      width: 24px;
       height: 24px;
 
       span {
@@ -80,7 +98,6 @@
         opacity var(--header-toggle-icon-transition-duration) var(--_transition-timing);
       }
 
-      // Position the three bars using `top`
       span:nth-child(1) {
         top: calc(50% - var(--header-toggle-icon-gap) - var(--header-toggle-icon-bar-height));
       }
@@ -95,7 +112,7 @@
     }
   }
 
-  // --- Hamburger to 'X' Animation (Now using absolute positioning) ---
+  // --- Hamburger to 'X' Animation ---
   .header__toggle[aria-expanded='true'] .header__toggle-icon {
     span:nth-child(1) {
       top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
@@ -109,27 +126,6 @@
     span:nth-child(3) {
       top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
       transform: rotate(-45deg);
-    }
-  }
-
-  // --- Collapsible Navigation Wrapper ---
-  .header__nav-wrapper {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height var(--header-nav-wrapper-transition-duration) var(--_transition-timing);
-    position: absolute;
-    // Use the header's bottom edge as the reference point
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--color-background);
-    z-index: var(--z-index-sticky);
-    border-bottom: var(--border-width) solid var(--color-border);
-    // CRITICAL FIX: Remove padding from the animated container.
-    // padding: 0 var(--header-padding-x) var(--spacing-md);
-
-    &.is-open {
-      max-height: 50vh;
     }
   }
 
@@ -149,17 +145,28 @@
   // Desktop Styles (`md` breakpoint and up)
   // ---------------------------------------------------------------------------
   @media (min-width: 768px) {
+    flex-wrap: nowrap; // Prevent wrapping on desktop.
+
     .header__toggle {
       display: none;
     }
 
+    .header__nav-container {
+      justify-content: flex-end;
+    }
+
+    // The wrapper no longer needs special layout styles for desktop.
     .header__nav-wrapper {
-      position: static;
+      flex-basis: auto;
+      order: 0; // Reset order.
       max-height: none;
       overflow: visible;
-      background-color: transparent;
-      border-bottom: none;
-      padding: 0;
+
+      // Unset the mobile fix for desktop.
+      > * {
+        padding-top: 0;
+        margin-top: 0;
+      }
     }
   }
 }
@@ -167,9 +174,4 @@
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:header'] {
   --header-toggle-focus-ring-color: var(--color-primary-hover);
-
-  .header__nav-wrapper {
-    background-color: var(--color-background);
-    border-bottom-color: var(--color-border);
-  }
 }

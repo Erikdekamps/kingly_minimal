@@ -34,10 +34,16 @@
     transition: background-color var(--menu-link-transition-duration) var(--_transition-timing-function);
     color: var(--menu-link-text-color);
 
-    &:hover,
-    &:focus-visible {
+    &:hover {
       background-color: var(--menu-link-bg-color-hover);
       text-decoration: none;
+    }
+
+    // Decouple focus from hover. Add a distinct, high-contrast
+    // outline using our global focus variables for consistency.
+    &:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
     }
 
     &.is-active {

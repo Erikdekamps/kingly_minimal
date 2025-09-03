@@ -52,8 +52,8 @@
     // This has higher specificity than the global reset and ensures the
     // focus outline is always visible for keyboard users.
     &:focus-visible {
-      outline: var(--border-width-medium) solid var(--main-menu-toggle-focus-ring-color);
-      outline-offset: 2px;
+      outline: var(--focus-ring-width) solid var(--main-menu-toggle-focus-ring-color);
+      outline-offset: var(--focus-ring-offset);
     }
   }
 
@@ -149,10 +149,6 @@
     }
 
     .menu__sub-menu {
-      // Replace `display: none` with opacity and visibility. This allows the
-      // browser to "see" the sub-menu links for keyboard tabbing, while
-      // keeping them visually hidden and inaccessible to screen readers until
-      // they are revealed.
       opacity: 0;
       visibility: hidden;
       transform: translateY(var(--spacing-xs));
@@ -174,12 +170,18 @@
     }
 
     .menu__item.menu__item--expanded {
-      &:hover > .menu__sub-menu,
-      &:focus-within > .menu__sub-menu {
-        // Reveal the sub-menu on hover or when a child element has focus.
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+      &:hover,
+      &:focus-within {
+        // STACKING CONTEXT FIX:
+        // Elevate the parent `li` to ensure its sub-menu (and the focus
+        // outlines within it) are rendered on top of sibling menu items.
+        z-index: 10;
+
+        > .menu__sub-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
       }
     }
   }

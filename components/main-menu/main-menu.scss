@@ -129,7 +129,15 @@
     }
 
     .menu__sub-menu {
-      display: none;
+      // Replace `display: none` with opacity and visibility. This allows the
+      // browser to "see" the sub-menu links for keyboard tabbing, while
+      // keeping them visually hidden and inaccessible to screen readers until
+      // they are revealed.
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(var(--spacing-xs));
+      transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s ease-in-out;
+
       position: absolute;
       top: 100%;
       left: 0;
@@ -148,7 +156,10 @@
     .menu__item.menu__item--expanded {
       &:hover > .menu__sub-menu,
       &:focus-within > .menu__sub-menu {
-        display: block;
+        // Reveal the sub-menu on hover or when a child element has focus.
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
       }
     }
   }

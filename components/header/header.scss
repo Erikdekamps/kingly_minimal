@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 [data-component-id='kingly_minimal:header'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
-  --header-padding-y: var(--spacing-sm);
+  --header-padding-y: var(--spacing-md);
   --header-padding-x: 0;
   --header-gap: var(--spacing-lg);
   --header-nav-wrapper-transition-duration: var(--transition-duration-slow);
@@ -47,9 +47,15 @@
 
     &.is-open {
       max-height: 50vh; // A reasonable max height for the menu to expand to.
-      // Add a border for separation when open.
-      border-top: var(--border-width) solid var(--color-border);
+    }
+
+    // Apply the border and spacing to the content *inside* the wrapper.
+    // This ensures these properties are part of the animated reveal/hide,
+    // which prevents the "glitchy" closing effect where the border disappears instantly.
+    > * {
+      padding-top: var(--spacing-sm);
       margin-top: var(--spacing-sm);
+      border-top: var(--border-width) solid var(--color-border);
     }
   }
 
@@ -93,9 +99,17 @@
         opacity var(--header-toggle-icon-transition-duration) var(--_transition-timing);
       }
 
-      span:nth-child(1) { top: calc(50% - var(--header-toggle-icon-gap) - var(--header-toggle-icon-bar-height)); }
-      span:nth-child(2) { top: calc(50% - (var(--header-toggle-icon-bar-height) / 2)); }
-      span:nth-child(3) { top: calc(50% + var(--header-toggle-icon-gap)); }
+      span:nth-child(1) {
+        top: calc(50% - var(--header-toggle-icon-gap) - var(--header-toggle-icon-bar-height));
+      }
+
+      span:nth-child(2) {
+        top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
+      }
+
+      span:nth-child(3) {
+        top: calc(50% + var(--header-toggle-icon-gap));
+      }
     }
   }
 
@@ -105,7 +119,11 @@
       top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
       transform: rotate(45deg);
     }
-    span:nth-child(2) { opacity: 0; }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
     span:nth-child(3) {
       top: calc(50% - (var(--header-toggle-icon-bar-height) / 2));
       transform: rotate(-45deg);
@@ -114,7 +132,10 @@
 
   // --- Logo Position Modifier ---
   &.header--logo-right {
-    .header__branding { order: 2; }
+    .header__branding {
+      order: 2;
+    }
+
     .header__nav-container {
       order: 1;
       justify-content: flex-start;
@@ -141,8 +162,13 @@
       order: 0; // Reset order.
       max-height: none;
       overflow: visible;
-      border-top: none;
-      margin-top: 0;
+
+      // Unset the mobile fix for desktop.
+      > * {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: none;
+      }
     }
   }
 }
@@ -150,7 +176,14 @@
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:header'] {
   --header-toggle-focus-ring-color: var(--color-primary-hover);
-  .header__nav-wrapper.is-open {
+
+  .header__nav-wrapper > * {
     border-top-color: var(--color-border);
+  }
+
+  @media (min-width: 768px) {
+    .header__nav-wrapper > * {
+      border-top-color: transparent;
+    }
   }
 }

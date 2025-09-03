@@ -3,36 +3,52 @@
  * @file
  * Theme override for a node in the 'teaser' view mode.
  *
- * This template acts as a bridge to the 'node-teaser' Single Directory Component.
- * It maps the variables available in this context to the props expected by the
- * component. This version passes raw data, which is now safely handled by the
-* SDC, to avoid "Array to string" conversion errors.
+ * This template contains the complete markup for the teaser view of a node,
+ * after removing the 'node-teaser' Single Directory Component.
  *
  * @see template_preprocess_node()
- * @see kingly_minimal/components/node-teaser/node-teaser.twig
  */
 #}
-{% set classes = [
+{%
+  set classes = [
   'node',
   'node--type-' ~ node.bundle|clean_class,
   node.isPromoted() ? 'node--promoted',
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-] %}
-{#
-This bridge passes the raw `author_name` variable to the SDC.
-The SDC is now responsible for handling it safely within a {% trans %} block,
-preventing any fatal errors.
-#}
-{{ include('kingly_minimal:node-teaser', {
-  url: url,
-  label: label,
-  content: content,
-  display_submitted: display_submitted,
-  author_picture: author_picture,
-  author_name: author_name,
-  date: date,
-  metadata: metadata,
-  attributes: attributes.addClass(classes),
-}, with_context = false) }}
+]
+%}
+<article{{ attributes.addClass(classes) }}>
+
+  {{ include('kingly_minimal:heading', {
+    text: label,
+    level: 'h2',
+    display: 'h3',
+    url: url,
+    attributes: create_attribute().addClass('node__title')
+  }, with_context = false) }}
+
+  {% if display_submitted %}
+    <footer class="node__meta">
+      {{ include('kingly_minimal:image', {
+        render_array: author_picture,
+        attributes: create_attribute().addClass('user-picture'),
+      }, with_context=false) }}
+
+      <div class="node__submitted">
+        {% trans %}
+          Submitted by {{ author_name }} on {{ date }}
+        {% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ include('kingly_minimal:text', {
+      content: content,
+      attributes: create_attribute().addClass('node__body')
+    }, with_context=false) }}
+  </div>
+</article>

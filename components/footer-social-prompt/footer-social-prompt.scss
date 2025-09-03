@@ -1,12 +1,13 @@
-// -----------------------------------------------------------------------------
-// Footer Social Prompt Component Styles
-// -----------------------------------------------------------------------------
+/*
+ * Styles for the footer social media prompt.
+ */
 .footer-social-prompt {
-  // This component is intentionally minimally styled
-  // It renders a simple <p> tag with just enough styling to ensure proper spacing
+  // This component renders a simple <p> tag with just enough styling to ensure proper spacing.
   margin: 0;
+  // Ensure the component does not inherit unwanted background colors.
+  background-color: transparent;
 }
 
 // --- Dark Mode Overrides ---
 // No dark mode overrides are needed as this component inherits its color
-// from the `.page-footer` wrapper, which has its own dark mode styles.
+// from its parent container, which has its own dark mode styles.

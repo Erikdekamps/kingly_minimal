@@ -2,9 +2,8 @@
  * file: components/footer/footer.scss
  * Provides the complete styling for the site footer component.
  *
- * This file combines the full-bleed layout structure with the component's
- * specific theming. It uses a CSS Grid for a robust, responsive layout of
- * the footer's top bar, columns, and bottom bar.
+ * This component uses a three-part structure with full-bleed top and bottom
+ * bars framing a central, constrained columns area.
  */
 .footer {
   // --- Component-Scoped Design Tokens ---
@@ -16,53 +15,58 @@
   // --- Layout Variables ---
   --_footer-inner-max-width: var(--page-container-max-width, 1280px);
   --_footer-inner-padding-x: var(--spacing-md);
-  --_footer-main-gap: var(--spacing-lg);
+  --_footer-main-gap: var(--spacing-md);
   --_footer-top-bottom-gap: var(--spacing-md);
   --_footer-grid-columns: 12;
 
-  // --- Main Structure (Full Bleed Wrapper) ---
+  // --- Main Structure (Root element) ---
   background-color: var(--footer-bg-color);
-  padding-block: var(--_footer-main-gap) var(--spacing-md); // Reduced bottom padding.
   font-size: var(--footer-font-size);
   color: var(--footer-text-color);
-  display: grid;
-  justify-items: center;
 }
 
-// --- Inner Container (Constrained Width) ---
-.footer__inner {
-  width: 100%;
+// --- Top Bar (Full-Width Wrapper) ---
+.footer__top {
+  border-bottom: var(--border-width) solid var(--footer-border-color);
+}
+
+// --- Top & Bottom Bar Inner Content ---
+.footer__top-inner,
+.footer__bottom-inner {
   max-width: var(--_footer-inner-max-width);
-  padding-inline: var(--_footer-inner-padding-x);
-  display: grid;
-  gap: var(--_footer-main-gap);
-}
-
-// --- Top & Bottom Bars ---
-.footer__top,
-.footer__bottom {
+  margin-inline: auto;
+  padding: var(--spacing-md) var(--_footer-inner-padding-x);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--_footer-top-bottom-gap);
-  // Default to centered for mobile when items wrap.
-  justify-content: center;
+  justify-content: center; // Default for mobile.
 }
 
-.footer__top {
-  padding-bottom: var(--_footer-main-gap);
-  border-bottom: var(--border-width) solid var(--footer-border-color);
+// --- Main Columns Area (Constrained Width) ---
+.footer__inner {
+  max-width: var(--_footer-inner-max-width);
+  margin-inline: auto;
+  padding: var(--spacing-lg) var(--_footer-inner-padding-x); // Generous padding for content.
 }
 
-// On larger screens, align top/bottom content to the edges.
+// --- Bottom Bar (Full-Width Wrapper) ---
+.footer__bottom {
+  background-color: var(--color-background);
+  border-top: var(--border-width) solid var(--footer-border-color);
+  // Definitive Fix: Explicitly set the color to the main page text color.
+  // This will be correctly inherited by all child elements and components.
+  color: var(--color-text);
+}
+
+// --- Responsive alignment for top and bottom bars ---
 @media (min-width: 768px) { // md breakpoint
-  .footer__top,
-  .footer__bottom {
+  .footer__top-inner,
+  .footer__bottom-inner {
     justify-content: space-between;
   }
 }
 
-// On mobile, ensure bottom sections stack cleanly.
 @media (max-width: 767px) { // max-md breakpoint
   .footer__bottom-left,
   .footer__bottom-right {
@@ -79,23 +83,19 @@
 }
 
 .footer__column {
-  // Mobile (default): Each column takes the full width.
-  grid-column: 1 / -1;
-
-  // Tablet (md): Each column spans 6 of the 12 tracks, creating a 2-column grid.
+  grid-column: 1 / -1; // Mobile default
   @media (min-width: 768px) {
     grid-column: span 6;
   }
-
-  // Desktop (lg): Each column spans 3 of the 12 tracks, creating a 4-column layout.
+  // Tablet
   @media (min-width: 991px) {
     grid-column: span 3;
   }
+  // Desktop
 }
 
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] .footer {
   --footer-bg-color: var(--color-gray-900);
-  --footer-text-color: var(--color-text);
   --footer-border-color: var(--color-border);
 }

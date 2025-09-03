@@ -1,25 +1,27 @@
-// -----------------------------------------------------------------------------
-// Social Links Component Styles
-// -----------------------------------------------------------------------------
+/*
+ * Renders a list of social media icon links.
+ */
 [data-component-id='kingly_minimal:social-links'] {
-  // --- Tier 3: Component-Scoped Design Tokens ---
-  --social-link-text-color: #222222;
-  --social-link-text-color-hover: #004a94;
-  --social-link-focus-ring-color: #004a94;
-  --social-links-list-gap: 0.5rem;
-  --social-link-size: 44px;
+  // --- Component-Scoped Design Tokens ---
+  --social-link-text-color: var(--color-text);
+  --social-link-text-color-hover: var(--color-primary);
+  --social-link-focus-ring-color: var(--color-primary);
+  --social-links-list-gap: var(--spacing-sm);
+  --social-link-size: var(--sizing-target-min);
   --social-link-icon-size: 24px;
   --social-link-border-radius: 50%;
-  --social-link-transition-duration-transform: 0.2s;
-  --social-link-transition-duration-bg: 0.15s;
+  --social-link-transition-duration-transform: var(--transition-duration-medium);
+  --social-link-transition-duration-bg: var(--transition-duration-fast);
   --social-link-focus-ring-width: 2px;
   --social-link-focus-ring-offset: 2px;
   --_hover-translate-y: -2px;
   --_hover-bg-opacity: 90%;
-  --_transition-timing-function: ease-in-out;
-  
+  --_transition-timing-function: var(--transition-timing-function);
+
   // Ensure component displays as flex when used in containers like the footer
   display: flex;
+  // Ensure the component does not inherit unwanted background colors.
+  background-color: transparent;
 
   .social-links__list {
     list-style: none;
@@ -64,7 +66,7 @@
 
 // --- Dark Mode Overrides ---
 html[data-theme="dark"] [data-component-id='kingly_minimal:social-links'] {
-  --social-link-text-color: #e1e1e1;
-  --social-link-text-color-hover: #74c0fc;
-  --social-link-focus-ring-color: #74c0fc;
+  --social-link-text-color: var(--color-text);
+  --social-link-text-color-hover: var(--color-primary);
+  --social-link-focus-ring-color: var(--color-primary);
 }

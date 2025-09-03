@@ -1,12 +1,13 @@
-// -----------------------------------------------------------------------------
-// Footer Copyright Component Styles
-// -----------------------------------------------------------------------------
+/*
+ * Styles for the footer copyright notice.
+ */
 .footer-copyright {
-  // This component has minimal styling, primarily for spacing
-  // It inherits most typographic styles from the parent element
+  // This component has minimal styling, primarily for spacing.
   margin: 0;
+  // Ensure the component does not inherit unwanted background colors.
+  background-color: transparent;
 }
 
 // --- Dark Mode Overrides ---
 // No dark mode overrides are needed as this component inherits its color
-// from the `.page-footer` wrapper, which has its own dark mode styles.
+// from its parent container, which has its own dark mode styles.

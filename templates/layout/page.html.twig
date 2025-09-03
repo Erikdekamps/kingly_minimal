@@ -19,6 +19,7 @@
     - This single embed replaces the previous, more complex header markup.
     #}
     {% embed 'kingly_minimal:header' with {
+      logo_position_class: 'header--logo-right',
       attributes: create_attribute().addClass('page-header')
     } %}
       {% block branding %}

@@ -1,88 +1,101 @@
-/* 
- * Footer component styles 
+/*
+ * file: components/footer/footer.scss
+ * Provides the complete styling for the site footer component.
+ *
+ * This file combines the full-bleed layout structure with the component's
+ * specific theming. It uses a CSS Grid for a robust, responsive layout of
+ * the footer's top bar, columns, and bottom bar.
  */
-
 .footer {
-  background-color: var(--color-light-gray, #f4f5f6);
-  color: var(--color-text, #222);
-  padding: var(--spacing-lg, 2rem) 0 0; /* Reduced top padding */
-}
+  // --- Component-Scoped Design Tokens ---
+  --footer-bg-color: var(--color-light-gray);
+  --footer-text-color: var(--color-text);
+  --footer-border-color: var(--color-border);
+  --footer-font-size: var(--font-size-sm);
 
-.footer__inner {
-  max-width: var(--page-container-max-width, 1280px);
-  margin: 0 auto;
-  padding: 0 var(--spacing-md, 1rem);
-}
+  // --- Layout Variables ---
+  --_footer-inner-max-width: var(--page-container-max-width, 1280px);
+  --_footer-inner-padding-x: var(--spacing-md);
+  --_footer-main-gap: var(--spacing-lg);
+  --_footer-top-bottom-gap: var(--spacing-md);
+  --_footer-grid-columns: 12;
 
-.footer__top {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: var(--spacing-sm, 0.5rem); /* Reduced padding */
-  border-bottom: 1px solid var(--color-border, #e1e1e1);
-  
-  /* Top area layout */
-}
-
-.footer__columns {
+  // --- Main Structure (Full Bleed Wrapper) ---
+  background-color: var(--footer-bg-color);
+  padding-block: var(--_footer-main-gap) var(--spacing-md); // Reduced bottom padding.
+  font-size: var(--footer-font-size);
+  color: var(--footer-text-color);
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: var(--spacing-md, 1rem); /* Reduced gap */
-  padding: var(--spacing-md, 1rem) 0; /* Reduced padding */
-  
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media (min-width: 992px) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-sm, 0.5rem); /* Even smaller gap for desktop */
-  }
+  justify-items: center;
 }
 
-.footer__column {
-  padding: 0 var(--spacing-sm, 0.5rem);
-  
-  /* Column area layout */
+// --- Inner Container (Constrained Width) ---
+.footer__inner {
+  width: 100%;
+  max-width: var(--_footer-inner-max-width);
+  padding-inline: var(--_footer-inner-padding-x);
+  display: grid;
+  gap: var(--_footer-main-gap);
 }
 
+// --- Top & Bottom Bars ---
+.footer__top,
 .footer__bottom {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-sm, 0.5rem) 0;
-  border-top: 1px solid var(--color-border, #e1e1e1);
-  
-  .footer__bottom-right {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md, 1rem);
+  gap: var(--_footer-top-bottom-gap);
+  // Default to centered for mobile when items wrap.
+  justify-content: center;
+}
+
+.footer__top {
+  padding-bottom: var(--_footer-main-gap);
+  border-bottom: var(--border-width) solid var(--footer-border-color);
+}
+
+// On larger screens, align top/bottom content to the edges.
+@media (min-width: 768px) { // md breakpoint
+  .footer__top,
+  .footer__bottom {
+    justify-content: space-between;
   }
 }
 
-@media (max-width: 639px) {
-  .footer__top-left,
-  .footer__top-right {
-    width: 100%;
+// On mobile, ensure bottom sections stack cleanly.
+@media (max-width: 767px) { // max-md breakpoint
+  .footer__bottom-left,
+  .footer__bottom-right {
+    flex-basis: 100%;
     text-align: center;
-    margin-bottom: var(--spacing-sm, 0.5rem);
   }
-  
-  .footer__bottom {
-    padding: var(--spacing-xs, 0.25rem) 0;
-    
-    .footer__bottom-left,
-    .footer__bottom-right {
-      width: 100%;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: var(--spacing-xs, 0.25rem);
-    }
-    
-    .footer__bottom-right {
-      justify-content: center;
-    }
+}
+
+// --- Footer Columns Grid ---
+.footer__columns {
+  display: grid;
+  grid-template-columns: repeat(var(--_footer-grid-columns), 1fr);
+  gap: var(--_footer-main-gap);
+}
+
+.footer__column {
+  // Mobile (default): Each column takes the full width.
+  grid-column: 1 / -1;
+
+  // Tablet (md): Each column spans 6 of the 12 tracks, creating a 2-column grid.
+  @media (min-width: 768px) {
+    grid-column: span 6;
   }
+
+  // Desktop (lg): Each column spans 3 of the 12 tracks, creating a 4-column layout.
+  @media (min-width: 991px) {
+    grid-column: span 3;
+  }
+}
+
+// --- Dark Mode Overrides ---
+html[data-theme="dark"] .footer {
+  --footer-bg-color: var(--color-gray-900);
+  --footer-text-color: var(--color-text);
+  --footer-border-color: var(--color-border);
 }

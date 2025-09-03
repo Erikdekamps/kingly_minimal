@@ -7,10 +7,6 @@
  * branding and navigation, and the hamburger menu toggle for mobile view. The
  * toggle button is essential for accessibility and is controlled by header.js.
  *
- * CORRECTION: Removed the incorrect `{% if branding %}` and `{% if navigation %}`
- * checks. The component should simply render its slots; the decision to populate
- * them is made by the parent template (page.html.twig).
- *
  * @see kingly_minimal/components/header/header.component.yml
  *
  * @props
@@ -53,10 +49,10 @@
         <span></span>
       </span>
     </button>
+  </div>
 
-    {# This wrapper is targeted by the toggle button for show/hide functionality. #}
-    <div class="{{ base_class }}__nav-wrapper" id="main-menu-wrapper">
-      {% block navigation %}{% endblock %}
-    </div>
+  {# This wrapper is placed after the main flex items and will be targeted for the slide-down effect. #}
+  <div class="{{ base_class }}__nav-wrapper" id="main-menu-wrapper">
+    {% block navigation %}{% endblock %}
   </div>
 </header>

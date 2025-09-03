@@ -23,4 +23,4 @@ libraryOverrides:
     - core/drupal
     - core/once
   js:
-    menu.js: {}
+    menu.js: { }

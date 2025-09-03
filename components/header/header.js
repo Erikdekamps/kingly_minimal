@@ -26,7 +26,7 @@
       const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
 
       // Toggle ARIA attribute for accessibility.
-      toggleButton.setAttribute('aria-expanded', !isExpanded);
+      toggleButton.setAttribute('aria-expanded', String(!isExpanded));
 
       // Toggle class to trigger CSS animation.
       navWrapper.classList.toggle('is-open');

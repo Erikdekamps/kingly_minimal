@@ -1,39 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Card'
-status: stable
+status: experimental
 description: 'A versatile component for displaying content in a card format. Composes other SDCs like image and text, and can be rendered as a single clickable link.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    variant:
-      type: string
-      title: Variant
-      description: 'Controls the layout of the card.'
-      default: 'vertical'
-      enum:
-        - 'vertical'
-        - 'horizontal'
-    image:
-      type: object
-      title: 'Image'
-      description: 'An object of props to be passed to the `kingly_minimal:image` component.'
-    title:
-      type: string
-      title: 'Title'
-      description: 'The main heading for the card.'
-    body:
-      type: [ string, object ] # Can be a string or render array
-      title: 'Body'
-      description: 'The main content for the card, passed to the `text` component for consistent prose styling.'
-    link:
-      type: object
-      title: Link
-      description: 'If provided, the entire card becomes a clickable link. The `text` is used for the "call to action" button styling.'
-      properties:
-        url:
-          type: string
-          title: URL
-        text:
-          type: string
-          title: Text
+  properties: {}

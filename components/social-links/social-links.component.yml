@@ -1,20 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Social Links'
-status: stable
+status: experimental
 description: 'Renders a list of social media icon links.'
+
+# Declare empty props.
 props:
   type: object
-  properties:
-    links:
-      type: array
-      title: 'Social Links'
-      description: 'An array of social media links to render. The component will attempt to match a known icon to the URL.'
-      default:
-        - url: 'https://www.facebook.com'
-          text: 'Facebook'
-        - url: 'https://www.twitter.com'
-          text: 'Twitter'
-        - url: 'https://www.linkedin.com'
-          text: 'LinkedIn'
-        - url: 'https://www.instagram.com'
-          text: 'Instagram'
+  properties: {}

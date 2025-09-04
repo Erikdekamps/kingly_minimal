@@ -1,25 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Form Label'
-status: stable
+status: experimental
 description: 'Renders a `<label>` for a form element, including an optional "required" marker.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    text:
-      type: [ string, object ]
-      title: 'Label Text'
-      description: 'The text or render array for the label.'
-    for_id:
-      type: string
-      title: 'For ID'
-      description: 'The `id` of the form element this label is for.'
-    required:
-      type: boolean
-      title: 'Is Required'
-      description: 'If true, a "required" marker is added to the label.'
-      default: false
-
-  required:
-    - text
-    - for_id
+  properties: {}

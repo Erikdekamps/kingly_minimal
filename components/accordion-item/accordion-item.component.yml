@@ -1,24 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Accordion Item'
-status: stable
+status: experimental
 description: 'A single collapsible panel within an accordion. Uses the native HTML <details> element for accessibility and core functionality.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    heading:
-      type: [ string, object ]
-      title: 'Heading'
-      description: 'The content for the clickable <summary> element, which is the title of the item. Can be a string or a render array.'
-    content:
-      type: [ string, object ]
-      title: 'Content'
-      description: 'The collapsible content within the item. Can be a string or a render array.'
-    is_open:
-      type: boolean
-      title: 'Is Open by Default'
-      description: 'If true, this item will be open when the page loads.'
-      default: false
-  required:
-    - heading
-    - content
+  properties: {}

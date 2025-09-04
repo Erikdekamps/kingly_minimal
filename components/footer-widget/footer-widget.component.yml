@@ -1,17 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer Widget'
-status: stable
+status: experimental
 description: 'Provides a reusable wrapper with a styled title (using the `heading` component) for components used in the footer columns.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    title:
-      type: string
-      title: 'Widget Title'
-      description: 'The heading for the widget.'
-
-slots:
-  content:
-    title: 'Content'
-    description: 'The main content of the widget, typically provided by an embedding component.'
+  properties: {}

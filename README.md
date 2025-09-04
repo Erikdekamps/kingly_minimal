@@ -155,42 +155,6 @@ granular "brick" layout for the footer:
 * `footer_bottom_right`: Footer Bottom Right
 * `hidden`: Hidden
 
-## Accessibility Compliance (WCAG)
-
-This theme has been enhanced to meet or exceed several WCAG success criteria.
-
-- [x] **1.4.6 Contrast (Enhanced) - AAA:** The theme's color palette has been
-  audited and adjusted. Both light and dark modes ensure all default text has
-  a contrast ratio of at least 7:1 against its background.
-- [x] **2.4.9 Link Purpose (Link Only) - AAA:** Components
-  like `footer-link-list` accept an optional `aria_label` to provide a clear,
-  distinct accessible name for links that might otherwise be ambiguous.
-- [x] **2.5.5 Target Size (Enhanced) - AAA:** All interactive elements (links,
-  buttons, icons) are designed to have a minimum target size of 44x44 CSS
-  pixels.
-- [x] **2.4.7 Focus Visible - AA / 2.4.13 Focus Appearance - AAA:** All
-  interactive elements have a highly visible and consistent focus indicator.
-- [x] **2.4.5 Multiple Ways - AA:** The theme provides both a primary
-  navigation menu and breadcrumbs, offering users multiple ways to navigate the
-  site.
-- [x] **2.4.6 Headings and Labels - AA:** Semantic headings are used
-  correctly. Form elements and navigation landmarks are programmatically
-  associated with their labels (`aria_labelledby`).
-- [x] **2.4.8 Location - AAA:** The active link in navigation
-  menus (`main-menu`, `pager`, `local-tasks`) is programmatically identified
-  using `aria-current="page"`.
-- [x] **3.2.5 Change on Request - AAA:** Links that open in a new tab or
-  window include a warning for all users, both visually (via `title` attribute)
-  and for screen readers.
-- [x] **3.2.3 Consistent Navigation - AA:** The main navigation and footer are
-  presented consistently across all pages of the site.
-- [x] **3.3.2 Labels or Instructions - A:** All form controls have associated
-  labels. Navigation and other key regions have accessible names provided via
-  `aria-label` or `aria_labelledby`.
-- [x] **4.1.2 Name, Role, Value - A:** All UI components have the correct
-  role (e.g., `button`, `navigation`, `alert`) and their state (e.g.,
-  `aria-pressed`, `aria-current`) is programmatically determinable.
-
 ## Componentization Roadmap
 
 The following theme hook templates have been identified as candidates for

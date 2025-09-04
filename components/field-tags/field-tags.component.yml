@@ -1,13 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Field: Tags'
-status: stable
+status: experimental
 description: 'Renders a list of items (typically taxonomy term links) as styled tags.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    items:
-      type: array
-      title: 'Field Items'
-      description: "An array of Drupal field items. The component will render each item's 'content', which is expected to be a link."
-      default: [ ]
+  properties: {}

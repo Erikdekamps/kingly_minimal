@@ -1,20 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Text (Prose)'
-status: stable
+status: experimental
 description: 'A component for rendering long-form "prose" or "WYSIWYG" rich text content with consistent, readable styling.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    content:
-      type: [ string, object ] # Can be a string or a render array.
-      title: 'Content'
-      description: 'The rich text or HTML content to be styled.'
-    element:
-      type: string
-      title: 'Wrapper Element'
-      description: 'The HTML tag for the root element.'
-      default: 'div'
-
-  required:
-    - content
+  properties: {}

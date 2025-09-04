@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Timeline'
-status: stable
+status: experimental
 description: 'Renders a responsive, accessible timeline. Acts as a container for timeline-item content.'
 
-slots:
-  content:
-    title: 'Timeline Items'
-    description: 'The slot where the individual timeline item `<li>` elements should be placed.'
+# Declare empty props.
+props:
+  type: object
+  properties: {}

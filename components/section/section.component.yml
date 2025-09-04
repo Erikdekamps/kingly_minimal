@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Section'
-status: stable
+status: experimental
 description: 'A generic container component, used to wrap content from Layout Paragraphs to ensure consistent containment.'
 
-slots:
-  content:
-    title: Content
-    description: 'The main content of the section, typically a rendered layout.'
+# Declare empty props.
+props:
+  type: object
+  properties: {}

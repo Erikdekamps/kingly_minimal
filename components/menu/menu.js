@@ -42,7 +42,7 @@
     attach(context) {
       const menus = once('menu-init', '[data-component-id="kingly_minimal:menu"]', context);
       menus.forEach(initMenu);
-    },
+    }
   };
 
 })(Drupal, once);

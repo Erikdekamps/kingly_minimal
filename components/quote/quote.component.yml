@@ -1,19 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Quote'
-status: stable
+status: experimental
 description: 'Renders a blockquote with an optional attribution.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    quote_text:
-      type: [ string, object ] # Can be a string or a render array
-      title: 'Quote Text'
-      description: 'The main content of the quote.'
-    attribution:
-      type: string
-      title: 'Attribution'
-      description: '(Optional) The source of the quote, such as a person or publication.'
-
-  required:
-    - quote_text
+  properties: {}

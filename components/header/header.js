@@ -41,7 +41,7 @@
   Drupal.behaviors.kinglyHeader = {
     attach(context) {
       once('kingly-header', '[data-component-id="kingly_minimal:header"]', context).forEach(initHeader);
-    },
+    }
   };
 
 })(Drupal, once);

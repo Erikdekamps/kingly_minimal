@@ -1,21 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Site Branding'
-status: stable
+status: experimental
 description: 'Displays the site branding (logo and name) which links to the homepage. Renders the site name as an H1 only on the front page for SEO and accessibility.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    is_front:
-      type: boolean
-      title: 'Is Front Page'
-      description: 'A flag indicating if the current page is the front page. Controls the heading level of the site name.'
-      default: false
-    site_name:
-      type: string
-      title: 'Site Name'
-      description: 'The name of the site. Display is controlled by block settings.'
-    site_slogan:
-      type: string
-      title: 'Site Slogan'
-      description: '(Optional) The slogan of the site. Display is controlled by block settings.'
+  properties: {}

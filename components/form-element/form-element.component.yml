@@ -1,43 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Form Element'
-status: stable
+status: experimental
 description: 'A wrapper for a form field that provides consistent layout for its label, description, and error messages.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    label:
-      type: object # Render array
-      title: 'Label'
-      description: 'The renderable array for the form element label.'
-    label_display:
-      type: string
-      title: 'Label Display'
-      description: 'The display setting for the label (e.g., "before", "after", "invisible").'
-      default: 'before'
-    description:
-      type: object # Render array
-      title: 'Description'
-      description: 'A renderable array for the form element description.'
-    description_display:
-      type: string
-      title: 'Description Display'
-      description: 'The display setting for the description (e.g., "before", "after").'
-      default: 'after'
-    errors:
-      type: object # Render array
-      title: 'Errors'
-      description: 'Any validation errors for this form element.'
-    prefix:
-      type: object # Render array
-      title: 'Prefix'
-      description: 'The form element prefix.'
-    suffix:
-      type: object # Render array
-      title: 'Suffix'
-      description: 'The form element suffix.'
-
-slots:
-  content:
-    title: 'Content'
-    description: 'The form element itself (e.g., the textfield, select list, etc.).'
+  properties: {}

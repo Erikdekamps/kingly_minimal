@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Checkboxes'
-status: stable
+status: experimental
 description: 'A layout container for a group of checkbox items, typically arranging them in a responsive grid.'
 
-slots:
-  content:
-    title: 'Content'
-    description: 'The rendered list of individual checkbox form items.'
+# Declare empty props.
+props:
+  type: object
+  properties: {}

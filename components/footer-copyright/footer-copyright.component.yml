@@ -1,13 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer: Copyright'
-status: stable
+status: experimental
 description: 'Displays a copyright notice for the footer, with a dynamic year.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    text:
-      type: string
-      title: 'Copyright Text'
-      description: 'The copyright text to display. The `[year]` placeholder will be replaced with the current year.'
-      default: '© [year] Copyright: example.com'
+  properties: {}

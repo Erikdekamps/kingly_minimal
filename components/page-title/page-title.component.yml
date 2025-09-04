@@ -1,11 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Page Title'
-status: stable
+status: experimental
 description: 'Renders the main page title (H1) for a page by composing the `heading` component.'
+
+# Declare empty props.
 props:
   type: object
-  properties:
-    title:
-      type: [ string, object ]
-      title: Title
-      description: 'The main page title text or render array, passed to the `heading` component.'
+  properties: {}

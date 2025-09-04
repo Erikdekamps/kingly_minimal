@@ -1,20 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer: Utility Links'
-status: stable
+status: experimental
 description: 'Renders a list of utility links for the footer bottom bar and composes the theme-toggle.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    links:
-      type: array
-      title: 'Links'
-      description: 'An array of link objects to render. Each object should have "text" and "url" keys.'
-      default:
-        - text: 'Contact'
-          url: '/contact'
-    show_theme_toggle:
-      type: boolean
-      title: 'Show Theme Toggle'
-      description: 'If true, the light/dark mode theme toggle button will be displayed.'
-      default: true
+  properties: {}

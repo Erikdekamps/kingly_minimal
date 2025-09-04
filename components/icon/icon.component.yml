@@ -1,19 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Icon'
-status: stable
+status: experimental
 description: 'Renders a reusable inline SVG icon from a predefined library within the component.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    name:
-      type: string
-      title: 'Icon Name'
-      description: 'The machine name of the icon to display (e.g., "house", "envelope").'
-    label:
-      type: string
-      title: 'Accessible Label'
-      description: 'The accessible text for the icon. If not provided, it defaults to a capitalized version of the name. Can be overridden by passing `aria-hidden` in attributes.'
-
-  required:
-    - name
+  properties: {}

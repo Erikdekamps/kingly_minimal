@@ -1,26 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Menu'
-status: stable
+status: experimental
 description: 'Renders a nested list of menu items recursively. This is the canonical component for all menus.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    items:
-      type: array
-      title: 'Menu Items'
-      description: 'A nested list of menu items from Drupal.'
-      default: [ ]
-    menu_level:
-      type: number
-      title: 'Menu Level'
-      description: 'The current depth of the menu, used for styling and semantics.'
-      default: 0
-
-# Add the library override to attach our new JavaScript file.
-libraryOverrides:
-  dependencies:
-    - core/drupal
-    - core/once
-  js:
-    menu.js: { }
+  properties: {}

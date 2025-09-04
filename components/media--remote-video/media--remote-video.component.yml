@@ -1,20 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Media: Remote Video'
-status: stable
+status: experimental
 description: 'Renders a remote video media entity (e.g., YouTube, Vimeo) with a contextual wrapper.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    media_entity:
-      type: object
-      title: Media Entity
-      description: 'The full remote video media entity object, passed from the dispatcher.'
-    content:
-      type: [ string, object ]
-      title: Content
-      description: 'The rendered video iframe.'
-
-  required:
-    - media_entity
-    - content
+  properties: {}

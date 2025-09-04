@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // Pager Component Styles
 // -----------------------------------------------------------------------------
-[data-component-id='pursubsite_theme:pager'] {
+[data-component-id='kingly_minimal:pager'] {
   // --- Tier 3: Component-Scoped Design Tokens ---
   --pager-link-text-color: #004a94;
   --pager-link-bg-color-hover: #f4f5f6;
@@ -81,7 +81,7 @@
 }
 
 // --- Dark Mode Overrides ---
-html[data-theme="dark"] [data-component-id='pursubsite_theme:pager'] {
+html[data-theme="dark"] [data-component-id='kingly_minimal:pager'] {
   --pager-link-text-color: #74c0fc;
   --pager-link-bg-color-hover: #1e1e1e;
   --pager-focus-ring-color: #74c0fc;

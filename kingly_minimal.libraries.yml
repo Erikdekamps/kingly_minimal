@@ -27,7 +27,9 @@ splide:
       https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css: { type: external, minified: true }
   js:
     https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js: { type: external, minified: true }
-
+  dependencies:
+    - core/drupal
+    - core/once
 # Note: All other components like buttons, breadcrumbs, menus, etc., are now
 # Single Directory Components. The SDC module automatically discovers and
 # attaches their CSS and JS assets, so they do not need to be defined here.

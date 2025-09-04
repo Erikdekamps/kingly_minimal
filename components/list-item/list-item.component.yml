@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'List Item'
-status: stable
+status: experimental
 description: 'Renders a list item (`<li>`) tag. Designed to be used inside the `kingly_minimal:list` component.'
 
-slots:
-  content:
-    title: Content
-    description: 'The content of the list item.'
+# Declare empty props.
+props:
+  type: object
+  properties: {}

@@ -1,18 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer: Company Info'
-status: stable
+status: experimental
 description: 'Displays the company name and a short description in the footer. Built by embedding the `footer-widget` component.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    company_name:
-      type: string
-      title: 'Company Name'
-      description: 'The name of the company, passed as the `title` prop to the embedded `footer-widget`.'
-      default: 'Company Name'
-    description:
-      type: [ string, object ]
-      title: 'Description'
-      description: 'A short description or mission statement for the company. Passed to the `text` component.'
-      default: 'Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+  properties: {}

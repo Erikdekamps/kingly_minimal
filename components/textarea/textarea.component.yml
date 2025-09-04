@@ -1,12 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Textarea'
-status: stable
+status: experimental
 description: 'Renders a standard HTML textarea element.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    value:
-      type: string
-      title: 'Value'
-      description: 'The initial content of the textarea.'
+  properties: {}

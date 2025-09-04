@@ -1,55 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Comment'
-status: stable
+status: experimental
 description: 'Renders a single comment, including author, metadata, and content. Composes the `image` and `text` components.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    author_picture:
-      type: object
-      title: "Author's Picture"
-      description: "A renderable array for the author's picture, passed to the `image` component."
-    author_name:
-      type: string
-      title: 'Author Name'
-      description: "The comment author's name."
-    created_date:
-      type: string
-      title: 'Creation Date'
-      description: 'The formatted date the comment was posted.'
-    permalink:
-      type: string
-      title: 'Permalink'
-      description: 'The URL linking directly to the comment.'
-    is_new:
-      type: boolean
-      title: 'Is New'
-      description: 'A flag indicating if the comment is new.'
-      default: false
-    new_text:
-      type: string
-      title: 'New Text'
-      description: 'The text to display for new comments (e.g., "new").'
-    content:
-      type: object # Render array
-      title: 'Content'
-      description: "The comment's main content, passed to the `text` component."
-    title:
-      type: [ string, object ]
-      title: 'Title'
-      description: "The comment's title (optional)."
-    title_prefix:
-      type: object
-      title: 'Title Prefix'
-      description: 'Render array for content before the title (e.g., from Drupal hooks).'
-    title_suffix:
-      type: object
-      title: 'Title Suffix'
-      description: 'Render array for content after the title (e.g., from Drupal hooks).'
-
-  required:
-    - author_name
-    - created_date
-    - permalink
-    - content
+  properties: {}

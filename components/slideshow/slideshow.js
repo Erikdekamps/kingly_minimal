@@ -49,18 +49,18 @@
           reducedMotion: {
             speed: 0,
             rewindSpeed: 0,
-            autoplay: 'pause',
+            autoplay: 'pause'
           },
 
           mediaQuery: 'min',
           breakpoints: {
             768: { // Corresponds to the 'md' breakpoint
-              perPage: perPageTablet,
+              perPage: perPageTablet
             },
             991: { // Corresponds to the 'lg' breakpoint
-              perPage: perPageDesktop,
-            },
-          },
+              perPage: perPageDesktop
+            }
+          }
         });
 
         // Use the 'mounted' event to move the arrows after Splide has
@@ -79,7 +79,7 @@
         // Mount the instance to activate it.
         splide.mount();
       });
-    },
+    }
   };
 
 })(Drupal, once, Splide);

@@ -22,10 +22,10 @@
       this.container = container;
       // Find all direct accordion-item children.
       this.items = Array.from(
-        this.container.querySelectorAll(':scope > .accordion-item'),
+        this.container.querySelectorAll(':scope > .accordion-item')
       );
       this.headers = this.items.map((item) =>
-        item.querySelector('.accordion-item__header'),
+        item.querySelector('.accordion-item__header')
       );
     }
 
@@ -90,13 +90,13 @@
       const accordionContainers = once(
         'accordion',
         '.accordion-container',
-        context,
+        context
       );
 
       accordionContainers.forEach((container) => {
         const accordion = new Accordion(container);
         accordion.init();
       });
-    },
+    }
   };
 })(Drupal, once);

@@ -54,6 +54,6 @@
           reflectTheme(newTheme);
         });
       });
-    },
+    }
   };
 })(Drupal, once);

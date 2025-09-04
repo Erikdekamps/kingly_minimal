@@ -1,18 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Pager'
-status: stable
+status: experimental
 description: 'Renders a styled pagination control for navigating through lists of content.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    items:
-      type: object
-      title: 'Pager Items'
-      description: 'The structured list of pager links and text provided by Drupal''s pager service.'
-      default: { }
-    heading_id:
-      type: string
-      title: 'Heading ID'
-      description: 'The HTML ID for the visually hidden h4 heading, used for `aria-labelledby`.'
-      default: 'pagination-heading'
+  properties: {}

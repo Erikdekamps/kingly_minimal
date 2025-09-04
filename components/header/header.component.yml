@@ -1,27 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Header'
-status: stable
+status: experimental
 description: 'Renders the main site header with a logo and a responsive navigation menu that collapses into a hamburger on smaller screens.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    logo_position_class:
-      type: string
-      title: 'Logo Position Class'
-      description: 'An optional CSS modifier class to control the logo position (e.g., "header--logo-right").'
-
-slots:
-  branding:
-    title: Branding
-    description: 'The slot for the site branding component.'
-  navigation:
-    title: Navigation
-    description: 'The slot for the main navigation menu component.'
-
-libraryOverrides:
-  dependencies:
-    - core/drupal
-    - core/once
-  js:
-    header.js: {}
+  properties: {}

@@ -15,10 +15,6 @@ props:
       type: [ string, object ]
       title: 'Label'
       description: 'The label for the field.'
-    title_attributes:
-      type: object
-      title: 'Title Attributes'
-      description: 'HTML attributes for the label element.'
     items:
       type: array
       title: 'Field Items'

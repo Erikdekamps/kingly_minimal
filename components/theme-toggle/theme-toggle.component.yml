@@ -1,9 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Theme Toggle'
-status: stable
+status: experimental
 description: 'A button for toggling between light and dark themes. Requires JavaScript.'
 
-libraryOverrides:
-  dependencies:
-    - core/drupal
-    - core/once
+# Declare empty props.
+props:
+  type: object
+  properties: {}

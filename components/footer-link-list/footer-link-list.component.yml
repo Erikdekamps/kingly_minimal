@@ -1,32 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Footer: Link List'
-status: stable
+status: experimental
 description: 'Displays a titled list of links for footer columns. Built by embedding the `footer-widget` component.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    title:
-      type: string
-      title: 'List Title'
-      description: 'The heading for the list of links, passed to the `footer-widget`.'
-    links:
-      type: array
-      title: 'Links'
-      description: 'An array of link objects. Each object should have a "text", "url", and optional "aria_label" key.'
-      default: [ ]
-      item:
-        type: object
-        properties:
-          text:
-            type: string
-          url:
-            type: string
-          # WCAG 2.4.9: Add an optional aria_label to disambiguate links with the same text.
-          aria_label:
-            type: string
-            title: 'ARIA Label'
-            description: '(Optional) Provides a distinct accessible name for the link, crucial if the link text is ambiguous (e.g., "Learn More").'
-
-  required:
-    - title
+  properties: {}

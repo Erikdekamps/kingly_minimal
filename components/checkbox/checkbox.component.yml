@@ -1,4 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Checkbox'
-status: stable
+status: experimental
 description: 'Renders a standard HTML checkbox input element, typically used via a bridge template from the Form API.'
+
+# Declare empty props.
+props:
+  type: object
+  properties: {}

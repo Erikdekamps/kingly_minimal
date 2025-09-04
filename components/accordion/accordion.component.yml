@@ -1,16 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Accordion'
-status: stable
+status: experimental
 description: 'A container for a set of vertically stacked, collapsible panels (accordion items). Manages the "exclusive open" behavior via JavaScript.'
 
-slots:
-  content:
-    title: 'Content'
-    description: 'The slot where the individual `kingly_minimal:accordion-item` components should be placed.'
-
-libraryOverrides:
-  dependencies:
-    - core/drupal
-    - core/once
-  js:
-    accordion.js: { }
+# Declare empty props.
+props:
+  type: object
+  properties: {}

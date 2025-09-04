@@ -26,21 +26,19 @@
   {% if items %}
     {% set menu_id = 'menu-level-' ~ menu_level ~ '-' ~ random() %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level).setAttribute('id', menu_id) }}>
-    {% else %}
-      <ul class="menu__sub-menu menu--level-{{ menu_level }}" id="{{ attributes.id }}">
+<ul{{ attributes.addClass('menu', 'menu--level-' ~ menu_level).setAttribute('id', menu_id) }}>
+  {% else %}
+  <ul class="menu__sub-menu menu--level-{{ menu_level }}" id="{{ attributes.id }}">
     {% endif %}
 
     {% for item in items %}
-      {%
-        set item_classes = [
+      {% set item_classes = [
         'menu__item',
         'menu__item--level-' ~ menu_level,
         item.is_expanded ? 'menu__item--expanded',
         item.is_collapsed ? 'menu__item--collapsed',
         item.in_active_trail ? 'menu__item--active-trail',
-      ]
-      %}
+      ] %}
       {% set item_attributes = create_attribute(item.attributes) %}
       {% do item_attributes.addClass(item_classes) %}
 
@@ -51,13 +49,11 @@
         {% endif %}
 
         <div class="{{ link_wrapper_classes|join(' ') }}">
-          {%
-            set link_classes = [
+          {% set link_classes = [
             'menu__link',
             'menu__link--level-' ~ menu_level,
             item.in_active_trail ? 'is-active',
-          ]
-          %}
+          ] %}
           {% set link_attributes = create_attribute().addClass(link_classes) %}
           {% if item.in_active_trail %}
             {% do link_attributes.setAttribute('aria-current', 'page') %}
@@ -98,6 +94,6 @@
         {% endif %}
       </li>
     {% endfor %}
-    </ul>
+  </ul>
   {% endif %}
-{% endmacro %}
+  {% endmacro %}

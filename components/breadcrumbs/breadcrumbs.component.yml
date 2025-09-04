@@ -1,19 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Breadcrumbs'
-status: stable
+status: experimental
 description: 'Renders the breadcrumb trail within a full-bleed container strip, providing a secondary navigation landmark.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    breadcrumb:
-      type: array
-      title: Breadcrumb Links
-      description: 'An ordered list of parent breadcrumb links.'
-      item:
-        type: object
-        properties:
-          text:
-            type: string
-          url:
-            type: string
+  properties: {}

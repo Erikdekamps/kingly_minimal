@@ -1,16 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Main Menu'
-status: stable
+status: experimental
 description: 'Renders the main navigation menu. Wraps the canonical `menu` component and applies contextual styles.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    label:
-      type: string
-      title: Label
-      description: 'The accessible label for the navigation.'
-    content:
-      type: object # Render array
-      title: Content
-      description: 'The render array for the menu tree.'
+  properties: {}

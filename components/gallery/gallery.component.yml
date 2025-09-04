@@ -1,24 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Gallery'
-status: stable
+status: experimental
 description: 'Renders a responsive grid of items with selectable layout patterns.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    layout:
-      type: string
-      title: 'Layout'
-      description: 'The machine name of the CSS grid layout pattern to apply.'
-      default: 'grid-3-col'
-      enum:
-        - 'grid-2-col'
-        - 'grid-3-col'
-        - 'grid-4-col'
-        - 'featured-top'
-        - 'featured-left'
-
-slots:
-  content:
-    title: 'Gallery Items'
-    description: 'The slot where the individual gallery `<li>` items should be placed.'
+  properties: {}

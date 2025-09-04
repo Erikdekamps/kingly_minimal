@@ -1,30 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Heading'
-status: stable
+status: experimental
 description: 'Renders a semantic heading with consistent styles. Decouples the heading level (e.g., h2) from its visual display size.'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    text:
-      type: [ string, object ]
-      title: 'Text'
-      description: 'The content of the heading.'
-    level:
-      type: string
-      title: 'Level'
-      description: 'The semantic HTML tag to use (h1-h6). Can also be "div".'
-      default: 'h2'
-      enum: [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div' ]
-    display:
-      type: string
-      title: 'Display Size'
-      description: 'The visual size of the heading. If not provided, it defaults to the same as the `level`.'
-      enum: [ '', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]
-    url:
-      type: string
-      title: 'URL'
-      description: '(Optional) If provided, the heading will be wrapped in a link.'
-
-  required:
-    - text
+  properties: {}

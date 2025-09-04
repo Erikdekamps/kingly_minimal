@@ -1,18 +1,9 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Local Tasks'
-status: stable
+status: experimental
 description: 'Renders the primary and secondary local task tabs (e.g., View, Edit, Revisions).'
 
+# Declare empty props.
 props:
   type: object
-  properties:
-    primary:
-      type: object # A render array containing the list items.
-      title: 'Primary Tasks'
-      description: 'The renderable array of primary task links.'
-      default: { }
-    secondary:
-      type: object # A render array containing the list items.
-      title: 'Secondary Tasks'
-      description: 'The renderable array of secondary task links.'
-      default: { }
+  properties: {}
